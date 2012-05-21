@@ -2,8 +2,9 @@
 clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Today's Menu"
-echo "1. Setup Kitchen"
-echo "2. "
+echo "Today's Menu:"
+echo "  1. Setup Kitchen"
+echo "  2. Update Kitchen"
+echo "  3. Run Kitchen"
 
 read answer
