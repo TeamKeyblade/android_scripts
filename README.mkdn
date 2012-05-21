@@ -1,0 +1,9 @@
+Swordrune10's Kitchen
+---------------------
+
+This repository is for my kitchen
+
+all files except for the kitchen wrapper are hidden when repo'ed for ur viewing pleasure
+the folder all is encapsulated in is named ".scripts"
+
+    repo init -u http://github.com/swordrune10/android_manifest.git
