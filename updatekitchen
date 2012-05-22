@@ -12,7 +12,9 @@ echo "  4. All of the above"
 echo "  5. Go Back"
 read version
 
-clear
+if [ ! $version == "5" ]; then
+	clear
+fi
 
 if [ $version == "1" ] || [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "cm")
