@@ -85,6 +85,10 @@ if [ $answer == "3" ]; then
 	fi
 
 	if [ $buildanswer == "6" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
 		export loop=true
 		$LOCAL/.scripts/kitchen
 		exit 0
