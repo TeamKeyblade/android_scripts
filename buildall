@@ -1,0 +1,43 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+clear
+export REPOS=$(echo "$LOCAL/../repos")
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Which version of android are we building today?"
+echo "  1. Cyanogenmod"
+echo "  2. AOSP"
+echo "  3. Go Back"
+read version
+
+if [ $version == "1" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+fi
+
+if [ $version == "2" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
+fi
+
+if [ ! $version == "3" ]; then
+	clear
+
+	setupandro
+
+	export SCRIPT_DEVICE=$(echo "toro")
+	buildandro
+	setupprop
+
+	export SCRIPT_DEVICE=$(echo "maguro")
+	buildandro
+	setupprop
+
+	if [ ! $version == "2" ]; then
+		export SCRIPT_DEVICE=$(echo "toroplus")
+		buildandro
+		setupprop
+	fi
+fi
+
+echo ""
+echo "Press Enter to continue"
+read done
