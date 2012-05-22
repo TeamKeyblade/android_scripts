@@ -1,10 +1,10 @@
 #!/bin/bash
 clear
-
+export REPOS=$(echo "$LOCAL/../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 
-if ( ! find $LOCAL/../repos &> /dev/null ); then
+if ( ! find $REPOS &> /dev/null ); then
 if ( ! find $LOCAL/.repo &> /dev/null ); then
 	echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
 	echo "Hit Enter to continue"
@@ -30,24 +30,24 @@ if ( ! find $LOCAL/.repo &> /dev/null ); then
 	fi
 fi
 
-if ( ! find $LOCAL/../repos/cm-ics/.repo &> /dev/null ); then
+if ( ! find $REPOS/cm-ics/.repo &> /dev/null ); then
 	echo ""
 	echo "Would you like the Cyanogenmod 9 repository?"
 	read cm9
 	if [ $cm9 == "yes" ] || [ $cm9 == "y" ]; then
-		mkdir -p $LOCAL/../repos/cm-ics
-		cd $LOCAL/../repos/cm-ics
+		mkdir -p $REPOS/cm-ics
+		cd $REPOS/cm-ics
 		repo init -u http://github.com/CyanogenMod/android.git -b ics
 	fi
 fi
 
-if ( ! find $LOCAL/../repos/aosp-ics/.repo &> /dev/null ); then
+if ( ! find $REPOS/aosp-ics/.repo &> /dev/null ); then
 	echo ""
 	echo "Would you like the Android Open Source Project repository?"
 	read aosp
 	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
-		mkdir -p $LOCAL/../repos/aosp-ics
-		cd $LOCAL/../repos/aosp-ics
+		mkdir -p $REPOS/aosp-ics
+		cd $REPOS/aosp-ics
 		repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
 	fi
 fi
