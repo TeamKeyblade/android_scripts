@@ -27,6 +27,7 @@ if [ $version == "1" ] || [ $version == "4" ]; then
 	fi
 
 	$LOCAL/.scripts/postupdate
+	echo "Cyanogenmod 9 Update Complete!"
 fi
 
 if [ $version == "2" ] || [ $version == "4" ]; then
@@ -37,6 +38,7 @@ if [ $version == "2" ] || [ $version == "4" ]; then
 	$LOCAL/.scripts/preupdate
 	~/bin/repo sync -j8
 	$LOCAL/.scripts/postupdate
+	echo "AOSP Update Complete!"
 fi
 
 if [ $version == "3" ] || [ $version == "4" ]; then
@@ -44,4 +46,8 @@ if [ $version == "3" ] || [ $version == "4" ]; then
 	cd $local
 
 	~/bin/repo sync -j8
+	echo "Kitchen Update Complete!"
 fi
+
+echo "Press Enter to continue"
+read done
