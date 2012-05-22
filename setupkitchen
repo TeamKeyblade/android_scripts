@@ -26,7 +26,7 @@ if ( ! find $local/.repo &> /dev/null ); then
 	read kitchen
 	if [ $kitchen == "yes" ] || [ $kitchen == "y" ]; then
 		cd $local
-		repo init -u http://github.com/swordrune10/android_manifest.git
+		repo init -u http://github.com/swordrune10/android_manifest.git  -b master
 	fi
 fi
 
