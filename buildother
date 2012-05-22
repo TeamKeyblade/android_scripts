@@ -23,7 +23,8 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Please type in which device you would like to build"
-echo "Type in "list" to see all supported devices"
+echo "Type in list to see all supported devices"
+echo "Type in exit to go to main menu"
 read device
 
 if [ $device == "list" ]; then
@@ -48,7 +49,15 @@ if [ $device == "list" ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "Please type in which device you would like to build"
+	echo "Type in exit to go to main menu"
 	read device
+fi
+
+if [ $device == "exit" ]; then
+	echo ""
+	echo "Press Enter to continue"
+	read done
+	exit 0
 fi
 
 if [ ! $version == "3" ]; then
