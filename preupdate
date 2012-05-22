@@ -3,16 +3,11 @@
 cd $REPOS/$SCRIPT_REPO-ics/.repo
 if ( ! find local_manifest.xml &> /dev/null ); then
 	if [ $SCRIPT_REPO == "cm" ]; then
+		echo "Adding missing local_manifest.xml"
+		cp $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
 		exit 0	
 	fi
 
 	echo "Adding missing local_manifest.xml"
 	cp $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
-fi
-
-if ( ! grep -q "<!--" local_manifest.xml ); then
-	echo "Patching local_manifest.xml"
-	sed -i 's/<\/manifest>/<!-- prop vendors below this -->/g' \
-	local_manifest.xml
-	cat $LOCAL/xml/end-local_manifest.xml >> local_manifest.xml
 fi
