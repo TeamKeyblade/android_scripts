@@ -51,3 +51,4 @@ if [ $sync == "yes" ] || [ $sync == "y" ]; then
 fi
 
 echo "done!"
+read done

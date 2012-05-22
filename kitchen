@@ -4,7 +4,7 @@ clear
 
 # grab directory location, could just use "."
 # but its mostly for later use (hence the export)
-if [ $local == "" ]; then
+if [ ! $loop ]; then
 	export local="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
@@ -24,12 +24,14 @@ read answer
 
 if [ $answer == "1" ]; then
 	$local/.scripts/setupkitchen
+	export loop=true
 	$local/.scripts/kitchen
 	exit 0
 fi
 
 if [ $answer == "2" ]; then
 	$local/.scripts/updatekitchen
+	export loop=true
 	$local/.scripts/kitchen
 	exit 0
 fi
@@ -49,24 +51,28 @@ if [ $answer == "3" ]; then
 
 	if [ $buildanswer == "1" ]; then
 		$local/.scripts/buildtoro
+		export loop=true
 		$local/.scripts/kitchen
 		exit 0
 	fi
 
 	if [ $buildanswer == "2" ]; then
 		$local/.scripts/buildmaguro
+		export loop=true
 		$local/.scripts/kitchen
 		exit 0
 	fi
 	
 	if [ $buildanswer == "3" ]; then
 		$local/.scripts/buildtoroplus
+		export loop=true
 		$local/.scripts/kitchen
 		exit 0
 	fi
 
 	if [ $buildanswer == "4" ]; then
 		$local/.scripts/buildall
+		export loop=true
 		$local/.scripts/kitchen
 		exit 0
 	fi
