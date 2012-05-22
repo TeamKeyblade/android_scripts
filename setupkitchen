@@ -1,4 +1,9 @@
 #!/bin/bash
+clear
+
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+
 if ( ! find $local/../repos &> /dev/null ); then
 if ( ! find $local/.repo &> /dev/null ); then
 	echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
