@@ -43,6 +43,8 @@ if [ $answer == "3" ]; then
 	echo "  2. Build GSM Galaxy Nexus"
 	echo "  3. Build Sprint Galaxy Nexus"
 	echo "  4. Build all above!"
+	echo "  5. Build other..."
+	echo "  6. Go Back"
 	echo ""
 	echo "Which one would you like to do?"
 	read buildanswer
@@ -70,6 +72,19 @@ if [ $answer == "3" ]; then
 
 	if [ $buildanswer == "4" ]; then
 		$LOCAL/.scripts/buildall
+		export loop=true
+		$LOCAL/.scripts/kitchen
+		exit 0
+	fi
+
+	if [ $buildanswer == "5" ]; then
+		$LOCAL/.scripts/buildother
+		export loop=true
+		$LOCAL/.scripts/kitchen
+		exit 0
+	fi
+
+	if [ $buildanswer == "6" ]; then
 		export loop=true
 		$LOCAL/.scripts/kitchen
 		exit 0
