@@ -25,8 +25,8 @@ if ( ! find $local/.repo &> /dev/null ); then
 	echo "Lets initilize the kitchen repository, shall we?"
 	read kitchen
 	if [ $kitchen == "yes" ] || [ $kitchen == "y" ]; then
-		cd $local/../repos/cm-ics
-		repo init -u http://github.com/CyanogenMod/android.git -b ics
+		cd $local
+		repo init -u http://github.com/swordrune10/android_manifest.git
 	fi
 fi
 
