@@ -21,6 +21,7 @@ fi
 fi
 
 if ( ! find $local/.repo &> /dev/null ); then
+	echo ""
 	echo "Lets initilize the kitchen repository, shall we?"
 	read kitchen
 	if [ $kitchen == "yes" ] || [ $kitchen == "y" ]; then
@@ -30,6 +31,7 @@ if ( ! find $local/.repo &> /dev/null ); then
 fi
 
 if ( ! find $local/../repos/cm-ics/.repo &> /dev/null ); then
+	echo ""
 	echo "Would you like the Cyanogenmod 9 repository?"
 	read cm9
 	if [ $cm9 == "yes" ] || [ $cm9 == "y" ]; then
@@ -40,6 +42,7 @@ if ( ! find $local/../repos/cm-ics/.repo &> /dev/null ); then
 fi
 
 if ( ! find $local/../repos/aosp-ics/.repo &> /dev/null ); then
+	echo ""
 	echo "Would you like the Android Open Source Project repository?"
 	read aosp
 	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
@@ -55,5 +58,5 @@ if [ $sync == "yes" ] || [ $sync == "y" ]; then
 	updatekitchen
 fi
 
-echo "done!"
+echo "Press Enter to continue"
 read done
