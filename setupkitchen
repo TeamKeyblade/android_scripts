@@ -59,5 +59,6 @@ if [ $sync == "yes" ] || [ $sync == "y" ]; then
 	$LOCAL/.scripts/updatekitchen
 fi
 
+echo ""
 echo "Press Enter to continue"
 read done
