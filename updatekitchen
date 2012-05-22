@@ -18,7 +18,7 @@ fi
 
 if [ $version == "1" ] || [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	echo "Syncing Cyanogenmod 9 repo"
+	echo "Syncing Cyanogenmod 9 repository"
 	cd $REPOS/cm-ics
 	rm -r vendor/cm
 
@@ -35,7 +35,7 @@ fi
 
 if [ $version == "2" ] || [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	echo "Syncing AOSP repo"
+	echo "Syncing AOSP repository"
 	cd $REPOS/aosp-ics
 
 	$LOCAL/.scripts/preupdate
@@ -45,7 +45,7 @@ if [ $version == "2" ] || [ $version == "4" ]; then
 fi
 
 if [ $version == "3" ] || [ $version == "4" ]; then
-	echo "Syncing Kitchen repo"
+	echo "Syncing Kitchen repository"
 	cd $LOCAL/.scripts
 
 	~/bin/repo sync -j8
