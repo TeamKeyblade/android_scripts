@@ -1,10 +1,10 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 clear
-cd $local 
 # grab directory location, could just use "."
 # but its mostly for later use (hence the export)
-export local = $( pwd )
+export local="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $local
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
