@@ -1,4 +1,5 @@
 #!/bin/bash
+# Written by Sean Donovan (swordrune10)
 clear
 export REPOS=$(echo "$LOCAL/../repos")
 echo "Swordrune10's Android Kitchen!"
@@ -55,7 +56,7 @@ fi
 echo "Lets sync up the new repos, shall we?"
 read sync
 if [ $sync == "yes" ] || [ $sync == "y" ]; then
-	updatekitchen
+	$LOCAL/.scripts/updatekitchen
 fi
 
 echo "Press Enter to continue"
