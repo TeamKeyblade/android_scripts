@@ -52,5 +52,6 @@ if [ $version == "3" ] || [ $version == "4" ]; then
 	echo "Kitchen Update Complete!"
 fi
 
+echo ""
 echo "Press Enter to continue"
 read done
