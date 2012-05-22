@@ -1,4 +1,16 @@
 #!/bin/bash
+echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
+echo "Hit Enter to continue"
+read pause
+
+echo "Lets install the repo command, shall we?"
+read repo
+if [ $repo == "yes" ] || [ $repo == "y" ]; then
+	mkdir -p ~/bin
+	curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+	chmod a+x ~/bin/repo
+fi
+
 echo "Would you like the Cyanogenmod 9 repository?"
 read cm9
 if [ $cm9 == "yes" ] || [ $cm9 == "y" ]; then
@@ -18,7 +30,7 @@ fi
 echo "Lets sync up the new repos, shall we?"
 read sync
 if [ $sync == "yes" ] || [ $sync == "y" ]; then
-updatekitchen
+	updatekitchen
 fi
 
 cd $local
