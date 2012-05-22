@@ -46,7 +46,7 @@ fi
 
 if [ $version == "3" ] || [ $version == "4" ]; then
 	echo "Syncing Kitchen repository"
-	cd $LOCAL/.scripts
+	cd $LOCAL
 
 	~/bin/repo sync -j8
 	echo "Kitchen Update Complete!"
