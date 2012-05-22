@@ -5,10 +5,10 @@ clear
 # grab directory location, could just use "."
 # but its mostly for later use (hence the export)
 if [ ! $loop ]; then
-	export local="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	export LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
-cd $local
+cd $LOCAL
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
@@ -23,16 +23,16 @@ echo "Which one would you like to do?"
 read answer
 
 if [ $answer == "1" ]; then
-	$local/.scripts/setupkitchen
+	$LOCAL/.scripts/setupkitchen
 	export loop=true
-	$local/.scripts/kitchen
+	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
 if [ $answer == "2" ]; then
-	$local/.scripts/updatekitchen
+	$LOCAL/.scripts/updatekitchen
 	export loop=true
-	$local/.scripts/kitchen
+	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
@@ -50,30 +50,30 @@ if [ $answer == "3" ]; then
 	read buildanswer
 
 	if [ $buildanswer == "1" ]; then
-		$local/.scripts/buildtoro
+		$LOCAL/.scripts/buildtoro
 		export loop=true
-		$local/.scripts/kitchen
+		$LOCAL/.scripts/kitchen
 		exit 0
 	fi
 
 	if [ $buildanswer == "2" ]; then
-		$local/.scripts/buildmaguro
+		$LOCAL/.scripts/buildmaguro
 		export loop=true
-		$local/.scripts/kitchen
+		$LOCAL/.scripts/kitchen
 		exit 0
 	fi
 	
 	if [ $buildanswer == "3" ]; then
-		$local/.scripts/buildtoroplus
+		$LOCAL/.scripts/buildtoroplus
 		export loop=true
-		$local/.scripts/kitchen
+		$LOCAL/.scripts/kitchen
 		exit 0
 	fi
 
 	if [ $buildanswer == "4" ]; then
-		$local/.scripts/buildall
+		$LOCAL/.scripts/buildall
 		export loop=true
-		$local/.scripts/kitchen
+		$LOCAL/.scripts/kitchen
 		exit 0
 	fi
 fi

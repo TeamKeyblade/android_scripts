@@ -4,8 +4,8 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 
-if ( ! find $local/../repos &> /dev/null ); then
-if ( ! find $local/.repo &> /dev/null ); then
+if ( ! find $LOCAL/../repos &> /dev/null ); then
+if ( ! find $LOCAL/.repo &> /dev/null ); then
 	echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
 	echo "Hit Enter to continue"
 	read pause
@@ -20,34 +20,34 @@ if ( ! find $local/.repo &> /dev/null ); then
 fi
 fi
 
-if ( ! find $local/.repo &> /dev/null ); then
+if ( ! find $LOCAL/.repo &> /dev/null ); then
 	echo ""
 	echo "Lets initilize the kitchen repository, shall we?"
 	read kitchen
 	if [ $kitchen == "yes" ] || [ $kitchen == "y" ]; then
-		cd $local
+		cd $LOCAL
 		repo init -u http://github.com/swordrune10/android_manifest.git  -b master
 	fi
 fi
 
-if ( ! find $local/../repos/cm-ics/.repo &> /dev/null ); then
+if ( ! find $LOCAL/../repos/cm-ics/.repo &> /dev/null ); then
 	echo ""
 	echo "Would you like the Cyanogenmod 9 repository?"
 	read cm9
 	if [ $cm9 == "yes" ] || [ $cm9 == "y" ]; then
-		mkdir -p $local/../repos/cm-ics
-		cd $local/../repos/cm-ics
+		mkdir -p $LOCAL/../repos/cm-ics
+		cd $LOCAL/../repos/cm-ics
 		repo init -u http://github.com/CyanogenMod/android.git -b ics
 	fi
 fi
 
-if ( ! find $local/../repos/aosp-ics/.repo &> /dev/null ); then
+if ( ! find $LOCAL/../repos/aosp-ics/.repo &> /dev/null ); then
 	echo ""
 	echo "Would you like the Android Open Source Project repository?"
 	read aosp
 	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
-		mkdir -p $local/../repos/aosp-ics
-		cd $local/../repos/aosp-ics
+		mkdir -p $LOCAL/../repos/aosp-ics
+		cd $LOCAL/../repos/aosp-ics
 		repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
 	fi
 fi
