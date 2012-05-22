@@ -22,7 +22,7 @@ fi
 echo "Would you like the Android Open Source Project repository?"
 read aosp
 if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
-	mkdir -p $local/repos/cm-ics
+	mkdir -p $local/repos/aosp-ics
 	cd $local/repos/aosp-ics
 	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
 fi
