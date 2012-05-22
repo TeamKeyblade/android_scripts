@@ -47,8 +47,3 @@ fi
 
 cd $builddir/$SCRIPT_REPO
 md5sum $zip > $zip.md5sum
-
-echo "Build Complete!"
-echo ""
-echo "Press Enter to continue"
-read done
