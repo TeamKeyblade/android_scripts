@@ -2,8 +2,6 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-# grab directory location, could just use "."
-# but its mostly for later use (hence the export)
 if [ ! $loop ]; then
 	export LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi

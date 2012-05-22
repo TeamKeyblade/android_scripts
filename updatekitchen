@@ -1,6 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 clear
+
 export REPOS=$(echo "$LOCAL/../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
