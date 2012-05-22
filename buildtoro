@@ -21,11 +21,11 @@ fi
 if [ ! $version == "3" ]; then
 	clear
 
-	setupandro
+	$LOCAL/.scripts/setupandro
 
 	export SCRIPT_DEVICE=$(echo "toro")
-	buildandro
-	setupprop
+	$LOCAL/.scripts/buildandro
+	$LOCAL/.scripts/setupprop
 fi
 
 echo ""
