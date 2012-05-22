@@ -1,0 +1,33 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE/system  &> /dev/null
+if ( find build.prop &> /dev/null );then
+	rm build.prop
+fi
+cd ..
+if ( find *.zip &> /dev/null );then
+	rm *.zip*
+fi
+
+cd $REPOS/$SCRIPT_REPO-ics
+. build/envsetup.sh
+
+if [ $SCRIPT_REPO == "cm" ]; then
+	brunch $SCRIPT_DEVICE -j4
+	exit 0
+fi
+
+if [ $SCRIPT_REPO == "aosp" ]; then
+	lunch full_$SCRIPT_DEVICE-userdebug
+	make CC=gcc-4.4 CXX=g++-4.4 otapackage -j4
+	exit 0
+fi
+
+if [ $SCRIPT_REPO == "razor" ]; then
+	lunch full_$SCRIPT_DEVICE-userdebug
+	make CC=gcc-4.4 CXX=g++-4.4 otapackage -j4
+	exit 0
+fi
+
+echo "This is awkward... how did u get here??"
+read bullshitanswer

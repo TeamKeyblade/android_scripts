@@ -1,0 +1,54 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
+builddir=$(echo "$LOCAL/../builds")
+
+if [ $SCRIPT_REPO == "cm" ]; then
+	zip=$(find update*.zip)
+fi
+
+if [ $SCRIPT_REPO == "aosp" ]; then
+	zip=$(find *ota*.zip)
+fi
+
+if [ ! $SCRIPT_REPO == "cm" ]; then
+	mkdir -p $REPOS/temp
+	cp $zip $REPOS/temp
+	mkdir -p $REPOS/temp/zipout
+	cd $REPOS/temp/zipout
+
+	unzip ../$zip
+
+	rm -r recovery
+	cd system
+
+	echo "ro.rommanager.developerid=$(whoami)" >> build.prop
+
+	cd $REPOS/temp/zipout
+	zip=$(echo update-$SCRIPT_REPO-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE-signed.zip)
+
+	zip -r $zip .
+fi
+
+mkdir -p $builddir/$SCRIPT_REPO/old
+
+mv $builddir/$SCRIPT_REPO/update*$SCRIPT_DEVICE-signed.zip \
+$builddir/$SCRIPT_REPO/old
+
+mv $builddir/$SCRIPT_REPO/update*$SCRIPT_DEVICE-signed.zip.md5sum \
+$builddir/$SCRIPT_REPO/old
+
+cp $zip $builddir/$SCRIPT_REPO
+
+if [ ! $SCRIPT_REPO == "cm" ]; then
+	cd $REPOS
+	rm -r temp
+fi
+
+cd $builddir/$SCRIPT_REPO
+md5sum $zip > $zip.md5sum
+
+echo "Build Complete!"
+echo ""
+echo "Press Enter to continue"
+read done

@@ -1,0 +1,28 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+clear
+if [ $SCRIPT_REPO == "cm" ]; then
+	cd $REPOS/cm-ics/vendor/cm/config
+	sed -i 's/$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CM_BUILD)-UNOFFICIAL/$(PRODUCT_VERSION_MAJOR)-$(shell date +%Y%m%d)-UNOFFICIAL-$(CM_BUILD)/g' common.mk
+	sed -i \
+	's/ro.rommanager.developerid=cyanogenmodnightly/ro.rommanager.developerid=$(shell whoami)/g' \
+	common.mk	
+	sed -i \
+	's/ro.rommanager.developerid=cyanogenmod/ro.rommanager.developerid=$(shell whoami)/g' \
+	common.mk
+fi
+
+cd $REPOS/$SCRIPT_REPO-ics
+. build/envsetup.sh
+
+if [ $AUTO ]; then
+	make clobber
+	exit 0
+fi
+
+echo "clean out folder?"
+read purgeout
+
+if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
+	make clobber
+fi
