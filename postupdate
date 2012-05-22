@@ -1,0 +1,5 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+if [ $SCRIPT_REPO == "cm" ]; then
+	$REPOS/cm-ics/vendor/cm/get-prebuilts
+fi

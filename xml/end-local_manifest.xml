@@ -1,0 +1,3 @@
+  <project name="koush/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
+  <project name="koush/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+</manifest>
