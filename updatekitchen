@@ -1,0 +1,38 @@
+#!/bin/bash
+clear
+export REPOS=$(echo "$LOCAL/../repos")
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Which version of android are we syncing?"
+echo "  1. Cyanogenmod 9"
+echo "  2. AOSP"
+echo "  3. All of the above"
+read version
+
+clear
+
+if [ $version == "1" ] || [ $version == "3" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	echo "Syncing Cyanogenmod 9 repo"
+	cd $REPOS/cm-ics
+	rm -r vendor/cm
+
+	$LOCAL/.scripts/preupdate
+	~/bin/repo sync -j8
+
+	if ( find $LOCAL/.scripts/repomod &> /dev/null ); then
+		$LOCAL/.scripts/repomod
+	fi
+
+	$LOCAL/.scripts/postupdate
+fi
+
+if [ $version == "2" ] || [ $version == "3" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
+	echo "Syncing AOSP repo"
+	cd $REPOS/aosp-ics
+
+	$LOCAL/.scripts/preupdate
+	~/bin/repo sync -j8
+	$LOCAL/.scripts/postupdate
+fi
