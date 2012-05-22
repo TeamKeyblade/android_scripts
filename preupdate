@@ -8,6 +8,8 @@ if ( ! find local_manifest.xml &> /dev/null ); then
 		exit 0	
 	fi
 
-	echo "Adding missing local_manifest.xml"
-	cp $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+	if [ $SCRIPT_REPO == "aosp" ]; then
+		echo "Adding missing local_manifest.xml"
+		cp $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+	fi
 fi
