@@ -1,12 +1,12 @@
 #!/bin/bash
 if [ $SCRIPT_REPO == "cm" ]; then
 	# below is examples, git pull is recommended
-	# cd $REPOS/cm-ics/[where in the repo you want to modify]
-	# git pull [repo you want to pull]
+	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify
+	# git pull repo-you-want-to-pull
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
 	# below is examples, git pull is recommended
-	# cd $REPOS/aosp-ics/[where in the repo you want to modify]
-	# git pull [repo you want to pull]
+	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify
+	# git pull repo-you-want-to-pull
 fi
