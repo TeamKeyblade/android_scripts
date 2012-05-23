@@ -26,9 +26,11 @@ if [ $version == "1" ] || [ $version == "4" ]; then
 	$LOCAL/.scripts/preupdate
 	~/bin/repo sync -j8
 
-	if ( find $LOCAL/.scripts/repomod &> /dev/null ); then
-		$LOCAL/.scripts/repomod
+	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
 	fi
+
+	$LOCAL/.scripts/gitpuller
 
 	$LOCAL/.scripts/postupdate
 	echo "Cyanogenmod 9 Update Complete!"
@@ -41,6 +43,13 @@ if [ $version == "2" ] || [ $version == "4" ]; then
 
 	$LOCAL/.scripts/preupdate
 	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
+	fi
+
+	$LOCAL/.scripts/gitpuller
+
 	$LOCAL/.scripts/postupdate
 	echo "AOSP Update Complete!"
 fi
