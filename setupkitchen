@@ -6,7 +6,6 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 
 if ( ! find $REPOS &> /dev/null ); then
-if ( ! find ~/bin/repo &> /dev/null ); then
 	echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
 	echo "Hit Enter to continue"
 	read pause
@@ -18,7 +17,6 @@ if ( ! find ~/bin/repo &> /dev/null ); then
 		curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 		chmod a+x ~/bin/repo
 	fi
-fi
 fi
 
 if ( ! find $LOCAL/.repo &> /dev/null ); then
