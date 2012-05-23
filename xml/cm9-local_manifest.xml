@@ -1,4 +1,3 @@
-<!-- Written by Sean Donovan (swordrune10) -->
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="ics" />

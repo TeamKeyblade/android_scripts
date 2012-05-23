@@ -66,6 +66,7 @@ echo "Lets sync up the new repos, shall we?"
 read sync
 if [ $sync == "yes" ] || [ $sync == "y" ]; then
 	$LOCAL/.scripts/updatekitchen
+	exit 0
 fi
 
 echo ""
