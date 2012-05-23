@@ -1,0 +1,61 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+clear
+
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Today's Menu:"
+echo "  1. Build Verizon Galaxy Nexus"
+echo "  2. Build GSM Galaxy Nexus"
+echo "  3. Build Sprint Galaxy Nexus"
+echo "  4. Build all above!"
+echo "  5. Build other..."
+echo "  6. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read buildanswer
+
+if [ $buildanswer == "1" ]; then
+	$LOCAL/.scripts/buildtoro
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi
+
+if [ $buildanswer == "2" ]; then
+	$LOCAL/.scripts/buildmaguro
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi
+	
+if [ $buildanswer == "3" ]; then
+	$LOCAL/.scripts/buildtoroplus
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi
+
+if [ $buildanswer == "4" ]; then
+	$LOCAL/.scripts/buildall
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi
+
+if [ $buildanswer == "5" ]; then
+	$LOCAL/.scripts/buildother
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi
+
+if [ $buildanswer == "6" ]; then
+	echo ""
+	echo "Press Enter to continue"
+	read done
+
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
+fi

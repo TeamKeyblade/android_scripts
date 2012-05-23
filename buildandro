@@ -18,7 +18,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	exit 0
 fi
 
-if [ $SCRIPT_REPO == "aosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	lunch full_$SCRIPT_DEVICE-userdebug
 	make CC=gcc-4.4 CXX=g++-4.4 otapackage -j4
 	exit 0

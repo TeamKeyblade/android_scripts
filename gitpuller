@@ -12,3 +12,10 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	# git pull repo-you-want-to-pull
 	exit 0
 fi
+
+if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	# below is examples, git pull is recommended
+	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify
+	# git pull repo-you-want-to-pull
+	exit 0
+fi

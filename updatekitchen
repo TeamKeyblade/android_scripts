@@ -6,18 +6,27 @@ export REPOS=$(echo "$LOCAL/../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Which version of android are we syncing?"
-echo "  1. Cyanogenmod 9"
-echo "  2. AOSP"
-echo "  3. Kitchen"
-echo "  4. All of the above"
-echo "  5. Go Back"
+echo "  1. Kitchen"
+echo "  2. Cyanogenmod 9"
+echo "  3. Rooted & Busyboxed AOSP"
+echo "  4. Pure AOSP"
+echo "  5. All of the above"
+echo "  6. Go Back"
 read version
 
-if [ ! $version == "5" ]; then
+if [ ! $version == "6" ]; then
 	clear
 fi
 
-if [ $version == "1" ] || [ $version == "4" ]; then
+if [ $version == "1" ] || [ $version == "5" ]; then
+	echo "Syncing Kitchen repository"
+	cd $LOCAL
+
+	~/bin/repo sync -j8
+	echo "Kitchen Update Complete!"
+fi
+
+if [ $version == "2" ] || [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	echo "Syncing Cyanogenmod 9 repository"
 	cd $REPOS/cm-ics
@@ -36,7 +45,25 @@ if [ $version == "1" ] || [ $version == "4" ]; then
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
-if [ $version == "2" ] || [ $version == "4" ]; then
+if [ $version == "3" ] || [ $version == "5" ]; then
+	export SCRIPT_REPO=$(echo "rooted-aosp")
+	echo "Syncing Rooted & Busyboxed AOSP repository"
+	cd $REPOS/rooted-aosp-ics
+
+	$LOCAL/.scripts/preupdate
+	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
+	fi
+
+	$LOCAL/.scripts/gitpuller
+
+	$LOCAL/.scripts/postupdate
+	echo "Rooted & Busyboxed AOSP Update Complete!"
+fi
+
+if [ $version == "4" ] || [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	echo "Syncing AOSP repository"
 	cd $REPOS/aosp-ics
@@ -52,14 +79,6 @@ if [ $version == "2" ] || [ $version == "4" ]; then
 
 	$LOCAL/.scripts/postupdate
 	echo "AOSP Update Complete!"
-fi
-
-if [ $version == "3" ] || [ $version == "4" ]; then
-	echo "Syncing Kitchen repository"
-	cd $LOCAL
-
-	~/bin/repo sync -j8
-	echo "Kitchen Update Complete!"
 fi
 
 echo ""

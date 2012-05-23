@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if [ ! $loop ]; then
+if [ ! $LOOP ]; then
 	export LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
@@ -22,77 +22,23 @@ read answer
 
 if [ $answer == "1" ]; then
 	$LOCAL/.scripts/setupkitchen
-	export loop=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
 if [ $answer == "2" ]; then
 	$LOCAL/.scripts/updatekitchen
-	export loop=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
 if [ $answer == "3" ]; then
-	clear
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Today's Menu:"
-	echo "  1. Build Verizon Galaxy Nexus"
-	echo "  2. Build GSM Galaxy Nexus"
-	echo "  3. Build Sprint Galaxy Nexus"
-	echo "  4. Build all above!"
-	echo "  5. Build other..."
-	echo "  6. Go Back"
-	echo ""
-	echo "Which one would you like to do?"
-	read buildanswer
-
-	if [ $buildanswer == "1" ]; then
-		$LOCAL/.scripts/buildtoro
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
-
-	if [ $buildanswer == "2" ]; then
-		$LOCAL/.scripts/buildmaguro
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
-	
-	if [ $buildanswer == "3" ]; then
-		$LOCAL/.scripts/buildtoroplus
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
-
-	if [ $buildanswer == "4" ]; then
-		$LOCAL/.scripts/buildall
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
-
-	if [ $buildanswer == "5" ]; then
-		$LOCAL/.scripts/buildother
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
-
-	if [ $buildanswer == "6" ]; then
-		echo ""
-		echo "Press Enter to continue"
-		read done
-
-		export loop=true
-		$LOCAL/.scripts/kitchen
-		exit 0
-	fi
+	$LOCAL/.scripts/kitchenbuilder
+	export LOOP=true
+	$LOCAL/.scripts/kitchen
+	exit 0
 fi
 
 if [ $answer == "4" ]; then

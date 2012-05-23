@@ -42,6 +42,17 @@ if ( ! find $REPOS/cm-ics/.repo &> /dev/null ); then
 	fi
 fi
 
+if ( ! find $REPOS/rooted-aosp-ics/.repo &> /dev/null ); then
+	echo ""
+	echo "Would you like the Android Open Source Project, Rooted & Busyboxed, repository?"
+	read aosp
+	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
+		mkdir -p $REPOS/rooted-aosp-ics
+		cd $REPOS/rooted-aosp-ics
+		repo init -u http://github.com/swordrune10/android_manifest.git -b ics
+	fi
+fi
+
 if ( ! find $REPOS/aosp-ics/.repo &> /dev/null ); then
 	echo ""
 	echo "Would you like the Android Open Source Project repository?"
