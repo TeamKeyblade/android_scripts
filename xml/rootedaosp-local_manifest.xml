@@ -1,6 +1,6 @@
 <!-- Written by Sean Donovan (swordrune10) -->
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="koush/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
-  <project name="koush/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+  <project path="vendor/samsung" name="koush/proprietary_vendor_samsung" remote="github" revision="refs/heads/ics" />
+  <project path="vendor/imgtec"  name="koush/proprietary_vendor_imgtec" remote="github" revision="refs/heads/ics" />
 </manifest>
