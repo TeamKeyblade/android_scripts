@@ -29,7 +29,6 @@ if [ ! $SCRIPT_REPO == "cm" ]; then
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
 	fi
 
-	cd $REPOS/temp/zipout
 	zip=$(echo update-$SCRIPT_REPO-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE-signed.zip)
 
 	zip -r $zip .
