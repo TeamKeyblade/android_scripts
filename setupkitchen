@@ -35,7 +35,7 @@ fi
 if [ $setupanswer == "2" ]; then
 	echo "Initilizing the kitchen repository.."
 
-	cd ../$LOCAL
+	cd $LOCAL/..
 	repo init -u http://github.com/swordrune10/android_manifest.git -b master
 
 	echo ""	
