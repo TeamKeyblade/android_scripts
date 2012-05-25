@@ -145,7 +145,7 @@ if [ $cleananswer == "3" ]; then
 fi
 
 if [ $cleananswer == "4" ]; then
-	$LOCAL/.scripts/buildall
+
 fi
 
 if [ $cleananswer == "5" ]; then
