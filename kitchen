@@ -41,7 +41,7 @@ if [ $answer == "3" ]; then
 	exit 0
 fi
 
-if [ $answer == "4" ]; then
+if [ $answer == "5" ]; then
 	$LOCAL/.scripts/kitchencleaner
 	export LOOP=true
 	$LOCAL/.scripts/kitchen
