@@ -68,7 +68,7 @@ if [ $cleananswer == "2" ]; then
 		exit 0
 	fi
 
-	if ( find $REPOS/cm-ics &> /dev/null )
+	if ( find $REPOS/cm-ics &> /dev/null ); then
 		cd $REPOS/cm-ics
 
 		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
@@ -82,7 +82,7 @@ if [ $cleananswer == "2" ]; then
 		fi
 	fi
 
-	if ( find $REPOS/rooted-aosp-ics &> /dev/null )
+	if ( find $REPOS/rooted-aosp-ics &> /dev/null ); then
 		cd $REPOS/rooted-aosp-ics
 
 		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
@@ -96,7 +96,7 @@ if [ $cleananswer == "2" ]; then
 		fi
 	fi
 
-	if ( find $REPOS/aosp-ics &> /dev/null )
+	if ( find $REPOS/aosp-ics &> /dev/null ); then
 		cd $REPOS/aosp-ics
 
 		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
