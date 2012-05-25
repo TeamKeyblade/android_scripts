@@ -165,7 +165,6 @@ if [ $cleananswer == "5" ]; then
 		echo "Please dont try that again..."
 	fi
 
-	$LOCAL/.scripts/kitchencleaner
 	exit 0
 fi
 
