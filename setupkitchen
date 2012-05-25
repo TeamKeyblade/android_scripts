@@ -11,15 +11,12 @@ echo "  2. Initilize the kitchen repository"
 echo "  3. Initilize the Cyanogenmod 9 repository"
 echo "  4. Initilize the Rooted & Busyboxed AOSP repository"
 echo "  5. Initilize the Android Open Source Project repository"
-echo "  6. Do 1, 2, and 3"
-echo "  7. Do 1, 2, 3, and 4"
-echo "  8. All of the above"
-echo "  9. Go Back"
+echo "  6. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read setupanswer
 
-if [ $setupanswer == "1" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+if [ $setupanswer == "1" ]; then
 	echo "Installing the repo command.."
 
 	mkdir -p ~/bin
@@ -30,13 +27,12 @@ if [ $setupanswer == "1" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ]
 	echo "finished!"
 	read done
 
-	if [ $setupanswer == "1" ]; then
-		$LOCAL/.scripts/setupkitchen
-		exit 0
-	fi
+
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if [ $setupanswer == "2" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+if [ $setupanswer == "2" ]; then
 	echo "Initilizing the kitchen repository.."
 
 	cd $LOCAL
@@ -54,13 +50,11 @@ if [ $setupanswer == "2" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ]
 	echo "finished!"
 	read done
 
-	if [ $setupanswer == "2" ]
-		$LOCAL/.scripts/setupkitchen
-		exit 0
-	fi
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if [ $setupanswer == "3" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+if [ $setupanswer == "3" ]; then
 	echo "Initilizing the Cyanogenmod 9 repository.."
 
 	mkdir -p $REPOS/cm-ics
@@ -79,13 +73,11 @@ if [ $setupanswer == "3" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ]
 	echo "finished!"
 	read done
 
-	if [ $setupanswer == "3" ] || [ $setupanswer == "6" ]; then
-		$LOCAL/.scripts/setupkitchen
-		exit 0
-	fi
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if [ $setupanswer == "4" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+if [ $setupanswer == "4" ]; then
 	echo "Initilizing the Rooted & Busyboxed AOSP repository.."
 
 	mkdir -p $REPOS/rooted-aosp-ics
@@ -104,13 +96,11 @@ if [ $setupanswer == "4" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]
 	echo "finished!"
 	read done
 
-	if [ $setupanswer == "4" ] || [ $setupanswer == "7" ]; then
-		$LOCAL/.scripts/setupkitchen
-		exit 0
-	fi
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if [ $setupanswer == "5" ] || [ $setupanswer == "8" ]; then
+if [ $setupanswer == "5" ]; then
 	echo "Initilizing the Android Open Source Project repository.."
 
 	mkdir -p $REPOS/aosp-ics
