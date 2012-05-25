@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-export REPOS=$(echo "$LOCAL/../repos")
+export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "What are we updating?"
