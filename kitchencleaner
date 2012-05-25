@@ -18,7 +18,7 @@ echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
-if [ $cleananswer == "1" ]
+if [ "$cleananswer" = "1" ]
 then
 	echo ""
 	echo "which repo would you like to modify?"
@@ -57,7 +57,7 @@ then
 	
 fi
 
-if [ $cleananswer == "2" ]
+if [ "$cleananswer" = "2" ]
 then
 	echo ""
 	echo "Clean or Purge the repositories?"
@@ -113,7 +113,7 @@ then
 	fi
 fi
 	
-if [ $cleananswer == "3" ]
+if [ "$cleananswer" = "3" ]
 then
 	echo ""
 	echo "Clean or Purge?"
@@ -149,12 +149,12 @@ then
 	fi
 fi
 
-if [ $cleananswer == "4" ]
+if [ "$cleananswer" = "4" ]
 then
 
 fi
 
-if [ $cleananswer == "5" ]
+if [ "$cleananswer" = "5" ]
 then
 	clear
 
