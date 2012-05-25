@@ -1,13 +1,14 @@
 #!/bin/sh
 # Written by Sean Donovan (swordrune10)
-clear
 
 if [ ! "$LOOP" ]
 then
-	LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	LOCAL=$( cd $( dirname -- "$0" ) > /dev/null ; pwd )
 fi
 
 cd $LOCAL
+
+clear
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
