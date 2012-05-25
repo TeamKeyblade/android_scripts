@@ -5,7 +5,7 @@ clear
 export REPOS=$(echo "$LOCAL/../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Which version of android are we syncing?"
+echo "What are we updating?"
 echo "  1. Kitchen"
 echo "  2. Cyanogenmod 9"
 echo "  3. Rooted & Busyboxed AOSP"
@@ -19,7 +19,7 @@ if [ ! $version == "6" ]; then
 fi
 
 if [ $version == "1" ] || [ $version == "5" ]; then
-	echo "Syncing Kitchen repository"
+	echo "Updating Kitchen app"
 	cd $LOCAL
 
 	~/bin/repo sync -j8
@@ -28,7 +28,7 @@ fi
 
 if [ $version == "2" ] || [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	echo "Syncing Cyanogenmod 9 repository"
+	echo "Updating Cyanogenmod 9 repository"
 	cd $REPOS/cm-ics
 	rm -r vendor/cm
 
@@ -47,7 +47,7 @@ fi
 
 if [ $version == "3" ] || [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
-	echo "Syncing Rooted & Busyboxed AOSP repository"
+	echo "Updating Rooted & Busyboxed AOSP repository"
 	cd $REPOS/rooted-aosp-ics
 
 	$LOCAL/.scripts/preupdate
@@ -65,7 +65,7 @@ fi
 
 if [ $version == "4" ] || [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	echo "Syncing AOSP repository"
+	echo "Updating AOSP repository"
 	cd $REPOS/aosp-ics
 
 	$LOCAL/.scripts/preupdate
