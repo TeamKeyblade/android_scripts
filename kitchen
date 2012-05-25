@@ -1,14 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 # Written by Sean Donovan (swordrune10)
+CONFIG_SHELL=/bin/bash ./configure ...
+clear
 
-if [ ! "$LOOP" ]
-then
-	export LOCAL="${0%/*}"
+if [ ! $LOOP ]; then
+	export LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
 cd $LOCAL
-
-clear
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
@@ -22,40 +21,35 @@ echo "Which one would you like to do?"
 
 read answer
 
-if [ "$answer" = "1" ]
-then
+if [ $answer == "1" ]; then
 	$LOCAL/.scripts/setupkitchen
-	LOOP=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ "$answer" = "2" ]
-then
+if [ $answer == "2" ]; then
 	$LOCAL/.scripts/updatekitchen
-	LOOP=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ "$answer" = "3" ]
-then
+if [ $answer == "3" ]; then
 	$LOCAL/.scripts/kitchenbuilder
-	LOOP=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ "$answer" = "5" ]
-then
+if [ $answer == "5" ]; then
 	$LOCAL/.scripts/kitchencleaner
-	LOOP=true
+	export LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ "$answer" = "10" ]
-then
+if [ $answer == "10" ]; then
 	echo "You seem bored.. wanna watch a movie?"
 	read nothing
 	if [ $nothing == "no" ] || [ $nothing == "n" ]; then
