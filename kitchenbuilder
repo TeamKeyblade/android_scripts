@@ -16,23 +16,23 @@ echo "Which one would you like to do?"
 read buildanswer
 
 if [ $buildanswer == "1" ]; then
-	$LOCAL/.scripts/buildtoro
+	./buildtoro
 fi
 
 if [ $buildanswer == "2" ]; then
-	$LOCAL/.scripts/buildmaguro
+	./buildmaguro
 fi
 	
 if [ $buildanswer == "3" ]; then
-	$LOCAL/.scripts/buildtoroplus
+	./buildtoroplus
 fi
 
 if [ $buildanswer == "4" ]; then
-	$LOCAL/.scripts/buildall
+	./buildall
 fi
 
 if [ $buildanswer == "5" ]; then
-	$LOCAL/.scripts/buildother
+	./buildother
 fi
 
 echo ""

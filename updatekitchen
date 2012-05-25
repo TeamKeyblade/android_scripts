@@ -20,7 +20,7 @@ fi
 
 if [ $version == "1" ] || [ $version == "5" ]; then
 	echo "Updating Kitchen app"
-	cd $LOCAL
+	cd ../$LOCAL
 
 	~/bin/repo sync -j8
 	echo "Kitchen Update Complete!"
@@ -32,16 +32,16 @@ if [ $version == "2" ] || [ $version == "5" ]; then
 	cd $REPOS/cm-ics
 	rm -r vendor/cm
 
-	$LOCAL/.scripts/preupdate
+	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
-		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
+		ln -s $LOCAL/gitpuller $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/.scripts/gitpuller
+	$LOCAL/gitpuller
 
-	$LOCAL/.scripts/postupdate
+	$LOCAL/postupdate
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
@@ -50,16 +50,16 @@ if [ $version == "3" ] || [ $version == "5" ]; then
 	echo "Updating Rooted & Busyboxed AOSP repository"
 	cd $REPOS/rooted-aosp-ics
 
-	$LOCAL/.scripts/preupdate
+	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
-		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
+		ln -s $LOCAL/gitpuller $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/.scripts/gitpuller
+	$LOCAL/gitpuller
 
-	$LOCAL/.scripts/postupdate
+	$LOCAL/postupdate
 	echo "Rooted & Busyboxed AOSP Update Complete!"
 fi
 
@@ -68,16 +68,16 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	echo "Updating AOSP repository"
 	cd $REPOS/aosp-ics
 
-	$LOCAL/.scripts/preupdate
+	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
-		ln -s $LOCAL/.scripts/gitpuller $LOCAL/gitpuller
+		ln -s $LOCAL/gitpuller $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/.scripts/gitpuller
+	$LOCAL/gitpuller
 
-	$LOCAL/.scripts/postupdate
+	$LOCAL/postupdate
 	echo "AOSP Update Complete!"
 fi
 

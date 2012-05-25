@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-export REPOS=$(echo "$LOCAL/../repos")
+export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Something is not working right? What should we do?"
@@ -123,13 +123,13 @@ if [ $cleananswer == "3" ]; then
 		exit 0
 	fi
 
-	cd ../$LOCAL
+	cd ../../$LOCAL
 
 	if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
 		echo "#!/bin/bash" > redeemer
 		echo "echo "Do not be alarmed, Rom Kitchen will close at the end of this"" >> redeemer
 		echo "echo "Press enter to continue"" >> redeemer
-		echo "cd $LOCAL" >> redeemer
+		echo "cd ../$LOCAL" >> redeemer
 		echo "rm -rf *" >> redeemer
 		echo "repo sync" >> redeemer
 		echo "cd .." >> redeemer
@@ -142,7 +142,7 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		cd ..
-		rm -rf $LOCAL
+		rm -rf ../$LOCAL
 	fi
 fi
 

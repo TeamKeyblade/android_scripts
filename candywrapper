@@ -1,0 +1,5 @@
+#!/bin/sh
+cd .scripts
+export LOCAL=$( pwd )
+
+./kitchen

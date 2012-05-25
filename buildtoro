@@ -1,7 +1,8 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 clear
-export REPOS=$(echo "$LOCAL/../repos")
+
+export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Which version of android are we building today?"
@@ -26,9 +27,9 @@ fi
 if [ ! $version == "4" ]; then
 	clear
 
-	$LOCAL/.scripts/setupandro
+	./setupandro
 
 	export SCRIPT_DEVICE=$(echo "toro")
-	$LOCAL/.scripts/buildandro
-	$LOCAL/.scripts/setupprop
+	./buildandro
+	./setupprop
 fi

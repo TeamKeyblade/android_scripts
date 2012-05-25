@@ -1,7 +1,8 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 clear
-export REPOS=$(echo "$LOCAL/../repos")
+
+export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Which version of android are we building today?"
@@ -43,7 +44,18 @@ if [ $device == "list" ]; then
 		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
 	fi
 
-	if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+		echo "stingray
+		wingray
+		crespo4g
+		crespo
+		maguro
+		toro
+		toroplus
+		tuna" | less
+	fi
+
+	if [ $SCRIPT_REPO == "aosp" ]; then
 		echo "stingray
 		wingray
 		crespo4g
@@ -69,9 +81,9 @@ fi
 if [ ! $version == "4" ]; then
 	clear
 
-	$LOCAL/.scripts/setupandro
+	./setupandro
 
 	export SCRIPT_DEVICE=$(echo $device)
-	$LOCAL/.scripts/buildandro
-	$LOCAL/.scripts/setupprop
+	./buildandro
+	./setupprop
 fi
