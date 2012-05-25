@@ -18,8 +18,7 @@ echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
-if [ "$cleananswer" = "1" ]
-then
+if [ $cleananswer == "1" ]; then
 	echo ""
 	echo "which repo would you like to modify?"
 	echo "Cyanogenmod 9 = cm"
@@ -28,8 +27,7 @@ then
 	echo "type exit to go to main menu"
 	read modify
 
-	if [ $modify == "exit" ]
-	then
+	if [ $modify == "exit" ]; then
 		exit 0
 	fi
 
@@ -58,8 +56,7 @@ then
 	
 fi
 
-if [ "$cleananswer" = "2" ]
-then
+if [ $cleananswer == "2" ]; then
 	echo ""
 	echo "Clean or Purge the repositories?"
 	echo "Clean = remove files, download from origin"
@@ -114,8 +111,7 @@ then
 	fi
 fi
 	
-if [ "$cleananswer" = "3" ]
-then
+if [ $cleananswer == "3" ]; then
 	echo ""
 	echo "Clean or Purge?"
 	echo "Clean = remove files, download from origin"
@@ -150,13 +146,11 @@ then
 	fi
 fi
 
-if [ "$cleananswer" = "4" ]
-then
+if [ $cleananswer == "4" ]; then
 
 fi
 
-if [ "$cleananswer" = "5" ]
-then
+if [ $cleananswer == "5" ]; then
 	clear
 
 	echo "Are you sure..? this will delete everything that is connected to your computer!!"
