@@ -17,45 +17,26 @@ read buildanswer
 
 if [ $buildanswer == "1" ]; then
 	$LOCAL/.scripts/buildtoro
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
 
 if [ $buildanswer == "2" ]; then
 	$LOCAL/.scripts/buildmaguro
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
 	
 if [ $buildanswer == "3" ]; then
 	$LOCAL/.scripts/buildtoroplus
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
 
 if [ $buildanswer == "4" ]; then
 	$LOCAL/.scripts/buildall
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
 
 if [ $buildanswer == "5" ]; then
 	$LOCAL/.scripts/buildother
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
 
 if [ $buildanswer == "6" ]; then
 	echo ""
 	echo "Press Enter to continue"
 	read done
-
-	export LOOP=true
-	$LOCAL/.scripts/kitchen
-	exit 0
 fi
