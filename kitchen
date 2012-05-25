@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 # Written by Sean Donovan (swordrune10)
 clear
 
-if [ ! $LOOP ]; then
-	export LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ ! "$LOOP" ]
+then
+	LOCAL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
 cd $LOCAL
@@ -20,35 +21,40 @@ echo "Which one would you like to do?"
 
 read answer
 
-if [ $answer == "1" ]; then
+if [ "$answer" = "1" ]
+then
 	$LOCAL/.scripts/setupkitchen
-	export LOOP=true
+	LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ $answer == "2" ]; then
+if [ "$answer" = "2" ]
+then
 	$LOCAL/.scripts/updatekitchen
-	export LOOP=true
+	LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ $answer == "3" ]; then
+if [ "$answer" = "3" ]
+then
 	$LOCAL/.scripts/kitchenbuilder
-	export LOOP=true
+	LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ $answer == "5" ]; then
+if [ "$answer" = "5" ]
+then
 	$LOCAL/.scripts/kitchencleaner
-	export LOOP=true
+	LOOP=true
 	$LOCAL/.scripts/kitchen
 	exit 0
 fi
 
-if [ $answer == "10" ]; then
+if [ "$answer" = "10" ]
+then
 	echo "You seem bored.. wanna watch a movie?"
 	read nothing
 	if [ $nothing == "no" ] || [ $nothing == "n" ]; then
