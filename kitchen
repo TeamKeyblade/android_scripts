@@ -3,7 +3,7 @@
 
 if [ ! "$LOOP" ]
 then
-	export LOCAL=$( cd $( dirname -- "$0" ) > /dev/null ; pwd )
+	export LOCAL="${0%/*}"
 fi
 
 cd $LOCAL
