@@ -1,6 +1,6 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-CONFIG_SHELL=/bin/bash ./configure ...
+export SHELL=/bin/bash
 clear
 
 if [ ! $LOOP ]; then
