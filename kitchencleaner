@@ -28,7 +28,8 @@ then
 	echo "type exit to go to main menu"
 	read modify
 
-	if [ $modify == "exit" ]; then
+	if [ $modify == "exit" ]
+	then
 		exit 0
 	fi
 
