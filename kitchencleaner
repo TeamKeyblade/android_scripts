@@ -135,7 +135,9 @@ if [ $cleananswer == "3" ]; then
 		echo "cd .." >> ../$LOCAL/redeemer
 		echo "rm redeemer" >> ../$LOCAL/redeemer
 		chmod a+x ../$LOCAL/redeemer
-		../$LOCAL/redeemer
+		echo "im a rhino! =D"
+		read burp
+
 	fi
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
