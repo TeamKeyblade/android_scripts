@@ -1,6 +1,6 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-export SHELL=/bin/bash
+/bin/bash
 clear
 
 if [ ! $LOOP ]; then
