@@ -123,18 +123,18 @@ if [ $cleananswer == "3" ]; then
 		exit 0
 	fi
 
-	cd $LOCAL
+	cd ../$LOCAL
 
 	if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
-		echo "#!/bin/bash" > ../$LOCAL/redeemer
-		echo "echo "Do not be alarmed, Rom Kitchen will close at the end of this"" >> ../$LOCAL/redeemer
-		echo "echo "Press enter to continue"" >> ../$LOCAL/redeemer
-		echo "cd $LOCAL" >> ../$LOCAL/redeemer
-		echo "rm -rf *" >> ../$LOCAL/redeemer
-		echo "repo sync" >> ../$LOCAL/redeemer
-		echo "cd .." >> ../$LOCAL/redeemer
-		echo "rm redeemer" >> ../$LOCAL/redeemer
-		chmod a+x ../$LOCAL/redeemer
+		echo "#!/bin/bash" > redeemer
+		echo "echo "Do not be alarmed, Rom Kitchen will close at the end of this"" >> redeemer
+		echo "echo "Press enter to continue"" >> redeemer
+		echo "cd $LOCAL" >> redeemer
+		echo "rm -rf *" >> redeemer
+		echo "repo sync" >> redeemer
+		echo "cd .." >> redeemer
+		echo "rm redeemer" >> redeemer
+		chmod a+x redeemer
 		echo "im a rhino! =D"
 		read burp
 
