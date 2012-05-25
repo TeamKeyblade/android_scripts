@@ -27,7 +27,3 @@ if [ ! $version == "3" ]; then
 	$LOCAL/.scripts/buildandro
 	$LOCAL/.scripts/setupprop
 fi
-
-echo ""
-echo "Press Enter to continue"
-read done

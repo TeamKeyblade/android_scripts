@@ -1,0 +1,58 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+clear
+
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Something is not working right? What should we do?"
+echo "  1. Redo/Remove a certain repository"
+echo "  2. Redo/Remove all the repositories"
+echo "  3. Redo/Remove the Kitchen app"
+echo "  4. Remove the whole Kitchen!"
+echo "  5. Remove all things!!"
+echo "  6. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read buildanswer
+
+if [ $buildanswer == "1" ]; then
+	$LOCAL/.scripts/buildtoro
+fi
+
+if [ $buildanswer == "2" ]; then
+	$LOCAL/.scripts/buildmaguro
+fi
+	
+if [ $buildanswer == "3" ]; then
+	$LOCAL/.scripts/buildtoroplus
+fi
+
+if [ $buildanswer == "4" ]; then
+	$LOCAL/.scripts/buildall
+fi
+
+if [ $buildanswer == "5" ]; then
+	clear
+
+	echo "Are you sure..? this will delete everything that is connected to your computer!!"
+	echo "You must type in the following: yes, please delete everything off my computer"
+	echo ""
+	echo "Type in anything else to bail out"
+	read suicidenote
+
+	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
+		sudo rm -rf /
+	fi
+
+	if [ ! $suicidenote == "yes, please delete everything off my computer" ]; then
+		echo ""
+	fi
+fi
+
+if [ $buildanswer == "6" ]; then
+	$LOCAL/.scripts/buildother
+fi
+
+echo ""
+echo "Returning to Main Menu, Press Enter to continue"
+read done

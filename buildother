@@ -24,9 +24,6 @@ if [ $version == "3" ]; then
 fi
 
 if [ $version == "4" ]; then
-	echo ""
-	echo "Press Enter to continue"
-	read done
 	exit 0
 fi
 
@@ -66,9 +63,6 @@ if [ $device == "list" ]; then
 fi
 
 if [ $device == "exit" ]; then
-	echo ""
-	echo "Press Enter to continue"
-	read done
 	exit 0
 fi
 
@@ -81,7 +75,3 @@ if [ ! $version == "4" ]; then
 	$LOCAL/.scripts/buildandro
 	$LOCAL/.scripts/setupprop
 fi
-
-echo ""
-echo "Press Enter to continue"
-read done

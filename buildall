@@ -42,7 +42,3 @@ if [ ! $version == "4" ]; then
 		$LOCAL/.scripts/setupprop
 	fi
 fi
-
-echo ""
-echo "Press Enter to continue"
-read done

@@ -35,8 +35,6 @@ if [ $buildanswer == "5" ]; then
 	$LOCAL/.scripts/buildother
 fi
 
-if [ $buildanswer == "6" ]; then
-	echo ""
-	echo "Press Enter to continue"
-	read done
-fi
+echo ""
+echo "Returning to Main Menu, Press Enter to continue"
+read done
