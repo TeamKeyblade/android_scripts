@@ -24,11 +24,10 @@ if [ $cleananswer == "1" ]; then
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "Android Open Source Project = aosp"
-	echo "type exit to go back"
+	echo "type exit to go to main menu"
 	read modify
 
 	if [ $modify == "exit" ]; then
-		$LOCAL/.scripts/kitchencleaner
 		exit 0
 	fi
 
@@ -36,11 +35,10 @@ if [ $cleananswer == "1" ]; then
 	echo "Clean or Purge?"
 	echo "Clean = remove files, download from origin"
 	echo "Purge = delete it!"
-	echo "type exit to go back"
+	echo "type exit to go to main menu"
 	read remover
 
 	if [ $remover == "exit" ]; then
-		$LOCAL/.scripts/kitchencleaner
 		exit 0
 	fi
 
@@ -63,11 +61,10 @@ if [ $cleananswer == "2" ]; then
 	echo "Clean or Purge the repositories?"
 	echo "Clean = remove files, download from origin"
 	echo "Purge = delete all!"
-	echo "type exit to go back"
+	echo "type exit to go to main menu"
 	read remover
 
 	if [ $remover == "exit" ]; then
-		$LOCAL/.scripts/kitchencleaner
 		exit 0
 	fi
 
@@ -119,11 +116,10 @@ if [ $cleananswer == "3" ]; then
 	echo "Clean or Purge?"
 	echo "Clean = remove files, download from origin"
 	echo "Purge = delete it!"
-	echo "type exit to go back"
+	echo "type exit to go main menu"
 	read remover
 
 	if [ $remover == "exit" ]; then
-		$LOCAL/.scripts/kitchencleaner
 		exit 0
 	fi
 
