@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-cd $LOCAL
+export LOCAL=$( pwd )
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
@@ -18,24 +18,28 @@ read answer
 
 if [ $answer == "1" ]; then
 	./setupkitchen
+	cd $LOCAL
 	./kitchen
 	exit 0
 fi
 
 if [ $answer == "2" ]; then
 	./updatekitchen
+	cd $LOCAL
 	./kitchen
 	exit 0
 fi
 
 if [ $answer == "3" ]; then
 	./kitchenbuilder
+	cd $LOCAL
 	./kitchen
 	exit 0
 fi
 
 if [ $answer == "5" ]; then
 	./kitchencleaner
+	cd $LOCAL
 	./kitchen
 	exit 0
 fi
