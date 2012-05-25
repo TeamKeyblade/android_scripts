@@ -1,74 +1,92 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 clear
-export REPOS=$(echo "$LOCAL/../repos")
+
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
+echo "What are we setting up?"
+echo "  1. Install the repo command"
+echo "  2. Initilize the kitchen repository"
+echo "  3. Initilize the Cyanogenmod 9 repository"
+echo "  4. Initilize the Rooted & Busyboxed AOSP repository"
+echo "  5. Initilize the Android Open Source Project repository"
+echo "  6. Do 1, 2, and 3"
+echo "  7. Do 1, 2, 3, and 4"
+echo "  8. All of the above"
+echo "  9. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read setupanswer
 
-if ( ! find $REPOS &> /dev/null ); then
-	echo "I am assuming u already setup the build enviroment, if you haven't please stop now and do that.."
-	echo "Hit Enter to continue"
-	read pause
-
-	echo "Lets install the repo command, shall we?"
-	read repo
-	if [ $repo == "yes" ] || [ $repo == "y" ]; then
-		mkdir -p ~/bin
-		curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
-		chmod a+x ~/bin/repo
-	fi
+if [ $setupanswer == "1" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+	echo "Installing the repo command.."
+	mkdir -p ~/bin
+	curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+	chmod a+x ~/bin/repo
+	echo "finished!"
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if ( ! find $LOCAL/.repo &> /dev/null ); then
-	echo ""
-	echo "Lets initilize the kitchen repository, shall we?"
-	read kitchen
-	if [ $kitchen == "yes" ] || [ $kitchen == "y" ]; then
-		cd $LOCAL
-		repo init -u http://github.com/swordrune10/android_manifest.git  -b master
+if [ $setupanswer == "2" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+	echo "Initilizing the kitchen repository.."
+	cd $LOCAL
+	repo init -u http://github.com/swordrune10/android_manifest.git -b master
+	echo "Sync the kitchen repository?"
+	read kitchensync
+	if [ $kitchensync == "yes" ] || [ $kitchensync == "y" ]; then
+		repo sync
 	fi
+	echo "finished!"
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if ( ! find $REPOS/cm-ics/.repo &> /dev/null ); then
-	echo ""
-	echo "Would you like the Cyanogenmod 9 repository?"
-	read cm9
-	if [ $cm9 == "yes" ] || [ $cm9 == "y" ]; then
-		mkdir -p $REPOS/cm-ics
-		cd $REPOS/cm-ics
-		repo init -u http://github.com/CyanogenMod/android.git -b ics
+if [ $setupanswer == "3" ] || [ $setupanswer == "6" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+	echo "Initilizing the Cyanogenmod 9 repository.."
+	mkdir -p $REPOS/cm-ics
+	cd $REPOS/cm-ics
+	repo init -u http://github.com/CyanogenMod/android.git -b ics
+	echo "Sync the Cyanogenmod 9 repository?"
+	read cm9sync
+	if [ $cm9sync == "yes" ] || [ $cm9sync == "y" ]; then
+		repo sync
 	fi
+	echo "finished!"
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if ( ! find $REPOS/rooted-aosp-ics/.repo &> /dev/null ); then
-	echo ""
-	echo "Would you like the Android Open Source Project, Rooted & Busyboxed, repository?"
-	read aosp
-	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
-		mkdir -p $REPOS/rooted-aosp-ics
-		cd $REPOS/rooted-aosp-ics
-		repo init -u http://github.com/swordrune10/android_manifest.git -b ics
+if [ $setupanswer == "4" ] || [ $setupanswer == "7" ] || [ $setupanswer == "8" ]; then
+	echo "Initilizing the Rooted & Busyboxed AOSP repository.."
+	mkdir -p $REPOS/rooted-aosp-ics
+	cd $REPOS/rooted-aosp-ics
+	repo init -u http://github.com/swordrune10/android_manifest.git -b ics
+	echo "Sync the Rooted & Busyboxed AOSP repository?"
+	read raospsync
+	if [ $raospsync == "yes" ] || [ $raospsync == "y" ]; then
+		repo sync
 	fi
+	echo "finished!"
+	$LOCAL/.scripts/setupkitchen
+	exit 0
 fi
 
-if ( ! find $REPOS/aosp-ics/.repo &> /dev/null ); then
-	echo ""
-	echo "Would you like the Android Open Source Project repository?"
-	read aosp
-	if [ $aosp == "yes" ] || [ $aosp == "y" ]; then
-		mkdir -p $REPOS/aosp-ics
-		cd $REPOS/aosp-ics
-		repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
+if [ $setupanswer == "5" ] || [ $setupanswer == "8" ]; then
+	echo "Initilizing the Android Open Source Project repository.."
+	mkdir -p $REPOS/aosp-ics
+	cd $REPOS/aosp-ics
+	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
+	echo "Sync the Android Open Source Project repository?"
+	read aospsync
+	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+		repo sync
 	fi
-fi
-
-echo "Lets sync up the new repos, shall we?"
-read sync
-if [ $sync == "yes" ] || [ $sync == "y" ]; then
-	$LOCAL/.scripts/updatekitchen
+	echo "finished!"
+	$LOCAL/.scripts/setupkitchen
 	exit 0
 fi
 
 echo ""
-echo "Press Enter to continue"
+echo "Returning to Main Menu, Press Enter to continue"
 read done
