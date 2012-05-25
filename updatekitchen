@@ -20,7 +20,7 @@ fi
 
 if [ $version == "1" ] || [ $version == "5" ]; then
 	echo "Updating Kitchen app"
-	cd ../$LOCAL
+	cd ..$LOCAL
 
 	~/bin/repo sync -j8
 	echo "Kitchen Update Complete!"
