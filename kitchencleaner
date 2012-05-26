@@ -11,8 +11,8 @@ echo "Delete = delete it!"
 echo "  1. Purge/Delete a certain repository"
 echo "  2. Purge/Delete all the repositories"
 echo "  3. Purge/Delete the Kitchen app"
-echo "  4. Purge the whole Kitchen!"
-echo "  5. Purge all things!!"
+echo "  4. Delete the Kitchen app, and its dependencies"
+echo "  5. Delete entire computer"
 echo "  6. Go Back"
 echo ""
 echo "Which one would you like to do?"
@@ -137,11 +137,12 @@ if [ $cleananswer == "3" ]; then
 		echo "Switching to Redeemer script.."
 		echo ""
 		./redeemer
+		exit 0
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		echo "Are you sure you want to remove the Kitchen app?"
-		echo "You must type in \"yes\" to do so"
+		echo "You must type in \"yes\" to continue"
 		echo ""
 		echo "Type in anything else to abort operation"
 		read destroyer
@@ -160,6 +161,14 @@ if [ $cleananswer == "3" ]; then
 fi
 
 if [ $cleananswer == "4" ]; then
+	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
+	echo "Please note: the builds directory will not be deleted?"
+	echo "You must type in \"yes\" to continue"
+	echo ""
+	echo "Type in anything else to abort operation"
+	read destroyerofworlds
+
+	if [ $destroyerofworlds == "yes" ]; then
 		export AUTHOR="destroyerofworlds"
 		$LOCAL/scriptmakir
 
@@ -167,24 +176,26 @@ if [ $cleananswer == "4" ]; then
 		echo "Thank you for using Swordrune10's Kitchen!"
 		echo "Switching to Destroyer of Worlds script.."
 		echo ""
-		./redeemer
+		./destroyer
+	fi
 fi
 
 if [ $cleananswer == "5" ]; then
 	clear
 
 	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
-	echo "You must type in \"yes, please delete everything off my computer\" to do so"
+	echo "You must type in \"yes, please delete everything off my computer\" to continue"
 	echo ""
 	echo "Type in anything else to bail out"
 	read suicidenote
 
-	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
-		sudo rm -rf /
-	fi
-
 	if [ ! $suicidenote == "yes, please delete everything off my computer" ]; then
 		echo "Please dont try that again..."
+	fi
+
+	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
+		echo "Please type in your password to destroy everything"		
+		sudo rm -rf /
 	fi
 
 	exit 0
