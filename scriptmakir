@@ -1,26 +1,26 @@
 #!/bin/bash
 if [ $AUTHOR == "gitpuller" ]; then
-	echo "#!/bin/bash" > ../gitpuller
-	echo "if [ $SCRIPT_REPO == \"cm\" ]; then" >> ../gitpuller
-	echo "	# below is examples, git pull is recommended" >> ../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
-	echo "	exit 0" >> ../gitpuller
-	echo "fi" >> ../gitpuller
-	echo "" >> ../gitpuller
-	echo "if [ $SCRIPT_REPO == \"aosp\" ]; then" >> ../gitpuller
-	echo "	# below is examples, git pull is recommended" >> ../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
-	echo "	exit 0" >> ../gitpuller
-	echo "fi" >> ../gitpuller
-	echo "" >> ../gitpuller
-	echo "if [ $SCRIPT_REPO == \"rooted-aosp\" ]; then" >> ../gitpuller
-	echo "	# below is examples, git pull is recommended" >> ../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
-	echo "	exit 0" >> ../gitpuller
-	echo "fi" >> ../gitpuller
+	echo "#!/bin/bash" > $LOCAL/../gitpuller
+	echo "if [ $SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../gitpuller
+	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
+	echo "	exit 0" >> $LOCAL/../gitpuller
+	echo "fi" >> $LOCAL/../gitpuller
+	echo "" >> $LOCAL/../gitpuller
+	echo "if [ $SCRIPT_REPO == \"aosp\" ]; then" >> $LOCAL/../gitpuller
+	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
+	echo "	exit 0" >> $LOCAL/../gitpuller
+	echo "fi" >> $LOCAL/../gitpuller
+	echo "" >> $LOCAL/../gitpuller
+	echo "if [ $SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../gitpuller
+	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
+	echo "	exit 0" >> $LOCAL/../gitpuller
+	echo "fi" >> $LOCAL/../gitpuller
 fi
 
 if [ $AUTHOR == "redeemer" ]; then

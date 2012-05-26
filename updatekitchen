@@ -38,9 +38,10 @@ if [ $version == "2" ] || [ $version == "5" ]; then
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/gitpuller
+	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
 	echo "Cyanogenmod 9 Update Complete!"
@@ -57,9 +58,10 @@ if [ $version == "3" ] || [ $version == "5" ]; then
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/gitpuller
+	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
 	echo "Rooted & Busyboxed AOSP Update Complete!"
@@ -76,9 +78,10 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
 	fi
 
-	$LOCAL/gitpuller
+	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
 	echo "AOSP Update Complete!"
