@@ -1,26 +1,35 @@
 #!/bin/bash
 if [ $AUTHOR == "gitpuller" ]; then
 	echo "#!/bin/bash" > $LOCAL/../gitpuller
-	echo "if [ $SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../gitpuller
+	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../gitpuller
 	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
 	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
 	echo "	exit 0" >> $LOCAL/../gitpuller
 	echo "fi" >> $LOCAL/../gitpuller
 	echo "" >> $LOCAL/../gitpuller
-	echo "if [ $SCRIPT_REPO == \"aosp\" ]; then" >> $LOCAL/../gitpuller
+	echo "if [ \$SCRIPT_REPO == \"aosp\" ]; then" >> $LOCAL/../gitpuller
 	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
 	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
 	echo "	exit 0" >> $LOCAL/../gitpuller
 	echo "fi" >> $LOCAL/../gitpuller
 	echo "" >> $LOCAL/../gitpuller
-	echo "if [ $SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../gitpuller
+	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../gitpuller
 	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
 	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
 	echo "	exit 0" >> $LOCAL/../gitpuller
 	echo "fi" >> $LOCAL/../gitpuller
+fi
+
+if [ $AUTHOR == "romeditor" ]; then
+	echo "#!/bin/bash" > $LOCAL/../romeditor
+	echo "cd \$local/../../repos/rooted-aosp-ics/vendor/swordrune10" >> $LOCAL/../romeditor
+	echo "" >> $LOCAL/../romeditor
+	echo "# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" \
+>> $LOCAL/../romeditor
+	echo "# sed -i \'s/\$(shell whoami)/EDITME!/g\' overrider.mk" >> $LOCAL/../romeditor
 fi
 
 if [ $AUTHOR == "redeemer" ]; then
