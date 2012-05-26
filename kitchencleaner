@@ -120,6 +120,10 @@ if [ $cleananswer == "3" ]; then
 	read remover
 
 	if [ $remover == "exit" ]; then
+		echo ""
+		echo "Returning to Main Menu, Press Enter to continue"
+		read done
+
 		exit 0
 	fi
 
@@ -130,26 +134,47 @@ if [ $cleananswer == "3" ]; then
 		$LOCAL/scriptmakir
 
 		chmod a+x redeemer
-		echo "Switching to redeemer script.."
+		echo "Switching to Redeemer script.."
 		echo ""
 		./redeemer
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		cd ..
-		rm -rf $LOCAL/..
+		echo "Are you sure you want to remove the Kitchen app?"
+		echo "You must type in \"yes\" to do so"
+		echo ""
+		echo "Type in anything else to abort operation"
+		read destroyer
+
+		if [ $destroyer == "yes" ]; then
+			export AUTHOR="destroyer"
+			$LOCAL/scriptmakir
+
+			chmod a+x destroyer
+			echo "Thank you for using Swordrune10's Kitchen!"
+			echo "Switching to Destroyer script.."
+			echo ""
+			./destroyer
+		fi
 	fi
 fi
 
 if [ $cleananswer == "4" ]; then
+		export AUTHOR="destroyerofworlds"
+		$LOCAL/scriptmakir
 
+		chmod a+x destroyer
+		echo "Thank you for using Swordrune10's Kitchen!"
+		echo "Switching to Destroyer of Worlds script.."
+		echo ""
+		./redeemer
 fi
 
 if [ $cleananswer == "5" ]; then
 	clear
 
-	echo "Are you sure..? this will delete everything that is connected to your computer!!"
-	echo "You must type in the following: yes, please delete everything off my computer"
+	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
+	echo "You must type in \"yes, please delete everything off my computer\" to do so"
 	echo ""
 	echo "Type in anything else to bail out"
 	read suicidenote

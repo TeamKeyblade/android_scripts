@@ -25,7 +25,7 @@ fi
 
 if [ $AUTHOR == "redeemer" ]; then
 	echo "#!/bin/bash" > redeemer
-	echo "echo \"redeemer running!\"" >> redeemer
+	echo "echo \"Redeemer is running!\"" >> redeemer
 	echo "echo \"\"" >> redeemer
 	echo "echo \"Removing Kitchen\"" >> redeemer
 	echo "echo \"\"" >> redeemer
@@ -39,4 +39,22 @@ if [ $AUTHOR == "redeemer" ]; then
 	echo "cd $LOCAL" >> redeemer
 	echo "echo \"Finished! Press Enter to restart Kitchen\"" >> redeemer
 	echo "read done" >> redeemer
+fi
+
+if [ $AUTHOR == "destroyer" ]; then
+	echo "#!/bin/bash" > destroyer
+	echo "echo \"Destroyer is running!\"" >> destroyer
+	echo "echo \"\"" >> destroyer
+	echo "echo \"Removing Kitchen\"" >> destroyer
+	echo "echo \"\"" >> destroyer
+	echo "rm -rf .repo" >> destroyer
+	echo "rm -rf .scripts" >> destroyer
+	echo "rm -rf *" >> destroyer
+	echo "echo \"Settng Up Kitchen\"" >> destroyer
+	echo "echo \"\"" >> destroyer
+	echo "repo init -u http://github.com/swordrune10/android_manifest.git -b master" >> destroyer
+	echo "repo sync" >> destroyer
+	echo "cd $LOCAL" >> destroyer
+	echo "echo \"Finished! Press Enter to exit\"" >> destroyer
+	echo "read done" >> destroyer
 fi
