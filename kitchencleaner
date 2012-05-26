@@ -126,20 +126,13 @@ if [ $cleananswer == "3" ]; then
 	cd $LOCAL/..
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-
-	echo "#!/bin/bash" > redeemer
-	echo "echo \"Do not be alarmed, Rom Kitchen will close at the end of this\"" >> redeemer
-	echo "echo \"Press enter to continue\"" >> redeemer
-	echo "read ok" >> redeemer
-	echo "rm -rf .scripts" >> redeemer
-	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> redeemer
-	echo "repo sync" >> redeemer
-	echo "rm -f redeemer" >> redeemer
+		export AUTHOR="redeemer"
+		$LOCAL/scriptmakir
 
 		chmod a+x redeemer
-		echo "im a rhino! =D"
-		read burp
-
+		echo "Switching to redeemer script.."
+		echo ""
+		./redeemer
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then

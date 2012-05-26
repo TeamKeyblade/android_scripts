@@ -1,0 +1,42 @@
+#!/bin/bash
+if [ $AUTHOR == "gitpuller" ]; then
+	echo "#!/bin/bash" > ../gitpuller
+	echo "if [ $SCRIPT_REPO == \"cm\" ]; then" >> ../gitpuller
+	echo "	# below is examples, git pull is recommended" >> ../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
+	echo "	exit 0" >> ../gitpuller
+	echo "fi" >> ../gitpuller
+	echo "" >> ../gitpuller
+	echo "if [ $SCRIPT_REPO == \"aosp\" ]; then" >> ../gitpuller
+	echo "	# below is examples, git pull is recommended" >> ../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
+	echo "	exit 0" >> ../gitpuller
+	echo "fi" >> ../gitpuller
+	echo "" >> ../gitpuller
+	echo "if [ $SCRIPT_REPO == \"rooted-aosp\" ]; then" >> ../gitpuller
+	echo "	# below is examples, git pull is recommended" >> ../gitpuller
+	echo "	# cd $REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> ../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> ../gitpuller
+	echo "	exit 0" >> ../gitpuller
+	echo "fi" >> ../gitpuller
+fi
+
+if [ $AUTHOR == "redeemer" ]; then
+	echo "#!/bin/bash" > redeemer
+	echo "echo \"redeemer running!\"" >> redeemer
+	echo "echo \"\"" >> redeemer
+	echo "echo \"Removing Kitchen\"" >> redeemer
+	echo "echo \"\"" >> redeemer
+	echo "rm -rf .repo" >> redeemer
+	echo "rm -rf .scripts" >> redeemer
+	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> redeemer
+	echo "echo \"Settng Up Kitchen\"" >> redeemer
+	echo "echo \"\"" >> redeemer
+	echo "repo init -u http://github.com/swordrune10/android_manifest.git -b master" >> redeemer
+	echo "repo sync" >> redeemer
+	echo "cd $LOCAL" >> redeemer
+	echo "echo \"Finished! Press Enter to restart Kitchen\"" >> redeemer
+	echo "read done" >> redeemer
+fi
