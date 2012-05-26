@@ -127,11 +127,11 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
 		echo "#!/bin/bash" > redeemer
-		echo "echo ^"Do not be alarmed, Rom Kitchen will close at the end of this^"" >> redeemer
-		echo "echo "^"Press enter to continue^""" >> redeemer
+		echo "echo \"Do not be alarmed, Rom Kitchen will close at the end of this\"" >> redeemer
+		echo "echo "\"Press enter to continue\"" >> redeemer
 		echo "read ok" >> redeemer
 		echo "rm -rf .scripts" >> redeemer
-		echo "rm -f "^"Swordrune10's Kitchen.sh^""" >> redeemer
+		echo "rm -f "\"Swordrune10's Kitchen.sh\"" >> redeemer
 		echo "repo sync" >> redeemer
 		echo "rm -f redeemer" >> redeemer
 		chmod a+x redeemer
