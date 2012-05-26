@@ -14,7 +14,8 @@ echo "Main Menu:"
 echo "  1. Setup Kitchen"
 echo "  2. Update Kitchen"
 echo "  3. Run Kitchen"
-echo "  4. Exit"
+echo "  4. Fix Kitchen"
+echo "  5. Exit"
 echo ""
 echo "Which one would you like to do?"
 
@@ -41,7 +42,7 @@ if [ $answer == "3" ]; then
 	exit 0
 fi
 
-if [ $answer == "5" ]; then
+if [ $answer == "4" ]; then
 	./kitchencleaner
 	cd $LOCAL
 	./kitchen

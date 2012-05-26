@@ -156,6 +156,7 @@ if [ $cleananswer == "3" ]; then
 			echo "Switching to Destroyer script.."
 			echo ""
 			./destroyer
+			exit 0
 		fi
 	fi
 fi
@@ -172,11 +173,12 @@ if [ $cleananswer == "4" ]; then
 		export AUTHOR="destroyerofworlds"
 		$LOCAL/scriptmakir
 
-		chmod a+x destroyer
+		chmod a+x destroyerofworlds
 		echo "Thank you for using Swordrune10's Kitchen!"
 		echo "Switching to Destroyer of Worlds script.."
 		echo ""
-		./destroyer
+		./destroyerofworlds
+		exit 0
 	fi
 fi
 
