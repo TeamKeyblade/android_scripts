@@ -6,11 +6,11 @@ export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Something is not working right? What should we do?"
-echo "Clean = remove files, download from origin"
-echo "Purge = delete it!"
-echo "  1. Clean/Purge a certain repository"
-echo "  2. Clean/Purge all the repositories"
-echo "  3. Clean/Purge the Kitchen app"
+echo "Purge = remove files, download from origin"
+echo "Delete = delete it!"
+echo "  1. Purge/Delete a certain repository"
+echo "  2. Purge/Delete all the repositories"
+echo "  3. Purge/Delete the Kitchen app"
 echo "  4. Purge the whole Kitchen!"
 echo "  5. Purge all things!!"
 echo "  6. Go Back"
@@ -32,9 +32,9 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	echo ""
-	echo "Clean or Purge?"
-	echo "Clean = remove files, download from origin"
-	echo "Purge = delete it!"
+	echo "Purge or Delete?"
+	echo "Purge = remove files, download from origin"
+	echo "Delete = delete it!"
 	echo "type exit to go to main menu"
 	read remover
 
@@ -44,12 +44,12 @@ if [ $cleananswer == "1" ]; then
 
 	cd $REPOS/$modify-ics
 
-	if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
+	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		rm -rf *
 		repo sync
 	fi
 
-	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		cd ..
 		rm -rf $modify-ics
 	fi
@@ -58,9 +58,9 @@ fi
 
 if [ $cleananswer == "2" ]; then
 	echo ""
-	echo "Clean or Purge the repositories?"
-	echo "Clean = remove files, download from origin"
-	echo "Purge = delete all!"
+	echo "Purge or Delete the repositories?"
+	echo "Purge = remove files, download from origin"
+	echo "Delete = delete it!"
 	echo "type exit to go to main menu"
 	read remover
 
@@ -71,12 +71,12 @@ if [ $cleananswer == "2" ]; then
 	if ( find $REPOS/cm-ics &> /dev/null ); then
 		cd $REPOS/cm-ics
 
-		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
+		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
 			repo sync
 		fi
 
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
 			rm -rf cm-ics
 		fi
@@ -85,12 +85,12 @@ if [ $cleananswer == "2" ]; then
 	if ( find $REPOS/rooted-aosp-ics &> /dev/null ); then
 		cd $REPOS/rooted-aosp-ics
 
-		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
+		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
 			repo sync
 		fi
 
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
 			rm -rf rooted-aosp-ics
 		fi
@@ -99,12 +99,12 @@ if [ $cleananswer == "2" ]; then
 	if ( find $REPOS/aosp-ics &> /dev/null ); then
 		cd $REPOS/aosp-ics
 
-		if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
+		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
 			repo sync
 		fi
 
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
 			rm -rf aosp-ics
 		fi
@@ -113,9 +113,9 @@ fi
 	
 if [ $cleananswer == "3" ]; then
 	echo ""
-	echo "Clean or Purge?"
-	echo "Clean = remove files, download from origin"
-	echo "Purge = delete it!"
+	echo "Purge or Delete?"
+	echo "Purge = remove files, download from origin"
+	echo "Delete = delete it!"
 	echo "type exit to go main menu"
 	read remover
 
@@ -125,7 +125,7 @@ if [ $cleananswer == "3" ]; then
 
 	cd $LOCAL/..
 
-	if [ $remover == "Clean" ] || [ $remover == "clean" ]; then
+	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 
 echo "#!/bin/bash" > redeemer
 echo "echo \"Do not be alarmed, Rom Kitchen will close at the end of this\"" >> redeemer
@@ -142,7 +142,7 @@ echo "rm -f redeemer" >> redeemer
 
 	fi
 
-	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		cd ..
 		rm -rf $LOCAL/..
 	fi
