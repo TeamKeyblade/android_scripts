@@ -2,15 +2,17 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+	export AUTHOR="romeditor"
+	$LOCAL/scriptmakir
+	chmod a+x $LOCAL/../romeditor
+fi
+
+$LOCAL/../romeditor
+
 if [ $SCRIPT_REPO == "cm" ]; then
 	cd $REPOS/cm-ics/vendor/cm/config
 	sed -i 's/$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CM_BUILD)-UNOFFICIAL/$(PRODUCT_VERSION_MAJOR)-$(shell date +%Y%m%d)-UNOFFICIAL-$(CM_BUILD)/g' common.mk
-	sed -i \
-	's/ro.rommanager.developerid=cyanogenmodnightly/ro.rommanager.developerid=$(shell whoami)/g' \
-	common.mk	
-	sed -i \
-	's/ro.rommanager.developerid=cyanogenmod/ro.rommanager.developerid=$(shell whoami)/g' \
-	common.mk
 fi
 
 cd $REPOS/$SCRIPT_REPO-ics

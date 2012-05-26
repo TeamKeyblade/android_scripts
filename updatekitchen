@@ -35,7 +35,7 @@ if [ $version == "2" ] || [ $version == "5" ]; then
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
-	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
 		chmod a+x $LOCAL/../gitpuller
@@ -44,6 +44,13 @@ if [ $version == "2" ] || [ $version == "5" ]; then
 	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
@@ -55,7 +62,7 @@ if [ $version == "3" ] || [ $version == "5" ]; then
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
-	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
 		chmod a+x $LOCAL/../gitpuller
@@ -64,6 +71,13 @@ if [ $version == "3" ] || [ $version == "5" ]; then
 	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
 	echo "Rooted & Busyboxed AOSP Update Complete!"
 fi
 
@@ -75,7 +89,7 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
 
-	if ( ! find $LOCAL/gitpuller &> /dev/null ); then
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 		export AUTHOR="gitpuller"
 		$LOCAL/scriptmakir
 		chmod a+x $LOCAL/../gitpuller
@@ -84,6 +98,13 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	$LOCAL/../gitpuller
 
 	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
 	echo "AOSP Update Complete!"
 fi
 
