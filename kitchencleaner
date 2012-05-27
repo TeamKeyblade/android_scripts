@@ -233,6 +233,13 @@ if [ $cleananswer == "5" ]; then
 	echo "Finished!"
 fi
 
+if [ $cleananswer == "6" ]; then
+	echo ""
+	echo "Returning to Main Menu, Press Enter to continue"
+	read done
+	exit 0
+fi
+
 echo ""
 echo "Press Enter to continue"
 read done
