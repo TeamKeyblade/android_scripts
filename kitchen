@@ -29,7 +29,7 @@ if [ $answer == "1" ]; then
 fi
 
 if [ $answer == "2" ]; then
-	./updatekitchen
+	./kitchenupdater
 	cd $LOCAL
 	./kitchen
 	exit 0
