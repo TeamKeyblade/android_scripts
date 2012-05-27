@@ -32,7 +32,7 @@ if [ $setupanswer == "2" ]; then
 	# borrowed "uname -a | grep Darwin" cyanogenmod's opticharger
 	echo "Initilizing the build enviroment.."
 
-	if ( uname -a | grep Linux ); then
+	if ( uname -a | grep Linux &> /dev/null ); then
 		if ( find /etc/fedora-release &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
@@ -99,10 +99,10 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			exit 0		
 		fi
 
-		if ( lsb_release -a | grep buntu ); then
+		if ( lsb_release -a | grep buntu &> /dev/null ); then
 	
 			# ubuntu 10.04, 10.10, and 11.04
-			if ( lsb_release -a | grep natty ) || ( lsb_release -a | grep lucid ) || ( lsb_release -a | grep maverick ); then
+			if ( lsb_release -a | grep natty &> /dev/null ) || ( lsb_release -a | grep lucid &> /dev/null ) || ( lsb_release -a | grep maverick &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
 				zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -114,7 +114,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi
 	
 			# ubuntu 11.10
-			if ( lsb_release -a | grep oneiric ); then
+			if ( lsb_release -a | grep oneiric &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
 				zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -126,7 +126,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi		
 		
 			# ubuntu 12.04
-			if ( lsb_release -a | grep precise ); then
+			if ( lsb_release -a | grep precise &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
   				zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
@@ -138,7 +138,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi
 		fi
 
-		if ( lsb_release -a | grep Debian ); then
+		if ( lsb_release -a | grep Debian &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -164,7 +164,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 		echo "Finished!"
 	fi
 	
-	if ( uname -a | grep Darwin ); then
+	if ( uname -a | grep Darwin &> /dev/null ); then
 		echo "Please visit the following website, because setting up for mac os is a pain in the butt!"
 		echo ""
 		echo "http://source.android.com/source/initializing.html#setting-up-a-mac-os-x-build-environment"
