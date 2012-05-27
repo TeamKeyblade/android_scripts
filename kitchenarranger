@@ -99,10 +99,10 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			exit 0		
 		fi
 
-		if ( lsb_release -a | grep buntu &> /dev/null ); then
+		if ( lsb_release -i | grep buntu &> /dev/null ); then
 	
 			# ubuntu 10.04, 10.10, and 11.04
-			if ( lsb_release -a | grep natty &> /dev/null ) || ( lsb_release -a | grep lucid &> /dev/null ) || ( lsb_release -a | grep maverick &> /dev/null ); then
+			if ( lsb_release -c | grep natty &> /dev/null ) || ( lsb_release -c | grep lucid &> /dev/null ) || ( lsb_release -c | grep maverick &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
 				zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -114,7 +114,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi
 	
 			# ubuntu 11.10
-			if ( lsb_release -a | grep oneiric &> /dev/null ); then
+			if ( lsb_release -c | grep oneiric &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
 				zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -126,7 +126,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi		
 		
 			# ubuntu 12.04
-			if ( lsb_release -a | grep precise &> /dev/null ); then
+			if ( lsb_release -c | grep precise &> /dev/null ); then
 				echo "Installing packages needed, please enter your password"
 				sudo apt-get install git-core gnupg flex bison gperf build-essential \
   				zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
@@ -138,7 +138,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			fi
 		fi
 
-		if ( lsb_release -a | grep Debian &> /dev/null ); then
+		if ( lsb_release -i | grep Debian &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
