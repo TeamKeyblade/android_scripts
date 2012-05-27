@@ -6,7 +6,7 @@ export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "What are we updating?"
-echo "  1. Kitchen"
+echo "  1. Kitchen app"
 echo "  2. Cyanogenmod 9"
 echo "  3. Rooted & Busyboxed AOSP"
 echo "  4. Pure AOSP"
@@ -109,6 +109,17 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	echo "AOSP Update Complete!"
 fi
 
+if [ $version == "6" ]; then
+	echo ""
+	echo "Returning to Main Menu, Press Enter to continue"
+	read done
+
+	exit 0
+fi
+
 echo ""
 echo "Press Enter to continue"
 read done
+
+$LOCAL/kitchenupdater
+exit 0

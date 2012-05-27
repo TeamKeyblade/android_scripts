@@ -25,10 +25,15 @@ if [ $cleananswer == "1" ]; then
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "Android Open Source Project = aosp"
-	echo "type exit to go to main menu"
+	echo "type exit to go to back"
 	read modify
 
 	if [ $modify == "exit" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
 		exit 0
 	fi
 
@@ -36,10 +41,15 @@ if [ $cleananswer == "1" ]; then
 	echo "Purge or Delete?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
-	echo "type exit to go to main menu"
+	echo "type exit to go to back"
 	read remover
 
 	if [ $remover == "exit" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
 		exit 0
 	fi
 
@@ -63,10 +73,15 @@ if [ $cleananswer == "2" ]; then
 	echo "Purge or Delete the repositories?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
-	echo "type exit to go to main menu"
+	echo "type exit to go to back"
 	read remover
 
 	if [ $remover == "exit" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
 		exit 0
 	fi
 
@@ -111,6 +126,9 @@ if [ $cleananswer == "2" ]; then
 			rm -rf aosp-ics
 		fi
 	fi
+
+	echo ""
+	echo "Finished!"
 fi
 	
 if [ $cleananswer == "3" ]; then
@@ -119,14 +137,15 @@ if [ $cleananswer == "3" ]; then
 	echo "Purge or Delete?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
-	echo "type exit to go main menu"
+	echo "type exit to go back"
 	read remover
 
 	if [ $remover == "exit" ]; then
 		echo ""
-		echo "Returning to Main Menu, Press Enter to continue"
+		echo "Press Enter to continue"
 		read done
 
+		$LOCAL/kitchencleaner
 		exit 0
 	fi
 
@@ -141,7 +160,8 @@ if [ $cleananswer == "3" ]; then
 		echo "Switching to Redeemer script.."
 		echo ""
 		./redeemer
-		exit 0
+		echo ""
+		echo "Finished!"
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -209,9 +229,13 @@ if [ $cleananswer == "5" ]; then
 		sudo rm -rf /
 	fi
 
-	exit 0
+	echo ""
+	echo "Finished!"
 fi
 
 echo ""
-echo "Returning to Main Menu, Press Enter to continue"
+echo "Press Enter to continue"
 read done
+
+$LOCAL/kitchencleaner
+exit 0

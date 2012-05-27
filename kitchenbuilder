@@ -17,24 +17,44 @@ read buildanswer
 
 if [ $buildanswer == "1" ]; then
 	./buildtoro
+	echo ""
+	echo "Finished!"
 fi
 
 if [ $buildanswer == "2" ]; then
 	./buildmaguro
+	echo ""
+	echo "Finished!"
 fi
 	
 if [ $buildanswer == "3" ]; then
 	./buildtoroplus
+	echo ""
+	echo "Finished!"
 fi
 
 if [ $buildanswer == "4" ]; then
 	./buildall
+	echo ""
+	echo "Finished!"
 fi
 
 if [ $buildanswer == "5" ]; then
 	./buildother
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $buildanswer == "6" ]; then
+	echo ""
+	echo "Returning to Main Menu, Press Enter to continue"
+	read done
+	exit 0
 fi
 
 echo ""
-echo "Returning to Main Menu, Press Enter to continue"
+echo "Press Enter to continue"
 read done
+
+$LOCAL/kitchenbuilder
+exit 0
