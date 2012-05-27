@@ -225,10 +225,12 @@ if [ $cleananswer == "5" ]; then
 	read suicidenote
 
 	if [ ! $suicidenote == "yes, please delete everything off my computer" ]; then
+		echo ""
 		echo "Please dont try that again..."
 	fi
 
 	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
+		echo ""
 		echo "Please type in your password to destroy everything"		
 		sudo rm -rf /
 	fi
