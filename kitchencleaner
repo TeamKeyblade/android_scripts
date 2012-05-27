@@ -2,6 +2,10 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+if ( find ../redeemer &> /dev/null ); then
+	rm -f ../redeemer
+fi
+
 export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
