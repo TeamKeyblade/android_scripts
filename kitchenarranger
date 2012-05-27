@@ -33,7 +33,7 @@ if [ $setupanswer == "2" ]; then
 	echo "Initilizing the build enviroment.."
 
 	if ( uname -a | grep Linux ); then
-		if ( find /etc/fedora-release &> /dev/null )
+		if ( find /etc/fedora-release &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
 			zlib-devel.{x86_64,i686} ncurses-devel.i686 libsx-devel readline-devel.i386 \
@@ -98,6 +98,7 @@ wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL
 			$LOCAL/kitchenarranger
 			exit 0		
 		fi
+
 		if ( lsb_release -a | grep buntu ); then
 	
 			# ubuntu 10.04, 10.10, and 11.04
