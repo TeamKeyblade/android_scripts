@@ -111,7 +111,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
 			g++-multilib mingw32 tofrodos python-markdown \
 			libxml2-utils xsltproc zlib1g-dev:i386 \
-			# threw these in to make sure it builds ;)				
+			# threw these in to make sure it builds ;) \			
 			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib
 		fi
 	fi
