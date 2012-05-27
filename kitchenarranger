@@ -28,7 +28,7 @@ if [ $setupanswer == "1" ]; then
 	read done
 
 
-	./setupkitchen
+	$LOCAL/kitchenarranger
 	exit 0
 fi
 
@@ -50,7 +50,7 @@ if [ $setupanswer == "2" ]; then
 	echo "finished!"
 	read done
 
-	$LOCAL/setupkitchen
+	$LOCAL/kitchenarranger
 	exit 0
 fi
 
@@ -73,7 +73,7 @@ if [ $setupanswer == "3" ]; then
 	echo "finished!"
 	read done
 
-	$LOCAL/setupkitchen
+	$LOCAL/kitchenarranger
 	exit 0
 fi
 
@@ -96,7 +96,7 @@ if [ $setupanswer == "4" ]; then
 	echo "finished!"
 	read done
 
-	$LOCAL/setupkitchen
+	$LOCAL/kitchenarranger
 	exit 0
 fi
 
@@ -119,7 +119,7 @@ if [ $setupanswer == "5" ]; then
 	echo "finished!"
 	read done
 
-	$LOCAL/setupkitchen
+	$LOCAL/kitchenarranger
 	exit 0
 fi
 
