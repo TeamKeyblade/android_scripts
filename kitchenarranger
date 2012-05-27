@@ -29,7 +29,7 @@ if [ $setupanswer == "1" ]; then
 fi
 
 if [ $setupanswer == "2" ]; then
-	$LOCAL/../environmentsetup
+	$LOCAL/environmentsetup
 
 	if [ $EXIT ]; then
 		exit 0
