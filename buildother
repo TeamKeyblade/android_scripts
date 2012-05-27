@@ -34,7 +34,7 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Please type in which device you would like to build"
 echo "Type in list to see all supported devices"
-echo "Type in exit to go to main menu"
+echo "Type in exit to go back"
 read device
 
 if [ $device == "list" ]; then
@@ -45,24 +45,28 @@ if [ $device == "list" ]; then
 	fi
 
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-		echo "stingray
-		wingray
-		crespo4g
-		crespo
-		maguro
-		toro
-		toroplus
-		tuna" | less
+
+echo "stingray
+wingray
+crespo4g
+crespo
+maguro
+toro
+toroplus
+tuna" | less
+
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
-		echo "stingray
-		wingray
-		crespo4g
-		crespo
-		maguro
-		toro
-		tuna" | less
+
+echo "stingray
+wingray
+crespo4g
+crespo
+maguro
+toro
+tuna" | less
+
 	fi
 
 	clear
@@ -70,7 +74,7 @@ if [ $device == "list" ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "Please type in which device you would like to build"
-	echo "Type in exit to go to main menu"
+	echo "Type in exit to go to back"
 	read device
 fi
 
