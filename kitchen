@@ -2,6 +2,10 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+if [ $EXIT ]; then
+	exit 0
+fi
+
 if ( find ../redeemer &> /dev/null ); then
 	rm -f ../redeemer
 fi
