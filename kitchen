@@ -22,7 +22,7 @@ echo "Which one would you like to do?"
 read answer
 
 if [ $answer == "1" ]; then
-	./setupkitchen
+	./kitchenarranger
 	cd $LOCAL
 	./kitchen
 	exit 0
