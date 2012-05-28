@@ -1,5 +1,7 @@
 #!/bin/bash	
 echo "Initilizing the build enviroment.."
+echo ""
+echo "Checking what Operating System you are running..."
 
 if ( ! uname -a | grep x86_64 &> /dev/null ); then
 	clear
@@ -19,6 +21,7 @@ fi
 if ( uname -a | grep Linux &> /dev/null ); then
 	# Fedora
 	if ( find /etc/fedora-release &> /dev/null ) || ( find /etc/redhat-release &> /dev/null ); then
+		echo "You are running Fedora or RedHat!"
 		echo "Installing packages needed, please enter your password"
 		sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
 		zlib-devel.{x86_64,i686} ncurses-devel.i686 libsx-devel readline-devel.i386 \
@@ -84,6 +87,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/lsb-release &> /dev/null ); then
 		# Debian
 		if ( lsb_release -i | grep Debian &> /dev/null ); then
+			echo "You are running Debian!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -96,6 +100,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 	
 		# Ubuntu 10.04, 10.10, and 11.04
 		if ( lsb_release -c | grep natty &> /dev/null ) || ( lsb_release -c | grep lucid &> /dev/null ) || ( lsb_release -c | grep maverick &> /dev/null ); then
+			echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" 
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -108,6 +113,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 	
 		# Ubuntu 11.10
 		if ( lsb_release -c | grep oneiric &> /dev/null ); then
+			echo "You are running Ubuntu 11.10!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -120,6 +126,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		
 		# Ubuntu 12.04
 		if ( lsb_release -c | grep precise &> /dev/null ); then
+			echo "You are running Ubuntu 12.04!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
@@ -129,8 +136,10 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib
 			#^^^ threw these in to make sure it builds ;)		
 		fi
+
 		# Linux Mint
 		if ( lsb_release -i | grep Mint &> /dev/null ); then
+			echo "You are running Linux Mint!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -160,6 +169,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 
 
 	if ( find /etc/arch-release &> /dev/null ); then
+		echo "You are running Arch Linux!"
 		echo "Installing packages needed, please enter your password"
 		sudo pacman -Sy abs base-devel
 		sudo pacman -S openjdk6 perl git gnupg flex bison gperf zip unzip sdl wxgtk \ 
@@ -304,12 +314,10 @@ if [! $envir ]; then
 	echo "Supported Operating Systems (only 64-bit):"
 	echo "Ubuntu 10.04 - 12.04 (Full Support)"
 	echo "Debian (General Support)"
+	echo "Linux Mint (General Support)"
+	echo "Arch Linux (General Support)"
 	echo "Fedora (General Support)"
 	echo "Mac OS X (Generally no support)"
-	echo ""
-	echo "Support coming soon to:"
-	echo "Linux Mint"
-	echo "Arch Linux"
 	echo ""
 	echo "If you see this in error, please notify me at either xda or rootzwiki"
 	echo "if you prefer email you can reach me at mishana@swordrune10.net"
