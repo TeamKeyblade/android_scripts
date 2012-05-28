@@ -77,7 +77,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		$envir=true
 	fi
 
-	if ( lsb_release -i | grep buntu &> /dev/null ); then
+	if ( find /etc/lsb-release &> /dev/null ); then
 	
 		# ubuntu 10.04, 10.10, and 11.04
 		if ( lsb_release -c | grep natty &> /dev/null ) || ( lsb_release -c | grep lucid &> /dev/null ) || ( lsb_release -c | grep maverick &> /dev/null ); then
@@ -116,7 +116,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi
 	fi
 
-	if ( lsb_release -i | grep Debian &> /dev/null ); then
+	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/debian_release &> /dev/null ); then
 		echo "Installing packages needed, please enter your password"
 		sudo apt-get install git-core gnupg flex bison gperf build-essential \
 		zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
