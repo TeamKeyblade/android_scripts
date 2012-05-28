@@ -4,17 +4,17 @@ cd $REPOS/$SCRIPT_REPO-ics/.repo
 if ( ! cat local_manifest.xml | grep "motorola" &> /dev/null ); then
 	if [ $SCRIPT_REPO == "cm" ]; then
 		echo "Adding missing local_manifest.xml"
-		cp $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
+		cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
 		exit 0	
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		echo "Adding missing local_manifest.xml"
-		cp $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	fi
 
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		echo "Adding missing local_manifest.xml"
-		cp $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
+		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
 	fi
 fi
