@@ -17,7 +17,8 @@ if ( ! uname -a | grep x86_64 &> /dev/null ); then
 fi
 
 if ( uname -a | grep Linux &> /dev/null ); then
-	if ( find /etc/fedora-release &> /dev/null ); then
+	# Fedora
+	if ( find /etc/fedora-release &> /dev/null ) || if ( find /etc/redhat-release &> /dev/null ); then
 		echo "Installing packages needed, please enter your password"
 		sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
 		zlib-devel.{x86_64,i686} ncurses-devel.i686 libsx-devel readline-devel.i386 \
@@ -26,6 +27,8 @@ if ( uname -a | grep Linux &> /dev/null ); then
 
 		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java6 script"
 		read done
+
+		# fedora java installation
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
 		# slightly edited to remove unneeded code and grab the rpm version
 		
@@ -77,9 +80,21 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		$envir=true
 	fi
 
-	if ( find /etc/lsb-release &> /dev/null ); then
+	# Debian-based
+	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/lsb-release &> /dev/null ); then
+		# Debian
+		if ( lsb_release -i | grep Debian &> /dev/null ); then
+			echo "Installing packages needed, please enter your password"
+			sudo apt-get install git-core gnupg flex bison gperf build-essential \
+			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
+			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
+			libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown \
+			libxml2-utils xsltproc
+
+			sudo ln -s /usr/lib32/mesa/libGL.so.1 /usr/lib32/mesa/libGL.so
+		fi
 	
-		# ubuntu 10.04, 10.10, and 11.04
+		# Ubuntu 10.04, 10.10, and 11.04
 		if ( lsb_release -c | grep natty &> /dev/null ) || ( lsb_release -c | grep lucid &> /dev/null ) || ( lsb_release -c | grep maverick &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -91,7 +106,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			sudo ln -s /usr/lib32/mesa/libGL.so.1 /usr/lib32/mesa/libGL.so
 		fi
 	
-		# ubuntu 11.10
+		# Ubuntu 11.10
 		if ( lsb_release -c | grep oneiric &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -103,7 +118,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			sudo ln -s /usr/lib/i386-linux-gnu/libX11.so.6 /usr/lib/i386-linux-gnu/libX11.so
 		fi		
 		
-		# ubuntu 12.04
+		# Ubuntu 12.04
 		if ( lsb_release -c | grep precise &> /dev/null ); then
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -114,21 +129,9 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib
 			#^^^ threw these in to make sure it builds ;)		
 		fi
-	fi
 
-	if ( lsb_release -i | grep Debian &> /dev/null ); then
-		echo "Installing packages needed, please enter your password"
-		sudo apt-get install git-core gnupg flex bison gperf build-essential \
-		zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
-		x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
-		libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown \
-		libxml2-utils xsltproc
 
-		sudo ln -s /usr/lib32/mesa/libGL.so.1 /usr/lib32/mesa/libGL.so
-	fi
-
-	# debian based java installation
-	if ( ! find /etc/fedora-release &> /dev/null ); then
+		# Debian based java installation
 		echo "Installing java will take a while, to do this legally the Kitchen app will use flexion.org oab-java6 script"
 		read done
 		wget https://raw.github.com/flexiondotorg/oab-java6/master/oab-java6.sh -O $LOCAL/../oab-java6.sh
@@ -144,6 +147,8 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		echo "Finished!"
 		$envir=true
 	fi
+
+
 
 	if ( find /etc/arch-release &> /dev/null ); then
 		echo "Installing packages needed, please enter your password"
