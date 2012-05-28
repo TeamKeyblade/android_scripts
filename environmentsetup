@@ -17,9 +17,8 @@ if ( ! uname -a | grep x86_64 &> /dev/null ); then
 fi
 
 if ( uname -a | grep Linux &> /dev/null ); then
-
-	# Fedora
 	if ( find /etc/fedora-release &> /dev/null ) || if ( find /etc/redhat-release &> /dev/null ); then
+		# Fedora
 		echo "Installing packages needed, please enter your password"
 		sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
 		zlib-devel.{x86_64,i686} ncurses-devel.i686 libsx-devel readline-devel.i386 \
