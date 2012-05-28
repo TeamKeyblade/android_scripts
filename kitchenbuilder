@@ -25,6 +25,7 @@ if [ $buildanswer == "1" ]; then
 	echo "  2. Build GSM Galaxy Nexus"
 	echo "  3. Build Sprint Galaxy Nexus"
 	echo "  4. Build all above!"
+	echo "  5. Go Back"
 	echo ""
 	echo "Which one would you like to do?"
 	read buildgnexus
@@ -55,6 +56,7 @@ if [ $buildanswer == "2" ]; then
 	echo "  1. Build GSM Nexus S"
 	echo "  2. Build Sprint Nexus S 4G"
 	echo "  3. Build all above!"
+	echo "  4. Go Back"
 	echo ""
 	echo "Which one would you like to do?"
 	read buildnexuss
@@ -78,9 +80,10 @@ if [ $buildanswer == "3" ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "Today's Menu:"
-	echo "  2. Build Verizon Xoom Tablet"
-	echo "  1. Build Wifi Xoom Tablet"
+	echo "  1. Build Verizon Xoom Tablet"
+	echo "  2. Build Wifi Xoom Tablet"
 	echo "  3. Build all above!"
+	echo "  4. Go Back"
 	echo ""
 	echo "Which one would you like to do?"
 	read buildxoom
