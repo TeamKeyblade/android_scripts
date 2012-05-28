@@ -44,6 +44,18 @@ if [ $device == "list" ]; then
 		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
 	fi
 
+	if [ $SCRIPT_REPO == "aokp" ]; then
+		sed -e 's/.*aokp_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
+	fi
+
+	if [ $SCRIPT_REPO == "gummy" ]; then
+		sed -e 's/.*Gummy_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
+	fi
+
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 
 echo "stingray
