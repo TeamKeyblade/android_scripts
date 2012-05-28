@@ -161,14 +161,102 @@ exit 0
 
 		mkdir -p $LOCAL/../archbuilds
 
-		wget https://aur.archlinux.org/packages/ma/make-3.81/make-3.81.tar.gz
-		tar -xzf make-3.81.tar.gz
+		wget http://swordrune10.net/files/archlinux/make-3.81.tar
+		tar xvf make-3.81.tar
 		cd make-3.8.1
 		makepkg -cfs PKGBUILD
 		sudo pacman -U make-3.81-*-x86_64.pkg.tar.xz
 	
 		cd ..
-			
+		wget http://swordrune10.net/files/archlinux/git-1.7.6.tar
+		tar xvf git-1.7.6.tar
+		cd git-1.7.6
+		makepkg -cfs PKGBUILD
+		sudo pacman -U git-1.7.6-*-x86_64.pkg.tar.xz
+
+		cd ..
+		wget http://swordrune10.net/files/archlinux/perl-5.10.1.tar
+		tar xvf perl-5.10.1.tar
+		cd perl-5.10.1
+		makepkg -cfs PKGBUILD
+		sudo pacman -U perl-5.10.1-*-x86_64.pkg.tar.xz
+
+		cd ..
+		https://aur.archlinux.org/packages/package-query-git/package-query-git.tar.gz
+		tar xvf package-query-git.tar.gz
+		cd package-query-git
+		makepkg -cfs PKGBUILD
+		sudo pacman -U package-query-git-*-x86_64.pkg.tar.xz
+
+		cd ..
+		 https://aur.archlinux.org/packages/yaourt-git/yaourt-git.tar.gz
+		tar xvf yaourt-git.tar.gz
+		cd yaourt-git
+		makepkg -cfs PKGBUILD
+		sudo pacman -U package-query-git-*-x86_64.pkg.tar.xz
+
+		sudo yaourt -Sy esdl pngcrush schedtool repo
+
+		sudo sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
+
+		sudo pacman -Sy gcc-multilib gcc-libs-multilib binutils-multilib libtool-multilib lib32-libusb \ 
+		lib32-libusb-compat lib32-readline lib32-glibc lib32-zlib
+
+		if ( python -V | grep "Python 3")
+			sudo mv /usr/bin/python /usr/bin/python.bak
+			sudo ln -s /usr/bin/python2 /usr/bin/python
+		fi
+
+		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java6 script"
+		read done
+		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
+		# slightly edited to remove unneeded code and grab the rpm version
+
+		# Cet the current Debian package version
+		DEB_VERSION=`head -n1 changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
+
+		# Determine the currently supported Java version and update
+		JAVA_VER=`echo ${DEB_VERSION} | cut -d'.' -f1`
+		JAVA_UPD=`echo ${DEB_VERSION} | cut -d'.' -f2 | cut -d'-' -f1`
+
+		# Try and dynamic find the JDK downloads
+		echo " [x] Getting Java SE download page"
+		wget "http://www.oracle.com/technetwork/java/javase/downloads/index.html" -O /tmp/oab-index.html
+
+		# See if the Java version is on the download frontpage, otherwise look for it in
+		# the previous releases page.
+		DOWNLOAD_INDEX=`grep -P -o "/technetwork/java/javase/downloads/jdk-${JAVA_VER}u${JAVA_UPD}-downloads-\d+\.html" /tmp/oab-index.html | uniq`
+
+		if [ -n "${DOWNLOAD_INDEX}" ]; then
+			echo " [x] Getting current release download page "
+			wget http://www.oracle.com/${DOWNLOAD_INDEX} -O /tmp/oab-download.html
+		else
+			echo " [x] Getting previous releases download page "
+			wget http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html -O /tmp/oab-download.html
+		fi
+
+		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../changelog.tmp
+
+		for JAVA_BIN in jdk-${JAVA_VER}u${JAVA_UPD}-linux-x64.bin
+		do
+			# Get the download URL and size
+			DOWNLOAD_URL=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f3 | cut -d'"' -f4`
+			DOWNLOAD_SIZE=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f2 | cut -d':' -f2 | sed 's/"//g'`    
+			# Cookies required for download
+			COOKIES="oraclelicensejdk-${JAVA_VER}u${JAVA_UPD}-oth-JPR=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
+    
+			echo " [x] Downloading ${JAVA_BIN} : ${DOWNLOAD_SIZE} "
+			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O ${JAVA_BIN}
+  
+		done
+		chmod +x $LOCAL/../${JAVA_BIN}
+		cd $LOCAL/..
+		sudo $LOCAL/../${JAVA_BIN}
+		rm -f $LOCAL/../changelog.tmp
+		sudo mv ${JAVA_BIN} /opt
+ 		sudo cd /opt
+ 		sudo ./${JAVA_BIN}
+ 		sudo rm ${JAVA_BIN}
 	fi
 fi
 	
