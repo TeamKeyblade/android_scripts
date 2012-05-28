@@ -39,33 +39,7 @@ if [ ! $version == "6" ]; then
 
 	./setupandro
 
-	export SCRIPT_DEVICE=$(echo "toro")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "maguro")
-	./buildandro
-	./setupprop
-
-	if [ ! $version == "5" ]; then
-		export SCRIPT_DEVICE=$(echo "toroplus")
-		./buildandro
-		./setupprop
-	fi
-
 	export SCRIPT_DEVICE=$(echo "crespo")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "crespo4g")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "stingray")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "wingray")
 	./buildandro
 	./setupprop
 fi

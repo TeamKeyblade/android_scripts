@@ -52,20 +52,4 @@ if [ ! $version == "6" ]; then
 		./buildandro
 		./setupprop
 	fi
-
-	export SCRIPT_DEVICE=$(echo "crespo")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "crespo4g")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "stingray")
-	./buildandro
-	./setupprop
-
-	export SCRIPT_DEVICE=$(echo "wingray")
-	./buildandro
-	./setupprop
 fi

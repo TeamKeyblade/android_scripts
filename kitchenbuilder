@@ -5,26 +5,97 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
-echo "  1. Build Verizon Galaxy Nexus"
-echo "  2. Build GSM Galaxy Nexus"
-echo "  3. Build Sprint Galaxy Nexus"
+echo "  1. Build Galaxy Nexus"
+echo "  2. Build Nexus S"
+echo "  3. Build Xoom Tablet"
 echo "  4. Build all above!"
-echo "  5. Build other..."
+echo "  5. Build other.."
 echo "  6. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildanswer
 
 if [ $buildanswer == "1" ]; then
-	./buildtoro
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Today's Menu:"
+	echo "  1. Build Verizon Galaxy Nexus"
+	echo "  2. Build GSM Galaxy Nexus"
+	echo "  3. Build Sprint Galaxy Nexus"
+	echo "  4. Build all above!"
+	echo ""
+	echo "Which one would you like to do?"
+	read buildgnexus
+
+	if [ $buildgnexus == "1" ]; then
+		./buildtoro
+	fi
+	
+	if [ $buildgnexus == "2" ]; then
+		./buildmaguro
+	fi
+	
+	if [ $buildgnexus == "3" ]; then
+		./buildtoroplus
+	fi
+
+	if [ $buildgnexus == "4" ]; then
+		./buildgnexus
+	fi
 fi
 
 if [ $buildanswer == "2" ]; then
-	./buildmaguro
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Today's Menu:"
+	echo "  1. Build GSM Nexus S"
+	echo "  2. Build Sprint Nexus S 4G"
+	echo "  3. Build all above!"
+	echo ""
+	echo "Which one would you like to do?"
+	read buildnexuss
+
+	if [ $buildnexuss == "1" ]; then
+		./buildcrespo
+	fi
+	
+	if [ $buildnexuss == "2" ]; then
+		./buildcrespo4g
+	fi
+	
+	if [ $buildnexuss == "3" ]; then
+		./buildnexuss
+	fi
 fi
 	
 if [ $buildanswer == "3" ]; then
-	./buildtoroplus
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Today's Menu:"
+	echo "  2. Build Verizon Xoom Tablet"
+	echo "  1. Build Wifi Xoom Tablet"
+	echo "  3. Build all above!"
+	echo ""
+	echo "Which one would you like to do?"
+	read buildxoom
+
+	if [ $buildxoom == "1" ]; then
+		./buildstingray
+	fi
+	
+	if [ $buildxoom == "2" ]; then
+		./buildwingray
+	fi
+
+	if [ $buildxoom == "3" ]; then
+		./buildxoom
+	fi
 fi
 
 if [ $buildanswer == "4" ]; then
