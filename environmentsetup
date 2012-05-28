@@ -116,7 +116,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi
 	fi
 
-	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/debian_release &> /dev/null ); then
+	if ( lsb_release -i | grep Debian &> /dev/null ); then
 		echo "Installing packages needed, please enter your password"
 		sudo apt-get install git-core gnupg flex bison gperf build-essential \
 		zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
