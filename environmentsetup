@@ -28,9 +28,11 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		read done
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
 		# slightly edited to remove unneeded code and grab the rpm version
+		
+		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../changelog.tmp
 
 		# Cet the current Debian package version
-		DEB_VERSION=`head -n1 changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
+		DEB_VERSION=`head -n1 $LOCAL/../changelog.tmp | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
 
 		# Determine the currently supported Java version and update
 		JAVA_VER=`echo ${DEB_VERSION} | cut -d'.' -f1`
@@ -52,8 +54,6 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			wget http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html -O /tmp/oab-download.html
 		fi
 
-		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../changelog.tmp
-
 		for JAVA_BIN in jdk-${JAVA_VER}u${JAVA_UPD}-linux-x64-rpm.bin
 		do
 			# Get the download URL and size
@@ -63,7 +63,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			COOKIES="oraclelicensejdk-${JAVA_VER}u${JAVA_UPD}-oth-JPR=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
     
 			echo " [x] Downloading ${JAVA_BIN} : ${DOWNLOAD_SIZE} "
-			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O ${JAVA_BIN}
+			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O $LOCAL/../${JAVA_BIN}
   
 		done
 		chmod +x $LOCAL/../${JAVA_BIN}
@@ -207,13 +207,17 @@ exit 0
 			sudo ln -s /usr/bin/python2 /usr/bin/python
 		fi
 
+		rm -rf $LOCAL/../archbuilds
+
 		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java6 script"
 		read done
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
-		# slightly edited to remove unneeded code and grab the rpm version
+		# slightly edited to remove unneeded code
+
+		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../archbuilds/changelog.tmp
 
 		# Cet the current Debian package version
-		DEB_VERSION=`head -n1 changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
+		DEB_VERSION=`head -n1 $LOCAL/../archbuilds/changelog.tmp | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
 
 		# Determine the currently supported Java version and update
 		JAVA_VER=`echo ${DEB_VERSION} | cut -d'.' -f1`
@@ -235,8 +239,6 @@ exit 0
 			wget http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html -O /tmp/oab-download.html
 		fi
 
-		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../changelog.tmp
-
 		for JAVA_BIN in jdk-${JAVA_VER}u${JAVA_UPD}-linux-x64.bin
 		do
 			# Get the download URL and size
@@ -246,17 +248,23 @@ exit 0
 			COOKIES="oraclelicensejdk-${JAVA_VER}u${JAVA_UPD}-oth-JPR=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
     
 			echo " [x] Downloading ${JAVA_BIN} : ${DOWNLOAD_SIZE} "
-			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O ${JAVA_BIN}
+			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O $LOCAL/../archbuilds/${JAVA_BIN}
   
 		done
-		chmod +x $LOCAL/../${JAVA_BIN}
-		cd $LOCAL/..
-		sudo $LOCAL/../${JAVA_BIN}
-		rm -f $LOCAL/../changelog.tmp
+
+		chmod +x $LOCAL/../archbuilds/${JAVA_BIN}
+
+		rm -rf $LOCAL/../archbuilds
 		sudo mv ${JAVA_BIN} /opt
+
  		sudo cd /opt
  		sudo ./${JAVA_BIN}
  		sudo rm ${JAVA_BIN}
+
+		sudo cd jdk*/bin
+		jdk= $( pwd )
+
+		sudo cd jdk*/bin
 	fi
 fi
 	
