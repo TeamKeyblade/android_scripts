@@ -17,6 +17,7 @@ if ( ! uname -a | grep x86_64 &> /dev/null ); then
 fi
 
 if ( uname -a | grep Linux &> /dev/null ); then
+
 	# Fedora
 	if ( find /etc/fedora-release &> /dev/null ) || if ( find /etc/redhat-release &> /dev/null ); then
 		echo "Installing packages needed, please enter your password"
@@ -128,6 +129,15 @@ if ( uname -a | grep Linux &> /dev/null ); then
 			libxml2-utils xsltproc zlib1g-dev:i386 \
 			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib
 			#^^^ threw these in to make sure it builds ;)		
+		fi
+		# Linux Mint
+		if ( lsb_release -i | grep Mint &> /dev/null ); then
+			echo "Installing packages needed, please enter your password"
+			sudo apt-get install git-core gnupg flex bison gperf build-essential \
+			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
+			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
+			libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown \
+			libxml2-utils xsltproc
 		fi
 
 
