@@ -28,6 +28,8 @@ if [ $cleananswer == "1" ]; then
 	echo "which repo would you like to modify?"
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "Android Open Kang Project = aokp"
+	echo "Team Gummy = gummy"
 	echo "Android Open Source Project = aosp"
 	echo "type exit to go to back"
 	read modify

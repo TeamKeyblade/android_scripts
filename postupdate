@@ -3,3 +3,7 @@
 if [ $SCRIPT_REPO == "cm" ]; then
 	$REPOS/cm-ics/vendor/cm/get-prebuilts
 fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	$REPOS/gummy-ics/vendor/Gummy/get-prebuilts
+fi

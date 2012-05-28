@@ -6,29 +6,27 @@ export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "What are we updating?"
-echo "  1. Kitchen app"
-echo "  2. Cyanogenmod 9"
-echo "  3. Rooted & Busyboxed AOSP"
-echo "  4. Pure AOSP"
-echo "  5. All of the above"
-echo "  6. Go Back"
+echo "  1. Update the Kitchen app repository"
+echo "  2. Update the Cyanogenmod 9 repository"
+echo "  3. Update the Rooted & Busyboxed AOSP repository"
+echo "  4. Update the Android Open Kang Project repository"
+echo "  5. Update the Team Gummy repository"
+echo "  6. Update the Android Open Source Project repository"
+echo "  7. All of the above"
+echo "  8. Go Back"
 read version
 
-if [ ! $version == "6" ]; then
-	clear
-fi
-
-if [ $version == "1" ] || [ $version == "5" ]; then
-	echo "Updating Kitchen app"
+if [ $version == "1" ] || [ $version == "7" ]; then
+	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
 
 	~/bin/repo sync -j8
 	echo "Kitchen Update Complete!"
 fi
 
-if [ $version == "2" ] || [ $version == "5" ]; then
+if [ $version == "2" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	echo "Updating Cyanogenmod 9 repository"
+	echo "Updating Cyanogenmod 9 repository.."
 	cd $REPOS/cm-ics
 	rm -r vendor/cm
 
@@ -54,9 +52,9 @@ if [ $version == "2" ] || [ $version == "5" ]; then
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
-if [ $version == "3" ] || [ $version == "5" ]; then
+if [ $version == "3" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
-	echo "Updating Rooted & Busyboxed AOSP repository"
+	echo "Updating Rooted & Busyboxed AOSP repository.."
 	cd $REPOS/rooted-aosp-ics
 	rm -r vendor/swordrune10
 
@@ -82,9 +80,63 @@ if [ $version == "3" ] || [ $version == "5" ]; then
 	echo "Rooted & Busyboxed AOSP Update Complete!"
 fi
 
-if [ $version == "4" ] || [ $version == "5" ]; then
+if [ $version == "4" ] || [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "aokp")
+	echo "Updating the Android Open Kang Project repository.."
+	cd $REPOS/aokp-ics
+
+	$LOCAL/preupdate
+	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
+		export AUTHOR="gitpuller"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
+	fi
+
+	$LOCAL/../gitpuller
+
+	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
+	echo "Android Open Kang Project Update Complete!"
+fi
+
+if [ $version == "5" ] || [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "gummy")
+	echo "Updating Team Gummy repository.."
+	cd $REPOS/gummy-ics
+
+	$LOCAL/preupdate
+	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
+		export AUTHOR="gitpuller"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
+	fi
+
+	$LOCAL/../gitpuller
+
+	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
+	echo "AOSP Update Complete!"
+fi
+
+if [ $version == "6" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	echo "Updating AOSP repository"
+	echo "Updating AOSP repository.."
 	cd $REPOS/aosp-ics
 
 	$LOCAL/preupdate
@@ -109,7 +161,7 @@ if [ $version == "4" ] || [ $version == "5" ]; then
 	echo "AOSP Update Complete!"
 fi
 
-if [ $version == "6" ]; then
+if [ $version == "8" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
