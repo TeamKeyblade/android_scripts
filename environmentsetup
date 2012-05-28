@@ -146,14 +146,6 @@ if ( uname -a | grep Linux &> /dev/null ); then
 	fi
 
 	if ( find /etc/arch-release &> /dev/null ); then
-
-echo "Support for Arch Linux is still being worked out, please come back later!"
-echo "Press enter to exit.."
-export EXIT=true
-read done
-exit 0
-
-
 		echo "Installing packages needed, please enter your password"
 		sudo pacman -Sy abs base-devel
 		sudo pacman -S openjdk6 perl git gnupg flex bison gperf zip unzip sdl wxgtk \ 
@@ -261,10 +253,18 @@ exit 0
  		sudo ./${JAVA_BIN}
  		sudo rm ${JAVA_BIN}
 
-		sudo cd jdk*/bin
-		jdk= $( pwd )
+		cd jdk*/bin
+		jdk=$( pwd )
 
-		sudo cd jdk*/bin
+		cd ../jre/bin
+		jre=$( pwd )
+	
+		sed -i -e "/PATH=/ a \
+PATH="\$PATH:$jdk:$jre"" /etc/profile
+	
+		echo ""
+		echo "Finished!"
+		$envir=true
 	fi
 fi
 	
