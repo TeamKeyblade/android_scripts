@@ -12,7 +12,9 @@ echo "  3. Initilize the Kitchen app repository"
 echo "  4. Initilize the Cyanogenmod 9 repository"
 echo "  5. Initilize the Rooted & Busyboxed AOSP repository"
 echo "  6. Initilize the Android Open Source Project repository"
-echo "  7. Go Back"
+echo "  7. Initilize the Android Open Kang Project repository"
+echo "  8. Initilize the Team Gummy Project repository"
+echo "  9. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read setupanswer
@@ -94,7 +96,47 @@ if [ $setupanswer == "5" ]; then
 	echo "Finished!"
 fi
 
+
+
 if [ $setupanswer == "6" ]; then
+	echo "Initilizing the Android Open Kang Project repository.."
+
+	mkdir -p $REPOS/aokp-ics
+	cd $REPOS/aokp-ics
+	repo init -u git://github.com/AOKP/platform_manifest.git -b ics
+
+	echo ""
+	echo "Sync the Android Open Kang Project repository?"
+	read aospsync
+
+	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+		repo sync
+	fi
+
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $setupanswer == "7" ]; then
+	echo "Initilizing the Team Gummy repository.."
+
+	mkdir -p $REPOS/gummy-ics
+	cd $REPOS/gummy-ics
+	repo init -u https://github.com/teamgummy/platform_manifest.git -b master
+
+	echo ""
+	echo "Sync the Team Gummy repository?"
+	read aospsync
+
+	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+		repo sync
+	fi
+
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $setupanswer == "8" ]; then
 	echo "Initilizing the Android Open Source Project repository.."
 
 	mkdir -p $REPOS/aosp-ics
@@ -113,7 +155,7 @@ if [ $setupanswer == "6" ]; then
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "7" ]; then
+if [ $setupanswer == "9" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
