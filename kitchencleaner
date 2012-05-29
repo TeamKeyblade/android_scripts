@@ -45,25 +45,31 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $cleanse == "cm" ]; then
 		echo "Purging local_manifest.xml for Cyanogenmod 9.."
+		rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
 		cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
 		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
-		cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+		rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
 	fi
 
 	if [ $cleanse == "aosp" ]; then
 		echo "Purging local_manifest.xml for Android Open Source Project.."
-		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
+		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
+		cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "1" ]; then
+if [ $cleananswer == "2" ]; then
 	echo "Purging all local_manifest.xml files.."
+	rm -f $REPOS/cm-ics/.repo/local_manifest.xml
+	rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+	rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
 	cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
 	cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
 	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
@@ -71,7 +77,7 @@ if [ $cleananswer == "1" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "2" ]; then
+if [ $cleananswer == "3" ]; then
 	clear
 
 	echo "which repo would you like to modify?"
@@ -122,7 +128,7 @@ if [ $cleananswer == "2" ]; then
 	
 fi
 
-if [ $cleananswer == "3" ]; then
+if [ $cleananswer == "4" ]; then
 	clear
 
 	echo "Purge or Delete the repositories?"
@@ -186,7 +192,7 @@ if [ $cleananswer == "3" ]; then
 	echo "Finished!"
 fi
 	
-if [ $cleananswer == "4" ]; then
+if [ $cleananswer == "5" ]; then
 	clear
 
 	echo "Purge or Delete?"
@@ -242,7 +248,7 @@ if [ $cleananswer == "4" ]; then
 	fi
 fi
 
-if [ $cleananswer == "5" ]; then
+if [ $cleananswer == "6" ]; then
 	clear
 
 	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
@@ -266,7 +272,7 @@ if [ $cleananswer == "5" ]; then
 	fi
 fi
 
-if [ $cleananswer == "6" ]; then
+if [ $cleananswer == "7" ]; then
 	clear
 
 	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
@@ -290,7 +296,7 @@ if [ $cleananswer == "6" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "7" ]; then
+if [ $cleananswer == "8" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
