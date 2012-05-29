@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 cd $REPOS/$SCRIPT_REPO-ics/.repo
-if ( ! cat local_manifest.xml | grep "motorola" &> /dev/null ); then
+if ( ! find local_manifest.xml &> /dev/null ) || ( ! cat local_manifest.xml | grep "motorola" &> /dev/null ); then
 	if [ $SCRIPT_REPO == "cm" ]; then
 		echo "Adding missing local_manifest.xml"
 		cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
