@@ -55,7 +55,6 @@ if [ $setupanswer == "3" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
 fi
 
 if [ $setupanswer == "4" ]; then
