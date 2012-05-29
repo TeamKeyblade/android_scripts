@@ -7,7 +7,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	zip=$(find update*.zip)
 fi
 
-if [ $SCRIPT_REPO == "gummy" ]; then
+if [ $SCRIPT_REPO == "aokp" ]; then
 	zip=$(find aokp*.zip)
 fi
 
