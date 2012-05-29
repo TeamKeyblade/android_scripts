@@ -12,17 +12,66 @@ echo "=============================="
 echo "Something is not working right? What should we do?"
 echo "Purge = remove files, download from origin"
 echo "Delete = delete it!"
-echo "  1. Purge/Delete a certain repository"
-echo "  2. Purge/Delete all the repositories"
-echo "  3. Purge/Delete the Kitchen app"
-echo "  4. Delete the Kitchen app, and its dependencies"
-echo "  5. Delete entire computer"
-echo "  6. Go Back"
+echo "  1. Purge a certain local_manifest.xml file"
+echo "  2. Purge all local_manifest.xml files"
+echo "  3. Purge/Delete a certain repository"
+echo "  4. Purge/Delete all the repositories"
+echo "  5. Purge/Delete the Kitchen app"
+echo "  6. Delete the Kitchen app, and its dependencies"
+echo "  7. Delete entire computer"
+echo "  8. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
 if [ $cleananswer == "1" ]; then
+	clear
+
+	echo "which repo would you like to modify?"
+	echo "Cyanogenmod 9 = cm"
+	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "Android Open Source Project = aosp"
+	echo "type exit to go to back"
+	read cleanse
+
+	if [ $cleanse == "exit" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+	if [ $cleanse == "cm" ]; then
+		echo "Purging local_manifest.xml for Cyanogenmod 9.."
+		cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
+	fi
+
+	if [ $cleanse == "rooted-aosp" ]; then
+		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
+		cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+	fi
+
+	if [ $cleanse == "aosp" ]; then
+		echo "Purging local_manifest.xml for Android Open Source Project.."
+		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
+	fi
+
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $cleananswer == "1" ]; then
+	echo "Purging all local_manifest.xml files.."
+	cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
+	cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $cleananswer == "2" ]; then
 	clear
 
 	echo "which repo would you like to modify?"
@@ -73,7 +122,7 @@ if [ $cleananswer == "1" ]; then
 	
 fi
 
-if [ $cleananswer == "2" ]; then
+if [ $cleananswer == "3" ]; then
 	clear
 
 	echo "Purge or Delete the repositories?"
@@ -137,7 +186,7 @@ if [ $cleananswer == "2" ]; then
 	echo "Finished!"
 fi
 	
-if [ $cleananswer == "3" ]; then
+if [ $cleananswer == "4" ]; then
 	clear
 
 	echo "Purge or Delete?"
@@ -193,7 +242,7 @@ if [ $cleananswer == "3" ]; then
 	fi
 fi
 
-if [ $cleananswer == "4" ]; then
+if [ $cleananswer == "5" ]; then
 	clear
 
 	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
@@ -217,7 +266,7 @@ if [ $cleananswer == "4" ]; then
 	fi
 fi
 
-if [ $cleananswer == "5" ]; then
+if [ $cleananswer == "6" ]; then
 	clear
 
 	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
@@ -241,7 +290,7 @@ if [ $cleananswer == "5" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "6" ]; then
+if [ $cleananswer == "7" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done

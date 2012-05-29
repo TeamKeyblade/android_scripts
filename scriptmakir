@@ -8,6 +8,20 @@ if [ $AUTHOR == "gitpuller" ]; then
 	echo "	exit 0" >> $LOCAL/../gitpuller
 	echo "fi" >> $LOCAL/../gitpuller
 	echo "" >> $LOCAL/../gitpuller
+	echo "if [ \$SCRIPT_REPO == \"aokp\" ]; then" >> $LOCAL/../gitpuller
+	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
+	echo "	exit 0" >> $LOCAL/../gitpuller
+	echo "fi" >> $LOCAL/../gitpuller
+	echo "" >> $LOCAL/../gitpuller
+	echo "if [ \$SCRIPT_REPO == \"gummy\" ]; then" >> $LOCAL/../gitpuller
+	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
+	echo "	exit 0" >> $LOCAL/../gitpuller
+	echo "fi" >> $LOCAL/../gitpuller
+	echo "" >> $LOCAL/../gitpuller
 	echo "if [ \$SCRIPT_REPO == \"aosp\" ]; then" >> $LOCAL/../gitpuller
 	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
 	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
