@@ -49,6 +49,10 @@ if [ $setupanswer == "3" ]; then
 	echo "Sync the Kitchen app repository?"
 	read kitchensync
 
+	if [ $kitchensync == "" ]; then
+		kitchensync="no"
+	fi
+
 	if [ $kitchensync == "yes" ] || [ $kitchensync == "y" ]; then
 		~/bin/repo sync
 	fi
