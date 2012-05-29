@@ -20,18 +20,18 @@ fi
 
 if [ ! $SCRIPT_REPO == "cm" ]; then
 	if [ $SCRIPT_REPO == "aokp" ]; then
-		vendor_lunch=$(echo "aokp")
+		vendor_lunch=$(echo "aokp_")
 	fi
 
 	if [ $SCRIPT_REPO == "gummy" ]; then
-		vendor_lunch=$(echo "Gummy")
+		vendor_lunch=$(echo "Gummy_")
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
-		vendor_lunch=$(echo "full")
+		vendor_lunch=$(echo "full_")
 	fi
 	
-	lunch $vendor_lunch_$SCRIPT_DEVICE-userdebug
+	lunch $vendor_lunch$SCRIPT_DEVICE-userdebug
 	make CC=gcc-4.4 CXX=g++-4.4 otapackage -j4
 	exit 0
 fi
