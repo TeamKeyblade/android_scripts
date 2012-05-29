@@ -7,7 +7,7 @@
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="ics" />
   <project name="AndroidRoot/vendor_proprietary_asus_tf101" path="vendor/asus/tf101" revision="ics" />
   <project name="AndroidRoot/vendor_proprietary_asus_tf201" path="vendor/asus/tf201" revision="ics" />
-  <project name="xplodwild/android_vendor_asus_tf300t" path="vendor/asus/tf300t" remote="github" revision="ics" />
+  <project name="xplodwild/android_vendor_asus_tf300t" path="vendor/asus/tf300t" remote="github" revision="master" />
   <project name="koush/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
   <project name="koush/proprietary_vendor_broadcom" path="vendor/broadcom" revision="ics" />
   <project name="koush/proprietary_vendor_htc" path="vendor/htc" revision="ics" />
