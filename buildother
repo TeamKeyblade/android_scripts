@@ -6,10 +6,12 @@ export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Which version of android are we building today?"
-echo "  1. Cyanogenmod"
+echo "  1. Cyanogenmod 9"
 echo "  2. Rooted & Busyboxed AOSP"
-echo "  3. Pure AOSP"
-echo "  4. Go Back"
+echo "  3. Android Open Kang Project"
+echo "  4. Team Gummy"
+echo "  5. Android Open Source Project"
+echo "  6. Go Back"
 read version
 
 if [ $version == "1" ]; then
@@ -21,11 +23,15 @@ if [ $version == "2" ]; then
 fi
 
 if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
+	export SCRIPT_REPO=$(echo "aokp")
 fi
 
 if [ $version == "4" ]; then
-	exit 0
+	export SCRIPT_REPO=$(echo "gummy")
+fi
+
+if [ $version == "5" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
 fi
 
 clear
