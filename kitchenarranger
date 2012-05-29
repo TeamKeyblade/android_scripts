@@ -29,7 +29,7 @@ if [ "$setupanswer" == "" ]; then
 	exit 0
 fi
 
-if [ "$setupanswer" > "9" ]; then
+if [ $setupanswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -39,7 +39,7 @@ if [ "$setupanswer" > "9" ]; then
 	exit 0
 fi
 
-if [ "$setupanswer" == "1" ]; then
+if [ $setupanswer == "1" ]; then
 	echo "Installing the repo command.."
 
 	mkdir -p ~/bin
@@ -50,7 +50,7 @@ if [ "$setupanswer" == "1" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "2" ]; then
+if [ $setupanswer == "2" ]; then
 	$LOCAL/environmentsetup
 
 	if [ $EXIT ]; then
@@ -59,7 +59,7 @@ if [ "$setupanswer" == "2" ]; then
 
 fi
 
-if [ "$setupanswer" == "3" ]; then
+if [ $setupanswer == "3" ]; then
 	echo "Initilizing the Kitchen app repository.."
 
 	cd $LOCAL/..
@@ -81,7 +81,7 @@ if [ "$setupanswer" == "3" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "4" ]; then
+if [ $setupanswer == "4" ]; then
 	echo "Initilizing the Cyanogenmod 9 repository.."
 
 	mkdir -p $REPOS/cm-ics
@@ -104,7 +104,7 @@ if [ "$setupanswer" == "4" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "5" ]; then
+if [ $setupanswer == "5" ]; then
 	echo "Initilizing the Rooted & Busyboxed AOSP repository.."
 
 	mkdir -p $REPOS/rooted-aosp-ics
@@ -129,7 +129,7 @@ fi
 
 
 
-if [ "$setupanswer" == "6" ]; then
+if [ $setupanswer == "6" ]; then
 	echo "Initilizing the Android Open Kang Project repository.."
 
 	mkdir -p $REPOS/aokp-ics
@@ -152,7 +152,7 @@ if [ "$setupanswer" == "6" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "7" ]; then
+if [ $setupanswer == "7" ]; then
 	echo "Initilizing the Team Gummy repository.."
 
 	mkdir -p $REPOS/gummy-ics
@@ -175,7 +175,7 @@ if [ "$setupanswer" == "7" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "8" ]; then
+if [ $setupanswer == "8" ]; then
 	echo "Initilizing the Android Open Source Project repository.."
 
 	mkdir -p $REPOS/aosp-ics
@@ -198,7 +198,7 @@ if [ "$setupanswer" == "8" ]; then
 	echo "Finished!"
 fi
 
-if [ "$setupanswer" == "9" ]; then
+if [ $setupanswer == "9" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
