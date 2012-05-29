@@ -37,15 +37,18 @@ if [ $version -gt "8" ]; then
 fi
 
 if [ $version == "1" ] || [ $version == "7" ]; then
+	echo ""	
 	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
 
 	~/bin/repo sync -j8
+	echo ""	
 	echo "Kitchen Update Complete!"
 fi
 
 if [ $version == "2" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "cm")
+	echo ""	
 	echo "Updating Cyanogenmod 9 repository.."
 	cd $REPOS/cm-ics
 	rm -r vendor/cm
@@ -69,11 +72,13 @@ if [ $version == "2" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
+	echo ""	
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
 if [ $version == "3" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
+	echo ""	
 	echo "Updating Rooted & Busyboxed AOSP repository.."
 	cd $REPOS/rooted-aosp-ics
 	rm -r vendor/swordrune10
@@ -97,11 +102,13 @@ if [ $version == "3" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
+	echo ""	
 	echo "Rooted & Busyboxed AOSP Update Complete!"
 fi
 
 if [ $version == "4" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
+	echo ""	
 	echo "Updating the Android Open Kang Project repository.."
 	cd $REPOS/aokp-ics
 	rm -r vendor/aokp
@@ -125,11 +132,13 @@ if [ $version == "4" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
+	echo ""	
 	echo "Android Open Kang Project Update Complete!"
 fi
 
 if [ $version == "5" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
+	echo ""	
 	echo "Updating Team Gummy repository.."
 	cd $REPOS/gummy-ics
 	rm -r vendor/Gummy
@@ -153,11 +162,13 @@ if [ $version == "5" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
+	echo ""	
 	echo "Team Gummy Update Complete!"
 fi
 
 if [ $version == "6" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
+	echo ""	
 	echo "Updating AOSP repository.."
 	cd $REPOS/aosp-ics
 
@@ -180,6 +191,7 @@ if [ $version == "6" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
+	echo ""	
 	echo "AOSP Update Complete!"
 fi
 

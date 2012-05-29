@@ -14,6 +14,26 @@ echo "  5. Android Open Source Project"
 echo "  6. Go Back"
 read version
 
+if [ "$version" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+if [ $version -gt "6" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
 if [ $version == "1" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 fi

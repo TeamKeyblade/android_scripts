@@ -74,6 +74,7 @@ if [ $setupanswer == "3" ]; then
 	fi
 
 	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
+		echo ""	
 		echo "Kitchen app repository did not sync.."
 	fi
 
@@ -97,6 +98,7 @@ if [ $setupanswer == "4" ]; then
 	fi
 
 	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
+		echo ""	
 		echo "Cyanogenmod 9 repository did not sync.."
 	fi
 
@@ -120,6 +122,7 @@ if [ $setupanswer == "5" ]; then
 	fi
 
 	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
+		echo ""	
 		echo "Rooted & Busyboxed AOSP repository did not sync.."
 	fi
 
@@ -145,6 +148,7 @@ if [ $setupanswer == "6" ]; then
 	fi
 
 	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
+		echo ""	
 		echo "Android Open Kang Project repository did not sync.."
 	fi
 
@@ -168,6 +172,7 @@ if [ $setupanswer == "7" ]; then
 	fi
 
 	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
+		echo ""	
 		echo "Team Gummy repository did not sync.."
 	fi
 
@@ -191,6 +196,7 @@ if [ $setupanswer == "8" ]; then
 	fi
 
 	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
+		echo ""	
 		echo "Android Open Source Project repository did not sync.."
 	fi
 

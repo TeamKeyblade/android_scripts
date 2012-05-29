@@ -24,15 +24,45 @@ echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
+if [ "$cleananswer" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchencleaner
+	exit 0
+fi
+
+if [ $cleananswer -gt "8" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchencleaner
+	exit 0
+fi
+
 if [ $cleananswer == "1" ]; then
 	clear
 
+	echo ""	
 	echo "which repo would you like to modify?"
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "Android Open Source Project = aosp"
 	echo "type exit to go to back"
 	read cleanse
+
+	if [ "$cleanse" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $cleanse == "exit" ]; then
 		echo ""
@@ -44,6 +74,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "cm" ]; then
+		echo ""	
 		echo "Purging local_manifest.xml for Cyanogenmod 9.."
 		cd $REPOS/cm-ics/.repo
 		rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
@@ -51,6 +82,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
+		echo ""	
 		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
 		cd $REPOS/rooted-aosp-ics/.repo
 		rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
@@ -58,6 +90,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "aosp" ]; then
+		echo ""	
 		echo "Purging local_manifest.xml for Android Open Source Project.."
 		cd $REPOS/aosp-ics/.repo
 		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
@@ -69,6 +102,7 @@ if [ $cleananswer == "1" ]; then
 fi
 
 if [ $cleananswer == "2" ]; then
+	echo ""	
 	echo "Purging all local_manifest.xml files.."
 	cd $REPOS/cm-ics/.repo
 	rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
@@ -89,6 +123,7 @@ fi
 if [ $cleananswer == "3" ]; then
 	clear
 
+	echo ""
 	echo "which repo would you like to modify?"
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
@@ -97,6 +132,15 @@ if [ $cleananswer == "3" ]; then
 	echo "Android Open Source Project = aosp"
 	echo "type exit to go to back"
 	read modify
+
+	if [ "$modify" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $modify == "exit" ]; then
 		echo ""
@@ -113,6 +157,15 @@ if [ $cleananswer == "3" ]; then
 	echo "Delete = delete it!"
 	echo "type exit to go to back"
 	read remover
+
+	if [ "$remover" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
@@ -140,11 +193,21 @@ fi
 if [ $cleananswer == "4" ]; then
 	clear
 
+	echo ""
 	echo "Purge or Delete the repositories?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
 	echo "type exit to go to back"
 	read remover
+
+	if [ "$remover" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
@@ -204,11 +267,21 @@ fi
 if [ $cleananswer == "5" ]; then
 	clear
 
+	echo ""
 	echo "Purge or Delete?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
 	echo "type exit to go back"
 	read remover
+
+	if [ "$remover" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
@@ -242,6 +315,15 @@ if [ $cleananswer == "5" ]; then
 		echo "Type in anything else to abort operation"
 		read destroyer
 
+		if [ "$destroyer" == "" ]; then
+			echo ""
+			echo "You didn't type in anything.."
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
 		if [ $destroyer == "yes" ]; then
 			export AUTHOR="destroyer"
 			$LOCAL/scriptmakir
@@ -260,12 +342,22 @@ fi
 if [ $cleananswer == "6" ]; then
 	clear
 
+	echo ""
 	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
 	echo "Please note: the builds directory will not be deleted?"
 	echo "You must type in \"yes\" to continue"
 	echo ""
 	echo "Type in anything else to abort operation"
 	read destroyerofworlds
+
+	if [ "$destroyerofworlds" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ $destroyerofworlds == "yes" ]; then
 		export AUTHOR="destroyerofworlds"
@@ -284,11 +376,21 @@ fi
 if [ $cleananswer == "7" ]; then
 	clear
 
+	echo ""
 	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
 	echo "You must type in \"yes, please delete everything off my computer\" to continue"
 	echo ""
 	echo "Type in anything else to bail out"
 	read suicidenote
+
+	if [ "$suicidenote" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
 
 	if [ ! $suicidenote == "yes, please delete everything off my computer" ]; then
 		echo ""

@@ -14,6 +14,26 @@ echo "  5. Android Open Source Project"
 echo "  6. Go Back"
 read version
 
+if [ "$version" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+if [ $version -gt "6" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
 if [ $version == "1" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 fi
@@ -42,6 +62,16 @@ echo "Please type in which device you would like to build"
 echo "Type in list to see all supported devices"
 echo "Type in exit to go back"
 read device
+
+if [ "$device" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
 
 if [ $device == "list" ]; then
 	if [ $SCRIPT_REPO == "cm" ]; then
@@ -94,6 +124,16 @@ tuna" | less
 	echo "Please type in which device you would like to build"
 	echo "Type in exit to go to back"
 	read device
+fi
+
+if [ "$device" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
 fi
 
 if [ $device == "exit" ]; then

@@ -15,6 +15,26 @@ echo ""
 echo "Which one would you like to do?"
 read buildanswer
 
+if [ "$buildanswer" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+if [ $buildanswer -gt "6" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
 if [ $buildanswer == "1" ]; then
 	clear
 
@@ -29,6 +49,26 @@ if [ $buildanswer == "1" ]; then
 	echo ""
 	echo "Which one would you like to do?"
 	read buildgnexus
+
+	if [ "$buildgnexus" == "" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+	if [ $buildgnexus -gt "5" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
 
 	if [ $buildgnexus == "1" ]; then
 		./buildtoro
@@ -61,6 +101,26 @@ if [ $buildanswer == "2" ]; then
 	echo "Which one would you like to do?"
 	read buildnexuss
 
+	if [ "$buildnexuss" == "" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+	if [ $buildnexuss -gt "4" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
 	if [ $buildnexuss == "1" ]; then
 		./buildcrespo
 	fi
@@ -87,6 +147,26 @@ if [ $buildanswer == "3" ]; then
 	echo ""
 	echo "Which one would you like to do?"
 	read buildxoom
+
+	if [ "$buildxoom" == "" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+	if [ $buildxoom -gt "4" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
 
 	if [ $buildxoom == "1" ]; then
 		./buildstingray
