@@ -19,7 +19,7 @@ echo ""
 echo "Which one would you like to do?"
 read setupanswer
 
-if [ $setupanswer == "1" ]; then
+if [ "$setupanswer" == "1" ]; then
 	echo "Installing the repo command.."
 
 	mkdir -p ~/bin
@@ -30,7 +30,7 @@ if [ $setupanswer == "1" ]; then
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "2" ]; then
+if [ "$setupanswer" == "2" ]; then
 	$LOCAL/environmentsetup
 
 	if [ $EXIT ]; then
@@ -39,7 +39,7 @@ if [ $setupanswer == "2" ]; then
 
 fi
 
-if [ $setupanswer == "3" ]; then
+if [ "$setupanswer" == "3" ]; then
 	echo "Initilizing the Kitchen app repository.."
 
 	cd $LOCAL/..
@@ -49,19 +49,19 @@ if [ $setupanswer == "3" ]; then
 	echo "Sync the Kitchen app repository?"
 	read kitchensync
 
-	if [ $kitchensync = "" ]; then
-		kitchensync="no"
+	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
+		~/bin/repo sync
 	fi
 
-	if [ $kitchensync == "yes" ] || [ $kitchensync == "y" ]; then
-		~/bin/repo sync
+	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
+		echo "Kitchen app repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "4" ]; then
+if [ "$setupanswer" == "4" ]; then
 	echo "Initilizing the Cyanogenmod 9 repository.."
 
 	mkdir -p $REPOS/cm-ics
@@ -72,15 +72,19 @@ if [ $setupanswer == "4" ]; then
 	echo "Sync the Cyanogenmod 9 repository?"
 	read cm9sync
 
-	if [ $cm9sync == "yes" ] || [ $cm9sync == "y" ]; then
+	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
 		~/bin/repo sync
+	fi
+
+	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
+		echo "Cyanogenmod 9 repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "5" ]; then
+if [ "$setupanswer" == "5" ]; then
 	echo "Initilizing the Rooted & Busyboxed AOSP repository.."
 
 	mkdir -p $REPOS/rooted-aosp-ics
@@ -91,8 +95,12 @@ if [ $setupanswer == "5" ]; then
 	echo "Sync the Rooted & Busyboxed AOSP repository?"
 	read raospsync
 
-	if [ $raospsync == "yes" ] || [ $raospsync == "y" ]; then
+	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
 		~/bin/repo sync
+	fi
+
+	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
+		echo "Rooted & Busyboxed AOSP repository did not sync.."
 	fi
 
 	echo ""
@@ -101,7 +109,7 @@ fi
 
 
 
-if [ $setupanswer == "6" ]; then
+if [ "$setupanswer" == "6" ]; then
 	echo "Initilizing the Android Open Kang Project repository.."
 
 	mkdir -p $REPOS/aokp-ics
@@ -110,17 +118,21 @@ if [ $setupanswer == "6" ]; then
 
 	echo ""
 	echo "Sync the Android Open Kang Project repository?"
-	read aospsync
+	read aokpsync
 
-	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
 		~/bin/repo sync
+	fi
+
+	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
+		echo "Android Open Kang Project repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "7" ]; then
+if [ "$setupanswer" == "7" ]; then
 	echo "Initilizing the Team Gummy repository.."
 
 	mkdir -p $REPOS/gummy-ics
@@ -129,17 +141,21 @@ if [ $setupanswer == "7" ]; then
 
 	echo ""
 	echo "Sync the Team Gummy repository?"
-	read aospsync
+	read gummysync
 
-	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
 		~/bin/repo sync
+	fi
+
+	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
+		echo "Team Gummy repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "8" ]; then
+if [ "$setupanswer" == "8" ]; then
 	echo "Initilizing the Android Open Source Project repository.."
 
 	mkdir -p $REPOS/aosp-ics
@@ -150,15 +166,19 @@ if [ $setupanswer == "8" ]; then
 	echo "Sync the Android Open Source Project repository?"
 	read aospsync
 
-	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
+	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
 		~/bin/repo sync
+	fi
+
+	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
+		echo "Android Open Source Project repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "9" ]; then
+if [ "$setupanswer" == "9" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
