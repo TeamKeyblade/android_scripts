@@ -3,8 +3,16 @@
 cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
 builddir=$(echo "$REPOS/../builds")
 
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "aokp" ] || [ $SCRIPT_REPO == "gummy" ]; then
+if [ $SCRIPT_REPO == "cm" ]; then
 	zip=$(find update*.zip)
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	zip=$(find aokp*.zip)
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	zip=$(find Gummy*.zip)
 fi
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
