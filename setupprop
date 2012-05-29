@@ -49,7 +49,7 @@ $builddir/$SCRIPT_REPO/old &> /dev/null
 
 cp $zip $builddir/$SCRIPT_REPO
 
-if [ ! $SCRIPT_REPO == "cm" ]; then
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	cd $builddir
 	rm -r temp
 fi
