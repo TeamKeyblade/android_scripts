@@ -127,7 +127,7 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		rm -rf *
-		repo sync
+		~/bin/repo sync
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -160,7 +160,7 @@ if [ $cleananswer == "4" ]; then
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
-			repo sync
+			~/bin/repo sync
 		fi
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -174,7 +174,7 @@ if [ $cleananswer == "4" ]; then
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
-			repo sync
+			~/bin/repo sync
 		fi
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -188,7 +188,7 @@ if [ $cleananswer == "4" ]; then
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
-			repo sync
+			~/bin/repo sync
 		fi
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then

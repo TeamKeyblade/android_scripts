@@ -43,14 +43,14 @@ if [ $setupanswer == "3" ]; then
 	echo "Initilizing the Kitchen app repository.."
 
 	cd $LOCAL/..
-	repo init -u http://github.com/swordrune10/android_manifest.git -b master
+	~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
 
 	echo ""	
 	echo "Sync the Kitchen app repository?"
 	read kitchensync
 
 	if [ $kitchensync == "yes" ] || [ $kitchensync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
@@ -63,14 +63,14 @@ if [ $setupanswer == "4" ]; then
 
 	mkdir -p $REPOS/cm-ics
 	cd $REPOS/cm-ics
-	repo init -u http://github.com/CyanogenMod/android.git -b ics
+	~/bin/repo init -u http://github.com/CyanogenMod/android.git -b ics
 
 	echo ""
 	echo "Sync the Cyanogenmod 9 repository?"
 	read cm9sync
 
 	if [ $cm9sync == "yes" ] || [ $cm9sync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
@@ -82,14 +82,14 @@ if [ $setupanswer == "5" ]; then
 
 	mkdir -p $REPOS/rooted-aosp-ics
 	cd $REPOS/rooted-aosp-ics
-	repo init -u http://github.com/swordrune10/android_manifest.git -b ics
+	~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b ics
 
 	echo ""
 	echo "Sync the Rooted & Busyboxed AOSP repository?"
 	read raospsync
 
 	if [ $raospsync == "yes" ] || [ $raospsync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
@@ -103,14 +103,14 @@ if [ $setupanswer == "6" ]; then
 
 	mkdir -p $REPOS/aokp-ics
 	cd $REPOS/aokp-ics
-	repo init -u git://github.com/AOKP/platform_manifest.git -b ics
+	~/bin/repo init -u git://github.com/AOKP/platform_manifest.git -b ics
 
 	echo ""
 	echo "Sync the Android Open Kang Project repository?"
 	read aospsync
 
 	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
@@ -122,14 +122,14 @@ if [ $setupanswer == "7" ]; then
 
 	mkdir -p $REPOS/gummy-ics
 	cd $REPOS/gummy-ics
-	repo init -u https://github.com/teamgummy/platform_manifest.git -b master
+	~/bin/repo init -u https://github.com/teamgummy/platform_manifest.git -b master
 
 	echo ""
 	echo "Sync the Team Gummy repository?"
 	read aospsync
 
 	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
@@ -141,14 +141,14 @@ if [ $setupanswer == "8" ]; then
 
 	mkdir -p $REPOS/aosp-ics
 	cd $REPOS/aosp-ics
-	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
+	~/bin/repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
 
 	echo ""
 	echo "Sync the Android Open Source Project repository?"
 	read aospsync
 
 	if [ $aospsync == "yes" ] || [ $aospsync == "y" ]; then
-		repo sync
+		~/bin/repo sync
 	fi
 
 	echo ""
