@@ -45,20 +45,23 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $cleanse == "cm" ]; then
 		echo "Purging local_manifest.xml for Cyanogenmod 9.."
+		cd $REPOS/cm-ics/.repo
 		rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
-		cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
+		cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
 		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
+		cd $REPOS/rooted-aosp-ics/.repo
 		rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
-		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
 	fi
 
 	if [ $cleanse == "aosp" ]; then
 		echo "Purging local_manifest.xml for Android Open Source Project.."
+		cd $REPOS/aosp-ics/.repo
 		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
-		cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
+		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	fi
 
 	echo ""
@@ -67,12 +70,18 @@ fi
 
 if [ $cleananswer == "2" ]; then
 	echo "Purging all local_manifest.xml files.."
-	rm -f $REPOS/cm-ics/.repo/local_manifest.xml
+	cd $REPOS/cm-ics/.repo
+	rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
+	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
+
+	cd $REPOS/rooted-aosp-ics/.repo
 	rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
+	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
+
+	cd $REPOS/aosp-ics/.repo
 	rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
-	cp -f $LOCAL/xml/cm9-local_manifest.xml $REPOS/cm9-ics/.repo/local_manifest.xml
-	cp -f $LOCAL/xml/aosp-local_manifest.xml $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
-	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml $REPOS/aosp-ics/.repo/local_manifest.xml
+	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+
 	echo ""
 	echo "Finished!"
 fi
