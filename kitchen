@@ -69,6 +69,7 @@ if [ $answer == "4" ]; then
 fi
 
 if [ $answer == "5" ]; then
+	echo ""
 	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
 	exit 0
 fi
@@ -84,6 +85,7 @@ if [ $answer == "6" ] || [ $answer == "7" ] || [ $answer == "8" ] || [ $answer =
 fi
 
 if [ $answer == "10" ]; then
+	echo ""
 	echo "You seem bored.. wanna watch a movie?"
 	read nothing
 	if [ $nothing == "no" ] || [ $nothing == "n" ]; then
