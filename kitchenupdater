@@ -84,6 +84,7 @@ if [ $version == "4" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	echo "Updating the Android Open Kang Project repository.."
 	cd $REPOS/aokp-ics
+	rm -r vendor/aokp
 
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
@@ -111,6 +112,7 @@ if [ $version == "5" ] || [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	echo "Updating Team Gummy repository.."
 	cd $REPOS/gummy-ics
+	rm -r vendor/Gummy
 
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
@@ -131,7 +133,7 @@ if [ $version == "5" ] || [ $version == "7" ]; then
 		chmod a+x $LOCAL/../romeditor
 	fi
 
-	echo "AOSP Update Complete!"
+	echo "Team Gummy Update Complete!"
 fi
 
 if [ $version == "6" ] || [ $version == "7" ]; then
