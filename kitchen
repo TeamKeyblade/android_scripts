@@ -68,6 +68,11 @@ if [ $answer == "4" ]; then
 	exit 0
 fi
 
+f [ $answer == "5" ]; then
+	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
+	exit 0
+fi
+
 if [ $answer == "6" ] || [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
