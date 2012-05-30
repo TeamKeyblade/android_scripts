@@ -34,6 +34,16 @@ if [ "$cleananswer" == "" ]; then
 	exit 0
 fi
 
+if ( echo $cleananswer | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchencleaner
+	exit 0
+fi
+
 if [ $cleananswer -gt "8" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
@@ -58,11 +68,13 @@ if [ $cleananswer == "1" ]; then
 	if [ "$cleanse" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
 		exit 0
 	fi
+
 
 	if [ $cleanse == "exit" ]; then
 		echo ""
@@ -95,6 +107,16 @@ if [ $cleananswer == "1" ]; then
 		cd $REPOS/aosp-ics/.repo
 		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
 		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+	fi
+
+	if [ ! $cleanse == "cm" ] || [ ! $cleanse == "rooted-aosp" ] || [ ! $cleanse == "aosp" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
 	fi
 
 	echo ""
@@ -136,6 +158,7 @@ if [ $cleananswer == "3" ]; then
 	if [ "$modify" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
@@ -144,6 +167,16 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $modify == "exit" ]; then
 		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aokp" ] || [ ! $modify == "gummy" ] || [ ! $modify == "aosp" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
 
@@ -161,6 +194,7 @@ if [ $cleananswer == "3" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
@@ -183,9 +217,29 @@ if [ $cleananswer == "3" ]; then
 		~/bin/repo sync
 	fi
 
+	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		cd ..
 		rm -rf $modify-ics
+	fi
+
+	if [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
 	fi
 	
 fi
@@ -203,6 +257,7 @@ if [ $cleananswer == "4" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
@@ -211,6 +266,16 @@ if [ $cleananswer == "4" ]; then
 
 	if [ $remover == "exit" ]; then
 		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ] || [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
 
@@ -277,6 +342,7 @@ if [ $cleananswer == "5" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
@@ -318,10 +384,16 @@ if [ $cleananswer == "5" ]; then
 		if [ "$destroyer" == "" ]; then
 			echo ""
 			echo "You didn't type in anything.."
+			echo "Press Enter to continue"
 			read done
 
 			$LOCAL/kitchencleaner
 			exit 0
+		fi
+
+		if [ ! $destroyer == "yes" ]; then
+			echo ""
+			echo "Aborting.."
 		fi
 
 		if [ $destroyer == "yes" ]; then
@@ -336,6 +408,16 @@ if [ $cleananswer == "5" ]; then
 			./destroyer
 			exit 0
 		fi
+	fi
+
+	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ] || [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
 	fi
 fi
 
@@ -353,10 +435,16 @@ if [ $cleananswer == "6" ]; then
 	if [ "$destroyerofworlds" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner
 		exit 0
+	fi
+
+	if [ ! $destroyerofworlds == "yes" ]; then
+		echo ""
+		echo "Aborting.."
 	fi
 
 	if [ $destroyerofworlds == "yes" ]; then
@@ -386,6 +474,7 @@ if [ $cleananswer == "7" ]; then
 	if [ "$suicidenote" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
 		read done
 
 		$LOCAL/kitchencleaner

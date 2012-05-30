@@ -25,6 +25,16 @@ if [ "$buildanswer" == "" ]; then
 	exit 0
 fi
 
+if ( echo $buildanswer | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
 if [ $buildanswer -gt "6" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
@@ -56,6 +66,16 @@ if [ $buildanswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -111,6 +131,16 @@ if [ $buildanswer == "2" ]; then
 		exit 0
 	fi
 
+	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
 	if [ $buildnexuss -gt "4" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
@@ -154,6 +184,16 @@ if [ $buildanswer == "3" ]; then
 		echo "Press Enter to continue"
 		read done
 
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+	
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi

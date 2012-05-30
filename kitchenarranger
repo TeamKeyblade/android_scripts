@@ -29,6 +29,16 @@ if [ "$setupanswer" == "" ]; then
 	exit 0
 fi
 
+if ( echo $setupanswer | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenarranger
+	exit 0
+fi
+
 if [ $setupanswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"

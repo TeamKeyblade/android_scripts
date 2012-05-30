@@ -24,6 +24,16 @@ if [ "$version" == "" ]; then
 	exit 0
 fi
 
+if ( echo $version | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
 if [ $version -gt "6" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
@@ -73,7 +83,7 @@ if [ "$device" == "" ]; then
 	exit 0
 fi
 
-if [ $device == "list" ]; then
+while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "cm" ]; then
 		sed -e 's/.*cm_//g' \
 		-e 's/-userdebug//' \
@@ -122,9 +132,10 @@ tuna" | less
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "Please type in which device you would like to build"
+	echo "Type in list to see all supported devices"
 	echo "Type in exit to go to back"
 	read device
-fi
+done
 
 if [ "$device" == "" ]; then
 	echo ""
@@ -138,6 +149,86 @@ fi
 
 if [ $device == "exit" ]; then
 	exit 0
+fi
+
+if [ $SCRIPT_REPO == "cm" ]; then
+	if [ ! sed -e 's/.*cm_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+fi
+
+if [ $SCRIPT_REPO == "aokp" ]; then
+	if [ ! sed -e 's/.*aokp_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	if [ ! sed -e 's/.*Gummy_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+fi
+
+if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	if [ ! echo "stingray
+	wingray
+	crespo4g
+	crespo
+	maguro
+	toro
+	toroplus
+	tuna" | grep $device ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
+
+fi
+
+if [ $SCRIPT_REPO == "aosp" ]; then
+	if [ ! echo "stingray
+	wingray
+	crespo4g
+	crespo
+	maguro
+	toro
+	tuna" | grep $device ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenbuilder
+		exit 0
+	fi
 fi
 
 if [ ! $version == "4" ]; then
