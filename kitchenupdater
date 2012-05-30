@@ -121,6 +121,7 @@ if [ $version == "4" ] || [ $version == "8" ]; then
 	echo ""	
 	echo "Updating Evervolv repository.."
 	cd $REPOS/aosp-ics
+	rm -r vendor/ev
 
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
