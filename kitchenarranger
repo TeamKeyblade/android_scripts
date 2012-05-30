@@ -174,7 +174,7 @@ if [ $setupanswer == "7" ]; then
 
 	echo ""
 	echo "Sync the Android Open Source Project repository?"
-	read aospsync
+	read evervolvsync
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
 		~/bin/repo sync
