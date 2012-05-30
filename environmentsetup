@@ -3,7 +3,7 @@ echo "Initilizing the build enviroment.."
 echo ""
 echo "Checking what Operating System you are running..."
 
-if ( ! uname -a | grep x86_64 &> /dev/null ); then
+if ( ! uname -a | grep -q x86_64 ); then
 	clear
 
 	echo "32-bit not supported!"
@@ -18,7 +18,7 @@ if ( ! uname -a | grep x86_64 &> /dev/null ); then
 	exit 0
 fi
 
-if ( uname -a | grep Linux &> /dev/null ); then
+if ( uname -a | grep -q Linux ); then
 	# Fedora
 	if ( find /etc/fedora-release &> /dev/null ) || ( find /etc/redhat-release &> /dev/null ); then
 		echo "You are running Fedora or RedHat!"
@@ -86,7 +86,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 	# Debian-based
 	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/lsb-release &> /dev/null ); then
 		# Debian
-		if ( lsb_release -i | grep Debian &> /dev/null ); then
+		if ( lsb_release -i | grep -q Debian ); then
 			echo "You are running Debian!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -99,7 +99,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi
 	
 		# Ubuntu 10.04, 10.10, and 11.04
-		if ( lsb_release -c | grep natty &> /dev/null ) || ( lsb_release -c | grep lucid &> /dev/null ) || ( lsb_release -c | grep maverick &> /dev/null ); then
+		if ( lsb_release -c | grep -q natty ) || ( lsb_release -c | grep -q lucid ) || ( lsb_release -c | grep -q maverick ); then
 			echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" 
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -112,7 +112,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi
 	
 		# Ubuntu 11.10
-		if ( lsb_release -c | grep oneiric &> /dev/null ); then
+		if ( lsb_release -c | grep -q oneiric ); then
 			echo "You are running Ubuntu 11.10!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -125,7 +125,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi		
 		
 		# Ubuntu 12.04
-		if ( lsb_release -c | grep precise &> /dev/null ); then
+		if ( lsb_release -c | grep -q precise ); then
 			echo "You are running Ubuntu 12.04!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -138,7 +138,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		fi
 
 		# Linux Mint
-		if ( lsb_release -i | grep Mint &> /dev/null ); then
+		if ( lsb_release -i | grep -q Mint ); then
 			echo "You are running Linux Mint!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
@@ -218,7 +218,7 @@ if ( uname -a | grep Linux &> /dev/null ); then
 		sudo pacman -Sy gcc-multilib gcc-libs-multilib binutils-multilib libtool-multilib lib32-libusb \ 
 		lib32-libusb-compat lib32-readline lib32-glibc lib32-zlib
 
-		if ( python -V | grep "Python 3"); then
+		if ( python -V | grep -q "Python 3"); then
 			sudo mv /usr/bin/python /usr/bin/python.bak
 			sudo ln -s /usr/bin/python2 /usr/bin/python
 		fi
@@ -292,7 +292,7 @@ PATH="\$PATH:$jdk:$jre"" /etc/profile
 	fi
 fi
 	
-if ( uname -a | grep Darwin &> /dev/null ); then
+if ( uname -a | grep -q Darwin ); then
 	clear
 
 	echo "Mac OS X not supported!"
