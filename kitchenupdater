@@ -117,36 +117,6 @@ if [ $version == "3" ] || [ $version == "8" ]; then
 fi
 
 if [ $version == "4" ] || [ $version == "8" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
-	echo ""	
-	echo "Updating Evervolv repository.."
-	cd $REPOS/aosp-ics
-	rm -r vendor/ev
-
-	$LOCAL/preupdate
-	~/bin/repo sync -j8
-
-	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-		export AUTHOR="gitpuller"
-		$LOCAL/scriptmakir
-		chmod a+x $LOCAL/../gitpuller
-	fi
-
-	$LOCAL/../gitpuller
-
-	$LOCAL/postupdate
-
-	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-		export AUTHOR="romeditor"
-		$LOCAL/scriptmakir
-		chmod a+x $LOCAL/../romeditor
-	fi
-
-	echo ""	
-	echo "Evervolv Update Complete!"
-fi
-
-if [ $version == "5" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	echo ""	
 	echo "Updating Cyanogenmod 9 repository.."
@@ -174,6 +144,37 @@ if [ $version == "5" ] || [ $version == "8" ]; then
 
 	echo ""	
 	echo "Cyanogenmod 9 Update Complete!"
+fi
+
+
+if [ $version == "5" ] || [ $version == "8" ]; then
+	export SCRIPT_REPO=$(echo "evervolv")
+	echo ""	
+	echo "Updating Evervolv repository.."
+	cd $REPOS/aosp-ics
+	rm -r vendor/ev
+
+	$LOCAL/preupdate
+	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
+		export AUTHOR="gitpuller"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
+	fi
+
+	$LOCAL/../gitpuller
+
+	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
+	echo ""	
+	echo "Evervolv Update Complete!"
 fi
 
 if [ $version == "6" ] || [ $version == "8" ]; then
