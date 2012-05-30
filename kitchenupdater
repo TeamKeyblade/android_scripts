@@ -151,7 +151,7 @@ if [ $version == "5" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	echo ""	
 	echo "Updating Evervolv repository.."
-	cd $REPOS/aosp-ics
+	cd $REPOS/evervolv-ics
 	rm -r vendor/ev
 
 	$LOCAL/preupdate
