@@ -59,9 +59,9 @@ if [ $cleananswer == "1" ]; then
 
 	echo ""	
 	echo "which repo would you like to modify?"
+	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
-	echo "Android Open Source Project = aosp"
 	echo "type exit to go to back"
 	read cleanse
 
@@ -109,7 +109,7 @@ if [ $cleananswer == "1" ]; then
 		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	fi
 
-	if [ ! $cleanse == "cm" ] || [ ! $cleanse == "rooted-aosp" ] || [ ! $cleanse == "aosp" ]; then
+	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aosp" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -147,11 +147,12 @@ if [ $cleananswer == "3" ]; then
 
 	echo ""
 	echo "which repo would you like to modify?"
-	echo "Cyanogenmod 9 = cm"
-	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "Android Open Kang Project = aokp"
-	echo "Team Gummy = gummy"
 	echo "Android Open Source Project = aosp"
+	echo "Cyanogenmod 9 = cm"
+	echo "Evervolv = evervolv"
+	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "Team Gummy = gummy"
 	echo "type exit to go to back"
 	read modify
 
@@ -174,7 +175,7 @@ if [ $cleananswer == "3" ]; then
 		exit 0
 	fi
 
-	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aokp" ] || [ ! $modify == "gummy" ] || [ ! $modify == "aosp" ]; then
+	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aokp" ] || [ ! $modify == "gummy" ] || [ ! $modify == "aosp" ] || [ ! $modify == "evervolv" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
