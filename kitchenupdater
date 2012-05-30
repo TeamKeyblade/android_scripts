@@ -37,7 +37,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
-if [ $version -gt "8" ]; then
+if [ $version -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -47,7 +47,7 @@ if [ $version -gt "8" ]; then
 	exit 0
 fi
 
-if [ $version == "1" ] || [ $version == "7" ]; then
+if [ $version == "1" ] || [ $version == "8" ]; then
 	echo ""	
 	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
@@ -57,7 +57,7 @@ if [ $version == "1" ] || [ $version == "7" ]; then
 	echo "Kitchen Update Complete!"
 fi
 
-if [ $version == "4" ] || [ $version == "7" ]; then
+if [ $version == "2" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	echo ""	
 	echo "Updating the Android Open Kang Project repository.."
@@ -87,7 +87,7 @@ if [ $version == "4" ] || [ $version == "7" ]; then
 	echo "Android Open Kang Project Update Complete!"
 fi
 
-if [ $version == "6" ] || [ $version == "7" ]; then
+if [ $version == "3" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	echo ""	
 	echo "Updating Android Open Source Project repository.."
@@ -116,7 +116,7 @@ if [ $version == "6" ] || [ $version == "7" ]; then
 	echo "Android Open Source Project Update Complete!"
 fi
 
-if [ $version == "6" ] || [ $version == "7" ]; then
+if [ $version == "4" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	echo ""	
 	echo "Updating Evervolv repository.."
@@ -145,7 +145,7 @@ if [ $version == "6" ] || [ $version == "7" ]; then
 	echo "Evervolv Update Complete!"
 fi
 
-if [ $version == "2" ] || [ $version == "7" ]; then
+if [ $version == "5" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	echo ""	
 	echo "Updating Cyanogenmod 9 repository.."
@@ -175,7 +175,7 @@ if [ $version == "2" ] || [ $version == "7" ]; then
 	echo "Cyanogenmod 9 Update Complete!"
 fi
 
-if [ $version == "3" ] || [ $version == "7" ]; then
+if [ $version == "6" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
 	echo ""	
 	echo "Updating Rooted & Busyboxed AOSP repository.."
@@ -205,7 +205,7 @@ if [ $version == "3" ] || [ $version == "7" ]; then
 	echo "Rooted & Busyboxed AOSP Update Complete!"
 fi
 
-if [ $version == "5" ] || [ $version == "7" ]; then
+if [ $version == "7" ] || [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	echo ""	
 	echo "Updating Team Gummy repository.."
@@ -235,7 +235,7 @@ if [ $version == "5" ] || [ $version == "7" ]; then
 	echo "Team Gummy Update Complete!"
 fi
 
-if [ $version == "8" ]; then
+if [ $version == "9" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
