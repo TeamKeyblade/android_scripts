@@ -93,13 +93,13 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "aokp" ]; then
 		sed -e 's/.*aokp_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
+		$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | less
 	fi
 
 	if [ $SCRIPT_REPO == "gummy" ]; then
 		sed -e 's/.*Gummy_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
+		$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | less
 	fi
 
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
@@ -168,7 +168,7 @@ fi
 if [ $SCRIPT_REPO == "aokp" ]; then
 	if ( ! sed -e 's/.*aokp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
+	$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -182,7 +182,7 @@ fi
 if [ $SCRIPT_REPO == "gummy" ]; then
 	if ( ! sed -e 's/.*Gummy_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
+	$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
