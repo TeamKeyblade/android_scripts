@@ -23,6 +23,10 @@ if [ ! $SCRIPT_REPO == "cm" ]; then
 		vendor_lunch=$(echo "aokp_")
 	fi
 
+	if [ $SCRIPT_REPO == "evervolv" ]; then
+		vendor_lunch=$(echo "ev_")
+	fi
+
 	if [ $SCRIPT_REPO == "gummy" ]; then
 		vendor_lunch=$(echo "Gummy_")
 	fi

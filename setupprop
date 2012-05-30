@@ -11,6 +11,10 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	zip=$(find aokp*.zip)
 fi
 
+if [ $SCRIPT_REPO == "evervolv" ]; then
+	zip=$(find Evervolv*.zip)
+fi
+
 if [ $SCRIPT_REPO == "gummy" ]; then
 	zip=$(find Gummy*.zip)
 fi
@@ -34,20 +38,18 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		cd ..
 	fi
 
-	zip=$(echo update-$SCRIPT_REPO-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE-signed.zip)
+	
 
 	zip -r $zip .
 fi
 
 mkdir -p $builddir/$SCRIPT_REPO/old
+mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE-signed.zip $builddir/$SCRIPT_REPO/old &> /dev/null
+mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE-signed.zip.md5sum $builddir/$SCRIPT_REPO/old &> /dev/null
 
-mv $builddir/$SCRIPT_REPO/update*$SCRIPT_DEVICE-signed.zip \
-$builddir/$SCRIPT_REPO/old &> /dev/null
+newzip=$(echo update-$SCRIPT_REPO-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE-signed.zip)
 
-mv $builddir/$SCRIPT_REPO/update*$SCRIPT_DEVICE-signed.zip.md5sum \
-$builddir/$SCRIPT_REPO/old &> /dev/null
-
-cp $zip $builddir/$SCRIPT_REPO
+cp $zip $builddir/$SCRIPT_REPO/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	cd $builddir
@@ -55,4 +57,4 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 fi
 
 cd $builddir/$SCRIPT_REPO
-md5sum $zip > $zip.md5sum
+md5sum $newzip > $newzip.md5sum
