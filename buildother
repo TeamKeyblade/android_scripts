@@ -152,7 +152,9 @@ if [ $device == "exit" ]; then
 fi
 
 if [ $SCRIPT_REPO == "cm" ]; then
-	if [ ! sed -e 's/.*cm_//g' -e 's/-userdebug//' $REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+	if ( ! sed -e 's/.*cm_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -164,7 +166,9 @@ if [ $SCRIPT_REPO == "cm" ]; then
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
-	if [ ! sed -e 's/.*aokp_//g' -e 's/-userdebug//' $REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+	if ( ! sed -e 's/.*aokp_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -176,7 +180,9 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
-	if [ ! sed -e 's/.*Gummy_//g' -e 's/-userdebug//' $REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ]; then
+	if ( ! sed -e 's/.*Gummy_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -188,7 +194,14 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	if [ ! echo "stingray wingray crespo4g crespo maguro toro toroplus tuna" | grep $device ]; then
+	if ( ! echo "stingray
+	wingray
+	crespo4g
+	crespo
+	maguro
+	toro
+	toroplus
+	tuna" | grep $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -201,7 +214,13 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
-	if [ ! echo "stingray wingray crespo4g crespo maguro toro tuna" | grep $device ]; then
+	if ( ! echo "stingray
+	wingray
+	crespo4g
+	crespo
+	maguro
+	toro
+	tuna" | grep $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
