@@ -231,7 +231,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	fi
 fi
 
-if [ ! $version == "4" ]; then
+if [ ! $version == "6" ]; then
 	clear
 
 	./setupandro
