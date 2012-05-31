@@ -42,8 +42,8 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 fi
 
 mkdir -p $builddir/$SCRIPT_REPO/old
-mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE-signed.zip $builddir/$SCRIPT_REPO/old &> /dev/null
-mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE-signed.zip.md5sum $builddir/$SCRIPT_REPO/old &> /dev/null
+mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $builddir/$SCRIPT_REPO/old &> /dev/null
+mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $builddir/$SCRIPT_REPO/old &> /dev/null
 
 newzip=$(echo $SCRIPT_REPO-ics-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
