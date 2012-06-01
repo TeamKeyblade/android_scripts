@@ -40,7 +40,7 @@ fi
 if [ $AUTHOR == "romeditor" ]; then
 	echo "#!/bin/bash" > $LOCAL/../romeditor
 	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../romeditor
-	echo "	cd \$REPOS/repos/cm-ics/vendor/cm/config" >> $LOCAL/../romeditor
+	echo "	cd \$REPOS/cm-ics/vendor/cm/config" >> $LOCAL/../romeditor
 	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" >> $LOCAL/../romeditor
 	echo "	# sed -i 's/cyanogenmod/EDITME!/g' common.mk" >> $LOCAL/../romeditor
 	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)" >> $LOCAL/../romeditor
@@ -48,7 +48,7 @@ if [ $AUTHOR == "romeditor" ]; then
 	echo "fi" >> $LOCAL/../romeditor
 	echo "" >> $LOCAL/../romeditor
 	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../romeditor
-	echo "	cd \$REPOS/repos/rooted-aosp-ics/vendor/swordrune10/makefiles" >> $LOCAL/../romeditor
+	echo "	cd \$REPOS/rooted-aosp-ics/vendor/swordrune10/makefiles" >> $LOCAL/../romeditor
 	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" >> $LOCAL/../romeditor
 	echo "	# sed -i 's/\$(shell whoami)/EDITME!/g' overrider.mk" >> $LOCAL/../romeditor
 	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)" >> $LOCAL/../romeditor
