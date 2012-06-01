@@ -213,7 +213,7 @@ if [ $version == "7" ] || [ $version == "8" ]; then
 	echo ""	
 	echo "Updating Solana/Targa/Spyder Dev Team repository.."
 	cd $REPOS/sts-ics
-	rm -r vendor/sts
+	rm -r vendor/cm
 
 	$LOCAL/preupdate
 	~/bin/repo sync -j8
