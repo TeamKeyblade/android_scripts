@@ -9,8 +9,9 @@ echo "  1. Build Galaxy Nexus"
 echo "  2. Build Nexus S"
 echo "  3. Build Xoom Tablet"
 echo "  4. Build all above!"
-echo "  5. Build other.."
-echo "  6. Go Back"
+echo "  5. Build Droid 3/Droid 4/Bionic/Razr"
+echo "  6. Build other.."
+echo "  7. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildanswer
@@ -35,7 +36,7 @@ if ( echo $buildanswer | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
-if [ $buildanswer -gt "6" ]; then
+if [ $buildanswer -gt "7" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -222,14 +223,18 @@ if [ $buildanswer == "3" ]; then
 fi
 
 if [ $buildanswer == "4" ]; then
-	./buildall
+	./buildsts
 fi
 
 if [ $buildanswer == "5" ]; then
-	./buildother
+	./buildsts
 fi
 
 if [ $buildanswer == "6" ]; then
+	./buildother
+fi
+
+if [ $buildanswer == "7" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done

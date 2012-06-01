@@ -224,7 +224,7 @@ if [ $setupanswer == "9" ]; then
 	curl -L -o .repo/local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml
 
 	echo ""
-	echo "Sync the Rooted & Busyboxed AOSP repository?"
+	echo "Sync the Solana/Targa/Spyder repository?"
 	read stssync
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then

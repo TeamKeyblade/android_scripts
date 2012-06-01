@@ -1,0 +1,73 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+clear
+
+export REPOS=$(echo "$LOCAL/../../repos")
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Today's Menu:"
+echo "  1. Build Droid 3"
+echo "  2. Build Droid 4"
+echo "  3. Build Droid Bionic"
+echo "  4. Build Droid Razr"
+echo "  5. Build all above!"
+echo "  6. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read version
+
+if [ "$version" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+if ( echo $version | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+if [ $version -gt "6" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	$LOCAL/kitchenbuilder
+	exit 0
+fi
+
+export SCRIPT_REPO=$(echo "sts")
+
+if [ $version == "1" ] || [ $version == "5" ]; then
+	export SCRIPT_DEVICE=$(echo "solana")
+	./buildandro
+	./setupprop
+fi
+
+if [ $version == "2" ] || [ $version == "5" ]; then
+	export SCRIPT_DEVICE=$(echo "maserati")
+	./buildandro
+	./setupprop
+fi
+
+if [ $version == "3" ] || [ $version == "5" ]; then
+	export SCRIPT_DEVICE=$(echo "targa")
+	./buildandro
+	./setupprop
+fi
+
+if [ $version == "4" ] || [ $version == "5" ]; then
+	export SCRIPT_DEVICE=$(echo "spyder")
+	./buildandro
+	./setupprop
+fi
