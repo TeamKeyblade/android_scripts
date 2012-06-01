@@ -7,15 +7,15 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "What are we setting up?"
 echo "  1. Install the repo command"
-echo "  2. Initilize the build enviroment"
-echo "  3. Initilize the Kitchen app repository"
-echo "  4. Initilize the Android Open Kang Project repository"
-echo "  5. Initilize the Android Open Source Project repository"
-echo "  6. Initilize the Cyanogenmod 9 repository"
-echo "  7. Initilize the Evervolv repository"
-echo "  8. Initilize the Rooted & Busyboxed AOSP repository"
-echo "  9. Initilize the Solana/Targa/Spyder Dev Team repository"
-echo "  10. Initilize the Team Gummy repository"
+echo "  2. initialize the build enviroment"
+echo "  3. initialize the Kitchen app repository"
+echo "  4. initialize the Android Open Kang Project repository"
+echo "  5. initialize the Android Open Source Project repository"
+echo "  6. initialize the Cyanogenmod 9 repository"
+echo "  7. initialize the Evervolv repository"
+echo "  8. initialize the Rooted & Busyboxed AOSP repository"
+echo "  9. initialize the Solana/Targa/Spyder Dev Team repository"
+echo "  10. initialize the Team Gummy repository"
 echo "  11. Go Back"
 echo ""
 echo "Which one would you like to do?"
@@ -72,7 +72,7 @@ if [ $setupanswer == "2" ]; then
 fi
 
 if [ $setupanswer == "3" ]; then
-	echo "Initilizing the Kitchen app repository.."
+	echo "initializing the Kitchen app repository.."
 
 	cd $LOCAL/..
 	~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
@@ -95,7 +95,7 @@ if [ $setupanswer == "3" ]; then
 fi
 
 if [ $setupanswer == "4" ]; then
-	echo "Initilizing the Android Open Kang Project repository.."
+	echo "initializing the Android Open Kang Project repository.."
 
 	mkdir -p $REPOS/aokp-ics
 	cd $REPOS/aokp-ics
@@ -119,7 +119,7 @@ if [ $setupanswer == "4" ]; then
 fi
 
 if [ $setupanswer == "5" ]; then
-	echo "Initilizing the Android Open Source Project repository.."
+	echo "initializing the Android Open Source Project repository.."
 
 	mkdir -p $REPOS/aosp-ics
 	cd $REPOS/aosp-ics
@@ -143,7 +143,7 @@ if [ $setupanswer == "5" ]; then
 fi
 
 if [ $setupanswer == "6" ]; then
-	echo "Initilizing the Cyanogenmod 9 repository.."
+	echo "initializing the Cyanogenmod 9 repository.."
 
 	mkdir -p $REPOS/cm-ics
 	cd $REPOS/cm-ics
@@ -167,7 +167,7 @@ if [ $setupanswer == "6" ]; then
 fi
 
 if [ $setupanswer == "7" ]; then
-	echo "Initilizing the Evervolv repository.."
+	echo "initializing the Evervolv repository.."
 
 	mkdir -p $REPOS/evervolv-ics
 	cd $REPOS/evervolv-ics
@@ -191,7 +191,7 @@ if [ $setupanswer == "7" ]; then
 fi
 
 if [ $setupanswer == "8" ]; then
-	echo "Initilizing the Rooted & Busyboxed AOSP repository.."
+	echo "initializing the Rooted & Busyboxed AOSP repository.."
 
 	mkdir -p $REPOS/rooted-aosp-ics
 	cd $REPOS/rooted-aosp-ics
@@ -215,7 +215,7 @@ if [ $setupanswer == "8" ]; then
 fi
 
 if [ $setupanswer == "9" ]; then
-	echo "Initilizing the Solana/Targa/Spyder Dev Team repository.."
+	echo "initializing the Solana/Targa/Spyder Dev Team repository.."
 
 	mkdir -p $REPOS/sts-ics
 	cd $REPOS/sts-ics
@@ -241,7 +241,7 @@ if [ $setupanswer == "9" ]; then
 fi
 
 if [ $setupanswer == "10" ]; then
-	echo "Initilizing the Team Gummy repository.."
+	echo "initializing the Team Gummy repository.."
 
 	mkdir -p $REPOS/gummy-ics
 	cd $REPOS/gummy-ics
