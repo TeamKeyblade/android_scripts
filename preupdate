@@ -18,3 +18,8 @@ if ( ! find local_manifest.xml &> /dev/null ) || ( ! cat local_manifest.xml | gr
 		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
 	fi
 fi
+
+if [ $SCRIPT_REPO == "sts" ]; then
+	echo "Updating STS Dev Team's local_manifest.xml"
+	curl -L -o ./local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml		
+fi

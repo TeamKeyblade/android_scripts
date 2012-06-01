@@ -12,9 +12,10 @@ echo "  3. Update the Android Open Source Project repository"
 echo "  4. Update the Cyanogenmod 9 repository"
 echo "  5. Update the Evervolv repository"
 echo "  6. Update the Rooted & Busyboxed AOSP repository"
-echo "  7. Update the Team Gummy repository"
-echo "  8. All of the above"
-echo "  9. Go Back"
+echo "  7. Update the Solana/Targa/Spyder Dev Team repository"
+echo "  8. Update the Team Gummy repository"
+echo "  9. All of the above"
+echo "  10. Go Back"
 read version
 
 if [ "$version" == "" ]; then
@@ -37,7 +38,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
-if [ $version -gt "9" ]; then
+if [ $version -gt "10" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -205,6 +206,36 @@ if [ $version == "6" ] || [ $version == "8" ]; then
 
 	echo ""	
 	echo "Rooted & Busyboxed AOSP Update Complete!"
+fi
+
+if [ $version == "7" ] || [ $version == "8" ]; then
+	export SCRIPT_REPO=$(echo "sts")
+	echo ""	
+	echo "Updating Solana/Targa/Spyder Dev Team repository.."
+	cd $REPOS/sts-ics
+	rm -r vendor/sts
+
+	$LOCAL/preupdate
+	~/bin/repo sync -j8
+
+	if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
+		export AUTHOR="gitpuller"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../gitpuller
+	fi
+
+	$LOCAL/../gitpuller
+
+	$LOCAL/postupdate
+
+	if ( ! find $LOCAL/../romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		$LOCAL/scriptmakir
+		chmod a+x $LOCAL/../romeditor
+	fi
+
+	echo ""	
+	echo "Solana/Targa/Spyder Dev Team Update Complete!"
 fi
 
 if [ $version == "7" ] || [ $version == "8" ]; then
