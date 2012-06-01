@@ -264,7 +264,7 @@ if [ $setupanswer == "10" ]; then
 	echo "Finished!"
 fi
 
-if [ $setupanswer == "1" ]; then
+if [ $setupanswer == "11" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
