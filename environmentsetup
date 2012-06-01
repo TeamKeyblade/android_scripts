@@ -152,7 +152,7 @@ if ( uname -a | grep -q Linux ); then
 		# Debian based java installation
 		echo "Installing java will take a while, to do this legally the Kitchen app will use flexion.org oab-java6 script"
 		read done
-		wget https://raw.github.com/flexiondotorg/oab-java6/master/oab-java6.sh -O $LOCAL/../oab-java6.sh
+		wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O $LOCAL/../oab-java6.sh
 		chmod +x $LOCAL/../oab-java6.sh
 		echo "Switching to oab-java6 script, Press Enter to continue"
 		read done
