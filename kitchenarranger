@@ -55,7 +55,7 @@ if [ $setupanswer == "1" ]; then
 	echo "Installing the repo command.."
 
 	mkdir -p ~/bin
-	curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+	wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
 	chmod a+x ~/bin/repo
 
 	echo ""
