@@ -48,6 +48,8 @@ fi
 
 export SCRIPT_REPO=$(echo "sts")
 
+./setupandro
+
 if [ $version == "1" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "solana")
 	./buildandro
