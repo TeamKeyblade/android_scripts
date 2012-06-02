@@ -80,9 +80,8 @@ if ( uname -a | grep -q Linux ); then
 
 		echo ""
 		echo "Finished!"
-		export $envir=true
+		export envir=true
 		read done
-		exit 0
 	fi
 
 	# Debian-based
@@ -165,9 +164,8 @@ if ( uname -a | grep -q Linux ); then
 	
 		echo ""
 		echo "Finished!"
-		export $envir=true
+		export envir=true
 		read done
-		exit 0
 	fi
 
 
@@ -292,9 +290,8 @@ PATH="\$PATH:$jdk:$jre"" /etc/profile
 	
 		echo ""
 		echo "Finished!"
-		export $envir=true
+		export envir=true
 		read done
-		exit 0
 	fi
 fi
 	
