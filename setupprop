@@ -20,7 +20,7 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 fi
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	zip=$(find ota*.zip)
+	zip=$(find full*.zip)
 
 	mkdir -p $builddir/temp/zipout
 	cp $zip $builddir/temp
