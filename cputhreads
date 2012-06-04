@@ -1,0 +1,7 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
+cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
+threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
+
+export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
