@@ -2,24 +2,28 @@
 # Written by Sean Donovan (swordrune10)
 cd $REPOS/$SCRIPT_REPO-ics/.repo
 if [ $SCRIPT_REPO == "cm" ]; then
+	echo ""
 	echo "Updating Cyanogenmod 9's local_manifest.xml"
 	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
 	exit 0
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
+	echo ""
 	echo "Updating Android Open Source Project's  local_manifest.xml"
 	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	exit 0
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	echo ""
 	echo "Updating Rooted & Busyboxed's  local_manifest.xml"
 	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
 	exit 0
 fi
 
 if [ $SCRIPT_REPO == "sts" ]; then
+	echo ""
 	echo "Updating STS Dev Team's local_manifest.xml"
 	curl -L -o ./local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml		
 fi
