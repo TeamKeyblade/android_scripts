@@ -22,37 +22,48 @@ fi
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	zip=$(find full*.zip)
 
+	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $builddir/temp/zipout
 	cp $zip $builddir/temp
 	cd $builddir/temp/zipout
 
-	unzip ../$zip
+	echo "Unzipping $zip"
+	unzip ../$zip > /dev/null
 
+	echo "Removing uneeded recovery folder from $zip"
 	rm -r recovery
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		cd system
+		echo "Adding rom manager items to $zip's build.prop"
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
 		echo "ro.modversion=$(echo "aosp-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE")" >> build.prop
 
 		cd ..
 	fi
 
-	zip -r $zip .
+	echo "Zipping $zip back up"
+	zip -r $zip . > /dev/null
 fi
 
-mkdir -p $builddir/$SCRIPT_REPO/old
-mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $builddir/$SCRIPT_REPO/old &> /dev/null
-mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $builddir/$SCRIPT_REPO/old &> /dev/null
+if ( find $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip &> /dev/null); then
+	echo "Moving older build to $builddir/$SCRIPT_REPO/old"
+	mkdir -p $builddir/$SCRIPT_REPO/old
+	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $builddir/$SCRIPT_REPO/old
+	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $builddir/$SCRIPT_REPO/old
+fi
 
 newzip=$(echo $SCRIPT_REPO-ics-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
+echo "Copying $zip to $builddir/$SCRIPT_REPO and naming it $newzip"
 cp $zip $builddir/$SCRIPT_REPO/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	echo "Cleaning up temporary folder"
 	cd $builddir
 	rm -r temp
 fi
 
 cd $builddir/$SCRIPT_REPO
+md5sum $newzip
 md5sum $newzip > $newzip.md5sum
