@@ -57,7 +57,7 @@ fi
 if [ $cleananswer == "1" ]; then
 	clear
 
-	echo ""	
+	echo ""
 	echo "which repo would you like to modify?"
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm"
@@ -86,7 +86,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "cm" ]; then
-		echo ""	
+		echo ""
 		echo "Purging local_manifest.xml for Cyanogenmod 9.."
 		cd $REPOS/cm-ics/.repo
 		rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
@@ -94,7 +94,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
-		echo ""	
+		echo ""
 		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
 		cd $REPOS/rooted-aosp-ics/.repo
 		rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
@@ -102,7 +102,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "aosp" ]; then
-		echo ""	
+		echo ""
 		echo "Purging local_manifest.xml for Android Open Source Project.."
 		cd $REPOS/aosp-ics/.repo
 		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
@@ -124,7 +124,7 @@ if [ $cleananswer == "1" ]; then
 fi
 
 if [ $cleananswer == "2" ]; then
-	echo ""	
+	echo ""
 	echo "Purging all local_manifest.xml files.."
 	cd $REPOS/cm-ics/.repo
 	rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
@@ -242,7 +242,7 @@ if [ $cleananswer == "3" ]; then
 		$LOCAL/kitchencleaner
 		exit 0
 	fi
-	
+
 fi
 
 if [ $cleananswer == "4" ]; then
@@ -329,7 +329,7 @@ if [ $cleananswer == "4" ]; then
 	echo ""
 	echo "Finished!"
 fi
-	
+
 if [ $cleananswer == "5" ]; then
 	clear
 
@@ -489,7 +489,7 @@ if [ $cleananswer == "7" ]; then
 
 	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
 		echo ""
-		echo "Please type in your password to destroy everything"		
+		echo "Please type in your password to destroy everything"
 		sudo rm -rf /
 	fi
 

@@ -1,4 +1,4 @@
-#!/bin/bash	
+#!/bin/bash
 echo "Initilizing the build enviroment.."
 echo ""
 echo "Checking what Operating System you are running..."
@@ -28,13 +28,14 @@ if ( uname -a | grep -q Linux ); then
 		glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 libX11-devel.i686 \
 		libXrender.i686 libXrandr.i686
 
-		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java6 script"
+		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
+		echo "Press Enter to continue"
 		read done
 
 		# fedora java installation
-		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
+		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
 		# slightly edited to remove unneeded code and grab the rpm version
-		
+
 		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../changelog.tmp
 
 		# Cet the current Debian package version
@@ -64,13 +65,13 @@ if ( uname -a | grep -q Linux ); then
 		do
 			# Get the download URL and size
 			DOWNLOAD_URL=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f3 | cut -d'"' -f4`
-			DOWNLOAD_SIZE=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f2 | cut -d':' -f2 | sed 's/"//g'`    
+			DOWNLOAD_SIZE=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f2 | cut -d':' -f2 | sed 's/"//g'`
 			# Cookies required for download
 			COOKIES="oraclelicensejdk-${JAVA_VER}u${JAVA_UPD}-oth-JPR=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
-    
+
 			echo " [x] Downloading ${JAVA_BIN} : ${DOWNLOAD_SIZE} "
 			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O $LOCAL/../${JAVA_BIN}
-  
+
 		done
 		chmod +x $LOCAL/../${JAVA_BIN}
 		cd $LOCAL/..
@@ -98,10 +99,10 @@ if ( uname -a | grep -q Linux ); then
 
 			sudo ln -s /usr/lib32/mesa/libGL.so.1 /usr/lib32/mesa/libGL.so
 		fi
-	
+
 		# Ubuntu 10.04, 10.10, and 11.04
 		if ( lsb_release -c | grep -q natty ) || ( lsb_release -c | grep -q lucid ) || ( lsb_release -c | grep -q maverick ); then
-			echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" 
+			echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!"
 			echo "Installing packages needed, please enter your password"
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
@@ -111,7 +112,7 @@ if ( uname -a | grep -q Linux ); then
 
 			sudo ln -s /usr/lib32/mesa/libGL.so.1 /usr/lib32/mesa/libGL.so
 		fi
-	
+
 		# Ubuntu 11.10
 		if ( lsb_release -c | grep -q oneiric ); then
 			echo "You are running Ubuntu 11.10!"
@@ -123,8 +124,8 @@ if ( uname -a | grep -q Linux ); then
 			libxml2-utils xsltproc libx11-dev:i386
 
 			sudo ln -s /usr/lib/i386-linux-gnu/libX11.so.6 /usr/lib/i386-linux-gnu/libX11.so
-		fi		
-		
+		fi
+
 		# Ubuntu 12.04
 		if ( lsb_release -c | grep -q precise ); then
 			echo "You are running Ubuntu 12.04!"
@@ -135,7 +136,7 @@ if ( uname -a | grep -q Linux ); then
 			g++-multilib mingw32 tofrodos python-markdown \
 			libxml2-utils xsltproc zlib1g-dev:i386 \
 			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib
-			#^^^ threw these in to make sure it builds ;)		
+			#^^^ threw these in to make sure it builds ;)
 		fi
 
 		# Linux Mint
@@ -151,17 +152,17 @@ if ( uname -a | grep -q Linux ); then
 
 
 		# Debian based java installation
-		echo "Installing java will take a while, to do this legally the Kitchen app will use flexion.org oab-java6 script"
+		echo "Installing java will take a while, to do this legally the Kitchen app will use flexion.org oab-java script"
+		echo ""
+		wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O $LOCAL/../oab-java.sh
+		chmod +x $LOCAL/../oab-java.sh
+		echo "Switching to oab-java script, Press Enter to continue"
 		read done
-		wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O $LOCAL/../oab-java6.sh
-		chmod +x $LOCAL/../oab-java6.sh
-		echo "Switching to oab-java6 script, Press Enter to continue"
-		read done
-		sudo $LOCAL/../oab-java6.sh
-		rm -f $LOCAL/../oab-java6.sh
-		rm -f $LOCAL/../oab-java6.sh.log
+		sudo $LOCAL/../oab-java.sh
+		rm -f $LOCAL/../oab-java.sh
+		rm -f $LOCAL/../oab-java.sh.log
 		sudo apt-get install sun-java6-jre sun-java6-jdk
-	
+
 		echo ""
 		echo "Finished!"
 		export envir=true
@@ -174,7 +175,7 @@ if ( uname -a | grep -q Linux ); then
 		echo "You are running Arch Linux!"
 		echo "Installing packages needed, please enter your password"
 		sudo pacman -Sy abs base-devel
-		sudo pacman -S openjdk6 perl git gnupg flex bison gperf zip unzip sdl wxgtk \ 
+		sudo pacman -S openjdk6 perl git gnupg flex bison gperf zip unzip sdl wxgtk \
 		squashfs-tools ncurses libpng zlib libusb libusb-compat readline
 
 		mkdir -p $LOCAL/../archbuilds
@@ -184,7 +185,7 @@ if ( uname -a | grep -q Linux ); then
 		cd make-3.8.1
 		makepkg -cfs PKGBUILD
 		sudo pacman -U make-3.81-*-x86_64.pkg.tar.xz
-	
+
 		cd ..
 		wget http://swordrune10.net/files/archlinux/git-1.7.6.tar
 		tar xvf git-1.7.6.tar
@@ -217,7 +218,7 @@ if ( uname -a | grep -q Linux ); then
 
 		sudo sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
 
-		sudo pacman -Sy gcc-multilib gcc-libs-multilib binutils-multilib libtool-multilib lib32-libusb \ 
+		sudo pacman -Sy gcc-multilib gcc-libs-multilib binutils-multilib libtool-multilib lib32-libusb \
 		lib32-libusb-compat lib32-readline lib32-glibc lib32-zlib
 
 		if ( python -V | grep -q "Python 3"); then
@@ -227,9 +228,10 @@ if ( uname -a | grep -q Linux ); then
 
 		rm -rf $LOCAL/../archbuilds
 
-		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java6 script"
+		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
+		echo "Press Enter to continue"
 		read done
-		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java6 script
+		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
 		# slightly edited to remove unneeded code
 
 		wget https://github.com/rraptorr/sun-java6/raw/master/debian/changelog -O $LOCAL/../archbuilds/changelog.tmp
@@ -261,13 +263,13 @@ if ( uname -a | grep -q Linux ); then
 		do
 			# Get the download URL and size
 			DOWNLOAD_URL=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f3 | cut -d'"' -f4`
-			DOWNLOAD_SIZE=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f2 | cut -d':' -f2 | sed 's/"//g'`    
+			DOWNLOAD_SIZE=`grep ${JAVA_BIN} /tmp/oab-download.html | cut -d'{' -f2 | cut -d',' -f2 | cut -d':' -f2 | sed 's/"//g'`
 			# Cookies required for download
 			COOKIES="oraclelicensejdk-${JAVA_VER}u${JAVA_UPD}-oth-JPR=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
-    
+
 			echo " [x] Downloading ${JAVA_BIN} : ${DOWNLOAD_SIZE} "
 			wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${DOWNLOAD_URL}" -O $LOCAL/../archbuilds/${JAVA_BIN}
-  
+
 		done
 
 		chmod +x $LOCAL/../archbuilds/${JAVA_BIN}
@@ -284,17 +286,17 @@ if ( uname -a | grep -q Linux ); then
 
 		cd ../jre/bin
 		jre=$( pwd )
-	
+
 		sed -i -e "/PATH=/ a \
 PATH="\$PATH:$jdk:$jre"" /etc/profile
-	
+
 		echo ""
 		echo "Finished!"
 		export envir=true
 		read done
 	fi
 fi
-	
+
 if ( uname -a | grep -q Darwin ); then
 	clear
 

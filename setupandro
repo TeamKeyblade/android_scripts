@@ -25,7 +25,7 @@ if [ "$purgeout" == "" ]; then
 	echo ""
 	echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
 
-	make clobber	
+	make clobber
 fi
 
 if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then

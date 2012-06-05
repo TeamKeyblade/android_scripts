@@ -4,7 +4,7 @@ cd $REPOS/$SCRIPT_REPO-ics/.repo
 if [ $SCRIPT_REPO == "cm" ]; then
 	echo ""
 	echo "Updating Cyanogenmod 9's local_manifest.xml"
-	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml		
+	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
 	exit 0
 fi
 
@@ -25,5 +25,5 @@ fi
 if [ $SCRIPT_REPO == "sts" ]; then
 	echo ""
 	echo "Updating STS Dev Team's local_manifest.xml"
-	curl -L -o ./local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml		
+	curl -L -o ./local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml
 fi

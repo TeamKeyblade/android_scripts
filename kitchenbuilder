@@ -76,7 +76,7 @@ if [ $buildanswer == "1" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -86,7 +86,7 @@ if [ $buildanswer == "1" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -94,11 +94,11 @@ if [ $buildanswer == "1" ]; then
 	if [ $buildgnexus == "1" ]; then
 		./buildtoro
 	fi
-	
+
 	if [ $buildgnexus == "2" ]; then
 		./buildmaguro
 	fi
-	
+
 	if [ $buildgnexus == "3" ]; then
 		./buildtoroplus
 	fi
@@ -137,7 +137,7 @@ if [ $buildanswer == "2" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -147,7 +147,7 @@ if [ $buildanswer == "2" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -155,16 +155,16 @@ if [ $buildanswer == "2" ]; then
 	if [ $buildnexuss == "1" ]; then
 		./buildcrespo
 	fi
-	
+
 	if [ $buildnexuss == "2" ]; then
 		./buildcrespo4g
 	fi
-	
+
 	if [ $buildnexuss == "3" ]; then
 		./buildnexuss
 	fi
 fi
-	
+
 if [ $buildanswer == "3" ]; then
 	clear
 
@@ -194,7 +194,7 @@ if [ $buildanswer == "3" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -204,7 +204,7 @@ if [ $buildanswer == "3" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-	
+
 		$LOCAL/kitchenbuilder
 		exit 0
 	fi
@@ -212,7 +212,7 @@ if [ $buildanswer == "3" ]; then
 	if [ $buildxoom == "1" ]; then
 		./buildstingray
 	fi
-	
+
 	if [ $buildxoom == "2" ]; then
 		./buildwingray
 	fi

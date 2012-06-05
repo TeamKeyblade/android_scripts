@@ -23,7 +23,7 @@ if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
 	exit 0
 fi
-	
+
 if [ $SCRIPT_REPO == "aokp" ]; then
 	vendor_lunch=$(echo "aokp_")
 fi

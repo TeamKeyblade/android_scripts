@@ -34,7 +34,7 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		cd system
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
 		echo "ro.modversion=$(echo "aosp-ics-$(date +%Y%m%d)-$SCRIPT_DEVICE")" >> build.prop
-		
+
 		cd ..
 	fi
 
