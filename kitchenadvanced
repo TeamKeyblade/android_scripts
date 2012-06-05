@@ -4,3 +4,7 @@ echo "Turning into advanced.."
 mkdir -p ~/bin
 ~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b advanced
 ~/bin/repo sync
+
+mkdir -p ~/Documents/android
+mv $LOCAL/../repos ~/Documents/android/repos
+mv $LOCAL/../builds ~/Documents/android/builds
