@@ -1,11 +1,14 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-clear
 
 test=$(echo "$1")
 
 if [ ! "$test" == "" ]; then
 	AUTO=true
+fi
+
+if [ ! $AUTO ]; then
+	clear
 fi
 
 processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
