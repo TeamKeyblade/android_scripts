@@ -2,6 +2,12 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+test=$(echo "$1")
+
+if [ ! "$test" == "" ]; then
+	AUTO=true
+fi
+
 processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
 cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
 threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
@@ -9,49 +15,101 @@ threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
 THREADS_TOTAL=$( expr $processors \* $threads \* $cores \* 2 )
 
 export REPOS=$(echo "$LOCAL/../../repos")
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "What are we updating?"
-echo "  1. Update the Kitchen app repository"
-echo "  2. Update the Android Open Kang Project repository"
-echo "  3. Update the Android Open Source Project repository"
-echo "  4. Update the Cyanogenmod 9 repository"
-echo "  5. Update the Evervolv repository"
-echo "  6. Update the Rooted & Busyboxed AOSP repository"
-echo "  7. Update the Solana/Targa/Spyder Dev Team repository"
-echo "  8. Update the Team Gummy repository"
-echo "  9. Update all available repositories"
-echo "  10. Go Back"
-read version
+if [ ! $AUTO ]; then
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "What are we updating?"
+	echo "  1. Update the Kitchen app repository"
+	echo "  2. Update the Android Open Kang Project repository"
+	echo "  3. Update the Android Open Source Project repository"
+	echo "  4. Update the Cyanogenmod 9 repository"
+	echo "  5. Update the Evervolv repository"
+	echo "  6. Update the Rooted & Busyboxed AOSP repository"
+	echo "  7. Update the Solana/Targa/Spyder Dev Team repository"
+	echo "  8. Update the Team Gummy repository"
+	echo "  9. Update all available repositories"
+	echo "  10. Go Back"
+	read version
 
-if [ "$version" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	if [ "$version" == "" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
 
-	$LOCAL/kitchenupdater
-	exit 0
+		$LOCAL/kitchenupdater
+		exit 0
+	fi
+
+	if ( echo $version | grep -q [A-Za-z] ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenupdater
+		exit 0
+	fi
+
+	if [ $version -gt "10" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchenupdater
+		exit 0
+	fi
 fi
 
-if ( echo $version | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+if [ ! "$test" == "" ]; then
+	if [ $test == "list" ]; then
+		echo "kitchen = Update Kitchen"
+		echo "aokp = Update Android Open Kang Project"
+		echo "aosp = Update Android Open Source Project"
+		echo "cm = Update Cyanogenmod 9"
+		echo "ev = Update Evervolv"
+		echo "raosp = Update Rooted & Busyboxed AOSP"
+		echo "sts = Update Solana/Targa/Spyder Dev Team"
+		echo "gummy = Update Team Gummy"
+		exit 0
+	fi
 
-	$LOCAL/kitchenupdater
-	exit 0
-fi
+	if [ $test == "kitchen" ]; then
+		version="1"
+	fi
 
-if [ $version -gt "10" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	if [ $test == "aokp" ]; then
+		version="2"
+	fi
 
-	$LOCAL/kitchenupdater
-	exit 0
+	if [ $test == "aosp" ]; then
+		version="3"
+	fi
+
+	if [ $test == "cm" ]; then
+		version="4"
+	fi
+
+	if [ $test == "ev" ] || [ $1 == "evervolv" ]; then
+		version="5"
+	fi
+
+	if [ $test == "raosp" ] || [ $test == "rooted-aosp" ]; then
+		version="6"
+	fi
+
+	if [ $test == "sts" ]; then
+		version="7"
+	fi
+
+	if [ $test == "gummy" ]; then
+		version="8"
+	fi
+
+	if [ $test == "all" ]; then
+		version="9"
+	fi
 fi
 
 if [ $version == "1" ] || [ $version == "9" ]; then
