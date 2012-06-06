@@ -55,7 +55,8 @@ fi
 
 newzip=$(echo $SCRIPT_REPO-ics-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
-echo "Copying $zip to $builddir/$SCRIPT_REPO and naming it $newzip"
+echo "Copying to $builddir/$SCRIPT_REPO"
+echo "$zip -> $newzip"
 cp $zip $builddir/$SCRIPT_REPO/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
