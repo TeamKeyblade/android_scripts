@@ -1,7 +1,9 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+cd $REPOS/../builds
+builddir=$( pwd )
+
 cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
-builddir=$(echo "$REPOS/../builds")
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	zip=$(find update*.zip)
