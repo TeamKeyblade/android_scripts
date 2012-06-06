@@ -1,4 +1,60 @@
 #!/bin/bash
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
+	cd $REPOS/$SCRIPT_REPO-ics/.repo
+	mkdir -p $LOCAL/xml
+
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/cm9-local_manifest.xml
+	echo "<manifest>" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_kernel_samsung_tuna\" path=\"kernel/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_tuna\" path=\"device/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_toro\" path=\"device/samsung/toro\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_maguro\" path=\"device/samsung/maguro\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_toroplus\" path=\"device/samsung/toroplus\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf101\" path=\"vendor/asus/tf101\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf201\" path=\"vendor/asus/tf201\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"xplodwild/android_vendor_asus_tf300t\" path=\"vendor/asus/tf300t\" remote=\"github\" revision=\"master\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_akm\" path=\"vendor/akm\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_broadcom\" path=\"vendor/broadcom\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_htc\" path=\"vendor/htc\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_hp\" path=\"vendor/hp\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_lge\" path=\"vendor/lge\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_motorola\" path=\"vendor/motorola\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_nxp\" path=\"vendor/nxp\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_semc\" path=\"vendor/semc\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_zte\" path=\"vendor/zte\" revision=\"ics\" />" >> $LOCAL/xml/cm9-local_manifest.xml
+	echo "</manifest>" >> $LOCAL/xml/cm9-local_manifest.xml
+fi
+
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
+	cd $REPOS/$SCRIPT_REPO-ics/.repo
+	mkdir -p $LOCAL/xml
+
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/aosp-local_manifest.xml
+	echo "<manifest>" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "  <remote  name=\"github\"" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "           fetch=\"http://github.com/\" />" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "</manifest>" >> $LOCAL/xml/aosp-local_manifest.xml
+fi
+
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	cd $REPOS/$SCRIPT_REPO-ics/.repo
+	mkdir -p $LOCAL/xml
+
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "<manifest>" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+	echo "</manifest>" >> $LOCAL/xml/rootedaosp-local_manifest.xml
+fi
+
 if [ $AUTHOR == "gitpuller" ]; then
 	echo "#!/bin/bash" > $LOCAL/../gitpuller
 	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../gitpuller
