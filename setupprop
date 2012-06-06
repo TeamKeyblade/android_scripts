@@ -55,9 +55,11 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
 fi
 
+mkdir -p $builddir/$SCRIPT_REPO/old
+
 if ( find $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip &> /dev/null); then
 	echo "Moving older build to $builddir/$SCRIPT_REPO/old"
-	mkdir -p $builddir/$SCRIPT_REPO/old
+
 	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $builddir/$SCRIPT_REPO/old
 	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $builddir/$SCRIPT_REPO/old
 fi
