@@ -82,7 +82,7 @@ if [ $setupanswer == "3" ]; then
 	read kitchensync
 
 	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater kitchen
 	fi
 
 	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
@@ -106,7 +106,7 @@ if [ $setupanswer == "4" ]; then
 	read aokpsync
 
 	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater aokp
 	fi
 
 	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
@@ -130,7 +130,7 @@ if [ $setupanswer == "5" ]; then
 	read aospsync
 
 	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater aosp
 	fi
 
 	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
@@ -154,7 +154,7 @@ if [ $setupanswer == "6" ]; then
 	read cm9sync
 
 	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater cm
 	fi
 
 	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
@@ -178,7 +178,7 @@ if [ $setupanswer == "7" ]; then
 	read evervolvsync
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater ev
 	fi
 
 	if [ "$evervolvsync" == "" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
@@ -202,7 +202,7 @@ if [ $setupanswer == "8" ]; then
 	read raospsync
 
 	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater raosp
 	fi
 
 	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
@@ -228,7 +228,7 @@ if [ $setupanswer == "9" ]; then
 	read stssync
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater sts
 	fi
 
 	if [ "$stssync" == "" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
@@ -252,7 +252,7 @@ if [ $setupanswer == "10" ]; then
 	read gummysync
 
 	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
-		~/bin/repo sync
+		$LOCAL/kitchenupdater gummy
 	fi
 
 	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
