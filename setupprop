@@ -45,7 +45,10 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	fi
 
 	echo "Zipping $zip back up"
-	zip -r $zip . > /dev/null
+	zip -r unsignedcrap.zip . > /dev/null
+
+	echo "Signing $zip with test keys"
+	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
 fi
 
 if ( find $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip &> /dev/null); then
