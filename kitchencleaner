@@ -87,6 +87,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $addrepo == "cm" ]; then
+		export SCRIPT_REPO=$(echo "cm")
 		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
@@ -111,12 +112,13 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		cd $LOCAL/xml
 		sed -i "/<\/manifest>/d" cm9-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> cm9-local_manifest.xml
-		echo "<\/manifest>" >> cm9-local_manifest.xml
+		echo "</manifest>" >> cm9-local_manifest.xml
 		$LOCAL/preupdate
 		rm -r $LOCAL/../temp
 	fi
 
 	if [ $addrepo == "rooted-aosp" ]; then
+		export SCRIPT_REPO=$(echo "rooted-aosp")
 		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
@@ -141,12 +143,13 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		cd $LOCAL/xml
 		sed -i "/<\/manifest>/d" raosp-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> raosp-local_manifest.xml
-		echo "<\/manifest>" >> raosp-local_manifest.xml
+		echo "</manifest>" >> raosp-local_manifest.xml
 		$LOCAL/preupdate
 		rm -r $LOCAL/../temp
 	fi
 
 	if [ $addrepo == "aosp" ]; then
+		export SCRIPT_REPO=$(echo "aosp")
 		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
@@ -171,7 +174,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		cd $LOCAL/xml
 		sed -i "/<\/manifest>/d" aosp-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> aosp-local_manifest.xml
-		echo "<\/manifest>" >> aosp-local_manifest.xml
+		echo "</manifest>" >> aosp-local_manifest.xml
 		$LOCAL/preupdate
 		rm -r $LOCAL/../temp
 	fi

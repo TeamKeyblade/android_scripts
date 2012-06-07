@@ -266,7 +266,7 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 fi
 
 if [ $version == "6" ] || [ $version == "9" ]; then
-		if ( find $REPOS/rooted-aosp-ics/.repo &> /dev/null); then
+	if ( find $REPOS/rooted-aosp-ics/.repo &> /dev/null); then
 		export SCRIPT_REPO=$(echo "rooted-aosp")
 		echo ""
 		echo "Updating Rooted & Busyboxed AOSP repository.."
