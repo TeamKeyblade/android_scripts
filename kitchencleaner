@@ -12,14 +12,15 @@ echo "=============================="
 echo "Something is not working right? What should we do?"
 echo "Purge = remove files, download from origin"
 echo "Delete = delete it!"
-echo "  1. Purge a certain local_manifest.xml file"
-echo "  2. Purge all local_manifest.xml files"
-echo "  3. Purge/Delete a certain repository"
-echo "  4. Purge/Delete all the repositories"
-echo "  5. Purge/Delete the Kitchen app"
-echo "  6. Delete the Kitchen app, and its dependencies"
-echo "  7. Delete entire computer"
-echo "  8. Go Back"
+echo "  1. Add a repo to a certain local_manifest.xml file"
+echo "  2. Purge a certain local_manifest.xml file"
+echo "  3. Purge all local_manifest.xml files"
+echo "  4. Purge/Delete a certain repository"
+echo "  5. Purge/Delete all the repositories"
+echo "  6. Purge/Delete the Kitchen app"
+echo "  7. Delete the Kitchen app, and its dependencies"
+echo "  8. Delete entire computer"
+echo "  9. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read cleananswer
@@ -44,7 +45,7 @@ if ( echo $cleananswer | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
-if [ $cleananswer -gt "8" ]; then
+if [ $cleananswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -55,6 +56,141 @@ if [ $cleananswer -gt "8" ]; then
 fi
 
 if [ $cleananswer == "1" ]; then
+	clear
+
+	echo ""
+	echo "which repo would you like to modify?"
+	echo "Android Open Source Project = aosp"
+	echo "Cyanogenmod 9 = cm"
+	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "type exit to go to back"
+	read addrepo
+
+	if [ "$addrepo" == "" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+
+	if [ $addrepo == "exit" ]; then
+		echo ""
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+	if [ $addrepo == "cm" ]; then
+		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+		nano $LOCAL/../temp/addrepo
+
+		echo ""
+		echo "Adding repo to local_manifest.xml for Cyanogenmod 9.."
+		cd $LOCAL/xml
+		sed -i "/<\/manifest>/d" cm9-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> cm9-local_manifest.xml
+		echo "<\/manifest>" >> cm9-local_manifest.xml
+		$LOCAL/preupdate
+		rm -r $LOCAL/../temp
+	fi
+
+	if [ $addrepo == "rooted-aosp" ]; then
+		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+		nano $LOCAL/../temp/addrepo
+
+		echo ""
+		echo "Adding repo to local_manifest.xml for Rooted & Busyboxed AOSP.."
+		cd $LOCAL/xml
+		sed -i "/<\/manifest>/d" raosp-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> raosp-local_manifest.xml
+		echo "<\/manifest>" >> raosp-local_manifest.xml
+		$LOCAL/preupdate
+		rm -r $LOCAL/../temp
+	fi
+
+	if [ $addrepo == "aosp" ]; then
+		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+		nano $LOCAL/../temp/addrepo
+
+		echo ""
+		echo "Adding repo to local_manifest.xml for Android Open Source Project.."
+		cd $LOCAL/xml
+		sed -i "/<\/manifest>/d" aosp-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> aosp-local_manifest.xml
+		echo "<\/manifest>" >> aosp-local_manifest.xml
+		$LOCAL/preupdate
+		rm -r $LOCAL/../temp
+	fi
+
+	if [ ! $addrepo == "cm" ] || [ ! $addrepo == "rooted-aosp" ] || [ ! $addrepo == "aosp" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		$LOCAL/kitchencleaner
+		exit 0
+	fi
+
+	echo ""
+	echo "Finished!"
+fi
+
+if [ $cleananswer == "2" ]; then
 	clear
 
 	echo ""
@@ -86,30 +222,90 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $cleanse == "cm" ]; then
+
+		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		if ( ! find $REPOS/cm9-ics/.repo/local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
 		echo ""
 		echo "Purging local_manifest.xml for Cyanogenmod 9.."
 		cd $REPOS/cm-ics/.repo
-		rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
 		cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
+
+		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		if ( ! find $REPOS/rooted-aosp-ics/.repo/local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
 		echo ""
 		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
 		cd $REPOS/rooted-aosp-ics/.repo
-		rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
-		cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
+		cp -f $LOCAL/xml/raosp-local_manifest.xml ./local_manifest.xml
 	fi
 
 	if [ $cleanse == "aosp" ]; then
+
+		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
+		if ( ! find $REPOS/aosp-ics/.repo/local_manifest.xml &> /dev/null )
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "Press Enter to continue"
+			read done
+
+			$LOCAL/kitchencleaner
+			exit 0
+		fi
+
 		echo ""
 		echo "Purging local_manifest.xml for Android Open Source Project.."
 		cd $REPOS/aosp-ics/.repo
-		rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
 		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	fi
 
-	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aosp" ]; then
+	if [ ! $cleanse == "cm" ] || [ ! $cleanse == "rooted-aosp" ] || [ ! $cleanse == "aosp" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -123,26 +319,23 @@ if [ $cleananswer == "1" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "2" ]; then
+if [ $cleananswer == "3" ]; then
 	echo ""
 	echo "Purging all local_manifest.xml files.."
 	cd $REPOS/cm-ics/.repo
-	rm -f $REPOS/cm9-ics/.repo/local_manifest.xml
 	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
 
 	cd $REPOS/rooted-aosp-ics/.repo
-	rm -f $REPOS/rooted-aosp-ics/.repo/local_manifest.xml
-	cp -f $LOCAL/xml/rootedaosp-local_manifest.xml ./local_manifest.xml
+	cp -f $LOCAL/xml/raosp-local_manifest.xml ./local_manifest.xml
 
 	cd $REPOS/aosp-ics/.repo
-	rm -f $REPOS/aosp-ics/.repo/local_manifest.xml
 	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 
 	echo ""
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "3" ]; then
+if [ $cleananswer == "4" ]; then
 	clear
 
 	echo ""
@@ -245,7 +438,7 @@ if [ $cleananswer == "3" ]; then
 
 fi
 
-if [ $cleananswer == "4" ]; then
+if [ $cleananswer == "5" ]; then
 	clear
 
 	echo ""
@@ -330,7 +523,7 @@ if [ $cleananswer == "4" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "5" ]; then
+if [ $cleananswer == "6" ]; then
 	clear
 
 	echo ""
@@ -422,7 +615,7 @@ if [ $cleananswer == "5" ]; then
 	fi
 fi
 
-if [ $cleananswer == "6" ]; then
+if [ $cleananswer == "7" ]; then
 	clear
 
 	echo ""
@@ -462,7 +655,7 @@ if [ $cleananswer == "6" ]; then
 	fi
 fi
 
-if [ $cleananswer == "7" ]; then
+if [ $cleananswer == "8" ]; then
 	clear
 
 	echo ""
@@ -497,7 +690,7 @@ if [ $cleananswer == "7" ]; then
 	echo "Finished!"
 fi
 
-if [ $cleananswer == "8" ]; then
+if [ $cleananswer == "9" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
