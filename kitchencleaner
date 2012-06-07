@@ -214,12 +214,14 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "cm" ]; then
 		if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
+			echo ""
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 			rm -f $LOCAL/xml/cm9-local_manifest.xml
 			export SCRIPT_REPO=$(echo "cm")
 			export AUTHOR="xml"
 			$LOCAL/scriptmakir
 		else
+			echo ""
 			export SCRIPT_REPO=$(echo "cm")
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 			export AUTHOR="xml"
@@ -229,12 +231,14 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "rooted-aosp" ]; then
 		if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
+			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 			rm -f $LOCAL/xml/raosp-local_manifest.xml
 			export SCRIPT_REPO=$(echo "rooted-aosp")
 			export AUTHOR="xml"
 			$LOCAL/scriptmakir
 		else
+			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 			export SCRIPT_REPO=$(echo "rooted-aosp")
 			export AUTHOR="xml"
@@ -244,12 +248,14 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "aosp" ]; then
 		if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
+			echo ""
 			echo "Purging local_manifest.xml source file for Android Open Source Project.."
 			rm -f $LOCAL/xml/aosp-local_manifest.xml
 			export SCRIPT_REPO=$(echo "aosp")
 			export AUTHOR="xml"
 			$LOCAL/scriptmakir
 		else
+			echo ""
 			echo "Purging local_manifest.xml source file for Android Open Source Project.."
 			export SCRIPT_REPO=$(echo "aosp")
 			export AUTHOR="xml"
@@ -266,39 +272,33 @@ if [ $cleananswer == "3" ]; then
 	echo "Purging all local_manifest.xml source files.."
 
 	if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
-		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 		rm -f $LOCAL/xml/cm9-local_manifest.xml
 		export SCRIPT_REPO=$(echo "cm")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
 		export SCRIPT_REPO=$(echo "cm")
-		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	fi
 
 	if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
-		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 		rm -f $LOCAL/xml/raosp-local_manifest.xml
 		export SCRIPT_REPO=$(echo "rooted-aosp")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
-		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 		export SCRIPT_REPO=$(echo "rooted-aosp")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	fi
 
 	if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
-		echo "Purging local_manifest.xml source file for Android Open Source Project.."
 		rm -f $LOCAL/xml/aosp-local_manifest.xml
 		export SCRIPT_REPO=$(echo "aosp")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
-		echo "Purging local_manifest.xml source file for Android Open Source Project.."
 		export SCRIPT_REPO=$(echo "aosp")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
