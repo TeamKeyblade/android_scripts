@@ -179,16 +179,6 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		rm -r $LOCAL/../temp
 	fi
 
-	if [ ! $addrepo == "cm" ] || [ ! $addrepo == "rooted-aosp" ] || [ ! $addrepo == "aosp" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
-	fi
-
 	echo ""
 	echo "Finished!"
 fi
@@ -308,16 +298,6 @@ if [ $cleananswer == "2" ]; then
 		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
 	fi
 
-	if [ ! $cleanse == "cm" ] || [ ! $cleanse == "rooted-aosp" ] || [ ! $cleanse == "aosp" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
-	fi
-
 	echo ""
 	echo "Finished!"
 fi
@@ -371,16 +351,6 @@ if [ $cleananswer == "4" ]; then
 		exit 0
 	fi
 
-	if [ ! $modify == "cm" ] || [ ! $modify == "rooted-aosp" ] || [ ! $modify == "aokp" ] || [ ! $modify == "gummy" ] || [ ! $modify == "aosp" ] || [ ! $modify == "evervolv" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
-	fi
-
 	echo ""
 	echo "Purge or Delete?"
 	echo "Purge = remove files, download from origin"
@@ -414,29 +384,9 @@ if [ $cleananswer == "4" ]; then
 		~/bin/repo sync
 	fi
 
-	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
-	fi
-
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		cd ..
 		rm -rf $modify-ics
-	fi
-
-	if [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
 	fi
 
 fi
@@ -463,16 +413,6 @@ if [ $cleananswer == "5" ]; then
 
 	if [ $remover == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
-	fi
-
-	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ] || [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
 
@@ -605,16 +545,6 @@ if [ $cleananswer == "6" ]; then
 			./destroyer
 			exit 0
 		fi
-	fi
-
-	if [ ! $remover == "Purge" ] || [ ! $remover == "purge" ] || [ ! $remover == "Delete" ] || [ ! $remover == "delete" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		$LOCAL/kitchencleaner
-		exit 0
 	fi
 fi
 
