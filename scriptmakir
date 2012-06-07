@@ -1,6 +1,5 @@
 #!/bin/bash
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
-	cd $REPOS/$SCRIPT_REPO-ics/.repo
 	mkdir -p $LOCAL/xml
 
 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/cm9-local_manifest.xml
@@ -28,7 +27,6 @@ if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
 fi
 
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
-	cd $REPOS/$SCRIPT_REPO-ics/.repo
 	mkdir -p $LOCAL/xml
 
 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/aosp-local_manifest.xml
@@ -43,7 +41,6 @@ if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
 fi
 
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	cd $REPOS/$SCRIPT_REPO-ics/.repo
 	mkdir -p $LOCAL/xml
 
 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/raosp-local_manifest.xml
