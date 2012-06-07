@@ -13,8 +13,8 @@ echo "Something is not working right? What should we do?"
 echo "Purge = remove files, download from origin"
 echo "Delete = delete it!"
 echo "  1. Add a repo to a certain local_manifest.xml file"
-echo "  2. Purge a certain local_manifest.xml file"
-echo "  3. Purge all local_manifest.xml files"
+echo "  2. Purge a certain local_manifest.xml source file"
+echo "  3. Purge all local_manifest.xml source files"
 echo "  4. Purge/Delete a certain repository"
 echo "  5. Purge/Delete all the repositories"
 echo "  6. Purge/Delete the Kitchen app"
@@ -58,7 +58,6 @@ fi
 if [ $cleananswer == "1" ]; then
 	clear
 
-	echo ""
 	echo "which repo would you like to modify?"
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm"
@@ -186,7 +185,6 @@ fi
 if [ $cleananswer == "2" ]; then
 	clear
 
-	echo ""
 	echo "which repo would you like to modify?"
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm"
@@ -218,17 +216,7 @@ if [ $cleananswer == "2" ]; then
 
 		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
 			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
-			echo "Press Enter to continue"
-			read done
-
-			$LOCAL/kitchencleaner
-			exit 0
-		fi
-
-		if ( ! find $REPOS/cm9-ics/.repo/local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "local_manifest.xml source file for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
 			read done
 
@@ -237,26 +225,18 @@ if [ $cleananswer == "2" ]; then
 		fi
 
 		echo ""
-		echo "Purging local_manifest.xml for Cyanogenmod 9.."
-		cd $REPOS/cm-ics/.repo
-		cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
+		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
+		rm -f $LOCAL/xml/cm9-local_manifest.xml
+		export SCRIPT_REPO=$(echo "cm")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
 
 		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
 			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
-			echo "Press Enter to continue"
-			read done
-
-			$LOCAL/kitchencleaner
-			exit 0
-		fi
-
-		if ( ! find $REPOS/rooted-aosp-ics/.repo/local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "local_manifest.xml source file for Rooted & Busyboxed AOSP doesn't exist!"
 			echo "Press Enter to continue"
 			read done
 
@@ -265,26 +245,18 @@ if [ $cleananswer == "2" ]; then
 		fi
 
 		echo ""
-		echo "Purging local_manifest.xml for Rooted & Busyboxed AOSP.."
-		cd $REPOS/rooted-aosp-ics/.repo
-		cp -f $LOCAL/xml/raosp-local_manifest.xml ./local_manifest.xml
+		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
+		rm -f $LOCAL/xml/raosp-local_manifest.xml
+		export SCRIPT_REPO=$(echo "rooted-aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	if [ $cleanse == "aosp" ]; then
 
 		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
-			echo "Press Enter to continue"
-			read done
-
-			$LOCAL/kitchencleaner
-			exit 0
-		fi
-
-		if ( ! find $REPOS/aosp-ics/.repo/local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
+			echo "local_manifest.xml source file for Android Open Source Project doesn't exist!"
 			echo "Press Enter to continue"
 			read done
 
@@ -293,9 +265,11 @@ if [ $cleananswer == "2" ]; then
 		fi
 
 		echo ""
-		echo "Purging local_manifest.xml for Android Open Source Project.."
-		cd $REPOS/aosp-ics/.repo
-		cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+		echo "Purging local_manifest.xml source file for Android Open Source Project.."
+		rm -f $LOCAL/xml/aosp-local_manifest.xml
+		export SCRIPT_REPO=$(echo "aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	echo ""
@@ -304,15 +278,37 @@ fi
 
 if [ $cleananswer == "3" ]; then
 	echo ""
-	echo "Purging all local_manifest.xml files.."
-	cd $REPOS/cm-ics/.repo
-	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
+	echo "Purging all local_manifest.xml source files.."
 
-	cd $REPOS/rooted-aosp-ics/.repo
-	cp -f $LOCAL/xml/raosp-local_manifest.xml ./local_manifest.xml
+	if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
+		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
+		rm -f $LOCAL/xml/cm9-local_manifest.xml
+		export SCRIPT_REPO=$(echo "aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
+	else
+		echo "No local_manifest.xml source file for Cyanogenmod 9, skipping.."
+	fi
 
-	cd $REPOS/aosp-ics/.repo
-	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+	if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
+		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
+		rm -f $LOCAL/xml/raosp-local_manifest.xml
+		export SCRIPT_REPO=$(echo "aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
+	else
+		echo "No local_manifest.xml source file for Rooted & Busyboxed AOSP, skipping.."
+	fi
+
+	if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
+		echo "Purging local_manifest.xml source file for Android Open Source Project.."
+		rm -f $LOCAL/xml/aosp-local_manifest.xml
+		export SCRIPT_REPO=$(echo "aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
+	else
+		echo "No local_manifest.xml source file for Android Open Source Project, skipping.."
+	fi
 
 	echo ""
 	echo "Finished!"
