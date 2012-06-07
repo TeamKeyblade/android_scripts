@@ -87,7 +87,7 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $addrepo == "cm" ]; then
 		export SCRIPT_REPO=$(echo "cm")
-		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
+		if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -109,16 +109,16 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		echo ""
 		echo "Adding repo to local_manifest.xml for Cyanogenmod 9.."
 		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" cm9-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> cm9-local_manifest.xml
-		echo "</manifest>" >> cm9-local_manifest.xml
+		sed -i "/<\/manifest>/d" cm-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> cm-local_manifest.xml
+		echo "</manifest>" >> cm-local_manifest.xml
 		$LOCAL/preupdate
 		rm -r $LOCAL/../temp
 	fi
 
 	if [ $addrepo == "rooted-aosp" ]; then
 		export SCRIPT_REPO=$(echo "rooted-aosp")
-		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
+		if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
 			echo "Press Enter to continue"
@@ -140,9 +140,9 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		echo ""
 		echo "Adding repo to local_manifest.xml for Rooted & Busyboxed AOSP.."
 		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" raosp-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> raosp-local_manifest.xml
-		echo "</manifest>" >> raosp-local_manifest.xml
+		sed -i "/<\/manifest>/d" rooted-aosp-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> rooted-aosp-local_manifest.xml
+		echo "</manifest>" >> rooted-aosp-local_manifest.xml
 		$LOCAL/preupdate
 		rm -r $LOCAL/../temp
 	fi
@@ -213,10 +213,10 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "cm" ]; then
-		if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
+		if ( find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
-			rm -f $LOCAL/xml/cm9-local_manifest.xml
+			rm -f $LOCAL/xml/cm-local_manifest.xml
 			export SCRIPT_REPO=$(echo "cm")
 			export AUTHOR="xml"
 			$LOCAL/scriptmakir
@@ -230,10 +230,10 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "rooted-aosp" ]; then
-		if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
+		if ( find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
-			rm -f $LOCAL/xml/raosp-local_manifest.xml
+			rm -f $LOCAL/xml/rooted-aosp-local_manifest.xml
 			export SCRIPT_REPO=$(echo "rooted-aosp")
 			export AUTHOR="xml"
 			$LOCAL/scriptmakir
@@ -271,38 +271,21 @@ if [ $cleananswer == "3" ]; then
 	echo ""
 	echo "Purging all local_manifest.xml source files.."
 
-	if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
-		rm -f $LOCAL/xml/cm9-local_manifest.xml
-		export SCRIPT_REPO=$(echo "cm")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
-	else
-		export SCRIPT_REPO=$(echo "cm")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
+	if ( find $LOCAL/xml &> /dev/null ); then
+		rm -rf $LOCAL/xml
 	fi
 
-	if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
-		rm -f $LOCAL/xml/raosp-local_manifest.xml
-		export SCRIPT_REPO=$(echo "rooted-aosp")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
-	else
-		export SCRIPT_REPO=$(echo "rooted-aosp")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
-	fi
+	export SCRIPT_REPO=$(echo "cm")
+	export AUTHOR="xml"
+	$LOCAL/scriptmakir
 
-	if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
-		rm -f $LOCAL/xml/aosp-local_manifest.xml
-		export SCRIPT_REPO=$(echo "aosp")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
-	else
-		export SCRIPT_REPO=$(echo "aosp")
-		export AUTHOR="xml"
-		$LOCAL/scriptmakir
-	fi
+	export SCRIPT_REPO=$(echo "rooted-aosp")
+	export AUTHOR="xml"
+	$LOCAL/scriptmakir
+
+	export SCRIPT_REPO=$(echo "aosp")
+	export AUTHOR="xml"
+	$LOCAL/scriptmakir
 
 	echo ""
 	echo "Finished!"

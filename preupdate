@@ -4,11 +4,11 @@ cd $REPOS/$SCRIPT_REPO-ics/.repo
 if [ $SCRIPT_REPO == "cm" ]; then
 	echo ""
 	echo "Updating Cyanogenmod 9's local_manifest.xml"
-	if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
+	if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	fi
-	cp -f $LOCAL/xml/cm9-local_manifest.xml ./local_manifest.xml
+	cp -f $LOCAL/xml/cm-local_manifest.xml ./local_manifest.xml
 	exit 0
 fi
 
@@ -26,11 +26,11 @@ fi
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	echo ""
 	echo "Updating Rooted & Busyboxed's  local_manifest.xml"
-	if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
+	if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	fi
-	cp -f $LOCAL/xml/raosp-local_manifest.xml ./local_manifest.xml
+	cp -f $LOCAL/xml/rooted-aosp-local_manifest.xml ./local_manifest.xml
 	exit 0
 fi
 
