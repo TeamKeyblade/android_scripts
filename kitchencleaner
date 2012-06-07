@@ -87,7 +87,7 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $addrepo == "cm" ]; then
-		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -117,7 +117,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 	fi
 
 	if [ $addrepo == "rooted-aosp" ]; then
-		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
 			echo "Press Enter to continue"
@@ -147,7 +147,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 	fi
 
 	if [ $addrepo == "aosp" ]; then
-		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
 			echo "Press Enter to continue"
@@ -223,7 +223,7 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "cm" ]; then
 
-		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -233,7 +233,7 @@ if [ $cleananswer == "2" ]; then
 			exit 0
 		fi
 
-		if ( ! find $REPOS/cm9-ics/.repo/local_manifest.xml &> /dev/null )
+		if ( ! find $REPOS/cm9-ics/.repo/local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -251,7 +251,7 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "rooted-aosp" ]; then
 
-		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -261,7 +261,7 @@ if [ $cleananswer == "2" ]; then
 			exit 0
 		fi
 
-		if ( ! find $REPOS/rooted-aosp-ics/.repo/local_manifest.xml &> /dev/null )
+		if ( ! find $REPOS/rooted-aosp-ics/.repo/local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -279,7 +279,7 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "aosp" ]; then
 
-		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null )
+		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
@@ -289,7 +289,7 @@ if [ $cleananswer == "2" ]; then
 			exit 0
 		fi
 
-		if ( ! find $REPOS/aosp-ics/.repo/local_manifest.xml &> /dev/null )
+		if ( ! find $REPOS/aosp-ics/.repo/local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
 			echo "Press Enter to continue"
