@@ -287,7 +287,10 @@ if [ $cleananswer == "3" ]; then
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
-		echo "No local_manifest.xml source file for Cyanogenmod 9, skipping.."
+		export SCRIPT_REPO=$(echo "cm")
+		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
@@ -297,7 +300,10 @@ if [ $cleananswer == "3" ]; then
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
-		echo "No local_manifest.xml source file for Rooted & Busyboxed AOSP, skipping.."
+		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
+		export SCRIPT_REPO=$(echo "rooted-aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
@@ -307,7 +313,10 @@ if [ $cleananswer == "3" ]; then
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
-		echo "No local_manifest.xml source file for Android Open Source Project, skipping.."
+		echo "Purging local_manifest.xml source file for Android Open Source Project.."
+		export SCRIPT_REPO=$(echo "aosp")
+		export AUTHOR="xml"
+		$LOCAL/scriptmakir
 	fi
 
 	echo ""
