@@ -283,7 +283,7 @@ if [ $cleananswer == "3" ]; then
 	if ( find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
 		echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 		rm -f $LOCAL/xml/cm9-local_manifest.xml
-		export SCRIPT_REPO=$(echo "aosp")
+		export SCRIPT_REPO=$(echo "cm")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
@@ -293,7 +293,7 @@ if [ $cleananswer == "3" ]; then
 	if ( find $LOCAL/xml/raosp-local_manifest.xml &> /dev/null ); then
 		echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 		rm -f $LOCAL/xml/raosp-local_manifest.xml
-		export SCRIPT_REPO=$(echo "aosp")
+		export SCRIPT_REPO=$(echo "rooted-aosp")
 		export AUTHOR="xml"
 		$LOCAL/scriptmakir
 	else
