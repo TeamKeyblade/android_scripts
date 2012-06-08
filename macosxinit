@@ -1,0 +1,107 @@
+#!/bin/bash
+clear
+
+export LOCAL=$( pwd )
+
+echo "You are running Mac OS X!"
+if ( ! find /Volumes/android/kitchen &> /dev/null )
+	if ( ! find ~/android.dmg &> /dev/null ); then
+		echo ""
+		echo "We can't find android.dmg in your home folder, this is needed to build on mac os x"
+		echo "If you already have one made please put it in its proper place with its proper title"
+		echo ""
+		echo "Would you like to make a new android.dmg?"
+		read diskimage
+
+		if [ "$diskimage" == "" ]; then
+			echo ""
+			echo "You didn't type in anything.."
+			echo "Press Enter to continue"
+			read done
+
+			./macosxinit
+			exit 0
+		fi
+
+		if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+			echo ""
+			echo "Exiting for now.."
+			echo "Press Enter to exit"
+			read done
+
+			exit 0
+		fi
+
+		if [ $diskimage == "yes" ] || [ $diskimage == "y" ]; then
+			echo ""
+			echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
+			echo "Type in number in gigabytes"
+			read gigs
+
+			hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
+		fi
+
+		echo ""
+		echo "Mounting new android.dmg.."
+		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
+
+		if ( ! find ~/bin/repo &> /dev/null ); then
+			echo "Couldn't find repo command, installing.."
+			mkdir -p ~/bin
+			wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+			chmod a+x ~/bin/repo
+		fi
+
+		echo "Moving into android.dmg.."
+		cd /Volumes/android
+		mkdir -p kitchen
+		cd kitchen
+
+		echo "Setting up kitchen.."
+		~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
+		~/bin/repo sync -j4
+
+	else
+		echo "Found your android.dmg, mounting.."
+		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
+
+		if ( ! find /Volumes/android/kitchen &> /dev/null ); then
+			echo "We can't find android.dmg in your home folder, this is needed to build on mac os x"
+			echo "If you already have one made please put it in its proper place with its proper title"
+			echo ""
+			echo "Would you like to make a new android.dmg?"
+			read diskimage
+
+			if [ "$diskimage" == "" ]; then
+				echo ""
+				echo "You didn't type in anything.."
+				echo "Press Enter to continue"
+				read done
+
+				./macosxinit
+				exit 0
+			fi
+
+			if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+				echo ""
+				echo "Exiting for now.."
+				echo "Press Enter to exit"
+				read done
+
+				exit 0
+			fi
+
+			if [ $diskimage == "yes" ] || [ $diskimage == "y" ]; then
+				echo ""
+				echo "Setting up kitchen.."
+				~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
+				~/bin/repo sync -j4
+				cd /Volumes/android/kitchen
+			fi
+		else
+			cd /Volumes/android/kitchen
+		fi
+	fi
+else
+	cd /Volumes/android/kitchen
+fi

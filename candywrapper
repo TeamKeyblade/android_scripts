@@ -1,4 +1,12 @@
 #!/bin/sh
-cd .scripts
+if ( uname -a | grep -q Darwin ); then
+	./macosxinit
+fi
+
+if ( ! find .scripts 2> /dev/null ); then
+	echo "Can not start program, aborting.."
+else
+	cd .scripts
+fi
 
 ./kitchen
