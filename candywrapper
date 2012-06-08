@@ -3,7 +3,7 @@ if ( uname -a | grep -q Darwin ); then
 	./macosxinit
 fi
 
-if ( ! find .scripts 2> /dev/null ); then
+if ( ! find .scripts 2> /dev/null 1>&2 ); then
 	echo "Can not start program, aborting.."
 	exit 0
 else
