@@ -5,8 +5,9 @@ fi
 
 if ( ! find .scripts 2> /dev/null ); then
 	echo "Can not start program, aborting.."
+	exit 0
 else
 	cd .scripts
-fi
+fiche
 
 ./kitchen
