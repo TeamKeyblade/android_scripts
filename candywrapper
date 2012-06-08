@@ -8,6 +8,6 @@ if ( ! find .scripts 2> /dev/null ); then
 	exit 0
 else
 	cd .scripts
-fiche
+fi
 
 ./kitchen
