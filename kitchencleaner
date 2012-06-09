@@ -31,7 +31,7 @@ if [ "$cleananswer" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchencleaner
+	kitchencleaner
 	exit 0
 fi
 
@@ -41,7 +41,7 @@ if ( echo $cleananswer | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchencleaner
+	kitchencleaner
 	exit 0
 fi
 
@@ -51,7 +51,7 @@ if [ $cleananswer -gt "9" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchencleaner
+	kitchencleaner
 	exit 0
 fi
 
@@ -71,7 +71,7 @@ if [ $cleananswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -81,7 +81,7 @@ if [ $cleananswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -93,7 +93,7 @@ if [ $cleananswer == "1" ]; then
 			echo "Press Enter to continue"
 			read done
 
-			$LOCAL/kitchencleaner
+			kitchencleaner
 			exit 0
 		fi
 
@@ -112,7 +112,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		sed -i "/<\/manifest>/d" cm-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> cm-local_manifest.xml
 		echo "</manifest>" >> cm-local_manifest.xml
-		$LOCAL/preupdate
+		preupdate
 		rm -r $LOCAL/../temp
 	fi
 
@@ -124,7 +124,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 			echo "Press Enter to continue"
 			read done
 
-			$LOCAL/kitchencleaner
+			kitchencleaner
 			exit 0
 		fi
 
@@ -143,7 +143,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		sed -i "/<\/manifest>/d" rooted-aosp-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> rooted-aosp-local_manifest.xml
 		echo "</manifest>" >> rooted-aosp-local_manifest.xml
-		$LOCAL/preupdate
+		preupdate
 		rm -r $LOCAL/../temp
 	fi
 
@@ -155,7 +155,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 			echo "Press Enter to continue"
 			read done
 
-			$LOCAL/kitchencleaner
+			kitchencleaner
 			exit 0
 		fi
 
@@ -174,7 +174,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		sed -i "/<\/manifest>/d" aosp-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> aosp-local_manifest.xml
 		echo "</manifest>" >> aosp-local_manifest.xml
-		$LOCAL/preupdate
+		preupdate
 		rm -r $LOCAL/../temp
 	fi
 
@@ -198,7 +198,7 @@ if [ $cleananswer == "2" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -208,7 +208,7 @@ if [ $cleananswer == "2" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -219,13 +219,13 @@ if [ $cleananswer == "2" ]; then
 			rm -f $LOCAL/xml/cm-local_manifest.xml
 			export SCRIPT_REPO=$(echo "cm")
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		else
 			echo ""
 			export SCRIPT_REPO=$(echo "cm")
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		fi
 	fi
 
@@ -236,13 +236,13 @@ if [ $cleananswer == "2" ]; then
 			rm -f $LOCAL/xml/rooted-aosp-local_manifest.xml
 			export SCRIPT_REPO=$(echo "rooted-aosp")
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		else
 			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
 			export SCRIPT_REPO=$(echo "rooted-aosp")
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		fi
 	fi
 
@@ -253,13 +253,13 @@ if [ $cleananswer == "2" ]; then
 			rm -f $LOCAL/xml/aosp-local_manifest.xml
 			export SCRIPT_REPO=$(echo "aosp")
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		else
 			echo ""
 			echo "Purging local_manifest.xml source file for Android Open Source Project.."
 			export SCRIPT_REPO=$(echo "aosp")
 			export AUTHOR="xml"
-			$LOCAL/scriptmakir
+			scriptmakir
 		fi
 	fi
 
@@ -277,15 +277,15 @@ if [ $cleananswer == "3" ]; then
 
 	export SCRIPT_REPO=$(echo "cm")
 	export AUTHOR="xml"
-	$LOCAL/scriptmakir
+	scriptmakir
 
 	export SCRIPT_REPO=$(echo "rooted-aosp")
 	export AUTHOR="xml"
-	$LOCAL/scriptmakir
+	scriptmakir
 
 	export SCRIPT_REPO=$(echo "aosp")
 	export AUTHOR="xml"
-	$LOCAL/scriptmakir
+	scriptmakir
 
 	echo ""
 	echo "Finished!"
@@ -311,7 +311,7 @@ if [ $cleananswer == "4" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -320,7 +320,7 @@ if [ $cleananswer == "4" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -337,7 +337,7 @@ if [ $cleananswer == "4" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -346,7 +346,7 @@ if [ $cleananswer == "4" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -380,7 +380,7 @@ if [ $cleananswer == "5" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -389,7 +389,7 @@ if [ $cleananswer == "5" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -455,7 +455,7 @@ if [ $cleananswer == "6" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -464,7 +464,7 @@ if [ $cleananswer == "6" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -472,7 +472,7 @@ if [ $cleananswer == "6" ]; then
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		export AUTHOR="redeemer"
-		$LOCAL/scriptmakir
+		scriptmakir
 
 		chmod a+x redeemer
 		echo ""
@@ -497,7 +497,7 @@ if [ $cleananswer == "6" ]; then
 			echo "Press Enter to continue"
 			read done
 
-			$LOCAL/kitchencleaner
+			kitchencleaner
 			exit 0
 		fi
 
@@ -508,7 +508,7 @@ if [ $cleananswer == "6" ]; then
 
 		if [ $destroyer == "yes" ]; then
 			export AUTHOR="destroyer"
-			$LOCAL/scriptmakir
+			scriptmakir
 
 			chmod a+x destroyer
 			echo ""
@@ -538,7 +538,7 @@ if [ $cleananswer == "7" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -549,7 +549,7 @@ if [ $cleananswer == "7" ]; then
 
 	if [ $destroyerofworlds == "yes" ]; then
 		export AUTHOR="destroyerofworlds"
-		$LOCAL/scriptmakir
+		scriptmakir
 
 		chmod a+x destroyerofworlds
 		echo ""
@@ -577,7 +577,7 @@ if [ $cleananswer == "8" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchencleaner
+		kitchencleaner
 		exit 0
 	fi
 
@@ -607,5 +607,5 @@ echo ""
 echo "Press Enter to continue"
 read done
 
-$LOCAL/kitchencleaner
+kitchencleaner
 exit 0

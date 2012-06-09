@@ -40,7 +40,7 @@ if [ ! $AUTO ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenupdater
+		kitchenupdater
 		exit 0
 	fi
 
@@ -50,7 +50,7 @@ if [ ! $AUTO ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenupdater
+		kitchenupdater
 		exit 0
 	fi
 
@@ -60,7 +60,7 @@ if [ ! $AUTO ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenupdater
+		kitchenupdater
 		exit 0
 	fi
 fi
@@ -133,22 +133,22 @@ if [ $version == "2" ] || [ $version == "9" ]; then
 		cd $REPOS/aokp-ics
 		rm -r vendor/aokp
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -167,22 +167,22 @@ if [ $version == "3" ] || [ $version == "9" ]; then
 		echo "Updating Android Open Source Project repository.."
 		cd $REPOS/aosp-ics
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -202,22 +202,22 @@ if [ $version == "4" ] || [ $version == "9" ]; then
 		cd $REPOS/cm-ics
 		rm -r vendor/cm
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -238,22 +238,22 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 		cd $REPOS/evervolv-ics
 		rm -r vendor/ev
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -273,22 +273,22 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 		cd $REPOS/rooted-aosp-ics
 		rm -r vendor/swordrune10
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -308,22 +308,22 @@ if [ $version == "7" ] || [ $version == "9" ]; then
 		cd $REPOS/sts-ics
 		rm -r vendor/cm
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -343,22 +343,22 @@ if [ $version == "8" ] || [ $version == "9" ]; then
 		cd $REPOS/gummy-ics
 		rm -r vendor/Gummy
 
-		$LOCAL/preupdate
+		preupdate
 		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../gitpuller
 		fi
 
 		$LOCAL/../gitpuller
 
-		$LOCAL/postupdate
+		postupdate
 
 		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 			export AUTHOR="romeditor"
-			$LOCAL/scriptmakir
+			scriptmakir
 			chmod a+x $LOCAL/../romeditor
 		fi
 
@@ -383,6 +383,6 @@ if [ ! $AUTO ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenupdater
+	kitchenupdater
 	exit 0
 fi

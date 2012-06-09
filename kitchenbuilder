@@ -22,7 +22,7 @@ if [ "$buildanswer" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -32,7 +32,7 @@ if ( echo $buildanswer | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -42,7 +42,7 @@ if [ $buildanswer -gt "7" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -67,7 +67,7 @@ if [ $buildanswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -77,7 +77,7 @@ if [ $buildanswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -87,24 +87,24 @@ if [ $buildanswer == "1" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
 	if [ $buildgnexus == "1" ]; then
-		./buildtoro
+		buildtoro
 	fi
 
 	if [ $buildgnexus == "2" ]; then
-		./buildmaguro
+		buildmaguro
 	fi
 
 	if [ $buildgnexus == "3" ]; then
-		./buildtoroplus
+		buildtoroplus
 	fi
 
 	if [ $buildgnexus == "4" ]; then
-		./buildgnexus
+		buildgnexus
 	fi
 fi
 
@@ -128,7 +128,7 @@ if [ $buildanswer == "2" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -138,7 +138,7 @@ if [ $buildanswer == "2" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -148,20 +148,20 @@ if [ $buildanswer == "2" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
 	if [ $buildnexuss == "1" ]; then
-		./buildcrespo
+		buildcrespo
 	fi
 
 	if [ $buildnexuss == "2" ]; then
-		./buildcrespo4g
+		buildcrespo4g
 	fi
 
 	if [ $buildnexuss == "3" ]; then
-		./buildnexuss
+		buildnexuss
 	fi
 fi
 
@@ -185,7 +185,7 @@ if [ $buildanswer == "3" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -195,7 +195,7 @@ if [ $buildanswer == "3" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -205,33 +205,33 @@ if [ $buildanswer == "3" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
 	if [ $buildxoom == "1" ]; then
-		./buildstingray
+		buildstingray
 	fi
 
 	if [ $buildxoom == "2" ]; then
-		./buildwingray
+		buildwingray
 	fi
 
 	if [ $buildxoom == "3" ]; then
-		./buildxoom
+		buildxoom
 	fi
 fi
 
 if [ $buildanswer == "4" ]; then
-	./buildsts
+	buildsts
 fi
 
 if [ $buildanswer == "5" ]; then
-	./buildsts
+	buildsts
 fi
 
 if [ $buildanswer == "6" ]; then
-	./buildother
+	buildother
 fi
 
 if [ $buildanswer == "7" ]; then
@@ -245,5 +245,5 @@ echo ""
 echo "Press Enter to continue"
 read done
 
-$LOCAL/kitchenbuilder
+kitchenbuilder
 exit 0

@@ -22,7 +22,7 @@ if [ "$version" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -32,7 +32,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -42,34 +42,34 @@ if [ $version -gt "6" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
 export SCRIPT_REPO=$(echo "sts")
 
-./setupandro
+setupandro
 
 if [ $version == "1" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "solana")
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi
 
 if [ $version == "2" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "maserati")
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi
 
 if [ $version == "3" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "targa")
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi
 
 if [ $version == "4" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "spyder")
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi

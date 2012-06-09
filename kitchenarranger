@@ -27,7 +27,7 @@ if [ "$setupanswer" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenarranger
+	kitchenarranger
 	exit 0
 fi
 
@@ -37,7 +37,7 @@ if ( echo $setupanswer | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenarranger
+	kitchenarranger
 	exit 0
 fi
 
@@ -47,7 +47,7 @@ if [ $setupanswer -gt "11" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenarranger
+	kitchenarranger
 	exit 0
 fi
 
@@ -72,7 +72,7 @@ if [ $setupanswer == "1" ]; then
 fi
 
 if [ $setupanswer == "2" ]; then
-	$LOCAL/environmentsetup
+	environmentsetup
 
 	if [ $EXIT ]; then
 		exit 0
@@ -91,7 +91,7 @@ if [ $setupanswer == "3" ]; then
 	read kitchensync
 
 	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
-		$LOCAL/kitchenupdater kitchen
+		kitchenupdater kitchen
 	fi
 
 	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
@@ -115,7 +115,7 @@ if [ $setupanswer == "4" ]; then
 	read aokpsync
 
 	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
-		$LOCAL/kitchenupdater aokp
+		kitchenupdater aokp
 	fi
 
 	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
@@ -139,7 +139,7 @@ if [ $setupanswer == "5" ]; then
 	read aospsync
 
 	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
-		$LOCAL/kitchenupdater aosp
+		kitchenupdater aosp
 	fi
 
 	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
@@ -163,7 +163,7 @@ if [ $setupanswer == "6" ]; then
 	read cm9sync
 
 	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
-		$LOCAL/kitchenupdater cm
+		kitchenupdater cm
 	fi
 
 	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
@@ -187,7 +187,7 @@ if [ $setupanswer == "7" ]; then
 	read evervolvsync
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
-		$LOCAL/kitchenupdater ev
+		kitchenupdater ev
 	fi
 
 	if [ "$evervolvsync" == "" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
@@ -211,7 +211,7 @@ if [ $setupanswer == "8" ]; then
 	read raospsync
 
 	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
-		$LOCAL/kitchenupdater raosp
+		kitchenupdater raosp
 	fi
 
 	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
@@ -237,7 +237,7 @@ if [ $setupanswer == "9" ]; then
 	read stssync
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
-		$LOCAL/kitchenupdater sts
+		kitchenupdater sts
 	fi
 
 	if [ "$stssync" == "" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
@@ -261,7 +261,7 @@ if [ $setupanswer == "10" ]; then
 	read gummysync
 
 	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
-		$LOCAL/kitchenupdater gummy
+		kitchenupdater gummy
 	fi
 
 	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
@@ -285,5 +285,5 @@ echo ""
 echo "Press Enter to continue"
 read done
 
-$LOCAL/kitchenarranger
+kitchenarranger
 exit 0

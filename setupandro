@@ -4,7 +4,7 @@ clear
 
 if ( ! find $LOCAL/../romeditor &> /dev/null ); then
 	export AUTHOR="romeditor"
-	$LOCAL/scriptmakir
+	scriptmakir
 	chmod a+x $LOCAL/../romeditor
 fi
 

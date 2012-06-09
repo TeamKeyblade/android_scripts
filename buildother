@@ -20,7 +20,7 @@ if [ "$version" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -30,7 +30,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -40,7 +40,7 @@ if [ $version -gt "6" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -79,7 +79,7 @@ if [ "$device" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -143,7 +143,7 @@ if [ "$device" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -160,7 +160,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 fi
@@ -174,7 +174,7 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 fi
@@ -188,7 +188,7 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 fi
@@ -207,7 +207,7 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 
@@ -226,7 +226,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 		echo "Press Enter to continue"
 		read done
 
-		$LOCAL/kitchenbuilder
+		kitchenbuilder
 		exit 0
 	fi
 fi
@@ -234,9 +234,9 @@ fi
 if [ ! $version == "6" ]; then
 	clear
 
-	./setupandro
+	setupandro
 
 	export SCRIPT_DEVICE=$(echo $device)
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi

@@ -19,7 +19,7 @@ if [ "$version" == "" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -29,7 +29,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -39,7 +39,7 @@ if [ $version -gt "5" ]; then
 	echo "Press Enter to continue"
 	read done
 
-	$LOCAL/kitchenbuilder
+	kitchenbuilder
 	exit 0
 fi
 
@@ -62,9 +62,9 @@ fi
 if [ ! $version == "5" ]; then
 	clear
 
-	./setupandro
+	setupandro
 
 	export SCRIPT_DEVICE=$(echo "toroplus")
-	./buildandro
-	./setupprop
+	buildandro
+	setupprop
 fi
