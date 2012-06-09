@@ -120,7 +120,7 @@ if [ $version == "1" ] || [ $version == "9" ]; then
 	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
 
-	~/bin/repo sync -j$THREADS_TOTAL
+	repo sync -j$THREADS_TOTAL
 	echo ""
 	echo "Kitchen Update Complete!"
 fi
@@ -134,7 +134,7 @@ if [ $version == "2" ] || [ $version == "9" ]; then
 		rm -r vendor/aokp
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -168,7 +168,7 @@ if [ $version == "3" ] || [ $version == "9" ]; then
 		cd $REPOS/aosp-ics
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -203,7 +203,7 @@ if [ $version == "4" ] || [ $version == "9" ]; then
 		rm -r vendor/cm
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -239,7 +239,7 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 		rm -r vendor/ev
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -274,7 +274,7 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 		rm -r vendor/swordrune10
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -309,7 +309,7 @@ if [ $version == "7" ] || [ $version == "9" ]; then
 		rm -r vendor/cm
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -344,7 +344,7 @@ if [ $version == "8" ] || [ $version == "9" ]; then
 		rm -r vendor/Gummy
 
 		$LOCAL/preupdate
-		~/bin/repo sync -j$THREADS_TOTAL
+		repo sync -j$THREADS_TOTAL
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
