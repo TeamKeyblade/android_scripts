@@ -3,7 +3,7 @@
 clear
 
 if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
-	PATH="$HOME/bin:$PATH"
+	export PATH="$HOME/bin:$PATH"
 fi
 
 if [ $EXIT ]; then
@@ -13,7 +13,7 @@ fi
 export LOCAL=$( pwd )
 
 if ( ! echo $PATH | grep -q $LOCAL ); then
-	PATH="$LOCAL:$PATH"
+	export PATH="$LOCAL:$PATH"
 fi
 
 echo "Swordrune10's Android Kitchen!"
