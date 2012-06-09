@@ -6,7 +6,7 @@ builddir=$( pwd )
 cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
 
 if [ $SCRIPT_REPO == "cm" ]; then
-	zip=$(find update*.zip)
+	zip=$(find cm-*.zip)
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
