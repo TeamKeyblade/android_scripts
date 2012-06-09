@@ -59,7 +59,7 @@ if [ $setupanswer == "1" ]; then
 		echo ""
 		echo "Installing the repo command.."
 
-		if ( ! find ~/bin ); then
+		if ( ! find ~/bin &> /dev/null ); then
 			mkdir ~/bin
 		fi
 
