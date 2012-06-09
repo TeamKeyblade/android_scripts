@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if ( ! echo $PATH | grep -q "/home/$USER/bin:" ); then
+if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
 	PATH="$HOME/bin:$PATH"
 fi
 
