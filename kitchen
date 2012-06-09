@@ -2,6 +2,10 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+if ( ! echo $PATH | grep -q "/home/$USER/bin:" ); then
+	PATH="$HOME/bin:$PATH"
+fi
+
 if [ $EXIT ]; then
 	exit 0
 fi
