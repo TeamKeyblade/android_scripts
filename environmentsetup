@@ -299,14 +299,38 @@ fi
 if ( uname -a | grep -q Darwin ); then
 	clear
 
-	echo "Mac OS X not supported!"
-	echo "======================="
-	echo "Please visit the following website, because setting up for mac os x is a pain in the butt!"
+	echo "Is Xcode installed? We recommend version 3.1.4 or newer"
+	read xcode
+
+	if [ $xcode == "y" ] || [ $xcode == "yes" ]; then
+		echo "Is MacPorts installed?"
+		read macports
+
+		if [ $xcode == "y" ] || [ $xcode == "yes" ]; then
+			if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
+				echo "export PATH=/opt/local/bin:\$PATH" >> ~/.bash_profile
+			fi
+
+			POSIXLY_CORRECT=1 sudo port install gmake libsdl git-core gnupg
+
+			if ( ! cat ~/.bash_profile | grep -q "ulimit -S -n 1024" ); then
+				echo "ulimit -S -n 1024" >> ~/.bash_profile
+			fi
+		else
+			echo "Aborting.."
+			read done
+			exit 0
+		fi
+	else
+		echo "Aborting.."
+		read done
+		exit 0
+	fi
+
 	echo ""
-	echo "http://source.android.com/source/initializing.html#setting-up-a-mac-os-x-build-environment"
-	echo "Press enter to exit.."
+	echo "Finished!"
 	read done
-	kill 0
+	exit 0
 fi
 
 if [! $envir ]; then
@@ -320,7 +344,7 @@ if [! $envir ]; then
 	echo "Linux Mint (General Support)"
 	echo "Arch Linux (General Support)"
 	echo "Fedora (General Support)"
-	echo "Mac OS X (Generally no support)"
+	echo "Mac OS X (Semi-General Support)"
 	echo ""
 	echo "If you see this in error, please notify me at either xda or rootzwiki"
 	echo "if you prefer email you can reach me at mishana@swordrune10.net"
