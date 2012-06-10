@@ -1,4 +1,6 @@
 #!/bin/sh
+.scripts/bouncer
+
 if ( uname -a | grep -q Darwin ); then
 	./macosxinit
 fi
