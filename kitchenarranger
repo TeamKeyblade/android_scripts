@@ -201,7 +201,7 @@ if [ $setupanswer == "8" ]; then
 
 	mkdir -p $REPOS/rooted-aosp-ics
 	cd $REPOS/rooted-aosp-ics
-	repo init -u http://github.com/swordrune10/android_manifest.git -b ics
+	repo init -u http://github.com/TeamKeyblade/android_manifest.git -b ics
 
 	echo ""
 	echo "Sync the Rooted & Busyboxed AOSP repository?"
