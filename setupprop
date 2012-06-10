@@ -3,7 +3,7 @@
 
 cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
 
-if [ $SCRIPT_REPO == "cm" ]; then
+if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	zip=$(find cm-*.zip)
 fi
 
@@ -13,10 +13,6 @@ fi
 
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	zip=$(find Evervolv*.zip)
-fi
-
-if [ $SCRIPT_REPO == "sts" ]; then
-	zip=$(find *CM9*.zip)
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
