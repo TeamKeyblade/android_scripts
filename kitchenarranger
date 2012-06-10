@@ -2,7 +2,6 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "What are we setting up?"
@@ -74,10 +73,8 @@ fi
 if [ $setupanswer == "2" ]; then
 	environmentsetup
 
-	if [ $EXIT ]; then
-		exit 0
-	fi
-
+	kitchenarranger
+	exit 0
 fi
 
 if [ $setupanswer == "3" ]; then

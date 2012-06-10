@@ -12,4 +12,4 @@ else
 	cd .scripts
 fi
 
-./kitchen
+./headerfile

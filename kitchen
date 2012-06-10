@@ -2,20 +2,6 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
-	export PATH="$HOME/bin:$PATH"
-fi
-
-if [ $EXIT ]; then
-	exit 0
-fi
-
-export LOCAL=$( pwd )
-
-if ( ! echo $PATH | grep -q $LOCAL ); then
-	export PATH="$LOCAL:$PATH"
-fi
-
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Main Menu:"

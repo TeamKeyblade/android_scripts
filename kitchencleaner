@@ -6,7 +6,6 @@ if ( find ../redeemer &> /dev/null ); then
 	rm -f ../redeemer
 fi
 
-export REPOS=$(echo "$LOCAL/../../repos")
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Something is not working right? What should we do?"

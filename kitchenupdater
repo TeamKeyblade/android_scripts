@@ -11,13 +11,8 @@ if [ ! $AUTO ]; then
 	clear
 fi
 
-processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
-cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
-threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
+supersync=$( expr $THREADS_TOTAL \* 2 )
 
-THREADS_TOTAL=$( expr $processors \* $threads \* $cores \* 2 )
-
-export REPOS=$(echo "$LOCAL/../../repos")
 if [ ! $AUTO ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
@@ -134,7 +129,7 @@ if [ $version == "2" ] || [ $version == "9" ]; then
 		rm -r vendor/aokp
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -168,7 +163,7 @@ if [ $version == "3" ] || [ $version == "9" ]; then
 		cd $REPOS/aosp-ics
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -203,7 +198,7 @@ if [ $version == "4" ] || [ $version == "9" ]; then
 		rm -r vendor/cm
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -239,7 +234,7 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 		rm -r vendor/ev
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -274,7 +269,7 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 		rm -r vendor/swordrune10
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -309,7 +304,7 @@ if [ $version == "7" ] || [ $version == "9" ]; then
 		rm -r vendor/cm
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"
@@ -344,7 +339,7 @@ if [ $version == "8" ] || [ $version == "9" ]; then
 		rm -r vendor/Gummy
 
 		preupdate
-		repo sync -j$THREADS_TOTAL
+		repo sync -j$supersync
 
 		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
 			export AUTHOR="gitpuller"

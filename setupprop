@@ -1,7 +1,5 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-cd $REPOS/../builds
-builddir=$( pwd )
 
 cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE
 
@@ -29,9 +27,9 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	zip=$(find full*.zip)
 
 	echo "Making temporary folder for post-building $zip fixes"
-	mkdir -p $builddir/temp/zipout
-	cp $zip $builddir/temp
-	cd $builddir/temp/zipout
+	mkdir -p $BUILDS/temp/zipout
+	cp $zip $BUILDS/temp
+	cd $BUILDS/temp/zipout
 
 	echo "Unzipping $zip"
 	unzip ../$zip > /dev/null
@@ -55,27 +53,27 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
 fi
 
-mkdir -p $builddir/$SCRIPT_REPO/old
+mkdir -p $BUILDS/$SCRIPT_REPO/old
 
-if ( find $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip &> /dev/null); then
-	echo "Moving older build to $builddir/$SCRIPT_REPO/old"
+if ( find $BUILDS/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip &> /dev/null); then
+	echo "Moving older build to $BUILDS/$SCRIPT_REPO/old"
 
-	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $builddir/$SCRIPT_REPO/old
-	mv $builddir/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $builddir/$SCRIPT_REPO/old
+	mv $BUILDS/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip $BUILDS/$SCRIPT_REPO/old
+	mv $BUILDS/$SCRIPT_REPO/*$SCRIPT_DEVICE.zip.md5sum $BUILDS/$SCRIPT_REPO/old
 fi
 
 newzip=$(echo $SCRIPT_REPO-ics-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
-echo "Copying to $builddir/$SCRIPT_REPO"
+echo "Copying to $BUILDS/$SCRIPT_REPO"
 echo "$zip -> $newzip"
-cp $zip $builddir/$SCRIPT_REPO/$newzip
+cp $zip $BUILDS/$SCRIPT_REPO/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	echo "Cleaning up temporary folder"
-	cd $builddir
+	cd $BUILDS
 	rm -r temp
 fi
 
-cd $builddir/$SCRIPT_REPO
+cd $BUILDS/$SCRIPT_REPO
 md5sum $newzip
 md5sum $newzip > $newzip.md5sum

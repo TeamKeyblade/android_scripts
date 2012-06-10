@@ -10,12 +10,6 @@ if ( find *.zip &> /dev/null );then
 	rm *.zip*
 fi
 
-processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
-cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
-threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
-
-THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
-
 cd $REPOS/$SCRIPT_REPO-ics
 . build/envsetup.sh
 

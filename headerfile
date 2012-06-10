@@ -1,0 +1,23 @@
+#!/bin/bash
+# Declare global variables
+export LOCAL=$( pwd )
+export REPOS=$(echo "$LOCAL/../../repos")
+export BUILDS=$(echo "$REPOS/../builds" )
+
+# Declare paths
+if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
+	export PATH="$HOME/bin:$PATH"
+fi
+
+if ( ! echo $PATH | grep -q $LOCAL ); then
+	export PATH="$LOCAL:$PATH"
+fi
+
+# Declare number of threads from processor
+processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
+cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
+threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
+
+export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
+
+./kitchen
