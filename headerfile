@@ -13,6 +13,9 @@ fi
 
 if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL:$PATH"
+	export PATH="$LOCAL/build:$PATH"
+	export PATH="$LOCAL/menu:$PATH"
+	export PATH="$LOCAL/update:$PATH"
 fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
