@@ -132,21 +132,9 @@ if [ $version == "2" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Android Open Kang Project Update Complete!"
@@ -166,21 +154,9 @@ if [ $version == "3" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Android Open Source Project Update Complete!"
@@ -201,21 +177,9 @@ if [ $version == "4" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Cyanogenmod 9 Update Complete!"
@@ -237,21 +201,9 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Evervolv Update Complete!"
@@ -272,21 +224,9 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Rooted & Busyboxed AOSP Update Complete!"
@@ -307,21 +247,9 @@ if [ $version == "7" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Solana/Targa/Spyder Dev Team Update Complete!"
@@ -342,21 +270,9 @@ if [ $version == "8" ] || [ $version == "9" ]; then
 		preupdate
 		repo sync -j$supersync
 
-		if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-			export AUTHOR="gitpuller"
-			scriptmakir
-			chmod a+x $LOCAL/../gitpuller
-		fi
-
 		$LOCAL/../gitpuller
 
 		postupdate
-
-		if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-			export AUTHOR="romeditor"
-			scriptmakir
-			chmod a+x $LOCAL/../romeditor
-		fi
 
 		echo ""
 		echo "Team Gummy Update Complete!"

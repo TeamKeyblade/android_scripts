@@ -2,12 +2,6 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-	export AUTHOR="romeditor"
-	scriptmakir
-	chmod a+x $LOCAL/../romeditor
-fi
-
 $LOCAL/../romeditor
 
 cd $REPOS/$SCRIPT_REPO-ics
