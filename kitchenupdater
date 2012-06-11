@@ -267,7 +267,7 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 		echo ""
 		echo "Updating Rooted & Busyboxed AOSP repository.."
 		cd $REPOS/rooted-aosp-ics
-		rm -r vendor/swordrune10
+		rm -r vendor/keyblade
 
 		preupdate
 		repo sync -j$supersync

@@ -129,7 +129,7 @@ if [ $setupanswer == "5" ]; then
 
 	mkdir -p $REPOS/aosp-ics
 	cd $REPOS/aosp-ics
-	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r1.2
+	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r2.1
 
 	echo ""
 	echo "Sync the Android Open Source Project repository?"
