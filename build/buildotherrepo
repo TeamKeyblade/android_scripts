@@ -99,17 +99,17 @@ while [ $device == "list" ]; do
 
 	while true; do
 		let count=$count+1
-		filelurker[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
+		devicefinder[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
 
-		if ( ! echo "${filelurker[$count]}" | grep -q "device" ) && ( ! echo "${filelurker[$count]}" | grep -q "vendor" ); then
-			filelurker[$count]=""
+		if ( ! echo "${devicefinder[$count]}" | grep -q "device" ) && ( ! echo "${devicefinder[$count]}" | grep -q "vendor" ); then
+			devicefinder[$count]=""
 			break
 		fi
 	done
 
 	sed -e 's/.*_//g' \
 	-e 's/-.*//' \
-	${filelurker[*]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+	${devicefinder[*]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 
 	clear
 
