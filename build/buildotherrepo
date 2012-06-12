@@ -100,12 +100,12 @@ while [ $device == "list" ]; do
 	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
 		sed -e 's/.*_//g' \
 		-e 's/-.*//' \
-		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | less
+		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/ /d" | less
 	else
 		if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
 			sed -e 's/.*_//g' \
 			-e 's/-.*//' \
-			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | less
+			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/ /d" | less
 		else
 			while true; do
 				let count=$count+1
@@ -121,7 +121,7 @@ while [ $device == "list" ]; do
 
 				sed -e 's/.*_//g' \
 				-e 's/-.*//' \
-				${filelurker[$countdown]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | echo
+				${filelurker[$countdown]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/ /d" | echo
 
 				if [ "${filelurker[$count]}" == "device*" ] || [ $countdown == $( expr $count - 1 ) ]; then
 					break
