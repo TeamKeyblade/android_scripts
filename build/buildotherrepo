@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if [ $( cat $LOCAL/config/otherrepo ) == "" ]; then
+if [ $( cat $LOCAL/config/otherrepo | head -n1 ) == "" ]; then
 	echo ""
 	echo "other repo file is empty, please add to file then try again!"
 	echo "Press Enter to continue"
@@ -100,12 +100,12 @@ while [ $device == "list" ]; do
 	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
 		sed -e 's/.*_//g' \
 		-e 's/-.*//' \
-		vendor/*/vendorsetup.sh | less
+		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | less
 	else
 		if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
 			sed -e 's/.*_//g' \
 			-e 's/-.*//' \
-			device/*/*/vendorsetup.sh | less
+			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | less
 		else
 			while true; do
 				let count=$count+1
@@ -121,7 +121,7 @@ while [ $device == "list" ]; do
 
 				sed -e 's/.*_//g' \
 				-e 's/-.*//' \
-				${filelurker[$countdown]} | echo
+				${filelurker[$countdown]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | echo
 
 				if [ "${filelurker[$count]}" == "device*" ] || [ $countdown == $( expr $count - 1 ) ]; then
 					break
@@ -153,6 +153,18 @@ fi
 if [ $device == "exit" ]; then
 	exit 0
 fi
+
+echo ""
+echo "What should you name this repo?"
+echo "This will serve as naming the build and putting it in a proper folder"
+echo "Example = type \"\""
+read device
+
+while [ $correct == "no" ]; do
+
+export SCRIPT_REPO=$(echo "other")
+
+done
 
 if [ ! $version == "6" ]; then
 	clear
