@@ -90,7 +90,7 @@ if [ $AUTHOR == "romeditor" ]; then
 	echo "#!/bin/bash" > config/romeditor
 	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> config/romeditor
 	echo "	cd \$REPOS/cm-ics/vendor/cm/config" >> config/romeditor
-	echo "	sed -i 's/developerid=cyanogenmod/developerid=$(shell whoami)/g' common.mk" >> config/romeditor
+	echo "	sed -i 's/developerid=cyanogenmod/developerid=\$(shell whoami)/g' common.mk" >> config/romeditor
 	echo "	sed -i 's/CM_BUILDTYPE := UNOFFICIAL/CM_BUILDTYPE := SWORDKITCHEN/g' common.mk" >> config/romeditor
 	echo "	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk" >> config/romeditor
 	echo "fi" >> config/romeditor
