@@ -97,39 +97,20 @@ while [ $device == "list" ]; do
 
 	cd "${filelurker[$version]}"
 
-	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
-		sed -e 's/.*_//g' \
-		-e 's/-.*//' \
-		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
-	else
-		if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
-			sed -e 's/.*_//g' \
-			-e 's/-.*//' \
-			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
-		else
-			while true; do
-				let count=$count+1
-				filelurker[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
+	while true; do
+		let count=$count+1
+		filelurker[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
 
-				if [ "${filelurker[$count]}" == "EOF" ]; then
-					break
-				fi
-			done
-
-			while true; do
-				let countdown=$countdown+1
-
-				sed -e 's/.*_//g' \
-				-e 's/-.*//' \
-				${filelurker[$countdown]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | echo
-
-				if [ "${filelurker[$count]}" == "device*" ] || [ $countdown == $( expr $count - 1 ) ]; then
-					break
-				fi
-
-			done
+		if ( ! echo "${filelurker[$count]}" | grep -q "device" ) && ( ! echo "${filelurker[$count]}" | grep -q "vendor" ); then
+			filelurker[$count]=""
+			break
 		fi
-	fi
+	done
+
+	sed -e 's/.*_//g' \
+	-e 's/-.*//' \
+	${filelurker[*]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
