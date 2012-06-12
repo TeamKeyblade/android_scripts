@@ -157,14 +157,24 @@ fi
 echo ""
 echo "What should you name this repo?"
 echo "This will serve as naming the build and putting it in a proper folder"
-echo "Example = type \"\""
-read device
+echo "Type in exit to go to back"
+read reponame
 
-while [ $correct == "no" ]; do
+if [ "$reponame" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	kitchenbuilder
+	exit 0
+fi
+
+if [ $reponame == "exit" ]; then
+	exit 0
+fi
 
 export SCRIPT_REPO=$(echo "other")
-
-done
 
 if [ ! $version == "6" ]; then
 	clear
