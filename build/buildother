@@ -104,13 +104,13 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		sed -e 's/.*full_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | less
+		$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		sed -e 's/.*full_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | less
+		$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	clear
