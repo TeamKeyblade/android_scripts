@@ -99,7 +99,7 @@ while [ $device == "list" ]; do
 
 	while true; do
 		let dcount=$dcount+1
-		devicefinder[$dcount]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
+		devicefinder[$dcount]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$dcount"p )
 
 		if ( ! echo "${devicefinder[$dcount]}" | grep -q "device" ) && ( ! echo "${devicefinder[$dcount]}" | grep -q "vendor" ); then
 			devicefinder[$dcount]=""
