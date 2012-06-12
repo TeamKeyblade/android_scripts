@@ -102,28 +102,15 @@ while [ $device == "list" ]; do
 	fi
 
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-
-echo "stingray
-wingray
-crespo4g
-crespo
-maguro
-toro
-toroplus
-tuna" | less
-
+		sed -e 's/.*full_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | less
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
-
-echo "stingray
-wingray
-crespo4g
-crespo
-maguro
-toro
-tuna" | less
-
+		sed -e 's/.*full_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | less
 	fi
 
 	clear
