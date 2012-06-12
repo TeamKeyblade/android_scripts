@@ -1,153 +1,148 @@
 #!/bin/bash
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
-	mkdir -p $LOCAL/xml
+cd $LOCAL
 
-	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/cm-local_manifest.xml
-	echo "<manifest>" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"CyanogenMod/android_kernel_samsung_tuna\" path=\"kernel/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"CyanogenMod/android_device_samsung_tuna\" path=\"device/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"CyanogenMod/android_device_samsung_toro\" path=\"device/samsung/toro\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"CyanogenMod/android_device_samsung_maguro\" path=\"device/samsung/maguro\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"CyanogenMod/android_device_samsung_toroplus\" path=\"device/samsung/toroplus\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf101\" path=\"vendor/asus/tf101\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf201\" path=\"vendor/asus/tf201\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"xplodwild/android_vendor_asus_tf300t\" path=\"vendor/asus/tf300t\" remote=\"github\" revision=\"master\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_akm\" path=\"vendor/akm\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_broadcom\" path=\"vendor/broadcom\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_htc\" path=\"vendor/htc\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_hp\" path=\"vendor/hp\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_lge\" path=\"vendor/lge\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_motorola\" path=\"vendor/motorola\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_nxp\" path=\"vendor/nxp\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_semc\" path=\"vendor/semc\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_zte\" path=\"vendor/zte\" revision=\"ics\" />" >> $LOCAL/xml/cm-local_manifest.xml
-	echo "</manifest>" >> $LOCAL/xml/cm-local_manifest.xml
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > xml/cm-local_manifest.xml
+	echo "<manifest>" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_kernel_samsung_tuna\" path=\"kernel/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_tuna\" path=\"device/samsung/tuna\" remote=\"github\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_toro\" path=\"device/samsung/toro\" remote=\"github\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_maguro\" path=\"device/samsung/maguro\" remote=\"github\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"CyanogenMod/android_device_samsung_toroplus\" path=\"device/samsung/toroplus\" remote=\"github\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf101\" path=\"vendor/asus/tf101\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"AndroidRoot/vendor_proprietary_asus_tf201\" path=\"vendor/asus/tf201\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"xplodwild/android_vendor_asus_tf300t\" path=\"vendor/asus/tf300t\" remote=\"github\" revision=\"master\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_akm\" path=\"vendor/akm\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_broadcom\" path=\"vendor/broadcom\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_htc\" path=\"vendor/htc\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_hp\" path=\"vendor/hp\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_lge\" path=\"vendor/lge\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_motorola\" path=\"vendor/motorola\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_nxp\" path=\"vendor/nxp\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_semc\" path=\"vendor/semc\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_zte\" path=\"vendor/zte\" revision=\"ics\" />" >> xml/cm-local_manifest.xml
+	echo "</manifest>" >> xml/cm-local_manifest.xml
 fi
 
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
-	mkdir -p $LOCAL/xml
-
-	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/aosp-local_manifest.xml
-	echo "<manifest>" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "  <remote  name=\"github\"" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "           fetch=\"http://github.com/\" />" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/aosp-local_manifest.xml
-	echo "</manifest>" >> $LOCAL/xml/aosp-local_manifest.xml
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > xml/aosp-local_manifest.xml
+	echo "<manifest>" >> xml/aosp-local_manifest.xml
+	echo "  <remote  name=\"github\"" >> xml/aosp-local_manifest.xml
+	echo "           fetch=\"http://github.com/\" />" >> xml/aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> xml/aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> xml/aosp-local_manifest.xml
+	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> xml/aosp-local_manifest.xml
+	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> xml/aosp-local_manifest.xml
+	echo "</manifest>" >> xml/aosp-local_manifest.xml
 fi
 
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	mkdir -p $LOCAL/xml
-
-	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "<manifest>" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
-	echo "</manifest>" >> $LOCAL/xml/rooted-aosp-local_manifest.xml
+	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > xml/rooted-aosp-local_manifest.xml
+	echo "<manifest>" >> xml/rooted-aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_samsung\" path=\"vendor/samsung\" remote=\"github\" revision=\"ics\" />" >> xml/rooted-aosp-local_manifest.xml
+	echo "  <project name=\"koush/proprietary_vendor_imgtec\" path=\"vendor/imgtec\" remote=\"github\" revision=\"ics\" />" >> xml/rooted-aosp-local_manifest.xml
+	echo "  <project name=\"AOKP/vendor_moto\" path=\"vendor/moto\" remote=\"github\" revision=\"ics\" />" >> xml/rooted-aosp-local_manifest.xml
+	echo "  <project name=\"teamgummy/vendor_moto\" path=\"vendor/motorola\" remote=\"github\" revision=\"ics\" />" >> xml/rooted-aosp-local_manifest.xml
+	echo "</manifest>" >> xml/rooted-aosp-local_manifest.xml
 fi
 
 if [ $AUTHOR == "gitpuller" ]; then
-	echo "#!/bin/bash" > $LOCAL/../gitpuller
-	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../gitpuller
-	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
-	echo "	exit 0" >> $LOCAL/../gitpuller
-	echo "fi" >> $LOCAL/../gitpuller
-	echo "" >> $LOCAL/../gitpuller
-	echo "if [ \$SCRIPT_REPO == \"aokp\" ]; then" >> $LOCAL/../gitpuller
-	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
-	echo "	exit 0" >> $LOCAL/../gitpuller
-	echo "fi" >> $LOCAL/../gitpuller
-	echo "" >> $LOCAL/../gitpuller
-	echo "if [ \$SCRIPT_REPO == \"gummy\" ]; then" >> $LOCAL/../gitpuller
-	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
-	echo "	exit 0" >> $LOCAL/../gitpuller
-	echo "fi" >> $LOCAL/../gitpuller
-	echo "" >> $LOCAL/../gitpuller
-	echo "if [ \$SCRIPT_REPO == \"aosp\" ]; then" >> $LOCAL/../gitpuller
-	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
-	echo "	exit 0" >> $LOCAL/../gitpuller
-	echo "fi" >> $LOCAL/../gitpuller
-	echo "" >> $LOCAL/../gitpuller
-	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../gitpuller
-	echo "	# below is examples, git pull is recommended" >> $LOCAL/../gitpuller
-	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> $LOCAL/../gitpuller
-	echo "	# git pull repo-you-want-to-pull" >> $LOCAL/../gitpuller
-	echo "	exit 0" >> $LOCAL/../gitpuller
-	echo "fi" >> $LOCAL/../gitpuller
+	echo "#!/bin/bash" > config/gitpuller
+	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> config/gitpuller
+	echo "	# below is examples, git pull is recommended" >> config/gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> config/gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> config/gitpuller
+	echo "	exit 0" >> config/gitpuller
+	echo "fi" >> config/gitpuller
+	echo "" >> config/gitpuller
+	echo "if [ \$SCRIPT_REPO == \"aokp\" ]; then" >> config/gitpuller
+	echo "	# below is examples, git pull is recommended" >> config/gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> config/gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> config/gitpuller
+	echo "	exit 0" >> config/gitpuller
+	echo "fi" >> config/gitpuller
+	echo "" >> config/gitpuller
+	echo "if [ \$SCRIPT_REPO == \"gummy\" ]; then" >> config/gitpuller
+	echo "	# below is examples, git pull is recommended" >> config/gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> config/gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> config/gitpuller
+	echo "	exit 0" >> config/gitpuller
+	echo "fi" >> config/gitpuller
+	echo "" >> config/gitpuller
+	echo "if [ \$SCRIPT_REPO == \"aosp\" ]; then" >> config/gitpuller
+	echo "	# below is examples, git pull is recommended" >> config/gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> config/gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> config/gitpuller
+	echo "	exit 0" >> config/gitpuller
+	echo "fi" >> config/gitpuller
+	echo "" >> config/gitpuller
+	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> config/gitpuller
+	echo "	# below is examples, git pull is recommended" >> config/gitpuller
+	echo "	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify" >> config/gitpuller
+	echo "	# git pull repo-you-want-to-pull" >> config/gitpuller
+	echo "	exit 0" >> config/gitpuller
+	echo "fi" >> config/gitpuller
 fi
 
 if [ $AUTHOR == "romeditor" ]; then
-	echo "#!/bin/bash" > $LOCAL/../romeditor
-	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> $LOCAL/../romeditor
-	echo "	cd \$REPOS/cm-ics/vendor/cm/config" >> $LOCAL/../romeditor
-	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" >> $LOCAL/../romeditor
-	echo "	# sed -i 's/cyanogenmod/EDITME!/g' common.mk" >> $LOCAL/../romeditor
-	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)" >> $LOCAL/../romeditor
-	echo "	# sed -i 's/\$(CM_VERSION)/EDITME!/g' common.mk" >> $LOCAL/../romeditor
-	echo "fi" >> $LOCAL/../romeditor
-	echo "" >> $LOCAL/../romeditor
-	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> $LOCAL/../romeditor
-	echo "	cd \$REPOS/rooted-aosp-ics/vendor/swordrune10/makefiles" >> $LOCAL/../romeditor
-	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" >> $LOCAL/../romeditor
-	echo "	# sed -i 's/\$(shell whoami)/EDITME!/g' overrider.mk" >> $LOCAL/../romeditor
-	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)" >> $LOCAL/../romeditor
-	echo "	# sed -i 's/\$(MOD_VERSION)/EDITME!/g' overrider.mk" >> $LOCAL/../romeditor
-	echo "fi" >> $LOCAL/../romeditor
+	echo "#!/bin/bash" > config/romeditor
+	echo "if [ \$SCRIPT_REPO == \"cm\" ]; then" >> config/romeditor
+	echo "	cd \$REPOS/cm-ics/vendor/cm/config" >> config/romeditor
+	echo "	sed -i 's/developerid=cyanogenmod/developerid=$(shell whoami)/g' common.mk" >> config/romeditor
+	echo "	sed -i 's/CM_BUILDTYPE := UNOFFICIAL/CM_BUILDTYPE := SWORDKITCHEN/g' common.mk" >> config/romeditor
+	echo "	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk" >> config/romeditor
+	echo "fi" >> config/romeditor
+	echo "" >> config/romeditor
+	echo "if [ \$SCRIPT_REPO == \"rooted-aosp\" ]; then" >> config/romeditor
+	echo "	cd \$REPOS/rooted-aosp-ics/vendor/swordrune10/makefiles" >> config/romeditor
+	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id" >> config/romeditor
+	echo "	# sed -i 's/\$(shell whoami)/EDITME!/g' overrider.mk" >> config/romeditor
+	echo "	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)" >> config/romeditor
+	echo "	# sed -i 's/\$(MOD_VERSION)/EDITME!/g' overrider.mk" >> config/romeditor
+	echo "fi" >> config/romeditor
 fi
 
 if [ $AUTHOR == "redeemer" ]; then
-	echo "#!/bin/bash" > redeemer
-	echo "echo \"Redeemer is running!\"" >> redeemer
-	echo "echo \"\"" >> redeemer
-	echo "echo \"Removing Kitchen\"" >> redeemer
-	echo "echo \"\"" >> redeemer
-	echo "rm -rf .repo" >> redeemer
-	echo "rm -rf .scripts" >> redeemer
-	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> redeemer
-	echo "echo \"Settng Up Kitchen\"" >> redeemer
-	echo "echo \"\"" >> redeemer
-	echo "~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master" >> redeemer
-	echo "~/bin/repo sync" >> redeemer
+	echo "#!/bin/bash" > ../redeemer
+	echo "echo \"Redeemer is running!\"" >> ../redeemer
+	echo "echo \"\"" >> ../redeemer
+	echo "echo \"Removing Kitchen\"" >> ../redeemer
+	echo "echo \"\"" >> ../redeemer
+	echo "rm -rf .repo" >> ../redeemer
+	echo "rm -rf .scripts" >> ../redeemer
+	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> ../redeemer
+	echo "echo \"Settng Up Kitchen\"" >> ../redeemer
+	echo "echo \"\"" >> ../redeemer
+	echo "~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master" >> ../redeemer
+	echo "~/bin/repo sync" >> ../redeemer
 fi
 
 if [ $AUTHOR == "destroyer" ] || [ $AUTHOR == "destroyerofworlds" ]; then
-	echo "#!/bin/bash" > $AUTHOR
+	echo "#!/bin/bash" > ../$AUTHOR
 
 	if [ $AUTHOR == "destroyer" ]; then
-		echo "echo \"Destroyer is running!\"" >> destroyer
+		echo "echo \"Destroyer is running!\"" >> ../destroyer
 	fi
 
 	if [ $AUTHOR == "destroyerofworlds" ]; then
-		echo "echo \"Destroyer of Worlds is running!\"" >> destroyerofworlds
+		echo "echo \"Destroyer of Worlds is running!\"" >> ../destroyerofworlds
 	fi
 
-	echo "echo \"\"" >> $AUTHOR
-	echo "echo \"Removing Kitchen\"" >> $AUTHOR
-	echo "echo \"\"" >> $AUTHOR
-	echo "rm -rf .repo" >> $AUTHOR
-	echo "rm -rf .scripts" >> $AUTHOR
-	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> $AUTHOR
-	echo "rm -f gitpuller" >> $AUTHOR
+	echo "echo \"\"" >> ../$AUTHOR
+	echo "echo \"Removing Kitchen\"" >> ../$AUTHOR
+	echo "echo \"\"" >> ../$AUTHOR
+	echo "rm -rf .repo" >> ../$AUTHOR
+	echo "rm -rf .scripts" >> ../$AUTHOR
+	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> ../$AUTHOR
+	echo "rm -f gitpuller" >> ../$AUTHOR
 
 	if [ $AUTHOR == "destroyerofworlds" ]; then
-		echo "rm -rf ../repos" >> destroyerofworlds
+		echo "rm -rf ../repos" >> ../destroyerofworlds
 	fi
 
-	echo "echo \"Finished! Press Enter to exit\"" >> $AUTHOR
-	echo "read done" >> $AUTHOR
-	echo "rm -f $AUTHOR" >> $AUTHOR
+	echo "echo \"Finished! Press Enter to exit\"" >> ../$AUTHOR
+	echo "read done" >> ../$AUTHOR
+	echo "rm -f $AUTHOR" >> ../$AUTHOR
 fi

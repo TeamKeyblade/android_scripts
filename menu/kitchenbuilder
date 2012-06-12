@@ -36,7 +36,7 @@ if ( echo $buildanswer | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
-if [ $buildanswer -gt "7" ]; then
+if [ $buildanswer -gt "8" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -132,7 +132,7 @@ if [ $buildanswer == "2" ]; then
 		exit 0
 	fi
 
-	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
+	if ( echo $buildnexuss | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -189,7 +189,7 @@ if [ $buildanswer == "3" ]; then
 		exit 0
 	fi
 
-	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
+	if ( echo $buildxoom | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
@@ -232,6 +232,10 @@ fi
 
 if [ $buildanswer == "6" ]; then
 	buildother
+fi
+
+if [ $buildanswer == "8" ]; then
+	buildotherrepo
 fi
 
 if [ $buildanswer == "7" ]; then

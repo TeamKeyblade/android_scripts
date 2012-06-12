@@ -14,8 +14,31 @@ fi
 if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL:$PATH"
 	export PATH="$LOCAL/build:$PATH"
+	export PATH="$LOCAL/config:$PATH"
 	export PATH="$LOCAL/menu:$PATH"
 	export PATH="$LOCAL/update:$PATH"
+fi
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# Create necessary files/folders
+mkdir -p $LOCAL/config
+mkdir -p $LOCAL/xml
+
+if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
+	export AUTHOR="gitpuller"
+	scriptmakir
+	chmod a+x $LOCAL/config/gitpuller
+fi
+
+if ( ! find $LOCAL/config/otherrepo &> /dev/null ); then
+	touch $LOCAL/config/otherrepo
+fi
+
+if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
+	export AUTHOR="romeditor"
+	scriptmakir
+	chmod a+x $LOCAL/config/romeditor
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
@@ -26,21 +49,6 @@ cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
 threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
 
 export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
-
-# ::::::::::::::::::::::::::::::::::::::::::::::
-
-# Create necessary files
-if ( ! find $LOCAL/../gitpuller &> /dev/null ); then
-	export AUTHOR="gitpuller"
-	scriptmakir
-	chmod a+x $LOCAL/../gitpuller
-fi
-
-if ( ! find $LOCAL/../romeditor &> /dev/null ); then
-	export AUTHOR="romeditor"
-	scriptmakir
-	chmod a+x $LOCAL/../romeditor
-fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 

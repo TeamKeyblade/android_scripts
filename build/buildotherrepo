@@ -2,11 +2,42 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
+if [ $( cat $LOCAL/config/otherrepo ) == ""]; then
+	echo ""
+	echo "other repo file is empty, please add to file then try again!"
+	echo "Press Enter to continue"
+	read done
+
+	kitchenbuilder
+	exit 0
+fi
+
+echo "EOF" >> $LOCAL/config/otherrepo
+
+while true; do
+	let count=$count+1
+	filelurker[$count]=$( cat $LOCAL/config/otherrepo | sed -n "$count"p )
+
+	if [ "${filelurker[$count]}" == "EOF" ]; then
+		break
+	fi
+done
+
+sed -i "/EOF/d" $LOCAL/config/otherrepo
+
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Which version of android are we building today?"
-# find out whats in .otherrepo and display it here
-echo "  6. Go Back"
+echo "Which custom repo are we building today?"
+while true; do
+	let countdown=$countdown+1
+
+	echo "  "${filelurker[$countdown]}
+
+	if [ $countdown == $( expr $count - 1 ) ]; then
+		break
+	fi
+done
+echo "  $count. Go Back"
 read version
 
 if [ "$version" == "" ]; then
@@ -30,7 +61,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 fi
 
 
-if [ $version -gt "6" ]; then # maybe find out the last line and +1 to get this number?
+if [ $version -gt $count ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
@@ -38,12 +69,6 @@ if [ $version -gt "6" ]; then # maybe find out the last line and +1 to get this 
 
 	kitchenbuilder
 	exit 0
-fi
-
-# this is where most of the magick happens..
-
-if [ ! "$version" == "" ]; then
-	# somehow capture number here and use that number to read a line that is in .otherrepo/.otherfolder
 fi
 
 clear
@@ -70,24 +95,41 @@ while [ $device == "list" ]; do
 # gonna have to somehow display the device list here, either through ls or a vendorsetup.sh list.. look for vendorsetup.sh first and then
 # go for ls i guess..
 
-	if [ $SCRIPT_REPO == "cm" ]; then
-		sed -e 's/.*cm_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
-	fi
+	cd "${filelurker[$version]}"
 
-	if [ $SCRIPT_REPO == "aokp" ]; then
-		sed -e 's/.*aokp_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | less
-	fi
+	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
+		sed -e 's/.*_//g' \
+		-e 's/-.*//' \
+		vendor/*/vendorsetup.sh | less
+	else
+		if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
+			sed -e 's/.*_//g' \
+			-e 's/-.*//' \
+			device/*/*/vendorsetup.sh | less
+		else
+			while true; do
+				let count=$count+1
+				filelurker[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
 
-	if [ $SCRIPT_REPO == "gummy" ]; then
-		sed -e 's/.*Gummy_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | less
-	fi
+				if [ "${filelurker[$count]}" == "EOF" ]; then
+					break
+				fi
+			done
 
+			while true; do
+				let countdown=$countdown+1
+
+				sed -e 's/.*_//g' \
+				-e 's/-.*//' \
+				${filelurker[$countdown]} | echo
+
+				if [ "${filelurker[$count]}" == "device*" ] || [ $countdown == $( expr $count - 1 ) ]; then
+					break
+				fi
+
+			done
+		fi
+	fi
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -110,86 +152,6 @@ fi
 
 if [ $device == "exit" ]; then
 	exit 0
-fi
-
-if [ $SCRIPT_REPO == "cm" ]; then
-	if ( ! sed -e 's/.*cm_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		kitchenbuilder
-		exit 0
-	fi
-fi
-
-if [ $SCRIPT_REPO == "aokp" ]; then
-	if ( ! sed -e 's/.*aokp_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		kitchenbuilder
-		exit 0
-	fi
-fi
-
-if [ $SCRIPT_REPO == "gummy" ]; then
-	if ( ! sed -e 's/.*Gummy_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		kitchenbuilder
-		exit 0
-	fi
-fi
-
-if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	if ( ! echo "stingray
-	wingray
-	crespo4g
-	crespo
-	maguro
-	toro
-	toroplus
-	tuna" | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		kitchenbuilder
-		exit 0
-	fi
-
-fi
-
-if [ $SCRIPT_REPO == "aosp" ]; then
-	if ( ! echo "stingray
-	wingray
-	crespo4g
-	crespo
-	maguro
-	toro
-	tuna" | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-
-		kitchenbuilder
-		exit 0
-	fi
 fi
 
 if [ ! $version == "6" ]; then

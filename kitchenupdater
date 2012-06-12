@@ -1,0 +1,300 @@
+#!/bin/bash
+# Written by Sean Donovan (swordrune10)
+
+test=$(echo "$1")
+
+if [ ! "$test" == "" ]; then
+	AUTO=true
+fi
+
+if [ ! $AUTO ]; then
+	clear
+fi
+
+supersync=$( expr $THREADS_TOTAL \* 2 )
+
+if [ ! $AUTO ]; then
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "What are we updating?"
+	echo "  1. Update the Kitchen app repository"
+	echo "  2. Update the Android Open Kang Project repository"
+	echo "  3. Update the Android Open Source Project repository"
+	echo "  4. Update the Cyanogenmod 9 repository"
+	echo "  5. Update the Evervolv repository"
+	echo "  6. Update the Rooted & Busyboxed AOSP repository"
+	echo "  7. Update the Solana/Targa/Spyder Dev Team repository"
+	echo "  8. Update the Team Gummy repository"
+	echo "  9. Update all available repositories"
+	echo "  10. Go Back"
+	read version
+
+	if [ "$version" == "" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		kitchenupdater
+		exit 0
+	fi
+
+	if ( echo $version | grep -q [A-Za-z] ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		kitchenupdater
+		exit 0
+	fi
+
+	if [ $version -gt "10" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		echo "Press Enter to continue"
+		read done
+
+		kitchenupdater
+		exit 0
+	fi
+fi
+
+if [ ! "$test" == "" ]; then
+	if [ $test == "list" ]; then
+		echo "kitchen = Update Kitchen"
+		echo "aokp = Update Android Open Kang Project"
+		echo "aosp = Update Android Open Source Project"
+		echo "cm = Update Cyanogenmod 9"
+		echo "ev = Update Evervolv"
+		echo "raosp = Update Rooted & Busyboxed AOSP"
+		echo "sts = Update Solana/Targa/Spyder Dev Team"
+		echo "gummy = Update Team Gummy"
+		echo "all = Update all available repos"
+		exit 0
+	fi
+
+	if [ $test == "kitchen" ]; then
+		version="1"
+	fi
+
+	if [ $test == "aokp" ]; then
+		version="2"
+	fi
+
+	if [ $test == "aosp" ]; then
+		version="3"
+	fi
+
+	if [ $test == "cm" ]; then
+		version="4"
+	fi
+
+	if [ $test == "ev" ] || [ $1 == "evervolv" ]; then
+		version="5"
+	fi
+
+	if [ $test == "raosp" ] || [ $test == "rooted-aosp" ]; then
+		version="6"
+	fi
+
+	if [ $test == "sts" ]; then
+		version="7"
+	fi
+
+	if [ $test == "gummy" ]; then
+		version="8"
+	fi
+
+	if [ $test == "all" ]; then
+		version="9"
+	fi
+fi
+
+if [ $version == "1" ] || [ $version == "9" ]; then
+	echo ""
+	echo "Updating the Kitchen app repository.."
+	cd $LOCAL/..
+
+	repo sync -j$THREADS_TOTAL
+	echo ""
+	echo "Kitchen Update Complete!"
+fi
+
+if [ $version == "2" ] || [ $version == "9" ]; then
+	if ( find $REPOS/aokp-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "aokp")
+		echo ""
+		echo "Updating the Android Open Kang Project repository.."
+		cd $REPOS/aokp-ics
+		rm -r vendor/aokp
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Android Open Kang Project Update Complete!"
+	else
+		echo ""
+		echo "Android Open Kang Project not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "3" ] || [ $version == "9" ]; then
+	if ( find $REPOS/aosp-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "aosp")
+		echo ""
+		echo "Updating Android Open Source Project repository.."
+		cd $REPOS/aosp-ics
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Android Open Source Project Update Complete!"
+	else
+		echo ""
+		echo "Android Open Source Project not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "4" ] || [ $version == "9" ]; then
+	if ( find $REPOS/cm-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "cm")
+		echo ""
+		echo "Updating Cyanogenmod 9 repository.."
+		cd $REPOS/cm-ics
+		rm -r vendor/cm
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Cyanogenmod 9 Update Complete!"
+	else
+		echo ""
+		echo "Cyanogenmod 9 not initialized, aborting.. "
+	fi
+fi
+
+
+if [ $version == "5" ] || [ $version == "9" ]; then
+	if ( find $REPOS/evervolv-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "evervolv")
+		echo ""
+		echo "Updating Evervolv repository.."
+		cd $REPOS/evervolv-ics
+		rm -r vendor/ev
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Evervolv Update Complete!"
+	else
+		echo ""
+		echo "Evervolv not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "6" ] || [ $version == "9" ]; then
+	if ( find $REPOS/rooted-aosp-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "rooted-aosp")
+		echo ""
+		echo "Updating Rooted & Busyboxed AOSP repository.."
+		cd $REPOS/rooted-aosp-ics
+		rm -r vendor/keyblade
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Rooted & Busyboxed AOSP Update Complete!"
+	else
+		echo ""
+		echo "Rooted & Busyboxed AOSP not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "7" ] || [ $version == "9" ]; then
+	if ( find $REPOS/sts-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "sts")
+		echo ""
+		echo "Updating Solana/Targa/Spyder Dev Team repository.."
+		cd $REPOS/sts-ics
+		rm -r vendor/cm
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Solana/Targa/Spyder Dev Team Update Complete!"
+	else
+		echo ""
+		echo "Solana/Targa/Spyder Dev Team not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "8" ] || [ $version == "9" ]; then
+	if ( find $REPOS/gummy-ics/.repo &> /dev/null); then
+		export SCRIPT_REPO=$(echo "gummy")
+		echo ""
+		echo "Updating Team Gummy repository.."
+		cd $REPOS/gummy-ics
+		rm -r vendor/Gummy
+
+		preupdate
+		repo sync -j$supersync
+
+		gitpuller
+
+		postupdate
+
+		echo ""
+		echo "Team Gummy Update Complete!"
+	else
+		echo ""
+		echo "Team Gummy not initialized, aborting.. "
+	fi
+fi
+
+if [ $version == "10" ]; then
+	echo ""
+	echo "Returning to Main Menu, Press Enter to continue"
+	read done
+
+	exit 0
+fi
+
+if [ ! $AUTO ]; then
+	echo ""
+	echo "Press Enter to continue"
+	read done
+
+	kitchenupdater
+	exit 0
+fi

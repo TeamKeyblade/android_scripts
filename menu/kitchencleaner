@@ -2,8 +2,8 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if ( find ../redeemer &> /dev/null ); then
-	rm -f ../redeemer
+if ( find $LOCAL/../redeemer &> /dev/null ); then
+	rm -f $LOCAL/../redeemer
 fi
 
 echo "Swordrune10's Android Kitchen!"
