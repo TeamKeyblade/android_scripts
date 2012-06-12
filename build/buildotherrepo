@@ -97,15 +97,15 @@ while [ $device == "list" ]; do
 
 	cd "${filelurker[$version]}"
 
-	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
+	if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
 		sed -e 's/.*_//g' \
 		-e 's/-.*//' \
-		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	else
-		if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
+		if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
 			sed -e 's/.*_//g' \
 			-e 's/-.*//' \
-			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+			vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 		else
 			while true; do
 				let count=$count+1
