@@ -6,10 +6,11 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Main Menu:"
 echo "  1. Setup Kitchen"
-echo "  2. Update Kitchen"
-echo "  3. Run Kitchen"
-echo "  4. Fix Kitchen"
-echo "  5. Exit"
+echo "  2. Configure Kitchen"
+echo "  3. Update Kitchen"
+echo "  4. Run Kitchen"
+echo "  5. Fix Kitchen"
+echo "  6. Exit"
 echo ""
 echo "Which one would you like to do?"
 read answer
@@ -52,33 +53,40 @@ if [ $answer == "1" ]; then
 fi
 
 if [ $answer == "2" ]; then
-	kitchenupdater
+	kitchenconfigure
 	cd $LOCAL
 	kitchen
 	exit 0
 fi
 
 if [ $answer == "3" ]; then
-	kitchenbuilder
+	kitchenupdater
 	cd $LOCAL
 	kitchen
 	exit 0
 fi
 
 if [ $answer == "4" ]; then
-	kitchencleaner
+	kitchenbuilder
 	cd $LOCAL
 	kitchen
 	exit 0
 fi
 
 if [ $answer == "5" ]; then
+	kitchencleaner
+	cd $LOCAL
+	kitchen
+	exit 0
+fi
+
+if [ $answer == "6" ]; then
 	echo ""
 	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
 	exit 0
 fi
 
-if [ $answer == "6" ] || [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
+if [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"

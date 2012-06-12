@@ -10,8 +10,9 @@ echo "  2. Build Nexus S"
 echo "  3. Build Xoom Tablet"
 echo "  4. Build all above!"
 echo "  5. Build Droid 3/Droid 4/Bionic/Razr"
-echo "  6. Build other.."
-echo "  7. Go Back"
+echo "  6. Build other device"
+echo "  7. Build with other repo"
+echo "  8. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildanswer
@@ -234,11 +235,11 @@ if [ $buildanswer == "6" ]; then
 	buildother
 fi
 
-if [ $buildanswer == "8" ]; then
+if [ $buildanswer == "7" ]; then
 	buildotherrepo
 fi
 
-if [ $buildanswer == "7" ]; then
+if [ $buildanswer == "8" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
