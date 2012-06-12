@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 clear
 
-if [ $( cat $LOCAL/config/otherrepo ) == ""]; then
+if [ $( cat $LOCAL/config/otherrepo ) == "" ]; then
 	echo ""
 	echo "other repo file is empty, please add to file then try again!"
 	echo "Press Enter to continue"
@@ -31,7 +31,7 @@ echo "Which custom repo are we building today?"
 while true; do
 	let countdown=$countdown+1
 
-	echo "  "${filelurker[$countdown]}
+	echo "  "$countdown". "${filelurker[$countdown]}
 
 	if [ $countdown == $( expr $count - 1 ) ]; then
 		break
