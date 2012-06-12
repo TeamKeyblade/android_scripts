@@ -98,11 +98,11 @@ while [ $device == "list" ]; do
 	cd "${filelurker[$version]}"
 
 	while true; do
-		let count=$count+1
-		devicefinder[$count]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
+		let dcount=$dcount+1
+		devicefinder[$dcount]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$count"p )
 
-		if ( ! echo "${devicefinder[$count]}" | grep -q "device" ) && ( ! echo "${devicefinder[$count]}" | grep -q "vendor" ); then
-			devicefinder[$count]=""
+		if ( ! echo "${devicefinder[$dcount]}" | grep -q "device" ) && ( ! echo "${devicefinder[$dcount]}" | grep -q "vendor" ); then
+			devicefinder[$dcount]=""
 			break
 		fi
 	done
