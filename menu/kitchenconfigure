@@ -1,5 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+menu () {
 clear
 
 echo "Swordrune10's Android Kitchen!"
@@ -18,9 +20,7 @@ if [ "$configs" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenconfigure
-	exit 0
+	menu
 fi
 
 if ( echo $configs | grep -q [A-Za-z] ); then
@@ -28,9 +28,7 @@ if ( echo $configs | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenconfigure
-	exit 0
+	menu
 fi
 
 if [ $configs -gt "4" ]; then
@@ -38,9 +36,7 @@ if [ $configs -gt "4" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenconfigure
-	exit 0
+	menu
 fi
 
 if [ $configs == "1" ]; then
@@ -66,13 +62,11 @@ if [ $configs == "4" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
-
 	exit 0
 fi
 
 echo ""
 echo "Press Enter to continue"
 read done
-
-kitchenconfigure
-exit 0
+}
+menu

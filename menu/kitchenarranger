@@ -1,5 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+menu () {
 clear
 
 echo "Swordrune10's Android Kitchen!"
@@ -25,9 +27,7 @@ if [ "$setupanswer" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenarranger
-	exit 0
+	menu
 fi
 
 if ( echo $setupanswer | grep -q [A-Za-z] ); then
@@ -35,9 +35,7 @@ if ( echo $setupanswer | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenarranger
-	exit 0
+	menu
 fi
 
 if [ $setupanswer -gt "11" ]; then
@@ -45,9 +43,7 @@ if [ $setupanswer -gt "11" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenarranger
-	exit 0
+	menu
 fi
 
 if [ $setupanswer == "1" ]; then
@@ -72,9 +68,7 @@ fi
 
 if [ $setupanswer == "2" ]; then
 	environmentsetup
-
-	kitchenarranger
-	exit 0
+	menu
 fi
 
 if [ $setupanswer == "3" ]; then
@@ -274,13 +268,11 @@ if [ $setupanswer == "11" ]; then
 	echo ""
 	echo "Returning to Main Menu, Press Enter to continue"
 	read done
-
 	exit 0
 fi
 
 echo ""
 echo "Press Enter to continue"
 read done
-
-kitchenarranger
-exit 0
+}
+menu
