@@ -1,16 +1,15 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-cd $REPOS/$SCRIPT_REPO-ics/out/target/product/$SCRIPT_DEVICE/system  &> /dev/null
+outfolder=$(echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE/system")
 
-if ( find build.prop &> /dev/null );then
-	rm build.prop
+if ( find $outfolder/build.prop &> /dev/null ); then
+	rm $outfolder/build.prop
 fi
 cd ..
-if ( find *.zip &> /dev/null );then
-	rm *.zip*
+if ( find $outfolder/*.zip &> /dev/null ); then
+	rm $outfolder/*.zip*
 fi
 
-cd $REPOS/$SCRIPT_REPO-ics
 . build/envsetup.sh
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
@@ -39,6 +38,3 @@ if [ ! $SCRIPT_REPO == "cm" ] || [ ! $SCRIPT_REPO == "sts" ]; then
 	make CC=gcc-4.4 CXX=g++-4.4 otapackage -j$THREADS_TOTAL
 	exit 0
 fi
-
-echo "This is awkward... how did u get here??"
-read bullshitanswer

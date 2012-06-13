@@ -46,6 +46,7 @@ if [ $version -gt "6" ]; then
 fi
 
 export SCRIPT_REPO=$(echo "sts")
+export REPO_PLATFORM=$(echo "ics")
 
 setupandro
 

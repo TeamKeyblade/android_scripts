@@ -45,22 +45,37 @@ fi
 
 if [ $version == "1" ]; then
 	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
 fi
 
 if [ $version == "2" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
+	export REPO_PLATFORM=$(echo "ics")
 fi
 
 if [ $version == "3" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
+	export REPO_PLATFORM=$(echo "ics")
 fi
 
 if [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "ics")
 fi
 
 if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "ics")
+fi
+
+if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	kitchenbuilder
+	exit 0
 fi
 
 if [ ! $version == "6" ]; then

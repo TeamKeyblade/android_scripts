@@ -60,6 +60,9 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	exit 0
 fi
 
+if [ $version == $count ]; then
+	exit 0
+fi
 
 if [ $version -gt $count ]; then
 	echo ""
@@ -91,10 +94,6 @@ if [ "$device" == "" ]; then
 fi
 
 while [ $device == "list" ]; do
-
-# gonna have to somehow display the device list here, either through ls or a vendorsetup.sh list.. look for vendorsetup.sh first and then
-# go for ls i guess..
-
 	cd "${filelurker[$version]}"
 
 	while true; do
@@ -155,9 +154,50 @@ if [ $reponame == "exit" ]; then
 	exit 0
 fi
 
-export SCRIPT_REPO=$(echo "other")
+echo ""
+echo "What platform is this repo?"
+echo "Examples are; ics, gingerbread, froyo.."
+echo "Type in exit to go to back"
+read platformname
 
-if [ ! $version == "6" ]; then
+if [ "$platformname" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	kitchenbuilder
+	exit 0
+fi
+
+if [ $platformname == "exit" ]; then
+	exit 0
+fi
+
+echo "The selected repo name is "$reponame
+echo "The selected platform name is "$platformname
+echo ""
+echo "Is this correct?"
+read answer
+
+if [ "$answer" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+
+	kitchenbuilder
+	exit 0
+fi
+
+if [ $answer == "yes" ] || [ $answer == "y" ]; then
+	make clobber
+fi
+
+export SCRIPT_REPO=$(echo $reponame)
+export REPO_PLATFORM=$(echo $platformname)
+
+if [ ! $version == $count ]; then
 	clear
 
 	setupandro

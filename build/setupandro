@@ -4,7 +4,7 @@ clear
 
 $LOCAL/../romeditor
 
-cd $REPOS/$SCRIPT_REPO-ics
+cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
 . build/envsetup.sh
 
 if [ $AUTO ]; then
