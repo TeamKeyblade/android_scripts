@@ -83,6 +83,7 @@ if [ $setupanswer == "3" ]; then
 
 	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
 		kitchenupdater kitchen
+		read done
 		menu
 	fi
 
@@ -108,6 +109,7 @@ if [ $setupanswer == "4" ]; then
 
 	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
 		kitchenupdater aokp
+		read done
 		menu
 	fi
 
@@ -133,6 +135,7 @@ if [ $setupanswer == "5" ]; then
 
 	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
 		kitchenupdater aosp
+		read done
 		menu
 	fi
 
@@ -158,6 +161,7 @@ if [ $setupanswer == "6" ]; then
 
 	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
 		kitchenupdater cm
+		read done
 		menu
 	fi
 
@@ -183,6 +187,7 @@ if [ $setupanswer == "7" ]; then
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
 		kitchenupdater ev
+		read done
 		menu
 	fi
 
@@ -208,6 +213,7 @@ if [ $setupanswer == "8" ]; then
 
 	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
 		kitchenupdater raosp
+		read done
 		menu
 	fi
 
@@ -235,6 +241,7 @@ if [ $setupanswer == "9" ]; then
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
 		kitchenupdater sts
+		read done
 		menu
 	fi
 
@@ -260,6 +267,7 @@ if [ $setupanswer == "10" ]; then
 
 	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
 		kitchenupdater gummy
+		read done
 		menu
 	fi
 
