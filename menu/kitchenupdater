@@ -85,7 +85,7 @@ if [ ! "$test" == "" ]; then
 		version="4"
 	fi
 
-	if [ $test == "ev" ] || [ $1 == "evervolv" ]; then
+	if [ $test == "ev" ] || [ $test == "evervolv" ]; then
 		version="5"
 	fi
 
