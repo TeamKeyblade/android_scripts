@@ -1,13 +1,13 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 
-menu () {
 test=$(echo "$1")
 
 if [ ! "$test" == "" ]; then
 	AUTO=true
 fi
 
+menu () {
 if [ ! $AUTO ]; then
 	clear
 fi
