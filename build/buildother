@@ -1,10 +1,14 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+menu () {
 clear
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Which version of android are we building today?"
+echo "Build other device is selected to be built!"
+echo ""
+echo "Which android repository are we building from today?"
 echo "  1. Cyanogenmod 9"
 echo "  2. Rooted & Busyboxed AOSP"
 echo "  3. Android Open Kang Project"
@@ -18,9 +22,7 @@ if [ "$version" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
@@ -28,13 +30,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
-fi
-
-if [ $version == "6" ]; then
-	exit 0
+	menu
 fi
 
 if [ $version -gt "6" ]; then
@@ -42,9 +38,7 @@ if [ $version -gt "6" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if [ $version == "1" ]; then
@@ -72,14 +66,16 @@ if [ $version == "5" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
+if [ $version == "6" ]; then
+	exit 0
+fi
+
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	echo ""
-	echo "You did not make a proper selection, try again!"
+	echo "The selected android repository is not setup!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 clear
@@ -96,9 +92,7 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 while [ $device == "list" ]; do
@@ -147,9 +141,7 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if [ $device == "exit" ]; then
@@ -164,9 +156,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-
-		kitchenbuilder
-		exit 0
+		menu
 	fi
 fi
 
@@ -178,9 +168,7 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-
-		kitchenbuilder
-		exit 0
+		menu
 	fi
 fi
 
@@ -192,56 +180,44 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-
-		kitchenbuilder
-		exit 0
+		menu
 	fi
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	if ( ! echo "stingray
-	wingray
-	crespo4g
-	crespo
-	maguro
-	toro
-	toroplus
-	tuna" | grep -q $device ); then
+	if ( ! sed -e 's/.*full_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-
-		kitchenbuilder
-		exit 0
+		menu
 	fi
 
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
-	if ( ! echo "stingray
-	wingray
-	crespo4g
-	crespo
-	maguro
-	toro
-	tuna" | grep -q $device ); then
+	if ( ! sed -e 's/.*full_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-
-		kitchenbuilder
-		exit 0
+		menu
 	fi
 fi
 
-if [ ! $version == "6" ]; then
-	clear
 
-	setupandro
+clear
 
-	export SCRIPT_DEVICE=$(echo $device)
-	buildandro
-	setupprop
-fi
+setupandro
+
+export SCRIPT_DEVICE=$(echo $device)
+buildandro
+setupprop
+
+exit 0
+}
+menu

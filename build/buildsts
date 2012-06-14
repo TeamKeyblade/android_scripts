@@ -1,5 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+menu () {
 clear
 
 echo "Swordrune10's Android Kitchen!"
@@ -20,9 +22,7 @@ if [ "$version" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
@@ -30,9 +30,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if [ $version -gt "6" ]; then
@@ -40,36 +38,65 @@ if [ $version -gt "6" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
+	menu
+fi
 
-	kitchenbuilder
+if [ $version == "6" ]; then
 	exit 0
 fi
 
 export SCRIPT_REPO=$(echo "sts")
 export REPO_PLATFORM=$(echo "ics")
 
+if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
+	echo ""
+	echo "The selected android repository is not setup!"
+	echo "Press Enter to continue"
+	read done
+	menu
+fi
+
 setupandro
 
-if [ $version == "1" ] || [ $version == "5" ]; then
+if [ $version == "1" ]; then
+	export SCRIPT_DEVICE=$(echo "solana")
+fi
+
+if [ $version == "2" ]; then
+	export SCRIPT_DEVICE=$(echo "maserati")
+fi
+
+if [ $version == "3" ]; then
+	export SCRIPT_DEVICE=$(echo "targa")
+fi
+
+if [ $version == "4" ]; then
+	export SCRIPT_DEVICE=$(echo "spyder")
+fi
+
+if [ ! $version == "5" ]; then
+	buildandro
+	setupprop
+fi
+
+if [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "solana")
 	buildandro
 	setupprop
-fi
 
-if [ $version == "2" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "maserati")
 	buildandro
 	setupprop
-fi
 
-if [ $version == "3" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "targa")
 	buildandro
 	setupprop
-fi
 
-if [ $version == "4" ] || [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "spyder")
 	buildandro
 	setupprop
 fi
+
+exit 0
+}
+menu

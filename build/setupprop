@@ -1,7 +1,10 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-
-cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE
+if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
+	cd $OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
+else
+	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE
+fi
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	zip=$(find cm-*.zip)

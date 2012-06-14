@@ -25,9 +25,12 @@ done
 
 sed -i "/EOF/d" $LOCAL/config/otherrepo
 
+menu () {
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Which custom repo are we building today?"
+echo "Build with other repository is selected to be built!"
+echo ""
+echo "Which custom android repository are we building from today?"
 while true; do
 	let countdown=$countdown+1
 
@@ -45,9 +48,7 @@ if [ "$version" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
@@ -55,13 +56,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
-fi
-
-if [ $version == $count ]; then
-	exit 0
+	menu
 fi
 
 if [ $version -gt $count ]; then
@@ -69,10 +64,75 @@ if [ $version -gt $count ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
+	menu
+fi
 
-	kitchenbuilder
+if [ $version == $count ]; then
 	exit 0
 fi
+
+clear
+
+echo ""
+echo "What should you name this repo?"
+echo "This will serve as naming the build and putting it in a proper folder"
+echo "Type in exit to go to back"
+read reponame
+
+if [ "$reponame" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+	menu
+fi
+
+if [ $reponame == "exit" ]; then
+	exit 0
+fi
+
+echo ""
+echo "What platform is this repo?"
+echo "Examples are; ics, gingerbread, froyo.."
+echo "Type in exit to go to back"
+read platformname
+
+if [ "$platformname" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+	menu
+fi
+
+if [ $platformname == "exit" ]; then
+	exit 0
+fi
+
+echo "The selected repo name is "$reponame
+echo "The selected platform name is "$platformname
+echo ""
+echo "Is this correct?"
+read answer
+
+if [ "$answer" == "" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	echo "Press Enter to continue"
+	read done
+	menu
+fi
+
+if [ $answer == "no" ] || [ $answer == "n" ]; then
+	echo ""
+	echo "I'm sorry lets try again.."
+	echo "Press Enter to continue"
+	read done
+	menu
+fi
+
+export SCRIPT_REPO=$(echo $reponame)
+export REPO_PLATFORM=$(echo $platformname)
 
 clear
 
@@ -88,9 +148,7 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 while [ $device == "list" ]; do
@@ -110,6 +168,10 @@ while [ $device == "list" ]; do
 	-e 's/-.*//' \
 	${devicefinder[*]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 
+	export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
+	-e 's/_.*/_/' \
+	vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
+
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -125,84 +187,24 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchenbuilder
-	exit 0
+	menu
 fi
 
 if [ $device == "exit" ]; then
 	exit 0
 fi
 
-echo ""
-echo "What should you name this repo?"
-echo "This will serve as naming the build and putting it in a proper folder"
-echo "Type in exit to go to back"
-read reponame
 
-if [ "$reponame" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+clear
 
-	kitchenbuilder
-	exit 0
-fi
+export OTHER_REPO_FOLDER=$(echo "${filelurker[$version]}")
 
-if [ $reponame == "exit" ]; then
-	exit 0
-fi
+setupandro
 
-echo ""
-echo "What platform is this repo?"
-echo "Examples are; ics, gingerbread, froyo.."
-echo "Type in exit to go to back"
-read platformname
+export SCRIPT_DEVICE=$(echo $device)
+buildandro
+setupprop
 
-if [ "$platformname" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-
-	kitchenbuilder
-	exit 0
-fi
-
-if [ $platformname == "exit" ]; then
-	exit 0
-fi
-
-echo "The selected repo name is "$reponame
-echo "The selected platform name is "$platformname
-echo ""
-echo "Is this correct?"
-read answer
-
-if [ "$answer" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-
-	kitchenbuilder
-	exit 0
-fi
-
-if [ $answer == "yes" ] || [ $answer == "y" ]; then
-	make clobber
-fi
-
-export SCRIPT_REPO=$(echo $reponame)
-export REPO_PLATFORM=$(echo $platformname)
-
-if [ ! $version == $count ]; then
-	clear
-
-	setupandro
-
-	export SCRIPT_DEVICE=$(echo $device)
-	buildandro
-	setupprop
-fi
+exit 0
+}
+menu

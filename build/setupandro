@@ -4,7 +4,12 @@ clear
 
 $LOCAL/config/romeditor
 
-cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
+if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
+	cd $OTHER_REPO_FOLDER
+else
+	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
+fi
+
 . build/envsetup.sh
 
 if [ $AUTO ]; then
