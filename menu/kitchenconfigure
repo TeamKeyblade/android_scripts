@@ -51,7 +51,7 @@ fi
 
 if [ $configs == "3" ]; then
 	cd $LOCAL/config
-	sed -i -e "0, i \
+	sed -i -e " i \
 # Add below the path to desired repo, absolute path recommended" \
 	otherrepo
 	nano otherrepo
