@@ -67,6 +67,9 @@ if [ $version == "5" ]; then
 fi
 
 if [ $version == "6" ]; then
+	echo ""
+	echo "Returning to Main Menu, Press Enter to continue"
+	read done
 	exit 0
 fi
 
