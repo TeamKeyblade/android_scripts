@@ -12,5 +12,5 @@ else
 	cd .scripts
 fi
 
-export $START="true"
+export START=true
 ./headerfile
