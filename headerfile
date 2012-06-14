@@ -1,6 +1,6 @@
 #!/bin/bash
 # Declare global variables
-export LOCAL=$( pwd )
+export LOCAL=$( dirname $0  )
 export REPOS=$(echo "$LOCAL/../../repos")
 export BUILDS=$(echo "$REPOS/../builds" )
 
