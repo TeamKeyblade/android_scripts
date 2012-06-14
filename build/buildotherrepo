@@ -211,8 +211,7 @@ if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
 	export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
 	-e 's/_.*/_/' \
 	vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
-else
-	if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
+elif ( find device/*/*/vendorsetup.sh &> /dev/null ); then
 		export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
 		-e 's/_.*/_/' \
 		device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
@@ -220,7 +219,6 @@ else
 		echo "Repository not supported!"
 		buildotherrepo
 		exit 0
-	fi
 fi
 
 clear

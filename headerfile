@@ -1,8 +1,8 @@
 #!/bin/bash
 # Declare global variables
 export LOCAL=$( cd $(dirname $0) && pwd )
-export REPOS=$(echo "$LOCAL/../../repos")
-export BUILDS=$(echo "$REPOS/../builds" )
+export REPOS=$( echo "$LOCAL/../../repos" )
+export BUILDS=$( echo "$REPOS/../builds" )
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -12,11 +12,11 @@ if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
 fi
 
 if ( ! echo $PATH | grep -q $LOCAL ); then
-	export PATH="$LOCAL:$PATH"
-	export PATH="$LOCAL/build:$PATH"
 	export PATH="$LOCAL/config:$PATH"
 	export PATH="$LOCAL/menu:$PATH"
 	export PATH="$LOCAL/update:$PATH"
+	export PATH="$LOCAL/build:$PATH"
+	export PATH="$LOCAL:$PATH"
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
@@ -56,5 +56,7 @@ export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 if [ $START ]; then
 	export START=""
 	kitchen
-	exit 0
+elif [ ! "$SCRIPT" == "" ]; then
+	export INIT=true
+	$SCRIPT
 fi
