@@ -10,7 +10,7 @@ if ( find $outfolder/*.zip &> /dev/null ); then
 	rm $outfolder/*.zip*
 fi
 
-source build/envsetup.sh
+build/envsetup.sh
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
