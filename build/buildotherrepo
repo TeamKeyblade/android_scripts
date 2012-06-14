@@ -9,6 +9,7 @@ if [ "$( cat $LOCAL/config/otherrepo | head -n1 )" == "" ]; then
 	exit 0
 fi
 
+menu () {
 echo "EOF" >> $LOCAL/config/otherrepo
 
 while true; do
@@ -22,7 +23,6 @@ done
 
 sed -i "/EOF/d" $LOCAL/config/otherrepo
 
-menu () {
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Build with other repository is selected to be built!"
