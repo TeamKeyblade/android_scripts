@@ -51,7 +51,7 @@ fi
 
 if [ $configs == "3" ]; then
 	cd $LOCAL/config
-	if [ "$(cat otherrepo)" == "" ]
+	if [ "$(cat otherrepo)" == "" ]; then
 	echo "# Add below the path to desired repo, absolute path recommended" > otherrepo
 	else
 	sed -i -e "0,/.*/ i \
