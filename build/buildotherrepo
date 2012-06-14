@@ -206,15 +206,15 @@ cd "${filelurker[$version]}"
 
 export OTHER_REPO_FOLDER=$(echo "${filelurker[$version]}")
 
-if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
+if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
 	export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
 	-e 's/_.*/_/' \
-	device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
+	vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
 else
-	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
+	if ( find device/*/*/vendorsetup.sh &> /dev/null ); then
 		export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
 		-e 's/_.*/_/' \
-		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
+		device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
 	else
 		echo "Repository not supported!"
 		buildotherrepo
