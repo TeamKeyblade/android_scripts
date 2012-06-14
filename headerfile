@@ -54,7 +54,7 @@ export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 
 # Start kitchen
 if [ $START ]; then
-	export $START=""
+	export START=""
 	kitchen
 	exit 0
 fi
