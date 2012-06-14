@@ -118,6 +118,7 @@ fi
 
 echo "The selected repo name is "$reponame
 echo "The selected platform name is "$platformname
+echo "With this selection the builds folder is "$reponame-$platformname
 echo ""
 echo "Is this correct?"
 read answer
