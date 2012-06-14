@@ -3,7 +3,6 @@
 clear
 
 if [ "$( cat $LOCAL/config/otherrepo | head -n1 )" == "" ]; then
-	echo ""
 	echo "other repo file is empty, please add to file then try again!"
 	echo "Press Enter to continue"
 	read done

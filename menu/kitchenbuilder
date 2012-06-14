@@ -84,18 +84,22 @@ if [ $buildanswer == "1" ]; then
 
 	if [ $buildgnexus == "1" ]; then
 		buildtoro
+		exit 0
 	fi
 
 	if [ $buildgnexus == "2" ]; then
 		buildmaguro
+		exit 0
 	fi
 
 	if [ $buildgnexus == "3" ]; then
 		buildtoroplus
+		exit 0
 	fi
 
 	if [ $buildgnexus == "4" ]; then
 		buildgnexus
+		exit 0
 	fi
 fi
 
@@ -139,14 +143,17 @@ if [ $buildanswer == "2" ]; then
 
 	if [ $buildnexuss == "1" ]; then
 		buildcrespo
+		menu
 	fi
 
 	if [ $buildnexuss == "2" ]; then
 		buildcrespo4g
+		menu
 	fi
 
 	if [ $buildnexuss == "3" ]; then
 		buildnexuss
+		menu
 	fi
 fi
 
@@ -190,31 +197,38 @@ if [ $buildanswer == "3" ]; then
 
 	if [ $buildxoom == "1" ]; then
 		buildstingray
+		menu
 	fi
 
 	if [ $buildxoom == "2" ]; then
 		buildwingray
+		menu
 	fi
 
 	if [ $buildxoom == "3" ]; then
 		buildxoom
+		menu
 	fi
 fi
 
 if [ $buildanswer == "4" ]; then
 	buildsts
+	menu
 fi
 
 if [ $buildanswer == "5" ]; then
 	buildsts
+	menu
 fi
 
 if [ $buildanswer == "6" ]; then
 	buildother
+	menu
 fi
 
 if [ $buildanswer == "7" ]; then
 	buildotherrepo
+	menu
 fi
 
 if [ $buildanswer == "8" ]; then
