@@ -10,6 +10,7 @@ if [ "$( cat $LOCAL/config/otherrepo | head -n1 )" == "" ]; then
 fi
 
 menu () {
+
 echo "EOF" >> $LOCAL/config/otherrepo
 
 while true; do
@@ -103,7 +104,7 @@ if [ "$platformname" == "" ]; then
 fi
 
 if [ $platformname == "exit" ]; then
-	exit 0
+	menu
 fi
 
 echo "The selected repo name is "$reponame
