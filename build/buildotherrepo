@@ -1,7 +1,6 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 
-menu () {
 clear
 
 if [ "$( cat $LOCAL/config/otherrepo | head -n1 )" == "" ]; then
@@ -46,7 +45,8 @@ if [ "$version" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
@@ -54,7 +54,8 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $version -gt $count ]; then
@@ -62,12 +63,13 @@ if [ $version -gt $count ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $version == $count ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
+	echo "Returning to Build Menu, Press Enter to continue"
 	read done
 	exit 0
 fi
@@ -85,11 +87,13 @@ if [ "$reponame" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $reponame == "exit" ]; then
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 echo ""
@@ -103,11 +107,13 @@ if [ "$platformname" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $platformname == "exit" ]; then
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 echo "The selected repo name is "$reponame
@@ -121,7 +127,8 @@ if [ "$answer" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $answer == "no" ] || [ $answer == "n" ]; then
@@ -129,7 +136,8 @@ if [ $answer == "no" ] || [ $answer == "n" ]; then
 	echo "I'm sorry lets try again.."
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 export SCRIPT_REPO=$(echo $reponame)
@@ -149,7 +157,8 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 while [ $device == "list" ]; do
@@ -184,11 +193,13 @@ if [ "$device" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 if [ $device == "exit" ]; then
-	menu
+	buildotherrepo
+	exit 0
 fi
 
 cd "${filelurker[$version]}"
@@ -206,7 +217,8 @@ else
 		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
 	else
 		echo "Repository not supported!"
-		menu
+		buildotherrepo
+		exit 0
 	fi
 fi
 
@@ -217,7 +229,3 @@ setupandro
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
 setupprop
-
-exit 0
-}
-menu

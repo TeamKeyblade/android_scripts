@@ -68,7 +68,7 @@ fi
 
 if [ $version == "6" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
+	echo "Returning to Build Menu, Press Enter to continue"
 	read done
 	exit 0
 fi
