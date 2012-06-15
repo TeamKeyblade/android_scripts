@@ -11,6 +11,26 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
+&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ); then
+	echo "Both Auto Builder's repository and device is not set!"
+	echo "Please use the Auto Builder config menu"
+	read -p "[Press Enter]: " done
+	exit 0
+elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ); then
+	echo "Auto Builder's repository is not set!"
+	echo "Please use the Auto Builder config menu"
+	read -p "[Press Enter]: " done
+	exit 0
+elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ); then
+	echo "Auto Builder's device is not set!"
+	echo "Please use the Auto Builder config menu"
+	read -p "[Press Enter]: " done
+	exit 0
+fi
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
 export AUTO=true
 
 if [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
