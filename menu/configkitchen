@@ -79,11 +79,11 @@ buildauto(){
 	echo "=============================="
 	echo "What are we setting up?"
 	echo "  1. List all availabe repository tags for Auto Builder"
-	echo "  1. Edit what repositories Auto Builder uses"
-	echo "  2. Edit what devices Auto Builder builds"
-	echo "  3. Edit where Auto Builder's output goes"
-	echo "  4. Toggle Auto Builder's sleep function"
-	echo "  5. Go Back"
+	echo "  2. Edit what repositories Auto Builder uses"
+	echo "  3. Edit what devices Auto Builder builds"
+	echo "  4. Edit where Auto Builder's output goes"
+	echo "  5. Toggle Auto Builder's sleep function"
+	echo "  6. Go Back"
 	echo ""
 	echo "Which one would you like to do?"
 	read buildautoconfig
@@ -93,7 +93,7 @@ buildauto(){
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		menu
+		buildauto
 	fi
 
 	if ( echo $buildautoconfig | grep -q [A-Za-z] ); then
@@ -101,18 +101,22 @@ buildauto(){
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		menu
+		buildauto
 	fi
 
-	if [ $buildautoconfig -gt "5" ]; then
+	if [ $buildautoconfig -gt "6" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		menu
+		buildauto
 	fi
 
 	if [ $buildautoconfig == "1" ]; then
+		cat $LOCAL/repolist | less
+	fi
+
+	if [ $buildautoconfig == "2" ]; then
 		cd $LOCAL/config
 		if [ "$(cat scriptrepo)" == "" ]; then
 			echo "# Add below this line the repo tag you want to auto build, list each repo per line" > scriptrepo
@@ -126,7 +130,7 @@ buildauto(){
 		sed -i "/# /d" scriptrepo
 	fi
 
-	if [ $buildautoconfig == "2" ]; then
+	if [ $buildautoconfig == "3" ]; then
 		cd $LOCAL/config
 		if [ "$(cat scriptdevice)" == "" ]; then
 			echo "# Add below this line the device codename you want to auto build, list each device per line" > scriptdevice
@@ -140,7 +144,7 @@ buildauto(){
 		sed -i "/# /d" scriptdevice
 	fi
 
-	if [ $buildautoconfig == "3" ]; then
+	if [ $buildautoconfig == "4" ]; then
 		cd $LOCAL/config
 		echo "Please type the absolute path of where u want the buildoutput.txt to be"
 		read sleeptime
@@ -148,7 +152,7 @@ buildauto(){
 		echo $outfilelocation > outfile
 	fi
 
-	if [ $buildautoconfig == "4" ]; then
+	if [ $buildautoconfig == "5" ]; then
 		if ( ! find $LOCAL/config/sleepybuildserver ); then
 			cd $LOCAL/config
 			echo "How long would you like for the build server to sleep after building?"
@@ -182,7 +186,7 @@ buildauto(){
 
 	fi
 
-	if [ $buildautoconfig == "5" ]; then
+	if [ $buildautoconfig == "6" ]; then
 		echo ""
 		echo "Press Enter to go back"
 		read done
