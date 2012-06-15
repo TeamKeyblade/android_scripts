@@ -1,4 +1,11 @@
 #!/bin/bash
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
+fi
+
 echo "Turning into advanced.."
 
 mkdir -p ~/bin

@@ -1,4 +1,11 @@
 #!/bin/bash
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
+fi
+
 echo "Initilizing the build enviroment.."
 echo ""
 echo "Checking what Operating System you are running..."
@@ -302,24 +309,18 @@ if ( uname -a | grep -q Darwin ); then
 	echo "Is Xcode installed? We recommend version 3.1.4 or newer"
 	read xcode
 
-	if [ $xcode == "y" ] || [ $xcode == "yes" ]; then
-		echo "Is MacPorts installed?"
-		read macports
+	echo "Is MacPorts installed?"
+	read macports
 
-		if [ $xcode == "y" ] || [ $xcode == "yes" ]; then
-			if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
-				echo "export PATH=/opt/local/bin:\$PATH" >> ~/.bash_profile
-			fi
+	if [ $xcode == "y" ] || [ $xcode == "yes" ] && [ $macports == "y" ] || [ $macports == "yes" ]; then
+		if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
+			echo "export PATH=/opt/local/bin:\$PATH" >> ~/.bash_profile
+		fi
 
-			POSIXLY_CORRECT=1 sudo port install gmake libsdl git-core gnupg
+		sudo port install gmake libsdl git-core gnupg
 
-			if ( ! cat ~/.bash_profile | grep -q "ulimit -S -n 1024" ); then
-				echo "ulimit -S -n 1024" >> ~/.bash_profile
-			fi
-		else
-			echo "Aborting.."
-			read done
-			exit 0
+		if ( ! cat ~/.bash_profile | grep -q "ulimit -S -n 1024" ); then
+			echo "ulimit -S -n 1024" >> ~/.bash_profile
 		fi
 	else
 		echo "Aborting.."

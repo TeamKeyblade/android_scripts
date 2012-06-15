@@ -1,8 +1,10 @@
 #!/bin/sh
-.scripts/bouncer
+if ( find .scripts 2> /dev/null 1>&2 ); then
+	.scripts/bouncer
 
-if ( uname -a | grep -q Darwin ); then
-	.scripts/macosxinit
+	if ( uname -a | grep -q Darwin ); then
+		.scripts/macosxinit
+	fi
 fi
 
 if ( ! find .scripts 2> /dev/null 1>&2 ); then

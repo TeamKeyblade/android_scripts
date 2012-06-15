@@ -1,5 +1,13 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	./headerfile
+	exit 0
+fi
+
+menu () {
 clear
 
 echo "Swordrune10's Android Kitchen!"
@@ -20,9 +28,7 @@ if [ "$answer" == "" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchen
-	exit 0
+	menu
 fi
 
 if ( echo $answer | grep -q [A-Za-z] ); then
@@ -30,9 +36,7 @@ if ( echo $answer | grep -q [A-Za-z] ); then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer -gt "10" ]; then
@@ -40,44 +44,37 @@ if [ $answer -gt "10" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "1" ]; then
 	kitchenarranger
 	cd $LOCAL
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "2" ]; then
 	kitchenconfigure
 	cd $LOCAL
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "3" ]; then
 	kitchenupdater
 	cd $LOCAL
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "4" ]; then
 	kitchenbuilder
 	cd $LOCAL
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "5" ]; then
 	kitchencleaner
 	cd $LOCAL
-	kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "6" ]; then
@@ -91,9 +88,7 @@ if [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
 	echo "You did not make a proper selection, try again!"
 	echo "Press Enter to continue"
 	read done
-
-	$LOCAL/kitchen
-	exit 0
+	menu
 fi
 
 if [ $answer == "10" ]; then
@@ -105,3 +100,5 @@ if [ $answer == "10" ]; then
 	fi
 	telnet towel.blinkenlights.nl
 fi
+}
+menu

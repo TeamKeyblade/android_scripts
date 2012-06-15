@@ -1,6 +1,12 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
+fi
+
 menu () {
 clear
 

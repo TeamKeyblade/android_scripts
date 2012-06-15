@@ -1,6 +1,11 @@
 #!/bin/bash
 # Declare global variables
-export LOCAL=$( cd $(dirname $0) && pwd )
+if ( uname -a | grep -q Darwin ); then
+	export POSIXLY_CORRECT=1
+	export LOCAL=$( echo "/Volumes/android/swordkitchen/.scripts" )
+else
+	export LOCAL=$( cd $(dirname $0) && pwd )
+fi
 export REPOS=$( echo "$LOCAL/../../repos" )
 export BUILDS=$( echo "$REPOS/../builds" )
 
@@ -55,8 +60,20 @@ export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 # Start kitchen
 if [ $START ]; then
 	export START=""
+	export INIT=true
 	kitchen
+	exit 0
 elif [ ! "$SCRIPT" == "" ]; then
 	export INIT=true
 	$SCRIPT
+	exit 0
+else
+	clear
+
+	echo "An Error Has Occurred!"
+	echo "======================"
+	echo "If you see this in error, please notify me at either xda or rootzwiki"
+	echo "if you prefer email you can reach me at mishana@swordrune10.net"
+	read done
+	kill 0
 fi

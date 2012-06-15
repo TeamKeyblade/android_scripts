@@ -1,10 +1,10 @@
 #!/bin/bash
 clear
 
-export LOCAL=$( pwd )
+export POSIXLY_CORRECT=1
 
 echo "You are running Mac OS X!"
-if ( ! find /Volumes/android/kitchen &> /dev/null )
+if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 	if ( ! find ~/android.dmg &> /dev/null ); then
 		echo ""
 		echo "We can't find android.dmg in your home folder, this is needed to build on mac os x"
@@ -32,47 +32,54 @@ if ( ! find /Volumes/android/kitchen &> /dev/null )
 			exit 0
 		fi
 
-		if [ $diskimage == "yes" ] || [ $diskimage == "y" ]; then
-			echo ""
-			echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
-			echo "Type in number in gigabytes"
-			read gigs
 
-			hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
-		fi
+		echo ""
+		echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
+		echo "Type in number in gigabytes"
+		read gigs
+
+		hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
 
 		echo ""
 		echo "Mounting new android.dmg.."
 		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
-		if ( ! find ~/bin/repo &> /dev/null ); then
-			echo "Couldn't find repo command, installing.."
-			mkdir -p ~/bin
+		if ( ! type -a repo &> /dev/null ); then
+			echo ""
+			echo "Installing the repo command.."
+
+			if ( ! find ~/bin &> /dev/null ); then
+				mkdir ~/bin
+			fi
+
 			wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
 			chmod a+x ~/bin/repo
+
+			PATH="$HOME/bin:$PATH"
 		fi
 
+		echo ""
 		echo "Moving into android.dmg.."
 		cd /Volumes/android
-		mkdir -p kitchen
-		cd kitchen
+		mkdir -p swordkitchen
+		cd swordkitchen
 
 		echo "Setting up kitchen.."
-		~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
-		~/bin/repo sync -j4
+		repo init -u http://github.com/TeamKeyblade/android_manifest.git -b master
+		repo sync -j4
 
 	else
 		echo "Found your android.dmg, mounting.."
 		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
-		if ( ! find /Volumes/android/kitchen &> /dev/null ); then
-			echo "We can't find android.dmg in your home folder, this is needed to build on mac os x"
-			echo "If you already have one made please put it in its proper place with its proper title"
+		if ( ! find /Volumes/android/swordkitchen &> /dev/null ); then
 			echo ""
-			echo "Would you like to make a new android.dmg?"
-			read diskimage
+			echo "We can't find the rom kitchen in /Volumes/android"
+			echo ""
+			echo "Would you like to make install rom kitchen in /Volumes/android?"
+			read androidvolume
 
-			if [ "$diskimage" == "" ]; then
+			if [ "$androidvolume" == "" ]; then
 				echo ""
 				echo "You didn't type in anything.."
 				echo "Press Enter to continue"
@@ -82,7 +89,7 @@ if ( ! find /Volumes/android/kitchen &> /dev/null )
 				exit 0
 			fi
 
-			if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+			if [ $androidvolume == "no" ] || [ $androidvolume == "n" ]; then
 				echo ""
 				echo "Exiting for now.."
 				echo "Press Enter to exit"
@@ -91,17 +98,33 @@ if ( ! find /Volumes/android/kitchen &> /dev/null )
 				exit 0
 			fi
 
-			if [ $diskimage == "yes" ] || [ $diskimage == "y" ]; then
+			if ( ! type -a repo &> /dev/null ); then
 				echo ""
-				echo "Setting up kitchen.."
-				~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master
-				~/bin/repo sync -j4
-				cd /Volumes/android/kitchen
+				echo "Installing the repo command.."
+
+				if ( ! find ~/bin &> /dev/null ); then
+					mkdir ~/bin
+				fi
+
+				wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+				chmod a+x ~/bin/repo
+
+				PATH="$HOME/bin:$PATH"
 			fi
+
+			echo ""
+			echo "Moving into android.dmg.."
+			cd /Volumes/android
+			mkdir -p swordkitchen
+			cd swordkitchen
+
+			echo "Setting up kitchen.."
+			repo init -u http://github.com/TeamKeyblade/android_manifest.git -b master
+			repo sync -j4
 		else
-			cd /Volumes/android/kitchen
+			cd /Volumes/android/swordkitchen
 		fi
 	fi
 else
-	cd /Volumes/android/kitchen
+	cd /Volumes/android/swordkitchen
 fi

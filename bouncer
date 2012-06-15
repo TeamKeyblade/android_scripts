@@ -17,7 +17,7 @@ fi
 
 homecheck=$( pwd )
 
-if [ $homecheck = $HOME ]; then
+if [ $homecheck == $HOME ]; then
 	clear
 
 	echo "Kitchen not set in correct place!"

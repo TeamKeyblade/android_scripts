@@ -1,10 +1,18 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 
-export test=$(echo "$1")
+if [ ! "$INIT" ]; then
+	export test=$(echo "$1")
+fi
 
 if [ ! "$test" == "" ]; then
 	export AUTO=true
+fi
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
 fi
 
 menu () {
