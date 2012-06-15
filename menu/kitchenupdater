@@ -292,13 +292,10 @@ if [ $version == "10" ]; then
 	exit 0
 fi
 
-if [ ! $AUTO ]; then
-	echo ""
-	echo "Press Enter to continue"
-	read done
-	menu
+if [ $AUTO ]; then
+	exit 0
 fi
 
-exit 0
+menu
 }
 menu

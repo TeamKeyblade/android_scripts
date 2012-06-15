@@ -75,9 +75,6 @@ if [ $configs == "4" ]; then
 	exit 0
 fi
 
-echo ""
-echo "Press Enter to continue"
-read done
 menu
 }
 menu
