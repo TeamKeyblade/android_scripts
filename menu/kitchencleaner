@@ -168,6 +168,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "2" ]; then
@@ -249,6 +250,7 @@ if [ $cleananswer == "2" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "3" ]; then
@@ -273,6 +275,7 @@ if [ $cleananswer == "3" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "4" ]; then
@@ -338,6 +341,9 @@ if [ $cleananswer == "4" ]; then
 		rm -rf $modify-ics
 	fi
 
+	echo ""
+	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "5" ]; then
@@ -465,6 +471,7 @@ if [ $cleananswer == "5" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "6" ]; then
@@ -505,6 +512,7 @@ if [ $cleananswer == "6" ]; then
 		./redeemer
 		echo ""
 		echo "Finished!"
+		read done
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -526,6 +534,7 @@ if [ $cleananswer == "6" ]; then
 		if [ ! $destroyer == "yes" ]; then
 			echo ""
 			echo "Aborting.."
+			read done
 		fi
 
 		if [ $destroyer == "yes" ]; then
@@ -565,6 +574,7 @@ if [ $cleananswer == "7" ]; then
 	if [ ! $destroyerofworlds == "yes" ]; then
 		echo ""
 		echo "Aborting.."
+		read done
 	fi
 
 	if [ $destroyerofworlds == "yes" ]; then
@@ -612,6 +622,7 @@ if [ $cleananswer == "8" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $cleananswer == "9" ]; then

@@ -69,6 +69,7 @@ if [ $setupanswer == "1" ]; then
 
 		echo ""
 		echo "Finished!"
+		read done
 	fi
 fi
 
@@ -100,6 +101,7 @@ if [ $setupanswer == "3" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "4" ]; then
@@ -126,6 +128,7 @@ if [ $setupanswer == "4" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "5" ]; then
@@ -152,6 +155,7 @@ if [ $setupanswer == "5" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "6" ]; then
@@ -178,6 +182,7 @@ if [ $setupanswer == "6" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "7" ]; then
@@ -204,6 +209,7 @@ if [ $setupanswer == "7" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "8" ]; then
@@ -230,6 +236,7 @@ if [ $setupanswer == "8" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "9" ]; then
@@ -258,6 +265,7 @@ if [ $setupanswer == "9" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "10" ]; then
@@ -284,6 +292,7 @@ if [ $setupanswer == "10" ]; then
 
 	echo ""
 	echo "Finished!"
+	read done
 fi
 
 if [ $setupanswer == "11" ]; then
