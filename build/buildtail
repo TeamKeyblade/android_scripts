@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
+fi
+
+if [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
+	outfile=$(echo $LOCAL/..)
+else
+	outfile=$(cat $LOCAL/config/outfile | head -n 1)
+fi
+
+tail -f $outfile/buildoutput.txt -n 100

@@ -78,7 +78,7 @@ buildauto(){
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "What are we setting up?"
-	echo "  1. List all availabe repository tags for Auto Builder"
+	echo "  1. List all available repository tags for Auto Builder"
 	echo "  2. Edit what repositories Auto Builder uses"
 	echo "  3. Edit what devices Auto Builder builds"
 	echo "  4. Edit where Auto Builder's output goes"
