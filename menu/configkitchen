@@ -71,11 +71,14 @@ if [ $configs == "3" ]; then
 fi
 
 if [ $configs == "4" ]; then
+
+buildauto(){
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "What are we setting up?"
+	echo "  1. List all availabe repository tags for Auto Builder"
 	echo "  1. Edit what repositories Auto Builder uses"
 	echo "  2. Edit what devices Auto Builder builds"
 	echo "  3. Edit where Auto Builder's output goes"
@@ -139,16 +142,10 @@ if [ $configs == "4" ]; then
 
 	if [ $buildautoconfig == "3" ]; then
 		cd $LOCAL/config
-		if [ "$(cat outfile)" == "" ]; then
-			echo "# Add below this line the absolute path of where u want the buildoutput.txt to be" > outfile
-		else
-			sed -i -e "0,/.*/ i \
-# Add below this line the absolute path of where u want the buildoutput.txt to be" \
-			outfile
-		fi
+		echo "Please type the absolute path of where u want the buildoutput.txt to be"
+		read sleeptime
 
-		nano outfile
-		sed -i "/# /d" outfile
+		echo $outfilelocation > outfile
 	fi
 
 	if [ $buildautoconfig == "4" ]; then
@@ -191,6 +188,9 @@ if [ $configs == "4" ]; then
 		read done
 		menu
 	fi
+buildauto
+}
+buildauto
 fi
 
 if [ $configs == "5" ]; then
