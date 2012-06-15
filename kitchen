@@ -48,31 +48,31 @@ if [ $answer -gt "10" ]; then
 fi
 
 if [ $answer == "1" ]; then
-	kitchenarranger
+	reposetup
 	cd $LOCAL
 	menu
 fi
 
 if [ $answer == "2" ]; then
-	kitchenconfigure
+	configkitchen
 	cd $LOCAL
 	menu
 fi
 
 if [ $answer == "3" ]; then
-	kitchenupdater
+	reposync
 	cd $LOCAL
 	menu
 fi
 
 if [ $answer == "4" ]; then
-	kitchenbuilder
+	buildmenu
 	cd $LOCAL
 	menu
 fi
 
 if [ $answer == "5" ]; then
-	kitchencleaner
+	fixkitchen
 	cd $LOCAL
 	menu
 fi

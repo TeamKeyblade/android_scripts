@@ -6,8 +6,14 @@ if ( uname -a | grep -q Darwin ); then
 else
 	export LOCAL=$( cd $(dirname $0) && pwd )
 fi
+
 export REPOS=$( echo "$LOCAL/../../repos" )
 export BUILDS=$( echo "$REPOS/../builds" )
+
+if ( find $BUILDS/../publish &> /dev/null); then
+	cd $BUILDS/../publish
+	export PUBLISH=$( pwd )
+fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -22,6 +28,10 @@ if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL/update:$PATH"
 	export PATH="$LOCAL/build:$PATH"
 	export PATH="$LOCAL:$PATH"
+fi
+
+if ( find $BUILDS/../publish &> /dev/null) && ( ! echo $PATH | grep -q "$HOME/bin/publish:" ); then
+	export PATH="$PUBLISH:$PATH"
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::

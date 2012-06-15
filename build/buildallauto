@@ -1,0 +1,119 @@
+#!/bin/bash
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
+
+cd $(dirname $0)
+
+if [ ! "$INIT" ]; then
+	export SCRIPT=$(echo "$0")
+	../headerfile
+	exit 0
+fi
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+export AUTO=true
+
+if [ $(cat $LOCAL/config/outfile) == "" ]; then
+	outfile=$(echo $LOCAL/../buildoutput.txt)
+else
+	outfile=$(cat $LOCAL/config/outfile)
+fi
+
+reposync kitchen > $outfile 2>&1
+reposync $SCRIPT_REPO >> $outfile 2>&1
+
+setupandro >> $outfile 2>&1
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+echo "EOF" >> $LOCAL/config/scriptrepo
+
+while true; do
+	let repocount=$repocount+1
+	scriptrepo[$repocount]=$( cat $LOCAL/config/scriptrepo | sed -n "$repocount"p )
+
+	if [ "${scriptrepo[$repocount]}" == "EOF" ]; then
+		break
+	fi
+done
+
+sed -i "/EOF/d" $LOCAL/config/scriptrepo
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+echo "EOF" >> $LOCAL/config/scriptdevice
+
+while true; do
+	let devicecount=$devicecount+1
+	scriptdevice[$devicecount]=$( cat $LOCAL/config/scriptdevice | sed -n "$devicecount"p )
+
+	if [ "${scriptdevice[$devicecount]}" == "EOF" ]; then
+		break
+	fi
+done
+
+sed -i "/EOF/d" $LOCAL/config/scriptdevice
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let repocountdown=$repocountdown+1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	export SCRIPT_REPO="${scriptrepo[$repocount]}"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	while true; do
+		let devicecountdown=$devicecountdown+1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
+		buildandro >> $outfile 2>&1
+		setupprop >> $outfile 2>&1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+			break
+		fi
+	done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+		break
+	fi
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+if ( find $BUILDS/../publish &> /dev/null); then
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	while true; do
+		let repocountdown=$repocountdown+1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		export SCRIPT_REPO="${scriptrepo[$repocount]}"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		while true; do
+			let devicecountdown=$devicecountdown+1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
+			publishandro >> $outfile 2>&1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+				break
+			fi
+		done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+			break
+		fi
+	done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fi
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# echo "" >> $outfile 2>&1
+# echo "Waiting.." >> $outfile 2>&1
+# sleep 1h
+
+# echo "" >> $outfile 2>&1
+# echo "XXXXXX" | sudo -S rtcwake -n -l -m mem -s 46800 > $dropbox/sleepytime.txt 2>&1
+# sleep 3m
+# echo "XXXXXX" | sudo -S rtcwake -l -m mem -s 46800 >> $outfile 2>&1
