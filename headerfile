@@ -7,7 +7,12 @@ else
 	export LOCAL=$( cd $(dirname $0) && pwd )
 fi
 
-export REPOS=$( echo "$LOCAL/../../repos" )
+if [ $LOCAL == $HOME/bin/kitchen ]; then
+	export REPOS=$( echo "$LOCAL/../../Documents/android/repos" )
+else
+	export REPOS=$( echo "$LOCAL/../../repos" )
+fi
+
 export BUILDS=$( echo "$REPOS/../builds" )
 
 if ( find $BUILDS/../publish &> /dev/null); then
