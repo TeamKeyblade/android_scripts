@@ -624,5 +624,6 @@ fi
 echo ""
 echo "Press Enter to continue"
 read done
+menu
 }
 menu
