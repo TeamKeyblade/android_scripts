@@ -1,10 +1,9 @@
 #!/bin/bash
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
 
-cd $(dirname $0)
-
 if [ ! "$INIT" ]; then
-	export SCRIPT=$(echo "$0")
+	cd $(dirname $0)
+	export SCRIPT=$(echo "buildauto")
 	../headerfile
 	exit 0
 fi

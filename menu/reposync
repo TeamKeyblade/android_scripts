@@ -10,7 +10,8 @@ if [ ! "$test" == "" ]; then
 fi
 
 if [ ! "$INIT" ]; then
-	export SCRIPT=$(echo "$0")
+	cd $(dirname $0)
+	export SCRIPT=$(echo "reposync")
 	../headerfile
 	exit 0
 fi

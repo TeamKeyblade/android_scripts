@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ ! "$INIT" ]; then
-	export SCRIPT=$(echo "$0")
+	cd $(dirname $0)
+	export SCRIPT=$(echo "buildtail")
 	../headerfile
 	exit 0
 fi
