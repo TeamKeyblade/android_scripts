@@ -26,24 +26,21 @@ read version
 if [ "$version" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if [ $version -gt "5" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
@@ -69,16 +66,14 @@ fi
 
 if [ $version == "5" ]; then
 	echo ""
-	echo "Returning to Build Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
 fi
 
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 

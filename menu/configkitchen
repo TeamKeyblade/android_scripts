@@ -72,8 +72,7 @@ if [ $configs == "3" ]; then
 fi
 
 if [ $configs == "4" ]; then
-
-buildauto(){
+	buildautomenu(){
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -94,7 +93,6 @@ buildauto(){
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		buildauto
 	fi
 
 	if ( echo $buildautoconfig | grep -q [A-Za-z] ); then
@@ -102,7 +100,6 @@ buildauto(){
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		buildauto
 	fi
 
 	if [ $buildautoconfig -gt "6" ]; then
@@ -110,7 +107,6 @@ buildauto(){
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
 		read done
-		buildauto
 	fi
 
 	if [ $buildautoconfig == "1" ]; then
@@ -189,19 +185,17 @@ buildauto(){
 
 	if [ $buildautoconfig == "6" ]; then
 		echo ""
-		echo "Press Enter to go back"
-		read done
+		read -p "Press Enter to go back: " done
 		menu
 	fi
-buildauto
-}
-buildauto
+	buildautomenu
+	}
+	buildautomenu
 fi
 
 if [ $configs == "5" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
 

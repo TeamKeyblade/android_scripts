@@ -36,25 +36,19 @@ read cleananswer
 if [ "$cleananswer" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if ( echo $cleananswer | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "1" ]; then
@@ -70,16 +64,14 @@ if [ $cleananswer == "1" ]; then
 	if [ "$addrepo" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 
 	if [ $addrepo == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -87,8 +79,7 @@ if [ $cleananswer == "1" ]; then
 		if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
-			echo "Press Enter to continue"
-			read done
+			read -p "Press Enter to continue: " done
 			menu
 		fi
 
@@ -115,8 +106,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
-			echo "Press Enter to continue"
-			read done
+			read -p "Press Enter to continue: " done
 			menu
 		fi
 
@@ -143,8 +133,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
-			echo "Press Enter to continue"
-			read done
+			read -p "Press Enter to continue: " done
 			menu
 		fi
 
@@ -169,7 +158,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "2" ]; then
@@ -185,16 +174,14 @@ if [ $cleananswer == "2" ]; then
 	if [ "$cleanse" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 
 	if [ $cleanse == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -251,7 +238,7 @@ if [ $cleananswer == "2" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "3" ]; then
@@ -276,7 +263,7 @@ if [ $cleananswer == "3" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "4" ]; then
@@ -296,15 +283,13 @@ if [ $cleananswer == "4" ]; then
 	if [ "$modify" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 	if [ $modify == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -318,15 +303,13 @@ if [ $cleananswer == "4" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -344,7 +327,7 @@ if [ $cleananswer == "4" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "5" ]; then
@@ -360,15 +343,13 @@ if [ $cleananswer == "5" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -472,7 +453,7 @@ if [ $cleananswer == "5" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "6" ]; then
@@ -488,15 +469,13 @@ if [ $cleananswer == "6" ]; then
 	if [ "$remover" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 	if [ $remover == "exit" ]; then
 		echo ""
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -513,7 +492,7 @@ if [ $cleananswer == "6" ]; then
 		./redeemer
 		echo ""
 		echo "Finished!"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -522,20 +501,19 @@ if [ $cleananswer == "6" ]; then
 		echo "You must type in \"yes\" to continue"
 		echo ""
 		echo "Type in anything else to abort operation"
-		read destroyer
+		read -p "yes/no? " destroyer
 
 		if [ "$destroyer" == "" ]; then
 			echo ""
 			echo "You didn't type in anything.."
-			echo "Press Enter to continue"
-			read done
+			read -p "Press Enter to continue: " done
 			menu
 		fi
 
 		if [ ! $destroyer == "yes" ]; then
 			echo ""
 			echo "Aborting.."
-			read done
+			read -p "Press Enter to continue: " done
 		fi
 
 		if [ $destroyer == "yes" ]; then
@@ -562,20 +540,19 @@ if [ $cleananswer == "7" ]; then
 	echo "You must type in \"yes\" to continue"
 	echo ""
 	echo "Type in anything else to abort operation"
-	read destroyerofworlds
+	read -p "yes/no? " destroyerofworlds
 
 	if [ "$destroyerofworlds" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
 	if [ ! $destroyerofworlds == "yes" ]; then
 		echo ""
 		echo "Aborting.."
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $destroyerofworlds == "yes" ]; then
@@ -600,13 +577,12 @@ if [ $cleananswer == "8" ]; then
 	echo "You must type in \"yes, please delete everything off my computer\" to continue"
 	echo ""
 	echo "Type in anything else to bail out"
-	read suicidenote
+	read -p "yes/no? " suicidenote
 
 	if [ "$suicidenote" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -623,13 +599,12 @@ if [ $cleananswer == "8" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "9" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
 

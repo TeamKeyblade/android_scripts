@@ -42,25 +42,20 @@ if [ ! $AUTO ]; then
 	if [ "$version" == "" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-		menu
+		read -p "Press Enter to continue: " done
 	fi
 
 	if ( echo $version | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		echo "Press Enter to continue"
-		read done
-		menu
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $version -gt "10" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
-		menu
+		read -p "Press Enter to continue: " done
 	fi
 fi
 
@@ -123,7 +118,10 @@ if [ $version == "1" ] || [ $version == "9" ]; then
 	repo sync -j$THREADS_TOTAL
 	echo ""
 	echo "Kitchen Update Complete!"
-	read done
+
+	if [ ! $AUTO ]; then
+		read -p "Press Enter to continue: " done
+	fi
 fi
 
 if [ $version == "2" ] || [ $version == "9" ]; then
@@ -143,11 +141,17 @@ if [ $version == "2" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Android Open Kang Project Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Android Open Kang Project not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -167,11 +171,17 @@ if [ $version == "3" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Android Open Source Project Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Android Open Source Project not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -192,11 +202,17 @@ if [ $version == "4" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Cyanogenmod 9 Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Cyanogenmod 9 not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -218,11 +234,17 @@ if [ $version == "5" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Evervolv Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Evervolv not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -243,11 +265,17 @@ if [ $version == "6" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Rooted & Busyboxed AOSP Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Rooted & Busyboxed AOSP not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -268,11 +296,17 @@ if [ $version == "7" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Solana/Targa/Spyder Dev Team Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Solana/Targa/Spyder Dev Team not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
@@ -293,18 +327,23 @@ if [ $version == "8" ] || [ $version == "9" ]; then
 
 		echo ""
 		echo "Team Gummy Update Complete!"
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	else
 		echo ""
 		echo "Team Gummy not initialized, aborting.. "
-		read done
+
+		if [ ! $AUTO ]; then
+			read -p "Press Enter to continue: " done
+		fi
 	fi
 fi
 
 if [ $version == "10" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
 

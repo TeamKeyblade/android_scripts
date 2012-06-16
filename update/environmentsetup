@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ ! "$INIT" ]; then
+	cd $(dirname $0)
 	export SCRIPT=$(echo "$0")
 	../headerfile
 	exit 0
@@ -19,8 +20,7 @@ if ( ! uname -a | grep -q x86_64 ); then
 	echo ""
 	echo "If you see this in error, please notify me at either xda or rootzwiki"
 	echo "if you prefer email you can reach me at mishana@swordrune10.net"
-	echo "Press enter to continue.."
-	read done
+	read -p "Press Enter to continue: " done
 	exit 0
 fi
 
@@ -35,8 +35,7 @@ if ( uname -a | grep -q Linux ); then
 		libXrender.i686 libXrandr.i686
 
 		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 
 		# fedora java installation
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
@@ -88,7 +87,7 @@ if ( uname -a | grep -q Linux ); then
 		echo ""
 		echo "Finished!"
 		envir=true
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	# Debian-based
@@ -162,8 +161,8 @@ if ( uname -a | grep -q Linux ); then
 		echo ""
 		wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O $LOCAL/../oab-java.sh
 		chmod +x $LOCAL/../oab-java.sh
-		echo "Switching to oab-java script, Press Enter to continue"
-		read done
+		echo "Switching to oab-java script"
+		read -p "Press Enter to continue: " done
 		sudo $LOCAL/../oab-java.sh
 		rm -f $LOCAL/../oab-java.sh
 		rm -f $LOCAL/../oab-java.sh.log
@@ -172,7 +171,7 @@ if ( uname -a | grep -q Linux ); then
 		echo ""
 		echo "Finished!"
 		export envir=true
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 
@@ -236,7 +235,7 @@ if ( uname -a | grep -q Linux ); then
 
 		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
 		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
 		# slightly edited to remove unneeded code
 
@@ -299,7 +298,7 @@ PATH="\$PATH:$jdk:$jre"" /etc/profile
 		echo ""
 		echo "Finished!"
 		export envir=true
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 fi
 
@@ -307,10 +306,10 @@ if ( uname -a | grep -q Darwin ); then
 	clear
 
 	echo "Is Xcode installed? We recommend version 3.1.4 or newer"
-	read xcode
+	read -p "yes/no? " xcode
 
 	echo "Is MacPorts installed?"
-	read macports
+	read -p "yes/no? " macports
 
 	if [ $xcode == "y" ] || [ $xcode == "yes" ] && [ $macports == "y" ] || [ $macports == "yes" ]; then
 		if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
@@ -324,13 +323,13 @@ if ( uname -a | grep -q Darwin ); then
 		fi
 	else
 		echo "Aborting.."
-		read done
+		read -p "Press Enter to continue: " done
 		exit 0
 	fi
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 	exit 0
 fi
 
@@ -350,7 +349,6 @@ if [! $envir ]; then
 	echo "If you see this in error, please notify me at either xda or rootzwiki"
 	echo "if you prefer email you can reach me at mishana@swordrune10.net"
 	echo ""
-	echo "Press enter to continue.."
-	read done
+	read -p "Press Enter to continue: " done
 	exit 0
 fi

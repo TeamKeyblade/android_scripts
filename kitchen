@@ -27,55 +27,44 @@ read answer
 if [ "$answer" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if ( echo $answer | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $answer -gt "10" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $answer == "1" ]; then
 	reposetup
 	cd $LOCAL
-	menu
 fi
 
 if [ $answer == "2" ]; then
 	configkitchen
 	cd $LOCAL
-	menu
 fi
 
 if [ $answer == "3" ]; then
 	reposync
 	cd $LOCAL
-	menu
 fi
 
 if [ $answer == "4" ]; then
 	buildmenu
 	cd $LOCAL
-	menu
 fi
 
 if [ $answer == "5" ]; then
 	fixkitchen
 	cd $LOCAL
-	menu
 fi
 
 if [ $answer == "6" ]; then
@@ -87,9 +76,7 @@ fi
 if [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $answer == "10" ]; then
@@ -101,5 +88,6 @@ if [ $answer == "10" ]; then
 	fi
 	telnet towel.blinkenlights.nl
 fi
+menu
 }
 menu

@@ -32,25 +32,19 @@ read setupanswer
 if [ "$setupanswer" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if ( echo $setupanswer | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer -gt "11" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
-	menu
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "1" ]; then
@@ -70,29 +64,26 @@ if [ $setupanswer == "1" ]; then
 
 		echo ""
 		echo "Finished!"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 fi
 
 if [ $setupanswer == "2" ]; then
 	environmentsetup
-	menu
 fi
 
 if [ $setupanswer == "3" ]; then
 	echo "initializing the Kitchen app repository.."
 
 	cd $LOCAL/..
-	repo init -u http://github.com/TeamKeyblade/android_manifest.git -b master
+	repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable
 
 	echo ""
 	echo "Sync the Kitchen app repository?"
-	read kitchensync
+	read -p "yes/no? " kitchensync
 
 	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
 		kitchenupdater kitchen
-		read done
-		menu
 	fi
 
 	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
@@ -102,7 +93,7 @@ if [ $setupanswer == "3" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "4" ]; then
@@ -114,12 +105,10 @@ if [ $setupanswer == "4" ]; then
 
 	echo ""
 	echo "Sync the Android Open Kang Project repository?"
-	read aokpsync
+	read -p "yes/no? " aokpsync
 
 	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
 		kitchenupdater aokp
-		read done
-		menu
 	fi
 
 	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
@@ -129,7 +118,7 @@ if [ $setupanswer == "4" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "5" ]; then
@@ -141,12 +130,10 @@ if [ $setupanswer == "5" ]; then
 
 	echo ""
 	echo "Sync the Android Open Source Project repository?"
-	read aospsync
+	read -p "yes/no? " aospsync
 
 	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
 		kitchenupdater aosp
-		read done
-		menu
 	fi
 
 	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
@@ -156,7 +143,7 @@ if [ $setupanswer == "5" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "6" ]; then
@@ -168,12 +155,10 @@ if [ $setupanswer == "6" ]; then
 
 	echo ""
 	echo "Sync the Cyanogenmod 9 repository?"
-	read cm9sync
+	read -p "yes/no? " cm9sync
 
 	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
 		kitchenupdater cm
-		read done
-		menu
 	fi
 
 	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
@@ -183,7 +168,7 @@ if [ $setupanswer == "6" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "7" ]; then
@@ -195,12 +180,10 @@ if [ $setupanswer == "7" ]; then
 
 	echo ""
 	echo "Sync the Android Open Source Project repository?"
-	read evervolvsync
+	read -p "yes/no? " evervolvsync
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
 		kitchenupdater ev
-		read done
-		menu
 	fi
 
 	if [ "$evervolvsync" == "" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
@@ -210,7 +193,7 @@ if [ $setupanswer == "7" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "8" ]; then
@@ -222,12 +205,10 @@ if [ $setupanswer == "8" ]; then
 
 	echo ""
 	echo "Sync the Rooted & Busyboxed AOSP repository?"
-	read raospsync
+	read -p "yes/no? " raospsync
 
 	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
 		kitchenupdater raosp
-		read done
-		menu
 	fi
 
 	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
@@ -237,7 +218,7 @@ if [ $setupanswer == "8" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "9" ]; then
@@ -247,16 +228,14 @@ if [ $setupanswer == "9" ]; then
 	cd $REPOS/sts-ics
 	repo init -u git://github.com/CyanogenMod/android.git -b ics
 
-	curl -L -o .repo/local_manifest.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml
+	wget https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml -O ./local_manifest.xml
 
 	echo ""
 	echo "Sync the Solana/Targa/Spyder repository?"
-	read stssync
+	read -p "yes/no? " stssync
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
 		kitchenupdater sts
-		read done
-		menu
 	fi
 
 	if [ "$stssync" == "" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
@@ -266,7 +245,7 @@ if [ $setupanswer == "9" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "10" ]; then
@@ -278,12 +257,10 @@ if [ $setupanswer == "10" ]; then
 
 	echo ""
 	echo "Sync the Team Gummy repository?"
-	read gummysync
+	read -p "yes/no? " gummysync
 
 	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
 		kitchenupdater gummy
-		read done
-		menu
 	fi
 
 	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
@@ -293,13 +270,12 @@ if [ $setupanswer == "10" ]; then
 
 	echo ""
 	echo "Finished!"
-	read done
+	read -p "Press Enter to continue: " done
 fi
 
 if [ $setupanswer == "11" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
 

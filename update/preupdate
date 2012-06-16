@@ -9,7 +9,6 @@ if [ $SCRIPT_REPO == "cm" ]; then
 		scriptmakir
 	fi
 	cp -f $LOCAL/xml/cm-local_manifest.xml ./local_manifest.xml
-	exit 0
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
@@ -20,7 +19,6 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 		scriptmakir
 	fi
 	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
-	exit 0
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
@@ -31,7 +29,6 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 		scriptmakir
 	fi
 	cp -f $LOCAL/xml/rooted-aosp-local_manifest.xml ./local_manifest.xml
-	exit 0
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then

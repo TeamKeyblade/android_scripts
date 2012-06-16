@@ -27,24 +27,21 @@ read version
 if [ "$version" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if ( echo $version | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if [ $version -gt "6" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
@@ -75,16 +72,14 @@ fi
 
 if [ $version == "6" ]; then
 	echo ""
-	echo "Returning to Build Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
 fi
 
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
@@ -100,8 +95,7 @@ read device
 if [ "$device" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
@@ -149,12 +143,12 @@ done
 if [ "$device" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if [ $device == "exit" ]; then
+	read -p "Press Enter to continue: " done
 	exit 0
 fi
 
@@ -164,8 +158,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi
@@ -176,8 +169,7 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi
@@ -188,8 +180,7 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 	$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi
@@ -200,8 +191,7 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 
@@ -213,8 +203,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi

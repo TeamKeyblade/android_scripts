@@ -18,7 +18,7 @@ if [ $AUTO ]; then
 fi
 
 echo "clean out folder?"
-read purgeout
+	read -p "yes/no? " purgeout
 
 if [ "$purgeout" == "" ]; then
 	echo ""

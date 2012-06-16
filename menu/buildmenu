@@ -29,28 +29,26 @@ read buildanswer
 if [ "$buildanswer" == "" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if ( echo $buildanswer | grep -q [A-Za-z] ); then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if [ $buildanswer -gt "8" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
-	echo "Press Enter to continue"
-	read done
+	read -p "Press Enter to continue: " done
 	menu
 fi
 
 if [ $buildanswer == "1" ]; then
+	gnexusmenu(){
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -68,22 +66,19 @@ if [ $buildanswer == "1" ]; then
 	if [ "$buildgnexus" == "" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildgnexus -gt "5" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildgnexus == "1" ]; then
@@ -105,9 +100,19 @@ if [ $buildanswer == "1" ]; then
 		buildgnexus
 		read done
 	fi
+
+	if [ $buildgnexus == "5" ]; then
+		echo ""
+		read -p "Press Enter to go back: " done
+		menu
+	fi
+	gnexusmenu
+	}
+	gnexusmenu
 fi
 
 if [ $buildanswer == "2" ]; then
+	nexussmenu(){
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -124,22 +129,19 @@ if [ $buildanswer == "2" ]; then
 	if [ "$buildnexuss" == "" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if ( echo $buildnexuss | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildnexuss -gt "4" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildnexuss == "1" ]; then
@@ -156,9 +158,19 @@ if [ $buildanswer == "2" ]; then
 		buildnexuss
 		read done
 	fi
+
+	if [ $buildnexuss == "5" ]; then
+		echo ""
+		read -p "Press Enter to go back: " done
+		menu
+	fi
+	nexussmenu
+	}
+	nexussmenu
 fi
 
 if [ $buildanswer == "3" ]; then
+	xoommenu(){
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -175,22 +187,19 @@ if [ $buildanswer == "3" ]; then
 	if [ "$buildxoom" == "" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if ( echo $buildxoom | grep -q [A-Za-z] ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildxoom -gt "4" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read done
+		read -p "Press Enter to continue: " done
 	fi
 
 	if [ $buildxoom == "1" ]; then
@@ -207,6 +216,15 @@ if [ $buildanswer == "3" ]; then
 		buildxoom
 		read done
 	fi
+
+	if [ $buildxoom == "4" ]; then
+		echo ""
+		read -p "Press Enter to go back: " done
+		menu
+	fi
+	xoommenu
+	}
+	xoommenu
 fi
 
 if [ $buildanswer == "4" ]; then
@@ -231,8 +249,7 @@ fi
 
 if [ $buildanswer == "8" ]; then
 	echo ""
-	echo "Returning to Main Menu, Press Enter to continue"
-	read done
+	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
 
