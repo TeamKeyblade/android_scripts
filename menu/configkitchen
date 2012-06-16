@@ -115,7 +115,7 @@ if [ $configs == "4" ]; then
 
 	if [ $buildautoconfig == "2" ]; then
 		cd $LOCAL/config
-		if [ "$(cat scriptrepo)" == "" ]; then
+		if [ "$(cat scriptrepo &> /dev/null)" == "" ]; then
 			echo "# Add below this line the repo tag you want to auto build, list each repo per line" > scriptrepo
 		else
 			sed -i -e "0,/.*/ i \
@@ -129,7 +129,7 @@ if [ $configs == "4" ]; then
 
 	if [ $buildautoconfig == "3" ]; then
 		cd $LOCAL/config
-		if [ "$(cat scriptdevice)" == "" ]; then
+		if [ "$(cat scriptdevice &> /dev/null)" == "" ]; then
 			echo "# Add below this line the device codename you want to auto build, list each device per line" > scriptdevice
 		else
 			sed -i -e "0,/.*/ i \
