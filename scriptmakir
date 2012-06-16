@@ -111,8 +111,8 @@ if [ $AUTHOR == "redeemer" ]; then
 	echo "echo \"Removing Kitchen\"" >> ../redeemer
 	echo "echo \"\"" >> ../redeemer
 	echo "rm -rf .repo" >> ../redeemer
-	echo "rm -rf .scripts" >> ../redeemer
-	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> ../redeemer
+	echo "rm -rf \$LOCAL" >> ../redeemer
+	echo "rm -f swordkitchen.sh" >> ../redeemer
 	echo "echo \"Settng Up Kitchen\"" >> ../redeemer
 	echo "echo \"\"" >> ../redeemer
 	echo "~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b stable" >> ../redeemer
@@ -134,12 +134,11 @@ if [ $AUTHOR == "destroyer" ] || [ $AUTHOR == "destroyerofworlds" ]; then
 	echo "echo \"Removing Kitchen\"" >> ../$AUTHOR
 	echo "echo \"\"" >> ../$AUTHOR
 	echo "rm -rf .repo" >> ../$AUTHOR
-	echo "rm -rf .scripts" >> ../$AUTHOR
-	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> ../$AUTHOR
-	echo "rm -f gitpuller" >> ../$AUTHOR
+	echo "rm -rf \$LOCAL" >> ../$AUTHOR
+	echo "rm -f swordkitchen.sh" >> ../$AUTHOR
 
 	if [ $AUTHOR == "destroyerofworlds" ]; then
-		echo "rm -rf ../repos" >> ../destroyerofworlds
+		echo "rm -rf \$REPOS" >> ../destroyerofworlds
 	fi
 
 	echo "echo \"Finished! Press Enter to exit\"" >> ../$AUTHOR
