@@ -42,6 +42,10 @@ else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
 fi
 
+if ( ! find $outfile/buildoutput.txt &> /dev/null ); then
+	touch $outfile/buildoutput.txt
+fi
+
 reposync kitchen > $outfile/buildoutput.txt 2>&1
 reposync $SCRIPT_REPO >> $outfile/buildoutput.txt 2>&1
 
