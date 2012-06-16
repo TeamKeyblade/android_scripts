@@ -115,7 +115,7 @@ if [ $AUTHOR == "redeemer" ]; then
 	echo "rm -f \"Swordrune10's Kitchen.sh\"" >> ../redeemer
 	echo "echo \"Settng Up Kitchen\"" >> ../redeemer
 	echo "echo \"\"" >> ../redeemer
-	echo "~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b master" >> ../redeemer
+	echo "~/bin/repo init -u http://github.com/swordrune10/android_manifest.git -b stable" >> ../redeemer
 	echo "~/bin/repo sync" >> ../redeemer
 fi
 
