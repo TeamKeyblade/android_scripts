@@ -11,17 +11,21 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
-&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ); then
+&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
+&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
 	echo "Both Auto Builder's repository and device is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
 	exit 0
-elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ); then
+elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ]; then
 	echo "Auto Builder's repository is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
 	exit 0
-elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ); then
+elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
 	echo "Auto Builder's device is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
