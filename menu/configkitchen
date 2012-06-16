@@ -144,7 +144,7 @@ if [ $configs == "4" ]; then
 	if [ $buildautoconfig == "4" ]; then
 		cd $LOCAL/config
 		echo "Please type the absolute path of where u want the buildoutput.txt to be"
-		read sleeptime
+		read outfilelocation
 
 		echo $outfilelocation > outfile
 	fi
