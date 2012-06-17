@@ -38,7 +38,8 @@ fi
 
 export AUTO=true
 
-if [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
+if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
+|| [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
 	outfile=$(echo $LOCAL/..)
 else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
