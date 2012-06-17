@@ -162,7 +162,7 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-if ( find $LOCAL/config/sleepybuildserver ); then
+if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 	echo "" >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 	echo "Waiting for ten minutes! this is not a countdown.." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 	sleep 10m
