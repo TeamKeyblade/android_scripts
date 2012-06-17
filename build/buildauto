@@ -151,7 +151,7 @@ if ( find $BUILDS/../publish &> /dev/null); then
 				break
 			fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
+			export SCRIPT_DEVICE="${scriptdevice[$devicecountdown]}"
 			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		done
