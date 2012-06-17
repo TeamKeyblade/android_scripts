@@ -37,7 +37,7 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 export AUTO=true
-export $REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
+export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
 
 if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
 || [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
