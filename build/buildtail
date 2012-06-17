@@ -7,10 +7,11 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
-if [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
+if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
+|| [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
 	outfile=$(echo $LOCAL/..)
 else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
 fi
 
-tail -f $outfile/buildoutput.txt -n 100
+tail -f $outfile/buildoutput-$(date +%Y%m%d).txt -n 100
