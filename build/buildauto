@@ -143,7 +143,7 @@ if ( find $BUILDS/../publish &> /dev/null); then
 			break
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		export SCRIPT_REPO="${scriptrepo[$repocount]}"
+		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		while true; do
 			let devicecountdown=$devicecountdown+1
