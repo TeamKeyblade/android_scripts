@@ -102,7 +102,7 @@ done
 setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
 repocountdown=""
-scriptcountdown=""
+devicecountdown=""
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
@@ -135,7 +135,7 @@ done
 if ( find $BUILDS/../publish &> /dev/null); then
 
 	repocountdown=""
-	scriptcountdown=""
+	devicecountdown=""
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let repocountdown=$repocountdown+1
