@@ -49,11 +49,6 @@ if ( ! find $outfile/buildoutput-$(date +%Y%m%d).txt &> /dev/null ); then
 	touch $outfile/buildoutput-$(date +%Y%m%d).txt
 fi
 
-reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-
-setupandro >> $outfile 2>&1
-
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 echo "EOF" >> $LOCAL/config/scriptrepo
@@ -86,16 +81,33 @@ sed -i "/EOF/d" $LOCAL/config/scriptdevice
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocountdown=$repocountdown+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	export SCRIPT_REPO="${scriptrepo[$repocount]}"
+	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+	reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+		break
+	fi
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let repocountdown=$repocountdown+1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let devicecountdown=$devicecountdown+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
+		export SCRIPT_DEVICE="${scriptdevice[$devicecountdown]}"
 		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 		setupprop >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
