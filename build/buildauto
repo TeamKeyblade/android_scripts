@@ -1,5 +1,7 @@
 #!/bin/bash
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
+if [ ! "$INIT" ]; then
+	export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
+fi
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
