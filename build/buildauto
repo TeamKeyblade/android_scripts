@@ -81,6 +81,8 @@ sed -i "/EOF/d" $LOCAL/config/scriptdevice
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+INIT=""
+
 reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
 repocountdown=""
@@ -94,6 +96,7 @@ while true; do
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+	INIT=""
 	reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 done
