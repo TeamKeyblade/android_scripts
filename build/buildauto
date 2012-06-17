@@ -45,12 +45,12 @@ else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
 fi
 
-if ( ! find $outfile/buildoutput.txt &> /dev/null ); then
-	touch $outfile/buildoutput.txt
+if ( ! find $outfile/buildoutput-$(date +%Y%m%d).txt &> /dev/null ); then
+	touch $outfile/buildoutput-$(date +%Y%m%d).txt
 fi
 
-reposync kitchen > $outfile/buildoutput.txt 2>&1
-reposync $SCRIPT_REPO >> $outfile/buildoutput.txt 2>&1
+reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
 setupandro >> $outfile 2>&1
 
@@ -96,8 +96,8 @@ while true; do
 		let devicecountdown=$devicecountdown+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
-		buildandro >> $outfile/buildoutput.txt 2>&1
-		setupprop >> $outfile/buildoutput.txt 2>&1
+		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+		setupprop >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
 			break
@@ -123,7 +123,7 @@ if ( find $BUILDS/../publish &> /dev/null); then
 			let devicecountdown=$devicecountdown+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
-			publishandro >> $outfile/buildoutput.txt 2>&1
+			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
 				break
@@ -140,10 +140,10 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 if ( find $LOCAL/config/sleepybuildserver ); then
-	echo "" >> $outfile/buildoutput.txt 2>&1
-	echo "Waiting for ten minutes! this is not a countdown.." >> $outfile/buildoutput.txt 2>&1
+	echo "" >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	echo "Waiting for ten minutes! this is not a countdown.." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 	sleep 10m
-	echo "Sleep..." >> $outfile/buildoutput.txt 2>&1
+	echo "Sleep..." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )
