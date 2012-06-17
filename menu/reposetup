@@ -83,7 +83,7 @@ if [ $setupanswer == "3" ]; then
 	read -p "yes/no? " kitchensync
 
 	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
-		kitchenupdater kitchen
+		reposync kitchen
 	fi
 
 	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
@@ -108,7 +108,7 @@ if [ $setupanswer == "4" ]; then
 	read -p "yes/no? " aokpsync
 
 	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
-		kitchenupdater aokp
+		reposync aokp
 	fi
 
 	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
@@ -133,7 +133,7 @@ if [ $setupanswer == "5" ]; then
 	read -p "yes/no? " aospsync
 
 	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
-		kitchenupdater aosp
+		reposync aosp
 	fi
 
 	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
@@ -158,7 +158,7 @@ if [ $setupanswer == "6" ]; then
 	read -p "yes/no? " cm9sync
 
 	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
-		kitchenupdater cm
+		reposync cm
 	fi
 
 	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
@@ -183,7 +183,7 @@ if [ $setupanswer == "7" ]; then
 	read -p "yes/no? " evervolvsync
 
 	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
-		kitchenupdater ev
+		reposync ev
 	fi
 
 	if [ "$evervolvsync" == "" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
@@ -208,7 +208,7 @@ if [ $setupanswer == "8" ]; then
 	read -p "yes/no? " raospsync
 
 	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
-		kitchenupdater raosp
+		reposync raosp
 	fi
 
 	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
@@ -235,7 +235,7 @@ if [ $setupanswer == "9" ]; then
 	read -p "yes/no? " stssync
 
 	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
-		kitchenupdater sts
+		reposync sts
 	fi
 
 	if [ "$stssync" == "" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
@@ -260,7 +260,7 @@ if [ $setupanswer == "10" ]; then
 	read -p "yes/no? " gummysync
 
 	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
-		kitchenupdater gummy
+		reposync gummy
 	fi
 
 	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
