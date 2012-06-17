@@ -86,13 +86,14 @@ reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocountdown=$repocountdown+1
+
+	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+		break
+	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 	reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
-		break
-	fi
 done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -101,24 +102,26 @@ setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocountdown=$repocountdown+1
+
+	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+		break
+	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let devicecountdown=$devicecountdown+1
+
+		if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+			break
+		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		export SCRIPT_DEVICE="${scriptdevice[$devicecountdown]}"
 		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 		setupprop >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
-			break
-		fi
 	done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
-		break
-	fi
 done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -128,23 +131,25 @@ if ( find $BUILDS/../publish &> /dev/null); then
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let repocountdown=$repocountdown+1
+
+		if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+			break
+		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		export SCRIPT_REPO="${scriptrepo[$repocount]}"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		while true; do
 			let devicecountdown=$devicecountdown+1
+
+			if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+				break
+			fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
 			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
-				break
-			fi
 		done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if [ $repocountdown == $( expr $repocount - 1 ) ]; then
-			break
-		fi
 	done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 fi
