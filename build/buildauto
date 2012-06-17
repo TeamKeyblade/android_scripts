@@ -45,10 +45,6 @@ else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
 fi
 
-if ( ! find $outfile/buildoutput-$(date +%Y%m%d).txt &> /dev/null ); then
-	touch $outfile/buildoutput-$(date +%Y%m%d).txt
-fi
-
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 echo "EOF" >> $LOCAL/config/scriptrepo
