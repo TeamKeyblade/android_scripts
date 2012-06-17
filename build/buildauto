@@ -83,11 +83,13 @@ sed -i "/EOF/d" $LOCAL/config/scriptdevice
 
 reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
+repocountdown=""
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocountdown=$repocountdown+1
 
-	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+	if ( echo "${scriptrepo[$repocountdown]}" | grep -q "EOF" ); then
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,11 +101,14 @@ done
 
 setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
+repocountdown=""
+scriptcountdown=""
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocountdown=$repocountdown+1
 
-	if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+	if ( echo "${scriptrepo[$repocountdown]}" | grep -q "EOF" ); then
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,7 +117,7 @@ while true; do
 	while true; do
 		let devicecountdown=$devicecountdown+1
 
-		if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+		if ( echo "${scriptdevice[$devicecountdown]}" | grep -q "EOF" ); then
 			break
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,11 +133,13 @@ done
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 if ( find $BUILDS/../publish &> /dev/null); then
+
+	repocountdown=""
+	scriptcountdown=""
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let repocountdown=$repocountdown+1
-
-		if [ $repocountdown == $( expr $repocount - 1 ) ]; then
+		if ( echo "${scriptrepo[$repocountdown]}" | grep -q "EOF" ); then
 			break
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -140,8 +147,7 @@ if ( find $BUILDS/../publish &> /dev/null); then
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		while true; do
 			let devicecountdown=$devicecountdown+1
-
-			if [ $devicecountdown == $( expr $devicecount - 1 ) ]; then
+			if ( echo "${scriptdevice[$devicecountdown]}" | grep -q "EOF" ); then
 				break
 			fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
