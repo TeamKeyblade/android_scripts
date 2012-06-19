@@ -217,6 +217,15 @@ export SCRIPT_DEVICE=$(echo $device)
 buildandro
 setupprop
 
+if [ $SCRIPT_REPO == "cm" ]; then
+	if ( ! cat $LOCAL/xml/cm-local_manifest.xml | grep -q $device\" ); then
+		adddevice=$(cat $REPOS/cm-ics/.repo/local_manifest.xml | grep $device\")
+		sed -i -e "/<manifest>/ a \
+		$adddevice" \
+		$LOCAL/xml/cm-local_manifest.xml
+	fi
+fi
+
 exit 0
 }
 menu
