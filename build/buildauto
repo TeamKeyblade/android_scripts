@@ -109,7 +109,7 @@ while true; do
 	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
 		scriptdevice[$devicecount]=$( cat $LOCAL/config/scriptdevice | sed -n "$devicecount"p )
 	else
-		scriptdevice[$repocount]=$( cat $LOCAL/config/otherdeviceauto | sed -n "$devicecount"p )
+		scriptdevice[$devicecount]=$( cat $LOCAL/config/otherdeviceauto | sed -n "$devicecount"p )
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if [ "${scriptdevice[$devicecount]}" == "EOF" ]; then
