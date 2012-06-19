@@ -208,24 +208,7 @@ if [ $device == "exit" ]; then
 	exit 0
 fi
 
-cd "${filelurker[$version]}"
-
 export OTHER_REPO_FOLDER=$(echo "${filelurker[$version]}")
-
-if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
-	export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
-	-e 's/_.*/_/' \
-	vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
-elif ( find device/*/*/vendorsetup.sh &> /dev/null ); then
-		export vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
-		-e 's/_.*/_/' \
-		device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
-	else
-		echo "Repository not supported!"
-		read -p "Press Enter to continue: " done
-		buildotherrepo
-		exit 0
-fi
 
 clear
 

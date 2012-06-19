@@ -27,20 +27,18 @@ if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	exit 0
 fi
 
-if [ $SCRIPT_REPO == "aokp" ]; then
-	vendor_lunch=$(echo "aokp_")
-fi
-
-if [ $SCRIPT_REPO == "evervolv" ]; then
-	vendor_lunch=$(echo "ev_")
-fi
-
-if [ $SCRIPT_REPO == "gummy" ]; then
-	vendor_lunch=$(echo "Gummy_")
-fi
-
-if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	vendor_lunch=$(echo "full_")
+if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
+	vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
+	-e 's/_.*/_/' \
+	vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
+elif ( find device/*/*/vendorsetup.sh &> /dev/null ); then
+		vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
+		-e 's/_.*/_/' \
+		device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
+	else
+		echo "Repository not supported!"
+		read -p "Press Enter to continue: " done
+		exit 0
 fi
 
 lunch $vendor_lunch$SCRIPT_DEVICE-userdebug
