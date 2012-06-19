@@ -104,52 +104,6 @@ if [ $reponame == "exit" ]; then
 	exit 0
 fi
 
-echo ""
-echo "What platform is this repo?"
-echo "Examples are; ics, gingerbread, froyo.."
-echo "Type in exit to go to back"
-read platformname
-
-if [ "$platformname" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-if [ $platformname == "exit" ]; then
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-echo "The selected repo name is "$reponame
-echo "The selected platform name is "$platformname
-echo "With this selection the builds folder is "$reponame-$platformname
-echo ""
-echo "Is this correct?"
-read -p "yes/no? " answer
-
-if [ "$answer" == "" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-if [ $answer == "no" ] || [ $answer == "n" ]; then
-	echo ""
-	echo "I'm sorry lets try again.."
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-export SCRIPT_REPO=$(echo $reponame)
-export REPO_PLATFORM=$(echo $platformname)
-
 clear
 
 echo "Swordrune10's Android Kitchen!"
