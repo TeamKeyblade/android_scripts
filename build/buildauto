@@ -1,4 +1,5 @@
 #!/bin/bash
+# Initial setup
 if [ ! "$INIT" ]; then
 	export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
 fi
@@ -10,24 +11,36 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
+export AUTO=true
+export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
+
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+# Check to see if auto builder can run
 if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
 && ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
 || [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
-&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ] \
+|| ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+&& ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ] \
+&& [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
 	echo "Both Auto Builder's repository and device is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
 	exit 0
 elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ]; then
+|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
+|| ( ! cat $LOCAL/config/otherrepoauto &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ]; then
 	echo "Auto Builder's repository is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
 	exit 0
 elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ] \
+|| ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
+|| [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
 	echo "Auto Builder's device is not set!"
 	echo "Please use the Auto Builder config menu"
 	read -p "Press Enter to continue: " done
@@ -36,9 +49,7 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-export AUTO=true
-export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
-
+# Buildoutput folder init
 if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
 || [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
 	outfile=$(echo $LOCAL/..)
@@ -48,40 +59,77 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-echo "EOF" >> $LOCAL/config/scriptrepo
+# Repo setup
+if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	echo "EOF" >> $LOCAL/config/scriptrepo
+else
+	echo "EOF" >> $LOCAL/config/otherrepoauto
+fi
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let repocount=$repocount+1
-	scriptrepo[$repocount]=$( cat $LOCAL/config/scriptrepo | sed -n "$repocount"p )
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+		scriptrepo[$repocount]=$( cat $LOCAL/config/scriptrepo | sed -n "$repocount"p )
+	else
+		scriptrepo[$repocount]=$( cat $LOCAL/config/otherrepoauto | sed -n "$repocount"p )
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if [ "${scriptrepo[$repocount]}" == "EOF" ]; then
 		break
 	fi
 done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-sed -i "/EOF/d" $LOCAL/config/scriptrepo
+if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	sed -i "/EOF/d" $LOCAL/config/scriptrepo
+else
+	sed -i "/EOF/d" $LOCAL/config/otherrepoauto
+fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-echo "EOF" >> $LOCAL/config/scriptdevice
+# Device setup
+if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	echo "EOF" >> $LOCAL/config/scriptdevice
+else
+	echo "EOF" >> $LOCAL/config/otherdeviceauto
+fi
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 while true; do
 	let devicecount=$devicecount+1
-	scriptdevice[$devicecount]=$( cat $LOCAL/config/scriptdevice | sed -n "$devicecount"p )
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+		scriptdevice[$devicecount]=$( cat $LOCAL/config/scriptdevice | sed -n "$devicecount"p )
+	else
+		scriptdevice[$repocount]=$( cat $LOCAL/config/otherdeviceauto | sed -n "$devicecount"p )
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if [ "${scriptdevice[$devicecount]}" == "EOF" ]; then
 		break
 	fi
 done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-sed -i "/EOF/d" $LOCAL/config/scriptdevice
+if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	sed -i "/EOF/d" $LOCAL/config/scriptdevice
+else
+	sed -i "/EOF/d" $LOCAL/config/otherdeviceauto
+fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+# Sync repos
 INIT=""
-
 reposync kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-
 repocountdown=""
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,15 +140,27 @@ while true; do
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
-	INIT=""
-	reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+		INIT=""
+		reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	else
+		cd "${scriptrepo[$repocountdown]}"
+		repo sync >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# Setup build
 setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# Build Device
 repocountdown=""
 devicecountdown=""
 
@@ -112,7 +172,12 @@ while true; do
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+	else
+		export OTHER_REPO_FOLDER=$(echo "${scriptrepo[$repocountdown]}")
+	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let devicecountdown=$devicecountdown+1
@@ -132,6 +197,7 @@ done
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+# Publish Build ( if possible )
 if ( find $BUILDS/../publish &> /dev/null); then
 
 	repocountdown=""
@@ -143,7 +209,12 @@ if ( find $BUILDS/../publish &> /dev/null); then
 			break
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+		if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+		|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+			export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
+		else
+			export OTHER_REPO_FOLDER=$(echo "${scriptrepo[$repocountdown]}")
+		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		while true; do
 			let devicecountdown=$devicecountdown+1
@@ -162,6 +233,7 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+# Put computer to sleep ( if setup to do so )
 if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 	echo "" >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 	echo "Waiting for ten minutes! this is not a countdown.." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
@@ -171,7 +243,7 @@ if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )
 
-	echo $passy | sudo -S rtcwake -n -l -m mem -s 46800 > $sleeptime/sleeptime.txt 2>&1
+	echo $passy | sudo -S rtcwake -n -l -m mem -s $sleeptime > $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
 	sleep 30
-	echo $passy | sudo -S rtcwake -l -m mem -s 46800 >> $sleeptime/sleeptime.txt 2>&1
+	echo $passy | sudo -S rtcwake -l -m mem -s $sleeptime >> $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
 fi
