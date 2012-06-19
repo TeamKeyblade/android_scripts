@@ -190,46 +190,15 @@ while true; do
 		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 		setupprop >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		# Publish Build ( if possible )
+		if ( find $BUILDS/../publish &> /dev/null); then
+			publishandro &
+		fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# ::::::::::::::::::::::::::::::::::::::::::::::
-
-# Publish Build ( if possible )
-if ( find $BUILDS/../publish &> /dev/null); then
-
-	repocountdown=""
-	devicecountdown=""
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	while true; do
-		let repocountdown=$repocountdown+1
-		if ( echo "${scriptrepo[$repocountdown]}" | grep -q "EOF" ); then
-			break
-		fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-		|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
-			export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
-		else
-			export OTHER_REPO_FOLDER=$(echo "${scriptrepo[$repocountdown]}")
-		fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		while true; do
-			let devicecountdown=$devicecountdown+1
-			if ( echo "${scriptdevice[$devicecountdown]}" | grep -q "EOF" ); then
-				break
-			fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			export SCRIPT_DEVICE="${scriptdevice[$devicecountdown]}"
-			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
