@@ -1,7 +1,8 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
-	cd $OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
+	"Build zip is located in $OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE"
+	exit 0
 else
 	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE
 fi
