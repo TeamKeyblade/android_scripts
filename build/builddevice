@@ -13,7 +13,7 @@ clear
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
-echo "Verizon Galaxy Nexus is selected to be built!"
+echo "$devicefullname is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
 echo "  1. Cyanogenmod 9"
@@ -171,18 +171,21 @@ fi
 if [ $buildgnexus == "1" ]; then
 	scriptdevice[1]=$(echo "toro")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Verizon Galaxy Nexus")
 	repomenu
 fi
 
 if [ $buildgnexus == "2" ]; then
 	scriptdevice[1]=$(echo "maguro")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "GSM Galaxy Nexus")
 	repomenu
 fi
 
 if [ $buildgnexus == "3" ]; then
 	scriptdevice[1]=$(echo "toroplus")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Sprint Galaxy Nexus")
 	repomenu
 fi
 
@@ -191,6 +194,7 @@ if [ $buildgnexus == "4" ]; then
 	scriptdevice[2]=$(echo "maguro")
 	scriptdevice[3]=$(echo "toroplus")
 	scriptdevice[4]=$(echo "EOF")
+	devicefullname=$(echo "All Galaxy Nexi")
 	repomenu
 fi
 
@@ -238,12 +242,14 @@ fi
 if [ $buildnexuss == "1" ]; then
 	scriptdevice[1]=$(echo "crespo")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "GSM Nexus S")
 	repomenu
 fi
 
 if [ $buildnexuss == "2" ]; then
 	scriptdevice[1]=$(echo "crespo4g")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Sprint Nexus S 4G")
 	repomenu
 fi
 
@@ -251,6 +257,7 @@ if [ $buildnexuss == "3" ]; then
 	scriptdevice[1]=$(echo "crespo")
 	scriptdevice[2]=$(echo "crespo4g")
 	scriptdevice[3]=$(echo "EOF")
+	devicefullname=$(echo "All Nexus S'")
 	repomenu
 fi
 
@@ -298,12 +305,14 @@ fi
 if [ $buildxoom == "1" ]; then
 	scriptdevice[1]=$(echo "stingray")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Verizon Xoom Tablet")
 	repomenu
 fi
 
 if [ $buildxoom == "2" ]; then
 	scriptdevice[1]=$(echo "wingray")
 	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Wifi Xoom Tablet")
 	repomenu
 fi
 
@@ -311,6 +320,7 @@ if [ $buildxoom == "3" ]; then
 	scriptdevice[1]=$(echo "stingray")
 	scriptdevice[2]=$(echo "wingray")
 	scriptdevice[3]=$(echo "EOF")
+	devicefullname=$(echo "All Xoom Tablets")
 	repomenu
 fi
 
@@ -331,6 +341,7 @@ scriptdevice[5]=$(echo "crespo4g")
 scriptdevice[6]=$(echo "stingray")
 scriptdevice[7]=$(echo "wingray")
 scriptdevice[8]=$(echo "EOF")
+devicefullname=$(echo "All Nexus Devices")
 repomenu
 }
 
