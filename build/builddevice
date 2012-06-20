@@ -44,7 +44,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ ! "${scriptdevice[*]}" == "toroplus"]; then
+if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
 	if [ $version -gt "6" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
@@ -80,7 +80,7 @@ if [ $version == "4" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ ! "${scriptdevice[*]}" == "toroplus"]; then
+if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
 	if [ $version == "5" ]; then
 		export SCRIPT_REPO=$(echo "aosp")
 		export REPO_PLATFORM=$(echo "ics")
