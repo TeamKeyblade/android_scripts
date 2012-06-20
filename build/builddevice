@@ -21,11 +21,11 @@ echo "  2. Rooted & Busyboxed AOSP"
 echo "  3. Android Open Kang Project"
 echo "  4. Team Gummy"
 
-if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
+if [ "${scriptdevice[*]}" == "toroplus" ]; then
+	echo "  5. Go Back"
+else
 	echo "  5. Android Open Source Project"
 	echo "  6. Go Back"
-else
-	echo "  5. Go Back"
 fi
 
 read version
@@ -44,15 +44,15 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
-	if [ $version -gt "6" ]; then
+if [ "${scriptdevice[*]}" == "toroplus" ]; then
+	if [ $version -gt "5" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		repomenu
 	fi
 else
-	if [ $version -gt "5" ]; then
+	if [ $version -gt "6" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -80,19 +80,19 @@ if [ $version == "4" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
+if [ "${scriptdevice[*]}" == "toroplus" ]; then
 	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "ics")
-	fi
-
-	if [ $version == "6" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
 	fi
 else
 	if [ $version == "5" ]; then
+		export SCRIPT_REPO=$(echo "aosp")
+		export REPO_PLATFORM=$(echo "ics")
+	fi
+
+	if [ $version == "6" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
