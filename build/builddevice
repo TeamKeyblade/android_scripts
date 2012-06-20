@@ -334,7 +334,7 @@ scriptdevice[8]=$(echo "EOF")
 repomenu
 }
 
-if ["$builddevicemenu" == "" ]; then
+if [ "$builddevicemenu" == "" ]; then
 	buildmenu
 else
 	$builddevicemenu
