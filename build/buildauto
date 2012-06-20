@@ -14,34 +14,50 @@ export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Check to see if auto builder can run
-if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
-&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
-&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ] \
-|| ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-&& ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ] \
-&& [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
-	echo "Both Auto Builder's repository and device is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
-	exit 0
-elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
-|| ( ! cat $LOCAL/config/otherrepoauto &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ]; then
-	echo "Auto Builder's repository is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
-	exit 0
-elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ] \
-|| ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
-|| [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
-	echo "Auto Builder's device is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
-	exit 0
+if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ); then
+	if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
+	&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
+	&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+		echo "Both Auto Builder's repository and device is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ]; then
+		echo "Auto Builder's repository is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+		echo "Auto Builder's device is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	fi
+else
+	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
+	&& ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ] \
+	&& [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
+		echo "Both Auto Builder's repository and device is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	elif ( ! cat $LOCAL/config/otherrepoauto &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ]; then
+		echo "Auto Builder's repository is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	elif ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
+	|| [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
+		echo "Auto Builder's device is not set!"
+		echo "Please use the Auto Builder config menu"
+		read -p "Press Enter to continue: " done
+		exit 0
+	fi
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
