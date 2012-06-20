@@ -21,7 +21,7 @@ echo "  2. Rooted & Busyboxed AOSP"
 echo "  3. Android Open Kang Project"
 echo "  4. Team Gummy"
 
-if [ ! "${scriptdevice[*]}" == "toroplus"]; then
+if [ ! "${scriptdevice[*]}" == "toroplus" ]; then
 	echo "  5. Android Open Source Project"
 	echo "  6. Go Back"
 else
