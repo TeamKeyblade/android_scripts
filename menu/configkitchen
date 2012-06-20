@@ -17,8 +17,7 @@ echo "Kitchen Config Menu"
 echo "  1. Edit Gitpuller"
 echo "  2. Edit Romeditor"
 echo "  3. Create/Edit other repo list"
-echo "  4. Auto Builder Menu"
-echo "  5. Go Back"
+echo "  4. Go Back"
 echo ""
 read -p "Which one would you like to do?: " configs
 
@@ -36,7 +35,7 @@ if ( echo $configs | grep -q [A-Za-z] ); then
 	menu
 fi
 
-if [ $configs -gt "5" ]; then
+if [ $configs -gt "4" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -68,164 +67,6 @@ if [ $configs == "3" ]; then
 fi
 
 if [ $configs == "4" ]; then
-	buildautomenu(){
-	clear
-
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Auto Builder Menu"
-	echo "  1. List all available repository tags for Auto Builder"
-	echo "  2. Edit what repositories Auto Builder uses"
-	echo "  3. Edit what devices Auto Builder builds"
-	echo "  4. Edit where Auto Builder's output goes"
-	echo "  5. Toggle Auto Builder build other repo"
-	echo "  6. Toggle Auto Builder's sleep function"
-	echo "  7. Go Back"
-	echo ""
-	read -p "Which one would you like to do?: " buildautoconfig
-
-	if [ "$buildautoconfig" == "" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if ( echo $buildautoconfig | grep -q [A-Za-z] ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildautoconfig -gt "7" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildautoconfig == "1" ]; then
-		cat $LOCAL/repolist | less
-	fi
-
-	if [ $buildautoconfig == "2" ]; then
-		cd $LOCAL/config
-		if [ "$(cat scriptrepo &> /dev/null)" == "" ]; then
-			echo "# Add below this line the repo tag you want to auto build, list each repo per line" > scriptrepo
-		else
-			sed -i -e "0,/.*/ i \
-# Add below this line the repo tag you want to auto build, list each repo per line" \
-			scriptrepo
-		fi
-
-		nano scriptrepo
-		sed -i "/# /d" scriptrepo
-	fi
-
-	if [ $buildautoconfig == "3" ]; then
-		cd $LOCAL/config
-		if [ "$(cat scriptdevice &> /dev/null)" == "" ]; then
-			echo "# Add below this line the device codename you want to auto build, list each device per line" > scriptdevice
-		else
-			sed -i -e "0,/.*/ i \
-# Add below this line the device codename you want to auto build, list each device per line" \
-			scriptdevice
-		fi
-
-		nano scriptdevice
-		sed -i "/# /d" scriptdevice
-	fi
-
-	if [ $buildautoconfig == "4" ]; then
-		cd $LOCAL/config
-		echo "Please type the absolute path of where u want the buildoutput.txt to be"
-		read outfilelocation
-
-		echo $outfilelocation > outfile
-	fi
-
-	if [ $buildautoconfig == "5" ]; then
-		if ( ! find $LOCAL/config/otherrepoauto ); then
-			cd $LOCAL/config
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			if [ "$(cat scriptrepo &> /dev/null)" == "" ]; then
-				echo "# Add below this line the repo tag you want to auto build, list each repo per line" > otherrepoauto
-			else
-				sed -i -e "0,/.*/ i \
-# Add below this line the repo tag you want to auto build, list each repo per line" \
-				otherrepoauto
-			fi
-
-			nano otherrepoauto
-			sed -i "/# /d" otherrepoauto
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			if [ "$(cat scriptdevice &> /dev/null)" == "" ]; then
-				echo "# Add below this line the device codename you want to auto build, list each device per line" > otherdeviceauto
-			else
-				sed -i -e "0,/.*/ i \
-# Add below this line the device codename you want to auto build, list each device per line" \
-				otherdeviceauto
-			fi
-
-			nano otherdeviceauto
-			sed -i "/# /d" otherdeviceauto
-
-			echo "Auto Builder's build other repo is now on!"
-			read -p "Press Enter to continue: " done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-		else
-			rm -f $LOCAL/config/otherrepoauto
-			rm -f $LOCAL/config/otherdeviceauto
-			echo "Auto Builder's build other repo is now off!"
-			read -p "Press Enter to continue: " done
-		fi
-
-	if [ $buildautoconfig == "6" ]; then
-		if ( ! find $LOCAL/config/sleepybuildserver ); then
-			cd $LOCAL/config
-			echo "How long would you like for the build server to sleep after building?"
-			echo "The number being inputted is in hours"
-			read sleeptime
-
-			sleeptime=$((($sleeptime * 60) * 60))
-			echo $sleeptime > sleepybuildserver
-
-			echo "Please type in your user's password, so the build server can sleep"
-			while true; do
-				read -p "$star" -r -s -n 1 letter
-				star="*"
-
-				if [ "$letter" == "" ]; then
-					break
-				fi
-
-				passy=$passy$letter
-			done
-
-			echo
-			echo $passy >> sleepybuildserver
-
-			echo "Auto Builder's sleep function is now on!"
-			read -p "Press Enter to continue: " done
-		else
-			rm -f $LOCAL/config/sleepybuildserver
-			echo "Auto Builder's sleep function is now off!"
-			read -p "Press Enter to continue: " done
-		fi
-
-	fi
-
-	if [ $buildautoconfig == "7" ]; then
-		echo ""
-		read -p "Press Enter to go back: " done
-		menu
-	fi
-	buildautomenu
-	}
-	buildautomenu
-fi
-
-if [ $configs == "5" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0

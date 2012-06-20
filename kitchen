@@ -19,7 +19,8 @@ echo "  2. Configure Kitchen"
 echo "  3. Update Kitchen"
 echo "  4. Run Kitchen"
 echo "  5. Fix Kitchen"
-echo "  6. Exit"
+echo "  6. Auto Build Kitchen"
+echo "  7. Exit"
 echo ""
 echo "Which one would you like to do?"
 read answer
@@ -68,12 +69,17 @@ if [ $answer == "5" ]; then
 fi
 
 if [ $answer == "6" ]; then
+	buildautomenu
+	cd $LOCAL
+fi
+
+if [ $answer == "7" ]; then
 	echo ""
 	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
 	exit 0
 fi
 
-if [ $answer == "7" ] || [ $answer == "8" ] || [ $answer == "9" ]; then
+if [ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
