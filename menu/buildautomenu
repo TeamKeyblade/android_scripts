@@ -158,8 +158,8 @@ fi
 
 if [ $buildautoconfig == "7" ]; then
 	echo ""
-	read -p "Press Enter to go back: " done
-	menu
+	read -p "Returning to Main Menu, Press Enter to continue: " done
+	exit 0
 fi
 buildautomenu
 }
