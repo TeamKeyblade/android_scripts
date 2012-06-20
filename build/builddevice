@@ -21,7 +21,7 @@ echo "  2. Rooted & Busyboxed AOSP"
 echo "  3. Android Open Kang Project"
 echo "  4. Team Gummy"
 
-if [ ${scriptdevice[*]} == "toroplus" ]; then
+if [ $toroplusinbuild ]; then
 	echo "  5. Go Back"
 else
 	echo "  5. Android Open Source Project"
@@ -44,7 +44,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ ${scriptdevice[*]} == "toroplus" ]; then
+if [ $toroplusinbuild ]; then
 	if [ $version -gt "5" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
@@ -80,7 +80,7 @@ if [ $version == "4" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ ${scriptdevice[*]} == "toroplus" ]; then
+if [ $toroplusinbuild ]; then
 	if [ $version == "5" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -186,6 +186,7 @@ if [ $buildgnexus == "3" ]; then
 	scriptdevice[1]=$(echo "toroplus")
 	scriptdevice[2]=$(echo "EOF")
 	devicefullname=$(echo "Sprint Galaxy Nexus")
+	toroplusinbuild=true
 	repomenu
 fi
 
@@ -195,6 +196,7 @@ if [ $buildgnexus == "4" ]; then
 	scriptdevice[3]=$(echo "toroplus")
 	scriptdevice[4]=$(echo "EOF")
 	devicefullname=$(echo "All Galaxy Nexi")
+	toroplusinbuild=true
 	repomenu
 fi
 
@@ -342,6 +344,7 @@ scriptdevice[6]=$(echo "stingray")
 scriptdevice[7]=$(echo "wingray")
 scriptdevice[8]=$(echo "EOF")
 devicefullname=$(echo "All Nexus Devices")
+toroplusinbuild=true
 repomenu
 }
 
