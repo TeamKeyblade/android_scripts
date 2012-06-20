@@ -48,187 +48,26 @@ if [ $buildanswer -gt "8" ]; then
 fi
 
 if [ $buildanswer == "1" ]; then
-	gnexusmenu(){
-	clear
-
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Today's Menu:"
-	echo "  1. Build Verizon Galaxy Nexus"
-	echo "  2. Build GSM Galaxy Nexus"
-	echo "  3. Build Sprint Galaxy Nexus"
-	echo "  4. Build all above!"
-	echo "  5. Go Back"
-	echo ""
-	echo "Which one would you like to do?"
-	read buildgnexus
-
-	if [ "$buildgnexus" == "" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if ( echo $buildgnexus | grep -q [A-Za-z] ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildgnexus -gt "5" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildgnexus == "1" ]; then
-		buildtoro
-		read done
-	fi
-
-	if [ $buildgnexus == "2" ]; then
-		buildmaguro
-		read done
-	fi
-
-	if [ $buildgnexus == "3" ]; then
-		buildtoroplus
-		read done
-	fi
-
-	if [ $buildgnexus == "4" ]; then
-		buildgnexus
-		read done
-	fi
-
-	if [ $buildgnexus == "5" ]; then
-		echo ""
-		read -p "Press Enter to go back: " done
-		menu
-	fi
-	gnexusmenu
-	}
-	gnexusmenu
+	export builddevicemenu=$(echo "gnexusmenu")
+	builddevice
+	read done
 fi
 
 if [ $buildanswer == "2" ]; then
-	nexussmenu(){
-	clear
-
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Today's Menu:"
-	echo "  1. Build GSM Nexus S"
-	echo "  2. Build Sprint Nexus S 4G"
-	echo "  3. Build all above!"
-	echo "  4. Go Back"
-	echo ""
-	echo "Which one would you like to do?"
-	read buildnexuss
-
-	if [ "$buildnexuss" == "" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if ( echo $buildnexuss | grep -q [A-Za-z] ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildnexuss -gt "4" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildnexuss == "1" ]; then
-		buildcrespo
-		read done
-	fi
-
-	if [ $buildnexuss == "2" ]; then
-		buildcrespo4g
-		read done
-	fi
-
-	if [ $buildnexuss == "3" ]; then
-		buildnexuss
-		read done
-	fi
-
-	if [ $buildnexuss == "5" ]; then
-		echo ""
-		read -p "Press Enter to go back: " done
-		menu
-	fi
-	nexussmenu
-	}
-	nexussmenu
+	export builddevicemenu=$(echo "nexussmenu")
+	builddevice
+	read done
 fi
 
 if [ $buildanswer == "3" ]; then
-	xoommenu(){
-	clear
-
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Today's Menu:"
-	echo "  1. Build Verizon Xoom Tablet"
-	echo "  2. Build Wifi Xoom Tablet"
-	echo "  3. Build all above!"
-	echo "  4. Go Back"
-	echo ""
-	echo "Which one would you like to do?"
-	read buildxoom
-
-	if [ "$buildxoom" == "" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if ( echo $buildxoom | grep -q [A-Za-z] ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildxoom -gt "4" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $buildxoom == "1" ]; then
-		buildstingray
-		read done
-	fi
-
-	if [ $buildxoom == "2" ]; then
-		buildwingray
-		read done
-	fi
-
-	if [ $buildxoom == "3" ]; then
-		buildxoom
-		read done
-	fi
-
-	if [ $buildxoom == "4" ]; then
-		echo ""
-		read -p "Press Enter to go back: " done
-		menu
-	fi
-	xoommenu
-	}
-	xoommenu
+	export builddevicemenu=$(echo "xoommenu")
+	builddevice
+	read done
 fi
 
 if [ $buildanswer == "4" ]; then
-	buildsts
+	export builddevicemenu=$(echo "allmenu")
+	builddevice
 	read done
 fi
 
