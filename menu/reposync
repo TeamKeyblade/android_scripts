@@ -110,6 +110,35 @@ if [ ! "$test" == "" ]; then
 	fi
 fi
 
+synccode() {
+if ( find $DOTREPO &> /dev/null); then
+	echo ""
+	echo "Updating $repo_name repository.."
+	cd $REPOFOLDER
+
+	preupdate
+	repo sync -j$supersync
+
+	$LOCAL/config/gitpuller
+
+	postupdate
+
+	echo ""
+	echo "$repo_name Update Complete!"
+
+	if [ ! $AUTO ]; then
+		read -p "Press Enter to continue: " done
+	fi
+else
+	echo ""
+	echo "$repo_name not initialized, aborting.. "
+
+	if [ ! $AUTO ]; then
+		read -p "Press Enter to continue: " done
+	fi
+fi
+}
+
 if [ $version == "1" ] || [ $version == "9" ]; then
 	echo ""
 	echo "Updating the Kitchen app repository.."
@@ -204,35 +233,6 @@ if [ $version == "9" ]; then
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
-
-synccode() {
-if ( find $DOTREPO &> /dev/null); then
-	echo ""
-	echo "Updating $repo_name repository.."
-	cd $REPOFOLDER
-
-	preupdate
-	repo sync -j$supersync
-
-	$LOCAL/config/gitpuller
-
-	postupdate
-
-	echo ""
-	echo "$repo_name Update Complete!"
-
-	if [ ! $AUTO ]; then
-		read -p "Press Enter to continue: " done
-	fi
-else
-	echo ""
-	echo "$repo_name not initialized, aborting.. "
-
-	if [ ! $AUTO ]; then
-		read -p "Press Enter to continue: " done
-	fi
-fi
-}
 
 if [ $version == "10" ]; then
 	echo ""
