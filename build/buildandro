@@ -29,18 +29,20 @@ if [ $AUTO ]; then
 	make clobber
 fi
 
-echo "clean out folder?"
+if [ ! $AUTO ]; then
+	echo "clean out folder?"
 	read -p "yes/no? " purgeout
 
-if [ "$purgeout" == "" ]; then
-	echo ""
-	echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
+	if [ "$purgeout" == "" ]; then
+		echo ""
+		echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
 
-	make clobber
-fi
+		make clobber
+	fi
 
-if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
-	make clobber
+	if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
+		make clobber
+	fi
 fi
 
 #build android
