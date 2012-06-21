@@ -1,14 +1,10 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-cd $REPOS/$SCRIPT_REPO-ics/.repo
-if [ $SCRIPT_REPO == "cm" ]; then
+if [ $SCRIPT_REPO == "aokp" ]; then
+	rm -r vendor/aokp
 	echo ""
-	echo "Updating Cyanogenmod 9's local_manifest.xml"
-	if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
-	cp -f $LOCAL/xml/cm-local_manifest.xml ./local_manifest.xml
+	echo "Updating Android Open Kang Project's local_manifest.xml"
+	wget https://raw.github.com/AOKP/platform_manifest/ics/kernel_manifest.xml -O $DOTREPO/local_manifest.xml
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
@@ -18,27 +14,42 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/aosp-local_manifest.xml ./local_manifest.xml
+	cp -f $LOCAL/xml/aosp-local_manifest.xml $DOTREPO/local_manifest.xml
+fi
+
+if [ $SCRIPT_REPO == "cm" ]; then
+	rm -r vendor/cm
+	echo ""
+	echo "Updating Cyanogenmod 9's local_manifest.xml"
+	if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
+		export AUTHOR="xml"
+		scriptmakir
+	fi
+	cp -f $LOCAL/xml/cm-local_manifest.xml $DOTREPO/local_manifest.xml
+fi
+
+if [ $SCRIPT_REPO == "evervolv" ]; then
+	rm -r vendor/ev
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	rm -r vendor/keyblade
 	echo ""
 	echo "Updating Rooted & Busyboxed's  local_manifest.xml"
 	if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/rooted-aosp-local_manifest.xml ./local_manifest.xml
-fi
-
-if [ $SCRIPT_REPO == "aokp" ]; then
-	echo ""
-	echo "Updating Android Open Kang Project's local_manifest.xml"
-	wget https://raw.github.com/AOKP/platform_manifest/ics/kernel_manifest.xml -O ./local_manifest.xml
+	cp -f $LOCAL/xml/rooted-aosp-local_manifest.xml $DOTREPO/local_manifest.xml
 fi
 
 if [ $SCRIPT_REPO == "sts" ]; then
+	rm -r vendor/cm
 	echo ""
 	echo "Updating STS Dev Team's local_manifest.xml"
-	wget https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml -O ./local_manifest.xml
+	wget https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml -O $DOTREPO/local_manifest.xml
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	rm -r vendor/Gummy
 fi
