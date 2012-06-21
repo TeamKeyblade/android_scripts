@@ -11,6 +11,8 @@ else
 	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
 fi
 
+. build/envsetup.sh
+
 if ( find $outfolder/build.prop &> /dev/null ); then
 	rm $outfolder/build.prop
 fi
@@ -18,8 +20,6 @@ cd ..
 if ( find $outfolder/*.zip &> /dev/null ); then
 	rm $outfolder/*.zip*
 fi
-
-source build/envsetup.sh
 
 if [ $AUTO ]; then
 	make clobber
