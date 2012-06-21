@@ -4,23 +4,21 @@
 export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 export BUILDFOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
 export DOTREPO=$( echo "$REPOFOLDER/.repo" )
-$LOCAL/config/romeditor
 
-rmbuildprop=$(echo "rm -f \$outfolder/system/build.prop")
-rmoldzip=$(echo "rm -f \$outfolder/*.zip*")
+$LOCAL/config/romeditor
 
 if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
 	outfolder=$(echo "$OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
 
-	$rmbuildprop
-	$rmoldzip
+	rm -f $outfolder/system/build.prop
+	rm -f $outfolder/*.zip*
 
 	cd $OTHER_REPO_FOLDER
 else
 	outfolder=$(echo "$REPOFOLDER/out/target/product/$SCRIPT_DEVICE")
 
-	$rmbuildprop
-	$rmoldzip
+	rm -f $outfolder/system/build.prop
+	rm -f $outfolder/*.zip*
 
 	cd $REPOFOLDER
 fi
