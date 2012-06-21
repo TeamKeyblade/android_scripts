@@ -3,8 +3,8 @@
 #setup build
 $LOCAL/config/romeditor
 
-rmbuildprop=$(echo "rm \$outfolder/system/build.prop &> /dev/null")
-rmoldzip=$(echo "rm \$outfolder/*.zip* &> /dev/null")
+rmbuildprop=$(echo "rm -f \$outfolder/system/build.prop")
+rmoldzip=$(echo "rm -f \$outfolder/*.zip*")
 
 if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
 	outfolder=$(echo "$OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
