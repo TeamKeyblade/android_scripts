@@ -27,7 +27,6 @@ fi
 
 if [ $AUTO ]; then
 	make clobber
-	exit 0
 fi
 
 echo "clean out folder?"
@@ -47,7 +46,6 @@ fi
 #build android
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
-	exit 0
 fi
 
 if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
