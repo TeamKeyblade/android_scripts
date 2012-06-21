@@ -14,5 +14,4 @@ else
 	cd .scripts
 fi
 
-export START=true
-./headerfile
+./kitchen

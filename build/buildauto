@@ -3,9 +3,7 @@
 if [ ! "$INIT" ]; then
 	export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
 	cd $(dirname $0)
-	export SCRIPT=$(echo "buildauto")
-	../headerfile
-	exit 0
+	. ../headerfile
 fi
 
 export AUTO=true

@@ -3,9 +3,7 @@
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
-	export SCRIPT=$(echo "buildother")
-	../headerfile
-	exit 0
+	. ../headerfile
 fi
 
 menu () {
