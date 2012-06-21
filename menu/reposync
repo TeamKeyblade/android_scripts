@@ -124,222 +124,115 @@ if [ $version == "1" ] || [ $version == "9" ]; then
 	fi
 fi
 
-if [ $version == "2" ] || [ $version == "9" ]; then
-	if ( find $REPOS/aokp-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "aokp")
-		echo ""
-		echo "Updating the Android Open Kang Project repository.."
-		cd $REPOS/aokp-ics
-		rm -r vendor/aokp
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Android Open Kang Project Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Android Open Kang Project not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "2" ]; then
+	export SCRIPT_REPO=$(echo "aokp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Android Open Kang Project")
+	synccode
 fi
 
-if [ $version == "3" ] || [ $version == "9" ]; then
-	if ( find $REPOS/aosp-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "aosp")
-		echo ""
-		echo "Updating Android Open Source Project repository.."
-		cd $REPOS/aosp-ics
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Android Open Source Project Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Android Open Source Project not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "3" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Android Open Source Project")
+	synccode
 fi
 
-if [ $version == "4" ] || [ $version == "9" ]; then
-	if ( find $REPOS/cm-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "cm")
-		echo ""
-		echo "Updating Cyanogenmod 9 repository.."
-		cd $REPOS/cm-ics
-		rm -r vendor/cm
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Cyanogenmod 9 Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Cyanogenmod 9 not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "4" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Cyanogenmod 9")
+	synccode
 fi
 
 
-if [ $version == "5" ] || [ $version == "9" ]; then
-	if ( find $REPOS/evervolv-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "evervolv")
-		echo ""
-		echo "Updating Evervolv repository.."
-		cd $REPOS/evervolv-ics
-		rm -r vendor/ev
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Evervolv Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Evervolv not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "5" ]; then
+	export SCRIPT_REPO=$(echo "evervolv")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Evervolv")
+	synccode
 fi
 
-if [ $version == "6" ] || [ $version == "9" ]; then
-	if ( find $REPOS/rooted-aosp-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "rooted-aosp")
-		echo ""
-		echo "Updating Rooted & Busyboxed AOSP repository.."
-		cd $REPOS/rooted-aosp-ics
-		rm -r vendor/keyblade
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Rooted & Busyboxed AOSP Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Rooted & Busyboxed AOSP not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "6" ]; then
+	export SCRIPT_REPO=$(echo "rooted-aosp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Rooted & Busyboxed AOSP")
+	synccode
 fi
 
-if [ $version == "7" ] || [ $version == "9" ]; then
-	if ( find $REPOS/sts-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "sts")
-		echo ""
-		echo "Updating Solana/Targa/Spyder Dev Team repository.."
-		cd $REPOS/sts-ics
-		rm -r vendor/cm
-
-		preupdate
-		repo sync -j$supersync
-
-		$LOCAL/config/gitpuller
-
-		postupdate
-
-		echo ""
-		echo "Solana/Targa/Spyder Dev Team Update Complete!"
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Solana/Targa/Spyder Dev Team not initialized, aborting.. "
-
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	fi
+if [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "sts")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
+	synccode
 fi
 
-if [ $version == "8" ] || [ $version == "9" ]; then
-	if ( find $REPOS/gummy-ics/.repo &> /dev/null); then
-		export SCRIPT_REPO=$(echo "gummy")
-		echo ""
-		echo "Updating Team Gummy repository.."
-		cd $REPOS/gummy-ics
-		rm -r vendor/Gummy
+if [ $version == "8" ]; then
+	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Team Gummy")
+	synccode
+fi
 
-		preupdate
-		repo sync -j$supersync
+if [ $version == "9" ]; then
+	export SCRIPT_REPO=$(echo "aokp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Android Open Kang Project")
+	synccode
+	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Android Open Source Project")
+	synccode
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Cyanogenmod 9")
+	synccode
+	export SCRIPT_REPO=$(echo "evervolv")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Evervolv")
+	synccode
+	export SCRIPT_REPO=$(echo "rooted-aosp")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Rooted & Busyboxed AOSP")
+	synccode
+	export SCRIPT_REPO=$(echo "sts")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
+	synccode
+	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_name=$(echo "Team Gummy")
+	synccode
+fi
 
-		$LOCAL/config/gitpuller
+synccode() {
+if ( find $DOTREPO &> /dev/null); then
+	echo ""
+	echo "Updating $repo_name repository.."
+	cd $REPOFOLDER
 
-		postupdate
+	preupdate
+	repo sync -j$supersync
 
-		echo ""
-		echo "Team Gummy Update Complete!"
+	$LOCAL/config/gitpuller
 
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
-	else
-		echo ""
-		echo "Team Gummy not initialized, aborting.. "
+	postupdate
 
-		if [ ! $AUTO ]; then
-			read -p "Press Enter to continue: " done
-		fi
+	echo ""
+	echo "$repo_name Update Complete!"
+
+	if [ ! $AUTO ]; then
+		read -p "Press Enter to continue: " done
+	fi
+else
+	echo ""
+	echo "$repo_name not initialized, aborting.. "
+
+	if [ ! $AUTO ]; then
+		read -p "Press Enter to continue: " done
 	fi
 fi
+}
 
 if [ $version == "10" ]; then
 	echo ""
