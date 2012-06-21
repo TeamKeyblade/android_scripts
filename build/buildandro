@@ -1,6 +1,9 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 #setup build
+export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export BUILDFOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export DOTREPO=$( echo "$REPOFOLDER/.repo" )
 $LOCAL/config/romeditor
 
 rmbuildprop=$(echo "rm -f \$outfolder/system/build.prop")

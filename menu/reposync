@@ -111,6 +111,8 @@ if [ ! "$test" == "" ]; then
 fi
 
 synccode() {
+export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export DOTREPO=$( echo "$REPOFOLDER/.repo" )
 if ( find $DOTREPO &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
