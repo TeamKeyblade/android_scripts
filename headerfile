@@ -15,9 +15,9 @@ fi
 
 export BUILDS=$( echo "$REPOS/../builds" )
 
-export REPOFOLDER=$( echo "$REPOS/\$SCRIPT_REPO-\$REPO_PLATFORM" )
-export BUILDFOLDER=$( echo "$BUILDS/\$SCRIPT_REPO-\$REPO_PLATFORM" )
-export DOTREPO=$( echo "\$REPOFOLDER/.repo" )
+export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export BUILDFOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export DOTREPO=$( echo "$REPOFOLDER/.repo" )
 
 if ( find $BUILDS/../publish &> /dev/null); then
 	cd $BUILDS/../publish
