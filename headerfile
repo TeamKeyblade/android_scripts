@@ -72,23 +72,4 @@ export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# Start kitchen
-if [ $START ]; then
-	export START=""
-	export INIT=true
-	kitchen
-	exit 0
-elif [ ! "$SCRIPT" == "" ]; then
-	export INIT=true
-	$SCRIPT
-	exit 0
-else
-	clear
-
-	echo "An Error Has Occurred!"
-	echo "======================"
-	echo "If you see this in error, please notify me at either xda or rootzwiki"
-	echo "if you prefer email you can reach me at mishana@swordrune10.net"
-	read done
-	kill 0
-fi
+export INIT=true
