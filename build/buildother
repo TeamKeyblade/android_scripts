@@ -211,11 +211,8 @@ fi
 
 clear
 
-setupandro
-
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
-setupprop
 
 if [ $SCRIPT_REPO == "cm" ]; then
 	if ( ! cat $LOCAL/xml/cm-local_manifest.xml | grep -q $device\" ); then

@@ -166,10 +166,7 @@ export OTHER_REPO_FOLDER=$(echo "${filelurker[$version]}")
 
 clear
 
-setupandro
-
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
-setupprop
 
 echo "Finished!"

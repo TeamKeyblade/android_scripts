@@ -61,8 +61,6 @@ if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	menu
 fi
 
-setupandro
-
 if [ $version == "1" ]; then
 	export SCRIPT_DEVICE=$(echo "solana")
 fi
@@ -81,25 +79,20 @@ fi
 
 if [ ! $version == "5" ]; then
 	buildandro
-	setupprop
 fi
 
 if [ $version == "5" ]; then
 	export SCRIPT_DEVICE=$(echo "solana")
 	buildandro
-	setupprop
 
 	export SCRIPT_DEVICE=$(echo "maserati")
 	buildandro
-	setupprop
 
 	export SCRIPT_DEVICE=$(echo "targa")
 	buildandro
-	setupprop
 
 	export SCRIPT_DEVICE=$(echo "spyder")
 	buildandro
-	setupprop
 fi
 
 echo "Finished!"
