@@ -171,3 +171,5 @@ setupandro
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
 setupprop
+
+echo "Finished!"

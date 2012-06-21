@@ -102,6 +102,7 @@ if [ $version == "5" ]; then
 	setupprop
 fi
 
+echo "Finished!"
 exit 0
 }
 menu
