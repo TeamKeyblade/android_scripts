@@ -19,7 +19,7 @@ if ( find $outfolder/*.zip &> /dev/null ); then
 	rm $outfolder/*.zip*
 fi
 
-. build/envsetup.sh
+source build/envsetup.sh
 
 if [ $AUTO ]; then
 	make clobber
