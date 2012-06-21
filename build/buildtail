@@ -2,7 +2,9 @@
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
-	. ../headerfile
+	export SCRIPT=$(echo "buildtail")
+	../headerfile
+	exit 0
 fi
 
 if ( ! cat $LOCAL/config/outfile &> /dev/null ) \

@@ -3,7 +3,9 @@
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
-	. ../headerfile
+	export SCRIPT=$(echo "builddevice")
+	../headerfile
+	exit 0
 fi
 
 repomenu () {

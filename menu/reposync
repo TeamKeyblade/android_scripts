@@ -11,7 +11,9 @@ fi
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
-	. ../headerfile
+	export SCRIPT=$(echo "reposync")
+	../headerfile
+	exit 0
 fi
 
 menu () {
