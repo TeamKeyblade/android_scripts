@@ -1,9 +1,14 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+#setup build
+$LOCAL/config/romeditor
+
 if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
 	outfolder=$(echo "$OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE/system")
+	cd $OTHER_REPO_FOLDER
 else
 	outfolder=$(echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE/system")
+	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
 fi
 
 if ( find $outfolder/build.prop &> /dev/null ); then
@@ -14,14 +19,28 @@ if ( find $outfolder/*.zip &> /dev/null ); then
 	rm $outfolder/*.zip*
 fi
 
-if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
-	cd $OTHER_REPO_FOLDER
-else
-	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
-fi
-
 . build/envsetup.sh
 
+if [ $AUTO ]; then
+	make clobber
+	exit 0
+fi
+
+echo "clean out folder?"
+	read -p "yes/no? " purgeout
+
+if [ "$purgeout" == "" ]; then
+	echo ""
+	echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
+
+	make clobber
+fi
+
+if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
+	make clobber
+fi
+
+#build android
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
 	exit 0
@@ -43,3 +62,82 @@ fi
 
 lunch $vendor_lunch$SCRIPT_DEVICE-userdebug
 make CC=gcc-4.4 CXX=g++-4.4 otapackage -j$THREADS_TOTAL
+
+#build aftermath
+if [ ! "$OTHER_REPO_FOLDER" == "" ]; then
+	"Build zip is located in $OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE"
+	exit 0
+else
+	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/out/target/product/$SCRIPT_DEVICE
+fi
+
+if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
+	zip=$(find cm-*.zip)
+fi
+
+if [ $SCRIPT_REPO == "aokp" ]; then
+	zip=$(find aokp*.zip)
+fi
+
+if [ $SCRIPT_REPO == "evervolv" ]; then
+	zip=$(find Evervolv*.zip)
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	zip=$(find Gummy*.zip)
+fi
+
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	zip=$(find full*.zip)
+
+	echo "Making temporary folder for post-building $zip fixes"
+	mkdir -p $BUILDS/temp/zipout
+	cp $zip $BUILDS/temp
+	cd $BUILDS/temp/zipout
+
+	echo "Unzipping $zip"
+	unzip ../$zip > /dev/null
+
+	echo "Removing uneeded recovery folder from $zip"
+	rm -r recovery
+
+	if [ $SCRIPT_REPO == "aosp" ]; then
+		cd system
+		echo "Adding rom manager items to $zip's build.prop"
+		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
+		echo "ro.modversion=$(echo "aosp-$REPO_PLATFORM-$(date +%Y%m%d)-$SCRIPT_DEVICE")" >> build.prop
+
+		cd ..
+	fi
+
+	echo "Zipping $zip back up"
+	zip -r unsignedcrap.zip . > /dev/null
+
+	echo "Signing $zip with test keys"
+	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
+fi
+
+mkdir -p $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/old
+
+if ( find $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/*$SCRIPT_DEVICE.zip &> /dev/null); then
+	echo "Moving older build to $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/old"
+
+	mv $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/*$SCRIPT_DEVICE.zip $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/old
+	mv $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/*$SCRIPT_DEVICE.zip.md5sum $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/old
+fi
+
+newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
+
+echo "Copying to $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM"
+echo "$zip -> $newzip"
+cp $zip $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/$newzip
+
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	echo "Cleaning up temporary folder"
+	cd $BUILDS
+	rm -r temp
+fi
+
+cd $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM
+md5sum $newzip
+md5sum $newzip > $newzip.md5sum

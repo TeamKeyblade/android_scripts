@@ -168,11 +168,6 @@ done
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# Setup build
-setupandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-
-# ::::::::::::::::::::::::::::::::::::::::::::::
-
 # Build Device
 repocountdown=""
 devicecountdown=""
@@ -201,7 +196,6 @@ while true; do
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		export SCRIPT_DEVICE="${scriptdevice[$devicecountdown]}"
 		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-		setupprop >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# Publish Build ( if possible )
 		if ( find $BUILDS/../publish &> /dev/null); then
