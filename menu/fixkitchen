@@ -485,10 +485,10 @@ if [ $cleananswer == "6" ]; then
 		export AUTHOR="redeemer"
 		scriptmakir
 
-		chmod a+x redeemer
 		echo ""
 		echo "Switching to Redeemer script.."
 		echo ""
+		cd ..
 		./redeemer
 		echo ""
 		echo "Finished!"
@@ -520,11 +520,11 @@ if [ $cleananswer == "6" ]; then
 			export AUTHOR="destroyer"
 			scriptmakir
 
-			chmod a+x destroyer
 			echo ""
 			echo "Thank you for using Swordrune10's Kitchen!"
 			echo "Switching to Destroyer script.."
 			echo ""
+			cd ..
 			./destroyer
 			exit 0
 		fi
@@ -559,11 +559,11 @@ if [ $cleananswer == "7" ]; then
 		export AUTHOR="destroyerofworlds"
 		scriptmakir
 
-		chmod a+x destroyerofworlds
 		echo ""
 		echo "Thank you for using Swordrune10's Kitchen!"
 		echo "Switching to Destroyer of Worlds script.."
 		echo ""
+		cd ..
 		./destroyerofworlds
 		exit 0
 	fi

@@ -48,7 +48,6 @@ mkdir -p $LOCAL/xml
 if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
 	export AUTHOR="gitpuller"
 	scriptmakir
-	chmod a+x $LOCAL/config/gitpuller
 fi
 
 if ( ! find $LOCAL/config/otherrepo &> /dev/null ); then
@@ -58,7 +57,6 @@ fi
 if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
 	export AUTHOR="romeditor"
 	scriptmakir
-	chmod a+x $LOCAL/config/romeditor
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
