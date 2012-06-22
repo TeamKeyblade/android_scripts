@@ -114,7 +114,12 @@ devicecount=""
 while true; do
 	let devicecount=$devicecount+1
 
+	if [ $devicecount == "2"]
+		export SLOPPYSECONDS=true
+	fi
+
 	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		export SLOPPYSECONDS=""
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
