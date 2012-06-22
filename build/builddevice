@@ -114,7 +114,7 @@ devicecount=""
 while true; do
 	let devicecount=$devicecount+1
 
-	if [ $devicecount == "2"]
+	if [ $devicecount == "2"]; then
 		export SLOPPYSECONDS=true
 	fi
 
