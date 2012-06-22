@@ -190,7 +190,7 @@ while true; do
 	while true; do
 		let devicecountdown=$devicecountdown+1
 
-		if [ $devicecountdown == "2"]; then
+		if [ $devicecountdown == "2" ]; then
 			export SLOPPYSECONDS=true
 		fi
 
