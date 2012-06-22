@@ -136,9 +136,9 @@ echo "Redeemer is running!"
 echo ""
 echo "Removing Kitchen"
 echo ""
-rm -rf \$LOCAL/../.repo
-rm -rf \$LOCAL
-rm -f \$LOCAL/../swordkitchen.sh
+rm -rf .repo
+rm -rf .scripts
+rm -f swordkitchen.sh
 echo "Settng Up Kitchen"
 echo ""
 repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable
