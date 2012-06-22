@@ -5,12 +5,16 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	./get-prebuilts
 fi
 
-if [ $SCRIPT_REPO == "gummy" ]; then
-	cd $REPOS/gummy-ics/vendor/Gummy
-	./get-prebuilts
+if [ $SCRIPT_REPO == "rooted-aosp" ]; then
+	rm -rf system/extras/su
 fi
 
 if [ $SCRIPT_REPO == "sts" ]; then
 	cd $REPOS/sts-ics/vendor/cm
+	./get-prebuilts
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+	cd $REPOS/gummy-ics/vendor/Gummy
 	./get-prebuilts
 fi

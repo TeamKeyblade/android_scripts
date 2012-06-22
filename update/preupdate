@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 if [ $SCRIPT_REPO == "aokp" ]; then
-	rm -r vendor/aokp
+	rm -rf vendor/aokp
 	echo ""
 	echo "Updating Android Open Kang Project's local_manifest.xml"
 	wget https://raw.github.com/AOKP/platform_manifest/ics/kernel_manifest.xml -O $DOTREPO/local_manifest.xml
@@ -18,7 +18,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 fi
 
 if [ $SCRIPT_REPO == "cm" ]; then
-	rm -r vendor/cm
+	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 9's local_manifest.xml"
 	if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
@@ -29,11 +29,11 @@ if [ $SCRIPT_REPO == "cm" ]; then
 fi
 
 if [ $SCRIPT_REPO == "evervolv" ]; then
-	rm -r vendor/ev
+	rm -rf vendor/ev
 fi
 
 if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	rm -r vendor/keyblade
+	rm -rf vendor/keyblade
 	echo ""
 	echo "Updating Rooted & Busyboxed's  local_manifest.xml"
 	if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
@@ -44,12 +44,12 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 fi
 
 if [ $SCRIPT_REPO == "sts" ]; then
-	rm -r vendor/cm
+	rm -rf vendor/cm
 	echo ""
 	echo "Updating STS Dev Team's local_manifest.xml"
 	wget https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml -O $DOTREPO/local_manifest.xml
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
-	rm -r vendor/Gummy
+	rm -rf vendor/Gummy
 fi
