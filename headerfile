@@ -50,10 +50,6 @@ if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
 	scriptmakir
 fi
 
-if ( ! find $LOCAL/config/otherrepo &> /dev/null ); then
-	touch $LOCAL/config/otherrepo
-fi
-
 if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
 	export AUTHOR="romeditor"
 	scriptmakir
