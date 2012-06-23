@@ -17,20 +17,20 @@ export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
 if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ); then
 	if ( ! cat $LOCAL/config/scriptrepo &> /dev/null ) \
 	&& ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ] \
-	&& [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/scriptrepo)" ] \
+	&& [ ! "$(cat $LOCAL/config/scriptdevice)" ]; then
 		echo "Both Auto Builder's repository and device is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
 		exit 0
 	elif ( ! cat $LOCAL/config/scriptrepo &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/scriptrepo)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/scriptrepo)" ]; then
 		echo "Auto Builder's repository is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
 		exit 0
 	elif ( ! cat $LOCAL/config/scriptdevice &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/scriptdevice)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/scriptdevice)" ]; then
 		echo "Auto Builder's device is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
@@ -39,20 +39,20 @@ if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ); then
 else
 	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
 	&& ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ] \
-	&& [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherrepoauto)" ] \
+	&& [ ! "$(cat $LOCAL/config/otherdeviceauto)" ]; then
 		echo "Both Auto Builder's repository and device is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
 		exit 0
 	elif ( ! cat $LOCAL/config/otherrepoauto &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/otherrepoauto)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherrepoauto)" ]; then
 		echo "Auto Builder's repository is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
 		exit 0
 	elif ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null  ) \
-	|| [ "$(cat $LOCAL/config/otherdeviceauto)" == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherdeviceauto)" ]; then
 		echo "Auto Builder's device is not set!"
 		echo "Please use the Auto Builder config menu"
 		read -p "Press Enter to continue: " done
@@ -64,7 +64,7 @@ fi
 
 # Buildoutput folder init
 if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
-|| [ $(cat $LOCAL/config/outfile | head -n 1) == "" ]; then
+|| [ ! "$(cat $LOCAL/config/outfile | head -n 1)" ]; then
 	outfile=$(echo $LOCAL/..)
 else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
@@ -74,7 +74,7 @@ fi
 
 # Repo setup
 if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+|| [ ! "$(cat $LOCAL/config/otherrepoauto | head -n 1)" ]; then
 	echo "EOF" >> $LOCAL/config/scriptrepo
 else
 	echo "EOF" >> $LOCAL/config/otherrepoauto
@@ -85,7 +85,7 @@ while true; do
 	let repocount=$repocount+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherrepoauto | head -n 1)" ]; then
 		scriptrepo[$repocount]=$( cat $LOCAL/config/scriptrepo | sed -n "$repocount"p )
 	else
 		scriptrepo[$repocount]=$( cat $LOCAL/config/otherrepoauto | sed -n "$repocount"p )
@@ -98,7 +98,7 @@ done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+|| [ ! "$(cat $LOCAL/config/otherrepoauto | head -n 1)" ]; then
 	sed -i "/EOF/d" $LOCAL/config/scriptrepo
 else
 	sed -i "/EOF/d" $LOCAL/config/otherrepoauto
@@ -107,8 +107,8 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Device setup
-if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+if ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null ) \
+|| [ ! "$(cat $LOCAL/config/otherdeviceauto | head -n 1)" ]; then
 	echo "EOF" >> $LOCAL/config/scriptdevice
 else
 	echo "EOF" >> $LOCAL/config/otherdeviceauto
@@ -118,8 +118,8 @@ fi
 while true; do
 	let devicecount=$devicecount+1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	if ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null ) \
+	|| [ ! "$(cat $LOCAL/config/otherdeviceauto | head -n 1)" ]; then
 		scriptdevice[$devicecount]=$( cat $LOCAL/config/scriptdevice | sed -n "$devicecount"p )
 	else
 		scriptdevice[$devicecount]=$( cat $LOCAL/config/otherdeviceauto | sed -n "$devicecount"p )
@@ -131,8 +131,8 @@ while true; do
 done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+if ( ! cat $LOCAL/config/otherdeviceauto &> /dev/null ) \
+|| [ ! "$(cat $LOCAL/config/otherdeviceauto | head -n 1)" ]; then
 	sed -i "/EOF/d" $LOCAL/config/scriptdevice
 else
 	sed -i "/EOF/d" $LOCAL/config/otherdeviceauto
@@ -154,7 +154,7 @@ while true; do
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherrepoauto | head -n 1)" ]; then
 		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 		INIT=""
 		reposync $SCRIPT_REPO >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
@@ -181,7 +181,7 @@ while true; do
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! cat $LOCAL/config/otherrepoauto &> /dev/null ) \
-	|| [ $(cat $LOCAL/config/otherrepoauto | head -n 1) == "" ]; then
+	|| [ ! "$(cat $LOCAL/config/otherrepoauto | head -n 1)" ]; then
 		export SCRIPT_REPO="${scriptrepo[$repocountdown]}"
 	else
 		export OTHER_REPO_FOLDER=$(echo "${scriptrepo[$repocountdown]}")
@@ -204,7 +204,7 @@ while true; do
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# Publish Build ( if possible )
 		if ( find $BUILDS/../publish &> /dev/null); then
-			publishandro &
+			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	done

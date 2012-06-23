@@ -67,12 +67,12 @@ export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Start kitchen
-if [ $START ]; then
+if [ "$START" ]; then
 	export START=""
 	export INIT=true
 	kitchen
 	exit 0
-elif [ ! "$SCRIPT" == "" ]; then
+elif [ "$SCRIPT" ]; then
 	export INIT=true
 	$SCRIPT
 	exit 0

@@ -33,7 +33,7 @@ echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
-if [ "$cleananswer" == "" ]; then
+if [ ! "$cleananswer" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -171,7 +171,7 @@ if [ $cleananswer == "2" ]; then
 	echo "type exit to go to back"
 	read cleanse
 
-	if [ "$cleanse" == "" ]; then
+	if [ ! "$cleanse" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -271,16 +271,16 @@ if [ $cleananswer == "4" ]; then
 
 	echo ""
 	echo "which repo would you like to modify?"
-	echo "Android Open Kang Project = aokp"
-	echo "Android Open Source Project = aosp"
-	echo "Cyanogenmod 9 = cm"
-	echo "Evervolv = evervolv"
-	echo "Rooted & Busyboxed AOSP = rooted-aosp"
-	echo "Team Gummy = gummy"
+	echo "Android Open Kang Project = aokp-ics"
+	echo "Android Open Source Project = aosp-ics"
+	echo "Cyanogenmod 9 = cm-ics"
+	echo "Evervolv = evervolv-ics"
+	echo "Rooted & Busyboxed AOSP = rooted-aosp-ics"
+	echo "Team Gummy = gummy-ics"
 	echo "type exit to go to back"
 	read modify
 
-	if [ "$modify" == "" ]; then
+	if [ ! "$modify" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -300,7 +300,7 @@ if [ $cleananswer == "4" ]; then
 	echo "type exit to go to back"
 	read remover
 
-	if [ "$remover" == "" ]; then
+	if [ ! "$remover" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -313,7 +313,7 @@ if [ $cleananswer == "4" ]; then
 		menu
 	fi
 
-	cd $REPOS/$modify-ics
+	cd $REPOS/$modify
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		rm -rf *
@@ -322,7 +322,7 @@ if [ $cleananswer == "4" ]; then
 
 	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		cd ..
-		rm -rf $modify-ics
+		rm -rf $modify
 	fi
 
 	echo ""
@@ -340,7 +340,7 @@ if [ $cleananswer == "5" ]; then
 	echo "type exit to go to back"
 	read remover
 
-	if [ "$remover" == "" ]; then
+	if [ ! "$remover" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -466,7 +466,7 @@ if [ $cleananswer == "6" ]; then
 	echo "type exit to go back"
 	read remover
 
-	if [ "$remover" == "" ]; then
+	if [ ! "$remover" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -488,7 +488,6 @@ if [ $cleananswer == "6" ]; then
 		echo ""
 		echo "Switching to Redeemer script.."
 		echo ""
-		cd ..
 		./redeemer
 		echo ""
 		echo "Finished!"
@@ -503,7 +502,7 @@ if [ $cleananswer == "6" ]; then
 		echo "Type in anything else to abort operation"
 		read -p "yes/no? " destroyer
 
-		if [ "$destroyer" == "" ]; then
+		if [ ! "$destroyer" ]; then
 			echo ""
 			echo "You didn't type in anything.."
 			read -p "Press Enter to continue: " done
@@ -524,7 +523,6 @@ if [ $cleananswer == "6" ]; then
 			echo "Thank you for using Swordrune10's Kitchen!"
 			echo "Switching to Destroyer script.."
 			echo ""
-			cd ..
 			./destroyer
 			exit 0
 		fi
@@ -542,7 +540,7 @@ if [ $cleananswer == "7" ]; then
 	echo "Type in anything else to abort operation"
 	read -p "yes/no? " destroyerofworlds
 
-	if [ "$destroyerofworlds" == "" ]; then
+	if [ ! "$destroyerofworlds" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
@@ -563,7 +561,7 @@ if [ $cleananswer == "7" ]; then
 		echo "Thank you for using Swordrune10's Kitchen!"
 		echo "Switching to Destroyer of Worlds script.."
 		echo ""
-		cd ..
+		cd $LOCAL/..
 		./destroyerofworlds
 		exit 0
 	fi
@@ -579,7 +577,7 @@ if [ $cleananswer == "8" ]; then
 	echo "Type in anything else to bail out"
 	read -p "yes/no? " suicidenote
 
-	if [ "$suicidenote" == "" ]; then
+	if [ ! "$suicidenote" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done

@@ -13,7 +13,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 		echo "Would you like to make a new android.dmg?"
 		read diskimage
 
-		if [ "$diskimage" == "" ]; then
+		if [ ! "$diskimage" ]; then
 			echo ""
 			echo "You didn't type in anything.."
 			echo "Press Enter to continue"
@@ -79,7 +79,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 			echo "Would you like to make install rom kitchen in /Volumes/android?"
 			read androidvolume
 
-			if [ "$androidvolume" == "" ]; then
+			if [ ! "$androidvolume" ]; then
 				echo ""
 				echo "You didn't type in anything.."
 				echo "Press Enter to continue"

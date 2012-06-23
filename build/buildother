@@ -24,7 +24,7 @@ echo "  5. Android Open Source Project"
 echo "  6. Go Back"
 read version
 
-if [ "$version" == "" ]; then
+if [ ! "$version" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -92,7 +92,7 @@ echo "Type in list to see all supported devices"
 echo "Type in exit to go back"
 read device
 
-if [ "$device" == "" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -100,22 +100,22 @@ if [ "$device" == "" ]; then
 fi
 
 while [ $device == "list" ]; do
-	if [ $SCRIPT_REPO == "cm" ]; then
-		sed -e 's/.*cm_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
-	fi
-
 	if [ $SCRIPT_REPO == "aokp" ]; then
 		sed -e 's/.*aokp_//g' \
 		-e 's/-userdebug//' \
 		$REPOS/aokp-ics/vendor/aokp/vendorsetup.sh | less
 	fi
 
-	if [ $SCRIPT_REPO == "gummy" ]; then
-		sed -e 's/.*Gummy_//g' \
+	if [ $SCRIPT_REPO == "aosp" ]; then
+		sed -e 's/.*full_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | less
+		$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+	fi
+
+	if [ $SCRIPT_REPO == "cm" ]; then
+		sed -e 's/.*cm_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/cm-ics/vendor/cm/vendorsetup.sh | less
 	fi
 
 	if [ $SCRIPT_REPO == "rooted-aosp" ]; then
@@ -124,10 +124,10 @@ while [ $device == "list" ]; do
 		$REPOS/rooted-aosp-ics/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
-	if [ $SCRIPT_REPO == "aosp" ]; then
-		sed -e 's/.*full_//g' \
+	if [ $SCRIPT_REPO == "gummy" ]; then
+		sed -e 's/.*Gummy_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | less
 	fi
 
 	clear
@@ -140,7 +140,7 @@ while [ $device == "list" ]; do
 	read device
 done
 
-if [ "$device" == "" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -150,17 +150,6 @@ fi
 if [ $device == "exit" ]; then
 	read -p "Press Enter to continue: " done
 	exit 0
-fi
-
-if [ $SCRIPT_REPO == "cm" ]; then
-	if ( ! sed -e 's/.*cm_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		menu
-	fi
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
@@ -174,10 +163,21 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "gummy" ]; then
-	if ( ! sed -e 's/.*Gummy_//g' \
+if [ $SCRIPT_REPO == "aosp" ]; then
+	if ( ! sed -e 's/.*full_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | grep -q $device ); then
+	$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | grep -q $device ); then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		menu
+	fi
+fi
+
+if [ $SCRIPT_REPO == "cm" ]; then
+	if ( ! sed -e 's/.*cm_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -197,17 +197,16 @@ if [ $SCRIPT_REPO == "rooted-aosp" ]; then
 
 fi
 
-if [ $SCRIPT_REPO == "aosp" ]; then
-	if ( ! sed -e 's/.*full_//g' \
+if [ $SCRIPT_REPO == "gummy" ]; then
+	if ( ! sed -e 's/.*Gummy_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-ics/vendor/*/*/vendorsetup.sh | grep -q $device ); then
+	$REPOS/gummy-ics/vendor/Gummy/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi
-
 
 clear
 

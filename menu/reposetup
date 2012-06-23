@@ -29,7 +29,7 @@ echo ""
 echo "Which one would you like to do?"
 read setupanswer
 
-if [ "$setupanswer" == "" ]; then
+if [ ! "$setupanswer" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -87,7 +87,7 @@ if [ $setupanswer == "3" ]; then
 		reposync kitchen
 	fi
 
-	if [ "$kitchensync" == "" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
+	if [ ! "$kitchensync" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
 		echo ""
 		echo "Kitchen app repository did not sync.."
 	fi
@@ -113,7 +113,7 @@ if [ $setupanswer == "4" ]; then
 		reposync aokp
 	fi
 
-	if [ "$aokpsync" == "" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
+	if [ ! "$aokpsync" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
 		echo ""
 		echo "Android Open Kang Project repository did not sync.."
 	fi
@@ -139,7 +139,7 @@ if [ $setupanswer == "5" ]; then
 		reposync aosp
 	fi
 
-	if [ "$aospsync" == "" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
+	if [ ! "$aospsync" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
 		echo ""
 		echo "Android Open Source Project repository did not sync.."
 	fi
@@ -165,7 +165,7 @@ if [ $setupanswer == "6" ]; then
 		reposync cm
 	fi
 
-	if [ "$cm9sync" == "" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
+	if [ ! "$cm9sync" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
 		echo ""
 		echo "Cyanogenmod 9 repository did not sync.."
 	fi
@@ -191,7 +191,7 @@ if [ $setupanswer == "7" ]; then
 		reposync ev
 	fi
 
-	if [ "$evervolvsync" == "" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
+	if [ ! "$evervolvsync" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
 		echo ""
 		echo "Evervolv repository did not sync.."
 	fi
@@ -217,7 +217,7 @@ if [ $setupanswer == "8" ]; then
 		reposync raosp
 	fi
 
-	if [ "$raospsync" == "" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
+	if [ ! "$raospsync" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
 		echo ""
 		echo "Rooted & Busyboxed AOSP repository did not sync.."
 	fi
@@ -245,7 +245,7 @@ if [ $setupanswer == "9" ]; then
 		reposync sts
 	fi
 
-	if [ "$stssync" == "" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
+	if [ ! "$stssync" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
 		echo ""
 		echo "Solana/Targa/Spyder Dev Team repository did not sync.."
 	fi
@@ -271,7 +271,7 @@ if [ $setupanswer == "10" ]; then
 		reposync gummy
 	fi
 
-	if [ "$gummysync" == "" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
+	if [ ! "$gummysync" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
 		echo ""
 		echo "Team Gummy repository did not sync.."
 	fi

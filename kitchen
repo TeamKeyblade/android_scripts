@@ -25,7 +25,7 @@ echo ""
 echo "Which one would you like to do?"
 read answer
 
-if [ "$answer" == "" ]; then
+if [ ! "$answer" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done

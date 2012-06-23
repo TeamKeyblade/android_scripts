@@ -226,7 +226,7 @@ if ( uname -a | grep -q Linux ); then
 		sudo pacman -Sy gcc-multilib gcc-libs-multilib binutils-multilib libtool-multilib lib32-libusb \
 		lib32-libusb-compat lib32-readline lib32-glibc lib32-zlib
 
-		if ( python -V | grep -q "Python 3"); then
+		if ( python -V | grep -q "Python 3" ); then
 			sudo mv /usr/bin/python /usr/bin/python.bak
 			sudo ln -s /usr/bin/python2 /usr/bin/python
 		fi
@@ -311,7 +311,7 @@ if ( uname -a | grep -q Darwin ); then
 	echo "Is MacPorts installed?"
 	read -p "yes/no? " macports
 
-	if [ $xcode == "y" ] || [ $xcode == "yes" ] && [ $macports == "y" ] || [ $macports == "yes" ]; then
+	if [ "$xcode" == "y" ] || [ "$xcode" == "yes" ] && [ "$macports" == "y" ] || [ "$macports" == "yes" ]; then
 		if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
 			echo "export PATH=/opt/local/bin:\$PATH" >> ~/.bash_profile
 		fi
@@ -329,11 +329,13 @@ if ( uname -a | grep -q Darwin ); then
 
 	echo ""
 	echo "Finished!"
+	export envir=true
 	read -p "Press Enter to continue: " done
-	exit 0
 fi
 
-if [! $envir ]; then
+if [ "$envir" ]; then
+	exit 0
+else
 	clear
 
 	echo "Operating System not supported!"

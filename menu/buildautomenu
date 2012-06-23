@@ -24,7 +24,7 @@ echo "  7. Go Back"
 echo ""
 read -p "Which one would you like to do?: " buildautoconfig
 
-if [ "$buildautoconfig" == "" ]; then
+if [ ! "$buildautoconfig" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done

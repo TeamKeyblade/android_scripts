@@ -10,9 +10,8 @@ fi
 
 clear
 
-if [ "$( cat $LOCAL/config/otherrepo | head -n1 )" == "" ]; then
+if [ ! "$( cat $LOCAL/config/otherrepo | head -n1 )" ]; then
 	echo "other repo file is empty, please add to file then try again!"
-	read -p "Press Enter to continue: " done
 	exit 0
 fi
 
@@ -37,16 +36,17 @@ echo "Which custom android repository are we building from today?"
 while true; do
 	let countdown=$countdown+1
 
-	echo "  "$countdown". "${filelurker[$countdown]}
-
-	if [ $countdown == $( expr $count - 1 ) ]; then
+	if [ "${filelurker[$countdown]}" == "EOF" ]; then
 		break
 	fi
+
+	echo "  "$countdown". "${filelurker[$countdown]}
+
 done
 echo "  $count. Go Back"
 read version
 
-if [ "$version" == "" ]; then
+if [ ! "$version" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -91,7 +91,7 @@ echo "This will serve as naming the build and putting it in a proper folder"
 echo "Type in exit to go to back"
 read reponame
 
-if [ "$reponame" == "" ]; then
+if [ ! "$reponame" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -113,7 +113,7 @@ echo "Type in list to see all supported devices"
 echo "Type in exit to go back"
 read device
 
-if [ "$device" == "" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -148,7 +148,7 @@ while [ $device == "list" ]; do
 	read device
 done
 
-if [ "$device" == "" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done

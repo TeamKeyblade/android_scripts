@@ -21,7 +21,7 @@ echo "  2. Rooted & Busyboxed AOSP"
 echo "  3. Android Open Kang Project"
 echo "  4. Team Gummy"
 
-if [ $toroplusinbuild ]; then
+if [ "$toroplusinbuild" ]; then
 	echo "  5. Go Back"
 else
 	echo "  5. Android Open Source Project"
@@ -30,7 +30,7 @@ fi
 
 read version
 
-if [ "$version" == "" ]; then
+if [ ! "$version" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -44,7 +44,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ $toroplusinbuild ]; then
+if [ "$toroplusinbuild" ]; then
 	if [ $version -gt "5" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
@@ -80,7 +80,7 @@ if [ $version == "4" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $toroplusinbuild ]; then
+if [ "$toroplusinbuild" ]; then
 	if [ $version == "5" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -147,7 +147,7 @@ echo ""
 echo "Which one would you like to do?"
 read buildgnexus
 
-if [ "$buildgnexus" == "" ]; then
+if [ ! "$buildgnexus" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -220,7 +220,7 @@ echo ""
 echo "Which one would you like to do?"
 read buildnexuss
 
-if [ "$buildnexuss" == "" ]; then
+if [ ! "$buildnexuss" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -283,7 +283,7 @@ echo ""
 echo "Which one would you like to do?"
 read buildxoom
 
-if [ "$buildxoom" == "" ]; then
+if [ ! "$buildxoom" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -345,7 +345,7 @@ toroplusinbuild=true
 repomenu
 }
 
-if [ "$builddevicemenu" == "" ]; then
+if [ ! "$builddevicemenu" ]; then
 	buildmenu
 else
 	$builddevicemenu

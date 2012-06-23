@@ -21,7 +21,7 @@ echo "  4. Go Back"
 echo ""
 read -p "Which one would you like to do?: " configs
 
-if [ "$configs" == "" ]; then
+if [ ! "$configs" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
