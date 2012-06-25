@@ -73,10 +73,14 @@ if [ $setupanswer == "2" ]; then
 fi
 
 setupcode() {
+if [ ! "$kitchensync" ]; then
+	repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+fi
+
+if ( ! find ./.repo &> /dev/null ); then
 	echo "initializing $repo_name repository.."
 
 	if [ ! "$kitchensync" ]; then
-		repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
 		mkdir -p $repo_folder
 	fi
 
@@ -101,6 +105,9 @@ setupcode() {
 	echo ""
 	echo "Finished!"
 	read -p "Press Enter to continue: " done
+else
+	echo "$repo_name already initialized.."
+fi
 }
 
 if [ $setupanswer == "3" ]; then
