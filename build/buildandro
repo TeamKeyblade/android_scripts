@@ -1,9 +1,9 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 #setup build
-export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-export BUILDFOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
-export DOTREPO=$( echo "$REPOFOLDER/.repo" )
+export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export BUILD_FOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export DOTREPO=$( echo "$REPO_FOLDER/.repo" )
 
 if [ "$OTHER_REPO_FOLDER" ]; then
 	outfolder=$(echo "$OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
@@ -13,12 +13,12 @@ if [ "$OTHER_REPO_FOLDER" ]; then
 
 	cd $OTHER_REPO_FOLDER
 else
-	outfolder=$(echo "$REPOFOLDER/out/target/product/$SCRIPT_DEVICE")
+	outfolder=$(echo "$REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
 
 	rm -f $outfolder/system/build.prop
 	rm -f $outfolder/*.zip*
 
-	cd $REPOFOLDER
+	cd $REPO_FOLDER
 fi
 
 . build/envsetup.sh
@@ -74,7 +74,7 @@ if [ "$OTHER_REPO_FOLDER" ]; then
 	"Build zip is located in $OTHER_REPO_FOLDER/out/target/product/$SCRIPT_DEVICE"
 	exit 0
 else
-	cd $REPOFOLDER/out/target/product/$SCRIPT_DEVICE
+	cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
 fi
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
@@ -123,20 +123,20 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
 fi
 
-mkdir -p $BUILDFOLDER/old
+mkdir -p $BUILD_FOLDER/old
 
-if ( find $BUILDFOLDER/*$SCRIPT_DEVICE.zip &> /dev/null); then
+if ( find $BUILD_FOLDER/*$SCRIPT_DEVICE.zip &> /dev/null); then
 	echo "Moving older build to $BUILDS/$SCRIPT_REPO-$REPO_PLATFORM/old"
 
-	mv $BUILDFOLDER/*$SCRIPT_DEVICE.zip $BUILDFOLDER/old
-	mv $BUILDFOLDER/*$SCRIPT_DEVICE.zip.md5sum $BUILDFOLDER/old
+	mv $BUILD_FOLDER/*$SCRIPT_DEVICE.zip $BUILD_FOLDER/old
+	mv $BUILD_FOLDER/*$SCRIPT_DEVICE.zip.md5sum $BUILD_FOLDER/old
 fi
 
 newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
-echo "Copying to $BUILDFOLDER"
+echo "Copying to $BUILD_FOLDER"
 echo "$zip -> $newzip"
-cp $zip $BUILDFOLDER/$newzip
+cp $zip $BUILD_FOLDER/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	echo "Cleaning up temporary folder"
@@ -144,6 +144,6 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
 	rm -r temp
 fi
 
-cd $BUILDFOLDER
+cd $BUILD_FOLDER
 md5sum $newzip
 md5sum $newzip > $newzip.md5sum

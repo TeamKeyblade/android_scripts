@@ -109,12 +109,12 @@ if [ "$test" ]; then
 fi
 
 synccode() {
-export REPOFOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-export DOTREPO=$( echo "$REPOFOLDER/.repo" )
+export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+export DOTREPO=$( echo "$REPO_FOLDER/.repo" )
 if ( find $DOTREPO &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
-	cd $REPOFOLDER
+	cd $REPO_FOLDER
 
 	preupdate
 	repo sync -j$supersync

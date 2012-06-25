@@ -72,213 +72,101 @@ if [ $setupanswer == "2" ]; then
 	environmentsetup
 fi
 
-if [ $setupanswer == "3" ]; then
-	echo "initializing the Kitchen app repository.."
+setupcode() {
+	echo "initializing $repo_name repository.."
 
-	cd $LOCAL/..
-	repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable
-
-	echo ""
-	echo "Sync the Kitchen app repository?"
-	read -p "yes/no? " kitchensync
-
-	if [ "$kitchensync" == "yes" ] || [ "$kitchensync" == "y" ]; then
-		INIT=""
-		reposync kitchen
+	if [ ! "$kitchensync"]; then
+		repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+		mkdir -p $repo_folder
 	fi
 
-	if [ ! "$kitchensync" ] || [ "$kitchensync" == "no" ] || [ "$kitchensync" == "n" ]; then
+	cd $repo_folder
+
+	repo init -u $repo_url -b $repo_platform
+
+	echo ""
+	echo "Sync $repo_name repository?"
+	read -p "yes/no? " newreposync
+
+	if [ "$newreposync" == "yes" ] || [ "$newreposync" == "y" ]; then
+		INIT=""
+		reposync $script_repo
+	fi
+
+	if [ ! "$newreposync" ] || [ "$newreposync" == "no" ] || [ "$newreposync" == "n" ]; then
 		echo ""
-		echo "Kitchen app repository did not sync.."
+		echo "$repo_name repository did not sync.."
 	fi
 
 	echo ""
 	echo "Finished!"
 	read -p "Press Enter to continue: " done
+}
+
+if [ $setupanswer == "3" ]; then
+	kitchensync=true
+	script_repo=$(echo "kitchen")
+	repo_platform=$(echo "stable")
+	repo_folder=$( echo "$LOCAL/.." )
+	repo_name=$(echo "Kitchen app")
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcode
 fi
 
 if [ $setupanswer == "4" ]; then
-	echo "initializing the Android Open Kang Project repository.."
-
-	mkdir -p $REPOS/aokp-ics
-	cd $REPOS/aokp-ics
-	repo init -u git://github.com/AOKP/platform_manifest.git -b ics
-
-	echo ""
-	echo "Sync the Android Open Kang Project repository?"
-	read -p "yes/no? " aokpsync
-
-	if [ "$aokpsync" == "yes" ] || [ "$aokpsync" == "y" ]; then
-		INIT=""
-		reposync aokp
-	fi
-
-	if [ ! "$aokpsync" ] || [ "$aokpsync" == "no" ] || [ "$aokpsync" == "n" ]; then
-		echo ""
-		echo "Android Open Kang Project repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "aokp")
+	repo_platform=$(echo "ics")
+	repo_name=$(echo "Android Open Kang Project")
+	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
+	setupcode
 fi
 
 if [ $setupanswer == "5" ]; then
-	echo "initializing the Android Open Source Project repository.."
-
-	mkdir -p $REPOS/aosp-ics
-	cd $REPOS/aosp-ics
-	repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.4_r2.1
-
-	echo ""
-	echo "Sync the Android Open Source Project repository?"
-	read -p "yes/no? " aospsync
-
-	if [ "$aospsync" == "yes" ] || [ "$aospsync" == "y" ]; then
-		INIT=""
-		reposync aosp
-	fi
-
-	if [ ! "$aospsync" ] || [ "$aospsync" == "no" ] || [ "$aospsync" == "n" ]; then
-		echo ""
-		echo "Android Open Source Project repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "aosp")
+	repo_platform=$(echo "android-4.0.4_r2.1")
+	repo_name=$(echo "Android Open Source Project")
+	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	setupcode
 fi
 
 if [ $setupanswer == "6" ]; then
-	echo "initializing the Cyanogenmod 9 repository.."
-
-	mkdir -p $REPOS/cm-ics
-	cd $REPOS/cm-ics
-	repo init -u http://github.com/CyanogenMod/android.git -b ics
-
-	echo ""
-	echo "Sync the Cyanogenmod 9 repository?"
-	read -p "yes/no? " cm9sync
-
-	if [ "$cm9sync" == "yes" ] || [ "$cm9sync" == "y" ]; then
-		INIT=""
-		reposync cm
-	fi
-
-	if [ ! "$cm9sync" ] || [ "$cm9sync" == "no" ] || [ "$cm9sync" == "n" ]; then
-		echo ""
-		echo "Cyanogenmod 9 repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "ics")
+	repo_name=$(echo "Cyanogenmod 9")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcode
 fi
 
 if [ $setupanswer == "7" ]; then
-	echo "initializing the Evervolv repository.."
-
-	mkdir -p $REPOS/evervolv-ics
-	cd $REPOS/evervolv-ics
-	repo init -u git://github.com/Evervolv/android.git -b ics
-
-	echo ""
-	echo "Sync the Android Open Source Project repository?"
-	read -p "yes/no? " evervolvsync
-
-	if [ "$evervolvsync" == "yes" ] || [ "$evervolvsync" == "y" ]; then
-		INIT=""
-		reposync ev
-	fi
-
-	if [ ! "$evervolvsync" ] || [ "$evervolvsync" == "no" ] || [ "$evervolvsync" == "n" ]; then
-		echo ""
-		echo "Evervolv repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "evervolv")
+	repo_platform=$(echo "ics")
+	repo_name=$(echo "Evervolv")
+	repo_url=$(echo "http://github.com/Evervolv/android.git")
+	setupcode
 fi
 
 if [ $setupanswer == "8" ]; then
-	echo "initializing the Rooted & Busyboxed AOSP repository.."
-
-	mkdir -p $REPOS/rooted-aosp-ics
-	cd $REPOS/rooted-aosp-ics
-	repo init -u http://github.com/TeamKeyblade/android_manifest.git -b ics
-
-	echo ""
-	echo "Sync the Rooted & Busyboxed AOSP repository?"
-	read -p "yes/no? " raospsync
-
-	if [ "$raospsync" == "yes" ] || [ "$raospsync" == "y" ]; then
-		INIT=""
-		reposync raosp
-	fi
-
-	if [ ! "$raospsync" ] || [ "$raospsync" == "no" ] || [ "$raospsync" == "n" ]; then
-		echo ""
-		echo "Rooted & Busyboxed AOSP repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "rooted-aosp")
+	repo_platform=$(echo "ics")
+	repo_name=$(echo "Rooted & Busyboxed AOSP")
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcode
 fi
 
 if [ $setupanswer == "9" ]; then
-	echo "initializing the Solana/Targa/Spyder Dev Team repository.."
-
-	mkdir -p $REPOS/sts-ics
-	cd $REPOS/sts-ics
-	repo init -u git://github.com/CyanogenMod/android.git -b ics
-
-	wget https://raw.github.com/STS-Dev-Team/android_local_STS/ics/local_manifest.xml -O ./local_manifest.xml
-
-	echo ""
-	echo "Sync the Solana/Targa/Spyder repository?"
-	read -p "yes/no? " stssync
-
-	if [ "$stssync" == "yes" ] || [ "$stssync" == "y" ]; then
-		INIT=""
-		reposync sts
-	fi
-
-	if [ ! "$stssync" ] || [ "$stssync" == "no" ] || [ "$stssync" == "n" ]; then
-		echo ""
-		echo "Solana/Targa/Spyder Dev Team repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "sts")
+	repo_platform=$(echo "ics")
+	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git") # not a typo, sts doesnt have theyre own true manifest
+	setupcode
 fi
 
 if [ $setupanswer == "10" ]; then
-	echo "initializing the Team Gummy repository.."
-
-	mkdir -p $REPOS/gummy-ics
-	cd $REPOS/gummy-ics
-	repo init -u https://github.com/teamgummy/platform_manifest.git -b master
-
-	echo ""
-	echo "Sync the Team Gummy repository?"
-	read -p "yes/no? " gummysync
-
-	if [ "$gummysync" == "yes" ] || [ "$gummysync" == "y" ]; then
-		INIT=""
-		reposync gummy
-	fi
-
-	if [ ! "$gummysync" ] || [ "$gummysync" == "no" ] || [ "$gummysync" == "n" ]; then
-		echo ""
-		echo "Team Gummy repository did not sync.."
-	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	script_repo=$(echo "gummy")
+	repo_platform=$(echo "master") # its ridiculous that they use master for the ics branch on github..
+	repo_name=$(echo "Team Gummy")
+	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
+	setupcode
 fi
 
 if [ $setupanswer == "11" ]; then
