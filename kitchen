@@ -45,32 +45,26 @@ fi
 
 if [ $answer == "1" ]; then
 	reposetup
-	cd $LOCAL
 fi
 
 if [ $answer == "2" ]; then
 	configkitchen
-	cd $LOCAL
 fi
 
 if [ $answer == "3" ]; then
 	reposync
-	cd $LOCAL
 fi
 
 if [ $answer == "4" ]; then
 	buildmenu
-	cd $LOCAL
 fi
 
 if [ $answer == "5" ]; then
 	fixkitchen
-	cd $LOCAL
 fi
 
 if [ $answer == "6" ]; then
 	buildautomenu
-	cd $LOCAL
 fi
 
 if [ $answer == "7" ]; then
