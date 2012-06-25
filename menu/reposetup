@@ -107,6 +107,7 @@ if ( ! find $repo_folder/.repo &> /dev/null ); then
 	read -p "Press Enter to continue: " done
 else
 	echo "$repo_name already initialized.."
+	read -p "Press Enter to continue: " done
 fi
 }
 
