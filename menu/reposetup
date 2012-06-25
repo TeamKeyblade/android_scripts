@@ -77,7 +77,7 @@ if [ ! "$kitchensync" ]; then
 	repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
 fi
 
-if ( ! find ./.repo &> /dev/null ); then
+if ( ! find $repo_folder/.repo &> /dev/null ); then
 	echo "initializing $repo_name repository.."
 
 	if [ ! "$kitchensync" ]; then
