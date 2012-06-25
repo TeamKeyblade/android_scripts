@@ -75,7 +75,7 @@ fi
 setupcode() {
 	echo "initializing $repo_name repository.."
 
-	if [ ! "$kitchensync"]; then
+	if [ ! "$kitchensync" ]; then
 		repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
 		mkdir -p $repo_folder
 	fi
