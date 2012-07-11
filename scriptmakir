@@ -11,20 +11,18 @@ cat << EOF > xml/cm-local_manifest.xml
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="ics" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="ics" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="ics" />
-  <project name="AndroidRoot/vendor_proprietary_asus_tf101" path="vendor/asus/tf101" revision="ics" />
-  <project name="AndroidRoot/vendor_proprietary_asus_tf201" path="vendor/asus/tf201" revision="ics" />
-  <project name="xplodwild/android_vendor_asus_tf300t" path="vendor/asus/tf300t" remote="github" revision="master" />
-  <project name="koush/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
-  <project name="koush/proprietary_vendor_broadcom" path="vendor/broadcom" revision="ics" />
-  <project name="koush/proprietary_vendor_htc" path="vendor/htc" revision="ics" />
-  <project name="koush/proprietary_vendor_hp" path="vendor/hp" revision="ics" />
-  <project name="koush/proprietary_vendor_imgtec" path="vendor/imgtec" revision="ics" />
-  <project name="koush/proprietary_vendor_lge" path="vendor/lge" revision="ics" />
-  <project name="koush/proprietary_vendor_motorola" path="vendor/motorola" revision="ics" />
-  <project name="koush/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
-  <project name="koush/proprietary_vendor_samsung" path="vendor/samsung" revision="ics" />
-  <project name="koush/proprietary_vendor_semc" path="vendor/semc" revision="ics" />
-  <project name="koush/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_hp" path="vendor/hp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_semc" path="vendor/semc" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
 </manifest>
 EOF
 
@@ -37,8 +35,8 @@ cat << EOF > xml/aosp-local_manifest.xml
 <manifest>
   <remote  name="github"
            fetch="http://github.com/" />
-  <project name="koush/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
-  <project name="koush/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
   <project name="AOKP/vendor_moto" path="vendor/moto" remote="github" revision="ics" />
   <project name="teamgummy/vendor_moto" path="vendor/motorola" remote="github" revision="ics" />
 </manifest>
@@ -51,8 +49,8 @@ if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "rooted-aosp" ]; then
 cat << EOF > xml/rooted-aosp-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="koush/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
-  <project name="koush/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
   <project name="AOKP/vendor_moto" path="vendor/moto" remote="github" revision="ics" />
   <project name="teamgummy/vendor_moto" path="vendor/motorola" remote="github" revision="ics" />
 </manifest>
