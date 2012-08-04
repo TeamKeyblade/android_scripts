@@ -1,7 +1,7 @@
 #!/bin/bash
 cd $LOCAL
 
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ]; then
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 
 cat << EOF > xml/cm-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -22,6 +22,36 @@ cat << EOF > xml/cm-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="ics" />
   <project name="TheMuppets/proprietary_vendor_semc" path="vendor/semc" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
+</manifest>
+EOF
+
+fi
+
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jellybean" ]; then
+
+cat << EOF > xml/cm10-local_manifest.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="jellybean" />
+  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="jellybean" />
+  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="jellybean" />
+  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="jellybean" />
+  <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_hp" path="vendor/hp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_semc" path="vendor/semc" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="jellybean" />
   <project name="TheMuppets/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
 </manifest>
 EOF

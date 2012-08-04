@@ -1,7 +1,12 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-if [ $SCRIPT_REPO == "cm" ]; then
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 	cd $REPOS/cm-ics/vendor/cm
+	./get-prebuilts
+fi
+
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jellybean" ]; then
+	cd $REPOS/cm-jellybean/vendor/cm
 	./get-prebuilts
 fi
 

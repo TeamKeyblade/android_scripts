@@ -20,11 +20,12 @@ echo "  3. initialize the Kitchen app repository"
 echo "  4. initialize the Android Open Kang Project repository"
 echo "  5. initialize the Android Open Source Project repository"
 echo "  6. initialize the Cyanogenmod 9 repository"
-echo "  7. initialize the Evervolv repository"
-echo "  8. initialize the Rooted & Busyboxed AOSP repository"
-echo "  9. initialize the Solana/Targa/Spyder Dev Team repository"
-echo "  10. initialize the Team Gummy repository"
-echo "  11. Go Back"
+echo "  7. initialize the Cyanogenmod 10 repository"
+echo "  8. initialize the Evervolv repository"
+echo "  9. initialize the Rooted & Busyboxed AOSP repository"
+echo "  10. initialize the Solana/Targa/Spyder Dev Team repository"
+echo "  11. initialize the Team Gummy repository"
+echo "  12. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read setupanswer
@@ -41,7 +42,7 @@ if ( echo $setupanswer | grep -q [A-Za-z] ); then
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $setupanswer -gt "11" ]; then
+if [ $setupanswer -gt "12" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -146,6 +147,14 @@ if [ $setupanswer == "6" ]; then
 fi
 
 if [ $setupanswer == "7" ]; then
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "jellybean")
+	repo_name=$(echo "Cyanogenmod 10")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcode
+fi
+
+if [ $setupanswer == "8" ]; then
 	script_repo=$(echo "evervolv")
 	repo_platform=$(echo "ics")
 	repo_name=$(echo "Evervolv")
@@ -153,7 +162,7 @@ if [ $setupanswer == "7" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "8" ]; then
+if [ $setupanswer == "9" ]; then
 	script_repo=$(echo "rooted-aosp")
 	repo_platform=$(echo "ics")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
@@ -161,7 +170,7 @@ if [ $setupanswer == "8" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "9" ]; then
+if [ $setupanswer == "10" ]; then
 	script_repo=$(echo "sts")
 	repo_platform=$(echo "ics")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
@@ -169,7 +178,7 @@ if [ $setupanswer == "9" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "10" ]; then
+if [ $setupanswer == "11" ]; then
 	script_repo=$(echo "gummy")
 	repo_platform=$(echo "master") # its ridiculous that they use master for the ics branch on github..
 	repo_name=$(echo "Team Gummy")
@@ -177,7 +186,7 @@ if [ $setupanswer == "10" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "11" ]; then
+if [ $setupanswer == "12" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0

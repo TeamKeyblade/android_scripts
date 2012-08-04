@@ -17,15 +17,16 @@ echo "$devicefullname is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
 echo "  1. Cyanogenmod 9"
-echo "  2. Rooted & Busyboxed AOSP"
-echo "  3. Android Open Kang Project"
-echo "  4. Team Gummy"
+echo "  2. Cyanogenmod 10"
+echo "  3. Rooted & Busyboxed AOSP"
+echo "  4. Android Open Kang Project"
+echo "  5. Team Gummy"
 
 if [ "$toroplusinbuild" ]; then
-	echo "  5. Go Back"
-else
-	echo "  5. Android Open Source Project"
 	echo "  6. Go Back"
+else
+	echo "  6. Android Open Source Project"
+	echo "  7. Go Back"
 fi
 
 read version
@@ -45,14 +46,14 @@ if ( echo $version | grep -q [A-Za-z] ); then
 fi
 
 if [ "$toroplusinbuild" ]; then
-	if [ $version -gt "5" ]; then
+	if [ $version -gt "6" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		repomenu
 	fi
 else
-	if [ $version -gt "6" ]; then
+	if [ $version -gt "7" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -66,33 +67,38 @@ if [ $version == "1" ]; then
 fi
 
 if [ $version == "2" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jellybean")
+fi
+
+if [ $version == "3" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $version == "3" ]; then
+if [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $version == "4" ]; then
+if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
 if [ "$toroplusinbuild" ]; then
-	if [ $version == "5" ]; then
+	if [ $version == "6" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
 	fi
 else
-	if [ $version == "5" ]; then
+	if [ $version == "6" ]; then
 		export SCRIPT_REPO=$(echo "aosp")
 		export REPO_PLATFORM=$(echo "ics")
 	fi
 
-	if [ $version == "6" ]; then
+	if [ $version == "7" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0

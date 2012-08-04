@@ -29,12 +29,13 @@ if [ ! "$AUTO" ]; then
 	echo "  2. Update the Android Open Kang Project repository"
 	echo "  3. Update the Android Open Source Project repository"
 	echo "  4. Update the Cyanogenmod 9 repository"
-	echo "  5. Update the Evervolv repository"
-	echo "  6. Update the Rooted & Busyboxed AOSP repository"
-	echo "  7. Update the Solana/Targa/Spyder Dev Team repository"
-	echo "  8. Update the Team Gummy repository"
-	echo "  9. Update all available repositories"
-	echo "  10. Go Back"
+	echo "  5. Update the Cyanogenmod 10 repository"
+	echo "  6. Update the Evervolv repository"
+	echo "  7. Update the Rooted & Busyboxed AOSP repository"
+	echo "  8. Update the Solana/Targa/Spyder Dev Team repository"
+	echo "  9. Update the Team Gummy repository"
+	echo "  10. Update all available repositories"
+	echo "  11. Go Back"
 	read version
 
 	if [ ! "$version" ]; then
@@ -50,7 +51,7 @@ if [ ! "$AUTO" ]; then
 		read -p "Press Enter to continue: " done
 	fi
 
-	if [ $version -gt "10" ]; then
+	if [ $version -gt "11" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -62,7 +63,8 @@ if [ "$test" ]; then
 		echo "kitchen = Update Kitchen"
 		echo "aokp = Update Android Open Kang Project"
 		echo "aosp = Update Android Open Source Project"
-		echo "cm = Update Cyanogenmod 9"
+		echo "cm9 = Update Cyanogenmod 9"
+		echo "cm = Update Cyanogenmod 10"
 		echo "ev = Update Evervolv"
 		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "sts = Update Solana/Targa/Spyder Dev Team"
@@ -83,28 +85,32 @@ if [ "$test" ]; then
 		version="3"
 	fi
 
-	if [ $test == "cm" ]; then
+	if [ $test == "cm9" ]; then
 		version="4"
 	fi
 
-	if [ $test == "ev" ] || [ $test == "evervolv" ]; then
+	if [ $test == "cm" ]; then
 		version="5"
 	fi
 
-	if [ $test == "raosp" ] || [ $test == "rooted-aosp" ]; then
+	if [ $test == "ev" ] || [ $test == "evervolv" ]; then
 		version="6"
 	fi
 
-	if [ $test == "sts" ]; then
+	if [ $test == "raosp" ] || [ $test == "rooted-aosp" ]; then
 		version="7"
 	fi
 
-	if [ $test == "gummy" ]; then
+	if [ $test == "sts" ]; then
 		version="8"
 	fi
 
-	if [ $test == "all" ]; then
+	if [ $test == "gummy" ]; then
 		version="9"
+	fi
+
+	if [ $test == "all" ]; then
+		version="10"
 	fi
 fi
 
@@ -139,7 +145,7 @@ else
 fi
 }
 
-if [ $version == "1" ] || [ $version == "9" ]; then
+if [ $version == "1" ] || [ $version == "10" ]; then
 	echo ""
 	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
@@ -174,36 +180,42 @@ if [ $version == "4" ]; then
 	synccode
 fi
 
-
 if [ $version == "5" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jellybean")
+	repo_name=$(echo "Cyanogenmod 10")
+	synccode
+fi
+
+if [ $version == "6" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Evervolv")
 	synccode
 fi
 
-if [ $version == "6" ]; then
+if [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "rooted-aosp")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
 fi
 
-if [ $version == "7" ]; then
+if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "sts")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
 	synccode
 fi
 
-if [ $version == "8" ]; then
+if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
 
-if [ $version == "9" ]; then
+if [ $version == "10" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Android Open Kang Project")
@@ -216,6 +228,10 @@ if [ $version == "9" ]; then
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Cyanogenmod 9")
 	synccode
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jellybean")
+	repo_name=$(echo "Cyanogenmod 10")
+	synccode
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_name=$(echo "Evervolv")
@@ -234,7 +250,7 @@ if [ $version == "9" ]; then
 	synccode
 fi
 
-if [ $version == "10" ]; then
+if [ $version == "11" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
