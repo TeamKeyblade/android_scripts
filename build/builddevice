@@ -16,17 +16,22 @@ echo "=============================="
 echo "$devicefullname is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
-echo "  1. Cyanogenmod 9"
-echo "  2. Cyanogenmod 10"
-echo "  3. Rooted & Busyboxed AOSP"
-echo "  4. Android Open Kang Project"
-echo "  5. Team Gummy"
 
-if [ "$toroplusinbuild" ]; then
-	echo "  6. Go Back"
+if [ "$nexus7inbuild" ]; then
+	echo "  1. Cyanogenmod 10"
 else
-	echo "  6. Android Open Source Project"
-	echo "  7. Go Back"
+	echo "  1. Cyanogenmod 9"
+	echo "  2. Cyanogenmod 10"
+	echo "  3. Rooted & Busyboxed AOSP"
+	echo "  4. Android Open Kang Project"
+	echo "  5. Team Gummy"
+
+	if [ "$toroplusinbuild" ]; then
+		echo "  6. Go Back"
+	else
+		echo "  6. Android Open Source Project"
+		echo "  7. Go Back"
+	fi
 fi
 
 read version
@@ -61,47 +66,70 @@ else
 	fi
 fi
 
-if [ $version == "1" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-fi
-
-if [ $version == "2" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jellybean")
-fi
-
-if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "rooted-aosp")
-	export REPO_PLATFORM=$(echo "ics")
-fi
-
-if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "ics")
-fi
-
-if [ $version == "5" ]; then
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "ics")
-fi
-
-if [ "$toroplusinbuild" ]; then
-	if [ $version == "6" ]; then
+if [ "$nexus7inbuild" ]; then
+	if [ $version -gt "1" ]; then
 		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		repomenu
 	fi
 else
-	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
+	if [ $version -gt "7" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		repomenu
+	fi
+fi
+
+if [ "$nexus7inbuild" ]; then
+	if [ $version == "1" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "jellybean")
+	fi
+else
+	if [ $version == "1" ]; then
+		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "ics")
 	fi
 
-	if [ $version == "7" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+	if [ $version == "2" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "jellybean")
+	fi
+
+	if [ $version == "3" ]; then
+		export SCRIPT_REPO=$(echo "rooted-aosp")
+		export REPO_PLATFORM=$(echo "ics")
+	fi
+
+	if [ $version == "4" ]; then
+		export SCRIPT_REPO=$(echo "aokp")
+		export REPO_PLATFORM=$(echo "ics")
+	fi
+
+	if [ $version == "5" ]; then
+		export SCRIPT_REPO=$(echo "gummy")
+		export REPO_PLATFORM=$(echo "ics")
+	fi
+
+	if [ "$toroplusinbuild" ]; then
+		if [ $version == "6" ]; then
+			echo ""
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
+	else
+		if [ $version == "6" ]; then
+			export SCRIPT_REPO=$(echo "aosp")
+			export REPO_PLATFORM=$(echo "ics")
+		fi
+
+		if [ $version == "7" ]; then
+			echo ""
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
@@ -266,7 +294,7 @@ if [ $buildnexuss == "3" ]; then
 	repomenu
 fi
 
-if [ $buildnexuss == "5" ]; then
+if [ $buildnexuss == "4" ]; then
 	echo ""
 	read -p "Press Enter to go back: " done
 	exit 0
@@ -274,6 +302,51 @@ fi
 nexussmenu
 }
 
+nexus7menu(){
+clear
+
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Today's Menu:"
+echo "  1. Build Wifi Nexus 7 Tablet"
+echo "  2. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read buildnexus7
+
+if [ ! "$buildnexus7" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+fi
+
+if ( echo $buildnexus7 | grep -q [A-Za-z] ); then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+fi
+
+if [ $buildnexus7 -gt "4" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+fi
+
+if [ $buildnexus7 == "1" ]; then
+	scriptdevice[1]=$(echo "grouper")
+	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "Wifi Nexus 7 Tablet")
+	nexus7inbuild=true
+	repomenu
+fi
+
+if [ $buildnexus7 == "2" ]; then
+	echo ""
+	read -p "Press Enter to go back: " done
+	exit 0
+fi
+nexus7menu
+}
 
 xoommenu(){
 clear
@@ -343,11 +416,12 @@ scriptdevice[2]=$(echo "maguro")
 scriptdevice[3]=$(echo "toroplus")
 scriptdevice[4]=$(echo "crespo")
 scriptdevice[5]=$(echo "crespo4g")
-scriptdevice[6]=$(echo "stingray")
-scriptdevice[7]=$(echo "wingray")
-scriptdevice[8]=$(echo "EOF")
+scriptdevice[6]=$(echo "grouper")
+scriptdevice[7]=$(echo "stingray")
+scriptdevice[8]=$(echo "wingray")
+scriptdevice[9]=$(echo "EOF")
 devicefullname=$(echo "All Nexus Devices")
-toroplusinbuild=true
+nexus7inbuild=true
 repomenu
 }
 
