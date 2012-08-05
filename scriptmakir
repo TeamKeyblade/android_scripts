@@ -33,7 +33,7 @@ if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jell
 cat << EOF > xml/cm10-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="jellybean" />
+  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="jb" />
   <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="jellybean" />
