@@ -56,7 +56,8 @@ if [ $cleananswer == "1" ]; then
 
 	echo "which repo would you like to modify?"
 	echo "Android Open Source Project = aosp"
-	echo "Cyanogenmod 9 = cm"
+	echo "Cyanogenmod 9 = cm9"
+	echo "Cyanogenmod 10 = cm10"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "type exit to go to back"
 	read addrepo
@@ -75,7 +76,7 @@ if [ $cleananswer == "1" ]; then
 		menu
 	fi
 
-	if [ $addrepo == "cm" ]; then
+	if [ $addrepo == "cm9" ]; then
 		if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
@@ -98,6 +99,33 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		sed -i "/<\/manifest>/d" cm-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> cm-local_manifest.xml
 		echo "</manifest>" >> cm-local_manifest.xml
+		preupdate
+		rm -r $LOCAL/../temp
+	fi
+
+	if [ $addrepo == "cm10" ]; then
+		if ( ! find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 10 doesn't exist!"
+			read -p "Press Enter to continue: " done
+			menu
+		fi
+
+		mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+		nano $LOCAL/../temp/addrepo
+
+		echo ""
+		echo "Adding repo to local_manifest.xml for Cyanogenmod 10.."
+		cd $LOCAL/xml
+		sed -i "/<\/manifest>/d" cm10-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> cm10-local_manifest.xml
+		echo "</manifest>" >> cm10-local_manifest.xml
 		preupdate
 		rm -r $LOCAL/../temp
 	fi
@@ -166,7 +194,8 @@ if [ $cleananswer == "2" ]; then
 
 	echo "which repo would you like to modify?"
 	echo "Android Open Source Project = aosp"
-	echo "Cyanogenmod 9 = cm"
+	echo "Cyanogenmod 9 = cm9"
+	echo "Cyanogenmod 9 = cm10"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp"
 	echo "type exit to go to back"
 	read cleanse
@@ -185,18 +214,39 @@ if [ $cleananswer == "2" ]; then
 		menu
 	fi
 
-	if [ $cleanse == "cm" ]; then
+	if [ $cleanse == "cm9" ]; then
 		if ( find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
 			rm -f $LOCAL/xml/cm-local_manifest.xml
 			export SCRIPT_REPO=$(echo "cm")
+			export REPO_PLATFORM=$(echo "ics")
 			export AUTHOR="xml"
 			scriptmakir
 		else
 			echo ""
 			export SCRIPT_REPO=$(echo "cm")
+			export REPO_PLATFORM=$(echo "ics")
 			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
+			export AUTHOR="xml"
+			scriptmakir
+		fi
+	fi
+
+	if [ $cleanse == "cm10" ]; then
+		if ( find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
+			echo ""
+			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
+			rm -f $LOCAL/xml/cm10-local_manifest.xml
+			export SCRIPT_REPO=$(echo "cm")
+			export REPO_PLATFORM=$(echo "jellybean")
+			export AUTHOR="xml"
+			scriptmakir
+		else
+			echo ""
+			export SCRIPT_REPO=$(echo "cm")
+			export REPO_PLATFORM=$(echo "jellybean")
+			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
 			export AUTHOR="xml"
 			scriptmakir
 		fi
@@ -250,6 +300,12 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
+	export AUTHOR="xml"
+	scriptmakir
+
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jellybean")
 	export AUTHOR="xml"
 	scriptmakir
 
@@ -274,6 +330,7 @@ if [ $cleananswer == "4" ]; then
 	echo "Android Open Kang Project = aokp-ics"
 	echo "Android Open Source Project = aosp-ics"
 	echo "Cyanogenmod 9 = cm-ics"
+	echo "Cyanogenmod 10 = cm-jellybean"
 	echo "Evervolv = evervolv-ics"
 	echo "Rooted & Busyboxed AOSP = rooted-aosp-ics"
 	echo "Team Gummy = gummy-ics"
@@ -392,6 +449,20 @@ if [ $cleananswer == "5" ]; then
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
 			rm -rf cm-ics
+		fi
+	fi
+
+	if ( find $REPOS/cm-jellybean &> /dev/null ); then
+		cd $REPOS/cm-jellybean
+
+		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+			rm -rf *
+			repo sync
+		fi
+
+		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
+			cd ..
+			rm -rf cm-jellybean
 		fi
 	fi
 
