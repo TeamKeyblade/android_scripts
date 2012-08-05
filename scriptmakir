@@ -92,7 +92,14 @@ if [ $AUTHOR == "gitpuller" ]; then
 
 cat << EOF > config/gitpuller
 #!/bin/bash
-if [ \$SCRIPT_REPO == "cm" ]; then
+if [ \$SCRIPT_REPO == "cm" ] && [ \$REPO_PLATFORM == "ics" ]; then
+	# below is examples, git pull is recommended
+	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
+	# git pull repo-you-want-to-pull
+	exit 0
+fi
+
+if [ \$SCRIPT_REPO == "cm" ] && [ \$REPO_PLATFORM == "jellybean" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
@@ -137,7 +144,7 @@ if [ $AUTHOR == "romeditor" ]; then
 cat << EOF > config/romeditor
 #!/bin/bash
 if [ \$SCRIPT_REPO == "cm" ]; then
-	cd \$REPOS/cm-ics/vendor/cm/config
+	cd \$REPOS/cm-\$REPO_PLATFORM/vendor/cm/config
 	sed -i 's/developerid=cyanogenmod/developerid=\$(shell whoami)/g' common.mk
 	sed -i 's/CM_BUILDTYPE := UNOFFICIAL/CM_BUILDTYPE := SWORDKITCHEN/g' common.mk
 	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk
