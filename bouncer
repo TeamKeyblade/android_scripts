@@ -1,18 +1,34 @@
 #!/bin/bash
 if ( ! uname -a | grep -q x86_64 ); then
-	clear
+	if ( uname -a | grep -q powerpc ); then
+		clear
 
-	echo "32-bit OS detected!"
-	echo "==================="
-	echo "Running 32-bit isn't necessarily prohibited, but it is not suggested"
-	echo ""
-	echo "Side effects may include failure to build properly and lack of support"
-	echo "for build environment setup"
-	echo ""
-	echo "If you see this in error, please notify me at either xda or rootzwiki"
-	echo "if you prefer email you can reach me at mishana@swordrune10.net"
-	echo "Press enter to continue.."
-	read done
+		echo "powerpc processor detected!"
+		echo "==================="
+		echo "Running powerpc isn't necessarily prohibited, but it is not suggested"
+		echo ""
+		echo "Side effects may include failure to build properly and lack of support"
+		echo "for build environment setup"
+		echo ""
+		echo "If you see this in error, please notify me at either xda or rootzwiki"
+		echo "if you prefer email you can reach me at mishana@swordrune10.net"
+		echo "Press enter to continue.."
+		read done
+	else
+		clear
+
+		echo "32-bit OS detected!"
+		echo "==================="
+		echo "Running 32-bit isn't necessarily prohibited, but it is not suggested"
+		echo ""
+		echo "Side effects may include failure to build properly and lack of support"
+		echo "for build environment setup"
+		echo ""
+		echo "If you see this in error, please notify me at either xda or rootzwiki"
+		echo "if you prefer email you can reach me at mishana@swordrune10.net"
+		echo "Press enter to continue.."
+		read done
+	fi
 fi
 
 homecheck=$( pwd )
