@@ -64,7 +64,7 @@ threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
 
 export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
 
-if [ $THREADS_TOTAL == "0" ]; then
+if [ "$THREADS_TOTAL" == "0" ]; then
 	export THREADS_TOTAL=$( echo "2" )
 fi
 
