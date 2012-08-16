@@ -5,21 +5,21 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 	./get-prebuilts
 fi
 
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jellybean" ]; then
-	cd $REPOS/cm-jellybean/vendor/cm
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
+	cd $REPOS/cm-jb/vendor/cm
 	./get-prebuilts
 fi
 
-if [ $SCRIPT_REPO == "rooted-aosp" ]; then
-	rm -rf system/extras/su
+if [ $SCRIPT_REPO == "raosp" ]; then
+	rm -rf $REPOS/raosp-jb/system/extras/su
 fi
 
 if [ $SCRIPT_REPO == "sts" ]; then
-	cd $REPOS/sts-ics/vendor/cm
+	cd $REPOS/sts-jb/vendor/cm
 	./get-prebuilts
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
-	cd $REPOS/gummy-ics/vendor/Gummy
+	cd $REPOS/gummy-jb/vendor/Gummy
 	./get-prebuilts
 fi

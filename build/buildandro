@@ -93,7 +93,7 @@ if [ $SCRIPT_REPO == "gummy" ]; then
 	zip=$(find Gummy*.zip)
 fi
 
-if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 	zip=$(find full*.zip)
 
 	echo "Making temporary folder for post-building $zip fixes"
@@ -138,7 +138,7 @@ echo "Copying to $BUILD_FOLDER"
 echo "$zip -> $newzip"
 cp $zip $BUILD_FOLDER/$newzip
 
-if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "rooted-aosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 	echo "Cleaning up temporary folder"
 	cd $BUILDS
 	rm -r temp

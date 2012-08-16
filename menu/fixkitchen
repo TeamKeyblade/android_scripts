@@ -58,7 +58,7 @@ if [ $cleananswer == "1" ]; then
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm9"
 	echo "Cyanogenmod 10 = cm10"
-	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "Rooted & Busyboxed AOSP = raosp"
 	echo "type exit to go to back"
 	read addrepo
 
@@ -130,8 +130,8 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		rm -r $LOCAL/../temp
 	fi
 
-	if [ $addrepo == "rooted-aosp" ]; then
-		if ( ! find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
+	if [ $addrepo == "raosp" ]; then
+		if ( ! find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
 			read -p "Press Enter to continue: " done
@@ -150,15 +150,15 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		echo ""
 		echo "Adding repo to local_manifest.xml for Rooted & Busyboxed AOSP.."
 		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" rooted-aosp-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> rooted-aosp-local_manifest.xml
-		echo "</manifest>" >> rooted-aosp-local_manifest.xml
+		sed -i "/<\/manifest>/d" raosp-jb-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> raosp-jb-local_manifest.xml
+		echo "</manifest>" >> raosp-jb-local_manifest.xml
 		preupdate
 		rm -r $LOCAL/../temp
 	fi
 
 	if [ $addrepo == "aosp" ]; then
-		if ( ! find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
+		if ( ! find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
 			read -p "Press Enter to continue: " done
@@ -177,9 +177,9 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		echo ""
 		echo "Adding repo to local_manifest.xml for Android Open Source Project.."
 		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" aosp-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> aosp-local_manifest.xml
-		echo "</manifest>" >> aosp-local_manifest.xml
+		sed -i "/<\/manifest>/d" aosp-jb-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> aosp-jb-local_manifest.xml
+		echo "</manifest>" >> aosp-jb-local_manifest.xml
 		preupdate
 		rm -r $LOCAL/../temp
 	fi
@@ -196,7 +196,7 @@ if [ $cleananswer == "2" ]; then
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm9"
 	echo "Cyanogenmod 9 = cm10"
-	echo "Rooted & Busyboxed AOSP = rooted-aosp"
+	echo "Rooted & Busyboxed AOSP = raosp"
 	echo "type exit to go to back"
 	read cleanse
 
@@ -239,41 +239,41 @@ if [ $cleananswer == "2" ]; then
 			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
 			rm -f $LOCAL/xml/cm10-local_manifest.xml
 			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "jellybean")
+			export REPO_PLATFORM=$(echo "jb")
 			export AUTHOR="xml"
 			scriptmakir
 		else
 			echo ""
 			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "jellybean")
+			export REPO_PLATFORM=$(echo "jb")
 			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
 			export AUTHOR="xml"
 			scriptmakir
 		fi
 	fi
 
-	if [ $cleanse == "rooted-aosp" ]; then
-		if ( find $LOCAL/xml/rooted-aosp-local_manifest.xml &> /dev/null ); then
+	if [ $cleanse == "raosp" ]; then
+		if ( find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
-			rm -f $LOCAL/xml/rooted-aosp-local_manifest.xml
-			export SCRIPT_REPO=$(echo "rooted-aosp")
+			rm -f $LOCAL/xml/raosp-jb-local_manifest.xml
+			export SCRIPT_REPO=$(echo "raosp")
 			export AUTHOR="xml"
 			scriptmakir
 		else
 			echo ""
 			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
-			export SCRIPT_REPO=$(echo "rooted-aosp")
+			export SCRIPT_REPO=$(echo "raosp")
 			export AUTHOR="xml"
 			scriptmakir
 		fi
 	fi
 
 	if [ $cleanse == "aosp" ]; then
-		if ( find $LOCAL/xml/aosp-local_manifest.xml &> /dev/null ); then
+		if ( find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
 			echo ""
 			echo "Purging local_manifest.xml source file for Android Open Source Project.."
-			rm -f $LOCAL/xml/aosp-local_manifest.xml
+			rm -f $LOCAL/xml/aosp-jb-local_manifest.xml
 			export SCRIPT_REPO=$(echo "aosp")
 			export AUTHOR="xml"
 			scriptmakir
@@ -305,11 +305,11 @@ if [ $cleananswer == "3" ]; then
 	scriptmakir
 
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jellybean")
+	export REPO_PLATFORM=$(echo "jb")
 	export AUTHOR="xml"
 	scriptmakir
 
-	export SCRIPT_REPO=$(echo "rooted-aosp")
+	export SCRIPT_REPO=$(echo "raosp")
 	export AUTHOR="xml"
 	scriptmakir
 
@@ -327,13 +327,13 @@ if [ $cleananswer == "4" ]; then
 
 	echo ""
 	echo "which repo would you like to modify?"
-	echo "Android Open Kang Project = aokp-ics"
-	echo "Android Open Source Project = aosp-ics"
+	echo "Android Open Kang Project = aokp-jb"
+	echo "Android Open Source Project = aosp-jb"
 	echo "Cyanogenmod 9 = cm-ics"
-	echo "Cyanogenmod 10 = cm-jellybean"
-	echo "Evervolv = evervolv-ics"
-	echo "Rooted & Busyboxed AOSP = rooted-aosp-ics"
-	echo "Team Gummy = gummy-ics"
+	echo "Cyanogenmod 10 = cm-jb"
+	echo "Evervolv = evervolv-jb"
+	echo "Rooted & Busyboxed AOSP = raosp-jb"
+	echo "Team Gummy = gummy-jb"
 	echo "type exit to go to back"
 	read modify
 
@@ -410,8 +410,8 @@ if [ $cleananswer == "5" ]; then
 		menu
 	fi
 
-	if ( find $REPOS/aokp-ics &> /dev/null ); then
-		cd $REPOS/aokp-ics
+	if ( find $REPOS/aokp-jb &> /dev/null ); then
+		cd $REPOS/aokp-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -420,12 +420,12 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf aokp-ics
+			rm -rf aokp-jb
 		fi
 	fi
 
-	if ( find $REPOS/aosp-ics &> /dev/null ); then
-		cd $REPOS/aosp-ics
+	if ( find $REPOS/aosp-jb &> /dev/null ); then
+		cd $REPOS/aosp-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -434,7 +434,7 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf aosp-ics
+			rm -rf aosp-jb
 		fi
 	fi
 
@@ -452,8 +452,8 @@ if [ $cleananswer == "5" ]; then
 		fi
 	fi
 
-	if ( find $REPOS/cm-jellybean &> /dev/null ); then
-		cd $REPOS/cm-jellybean
+	if ( find $REPOS/cm-jb &> /dev/null ); then
+		cd $REPOS/cm-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -462,12 +462,12 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf cm-jellybean
+			rm -rf cm-jb
 		fi
 	fi
 
-	if ( find $REPOS/evervolv-ics &> /dev/null ); then
-		cd $REPOS/evervolv-ics
+	if ( find $REPOS/evervolv-jb &> /dev/null ); then
+		cd $REPOS/evervolv-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -476,12 +476,12 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf evervolv-ics
+			rm -rf evervolv-jb
 		fi
 	fi
 
-	if ( find $REPOS/rooted-aosp-ics &> /dev/null ); then
-		cd $REPOS/rooted-aosp-ics
+	if ( find $REPOS/raosp-jb &> /dev/null ); then
+		cd $REPOS/raosp-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -490,12 +490,12 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf rooted-aosp-ics
+			rm -rf raosp-jb
 		fi
 	fi
 
-	if ( find $REPOS/sts-ics &> /dev/null ); then
-		cd $REPOS/sts-ics
+	if ( find $REPOS/sts-jb &> /dev/null ); then
+		cd $REPOS/sts-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -504,12 +504,12 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf sts-ics
+			rm -rf sts-jb
 		fi
 	fi
 
-	if ( find $REPOS/gummy-ics &> /dev/null ); then
-		cd $REPOS/gummy-ics
+	if ( find $REPOS/gummy-jb &> /dev/null ); then
+		cd $REPOS/gummy-jb
 
 		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 			rm -rf *
@@ -518,7 +518,7 @@ if [ $cleananswer == "5" ]; then
 
 		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 			cd ..
-			rm -rf gummy-ics
+			rm -rf gummy-jb
 		fi
 	fi
 

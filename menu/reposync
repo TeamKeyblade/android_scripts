@@ -97,7 +97,7 @@ if [ "$test" ]; then
 		version="6"
 	fi
 
-	if [ $test == "raosp" ] || [ $test == "rooted-aosp" ]; then
+	if [ $test == "raosp" ]; then
 		version="7"
 	fi
 
@@ -161,14 +161,14 @@ fi
 
 if [ $version == "2" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	synccode
 fi
 
 if [ $version == "3" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Source Project")
 	synccode
 fi
@@ -182,46 +182,46 @@ fi
 
 if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jellybean")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Cyanogenmod 10")
 	synccode
 fi
 
 if [ $version == "6" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Evervolv")
 	synccode
 fi
 
 if [ $version == "7" ]; then
-	export SCRIPT_REPO=$(echo "rooted-aosp")
-	export REPO_PLATFORM=$(echo "ics")
+	export SCRIPT_REPO=$(echo "raosp")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
 fi
 
 if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "sts")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
 	synccode
 fi
 
 if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
 
 if [ $version == "10" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	synccode
 	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Source Project")
 	synccode
 	export SCRIPT_REPO=$(echo "cm")
@@ -229,23 +229,23 @@ if [ $version == "10" ]; then
 	repo_name=$(echo "Cyanogenmod 9")
 	synccode
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jellybean")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Cyanogenmod 10")
 	synccode
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Evervolv")
 	synccode
-	export SCRIPT_REPO=$(echo "rooted-aosp")
-	export REPO_PLATFORM=$(echo "ics")
+	export SCRIPT_REPO=$(echo "raosp")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
 	export SCRIPT_REPO=$(echo "sts")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
 	synccode
 	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "ics")
+	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi

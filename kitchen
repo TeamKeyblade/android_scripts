@@ -85,6 +85,7 @@ if [ $answer == "10" ]; then
 	read nothing
 	if [ $nothing == "no" ] || [ $nothing == "n" ]; then
 		echo "tough!"
+		read -p "Press Enter to continue: " done
 	fi
 	telnet towel.blinkenlights.nl
 fi

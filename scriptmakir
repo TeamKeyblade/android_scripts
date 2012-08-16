@@ -28,7 +28,7 @@ EOF
 
 fi
 
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jellybean" ]; then
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 
 cat << EOF > xml/cm10-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -60,29 +60,41 @@ fi
 
 if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
 
-cat << EOF > xml/aosp-local_manifest.xml
+cat << EOF > xml/aosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote  name="github"
            fetch="http://github.com/" />
-  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
-  <project name="AOKP/vendor_moto" path="vendor/moto" remote="github" revision="ics" />
-  <project name="teamgummy/vendor_moto" path="vendor/motorola" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="jellybean" />
 </manifest>
 EOF
 
 fi
 
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "rooted-aosp" ]; then
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
-cat << EOF > xml/rooted-aosp-local_manifest.xml
+cat << EOF > xml/raosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="ics" />
-  <project name="AOKP/vendor_moto" path="vendor/moto" remote="github" revision="ics" />
-  <project name="teamgummy/vendor_moto" path="vendor/motorola" remote="github" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="jellybean" />
+  <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="jellybean" />
 </manifest>
 EOF
 
@@ -99,7 +111,7 @@ if [ \$SCRIPT_REPO == "cm" ] && [ \$REPO_PLATFORM == "ics" ]; then
 	exit 0
 fi
 
-if [ \$SCRIPT_REPO == "cm" ] && [ \$REPO_PLATFORM == "jellybean" ]; then
+if [ \$SCRIPT_REPO == "cm" ] && [ \$REPO_PLATFORM == "jb" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
@@ -127,7 +139,7 @@ if [ \$SCRIPT_REPO == "aosp" ]; then
 	exit 0
 fi
 
-if [ \$SCRIPT_REPO == "rooted-aosp" ]; then
+if [ \$SCRIPT_REPO == "raosp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
@@ -150,7 +162,7 @@ if [ \$SCRIPT_REPO == "cm" ]; then
 	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk
 fi
 
-if [ \$SCRIPT_REPO == "rooted-aosp" ]; then
+if [ \$SCRIPT_REPO == "raosp" ]; then
 	cd \$REPOS/rooted-aosp-ics/vendor/keyblade/makefiles
 	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id
 	# sed -i 's/developerid=teamkeyblade/EDITME!/g' overrider.mk

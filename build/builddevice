@@ -85,7 +85,7 @@ fi
 if [ "$nexus7inbuild" ]; then
 	if [ $version == "1" ]; then
 		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jellybean")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 else
 	if [ $version == "1" ]; then
@@ -95,22 +95,22 @@ else
 
 	if [ $version == "2" ]; then
 		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jellybean")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "3" ]; then
-		export SCRIPT_REPO=$(echo "rooted-aosp")
-		export REPO_PLATFORM=$(echo "ics")
+		export SCRIPT_REPO=$(echo "raosp")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "4" ]; then
 		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "ics")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "5" ]; then
 		export SCRIPT_REPO=$(echo "gummy")
-		export REPO_PLATFORM=$(echo "ics")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ "$toroplusinbuild" ]; then
@@ -122,7 +122,7 @@ else
 	else
 		if [ $version == "6" ]; then
 			export SCRIPT_REPO=$(echo "aosp")
-			export REPO_PLATFORM=$(echo "ics")
+			export REPO_PLATFORM=$(echo "jb")
 		fi
 
 		if [ $version == "7" ]; then

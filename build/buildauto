@@ -9,7 +9,7 @@ if [ ! "$INIT" ]; then
 fi
 
 export AUTO=true
-export REPO_PLATFORM=$(echo "ics") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
+export REPO_PLATFORM=$(echo "jb") # HARDCODED, PLEASE FIX ASAP YOU DUMMEH!
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 

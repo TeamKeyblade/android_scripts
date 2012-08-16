@@ -6,4 +6,4 @@ This repository is for my kitchen
 all files except for the kitchen wrapper are hidden when repo'ed for ur viewing pleasure
 the folder all is encapsulated in is named ".scripts"
 
-    repo init -u http://github.com/TeamKeyblade/android_manifest.git -b master
+    repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable

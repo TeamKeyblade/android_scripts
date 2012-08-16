@@ -87,7 +87,7 @@ if ( ! find $repo_folder/.repo &> /dev/null ); then
 
 	cd $repo_folder
 
-	repo init -u $repo_url -b $repo_platform
+	repo init -u $repo_url -b $repo_branch
 
 	echo ""
 	echo "Sync $repo_name repository?"
@@ -115,7 +115,7 @@ fi
 if [ $setupanswer == "3" ]; then
 	kitchensync=true
 	script_repo=$(echo "kitchen")
-	repo_platform=$(echo "stable")
+	repo_branch=$(echo "stable")
 	repo_folder=$( echo "$LOCAL/.." )
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
@@ -124,7 +124,8 @@ fi
 
 if [ $setupanswer == "4" ]; then
 	script_repo=$(echo "aokp")
-	repo_platform=$(echo "ics")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
 	setupcode
@@ -132,7 +133,8 @@ fi
 
 if [ $setupanswer == "5" ]; then
 	script_repo=$(echo "aosp")
-	repo_platform=$(echo "android-4.0.4_r2.1")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "android-4.1.1_r4")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcode
@@ -141,6 +143,7 @@ fi
 if [ $setupanswer == "6" ]; then
 	script_repo=$(echo "cm")
 	repo_platform=$(echo "ics")
+	repo_branch=$(echo "ics")
 	repo_name=$(echo "Cyanogenmod 9")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	setupcode
@@ -148,7 +151,8 @@ fi
 
 if [ $setupanswer == "7" ]; then
 	script_repo=$(echo "cm")
-	repo_platform=$(echo "jellybean")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Cyanogenmod 10")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	setupcode
@@ -156,15 +160,17 @@ fi
 
 if [ $setupanswer == "8" ]; then
 	script_repo=$(echo "evervolv")
-	repo_platform=$(echo "ics")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Evervolv")
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	setupcode
 fi
 
 if [ $setupanswer == "9" ]; then
-	script_repo=$(echo "rooted-aosp")
-	repo_platform=$(echo "ics")
+	script_repo=$(echo "raosp")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
 	setupcode
@@ -172,7 +178,8 @@ fi
 
 if [ $setupanswer == "10" ]; then
 	script_repo=$(echo "sts")
-	repo_platform=$(echo "ics")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git") # not a typo, sts doesnt have theyre own true manifest
 	setupcode
@@ -180,7 +187,8 @@ fi
 
 if [ $setupanswer == "11" ]; then
 	script_repo=$(echo "gummy")
-	repo_platform=$(echo "master") # its ridiculous that they use master for the ics branch on github..
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "master") # its ridiculous that they use master branch.. 
 	repo_name=$(echo "Team Gummy")
 	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
 	setupcode

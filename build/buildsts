@@ -52,7 +52,7 @@ if [ $version == "6" ]; then
 fi
 
 export SCRIPT_REPO=$(echo "sts")
-export REPO_PLATFORM=$(echo "ics")
+export REPO_PLATFORM=$(echo "jb")
 
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	echo ""
