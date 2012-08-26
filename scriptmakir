@@ -28,7 +28,7 @@ EOF
 
 fi
 
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
+if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "paranoid" ] && [ $REPO_PLATFORM == "jb" ]; then
 
 cat << EOF > xml/cm10-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>

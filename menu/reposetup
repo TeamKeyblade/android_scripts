@@ -23,9 +23,10 @@ echo "  6. initialize the Cyanogenmod 9 repository"
 echo "  7. initialize the Cyanogenmod 10 repository"
 echo "  8. initialize the Evervolv repository"
 echo "  9. initialize the Rooted & Busyboxed AOSP repository"
-echo "  10. initialize the Solana/Targa/Spyder Dev Team repository"
-echo "  11. initialize the Team Gummy repository"
-echo "  12. Go Back"
+echo "  10. initialize the ParanoidAndroid repository"
+echo "  11. initialize the Solana/Targa/Spyder Dev Team repository"
+echo "  12. initialize the Team Gummy repository"
+echo "  13. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read setupanswer
@@ -42,7 +43,7 @@ if ( echo $setupanswer | grep -q [A-Za-z] ); then
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $setupanswer -gt "12" ]; then
+if [ $setupanswer -gt "13" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -168,6 +169,15 @@ if [ $setupanswer == "8" ]; then
 fi
 
 if [ $setupanswer == "9" ]; then
+	script_repo=$(echo "paranoid")
+	repo_platform=$(echo "jb")
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "ParanoidAndroid")
+	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	setupcode
+fi
+
+if [ $setupanswer == "10" ]; then
 	script_repo=$(echo "raosp")
 	repo_platform=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -176,7 +186,7 @@ if [ $setupanswer == "9" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "10" ]; then
+if [ $setupanswer == "11" ]; then
 	script_repo=$(echo "sts")
 	repo_platform=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -185,7 +195,7 @@ if [ $setupanswer == "10" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "11" ]; then
+if [ $setupanswer == "12" ]; then
 	script_repo=$(echo "gummy")
 	repo_platform=$(echo "jb")
 	repo_branch=$(echo "master") # its ridiculous that they use master branch.. 
@@ -194,7 +204,7 @@ if [ $setupanswer == "11" ]; then
 	setupcode
 fi
 
-if [ $setupanswer == "12" ]; then
+if [ $setupanswer == "13" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0

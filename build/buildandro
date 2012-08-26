@@ -48,7 +48,7 @@ if [ ! $SLOPPYSECONDS ]; then
 fi
 
 #build android
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
+if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "paranoid" ] || [ $SCRIPT_REPO == "sts" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
 else
 	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
@@ -78,7 +78,7 @@ else
 fi
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
-	zip=$(find cm-*.zip)
+	zip=$(find cm*.zip)
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
@@ -87,6 +87,10 @@ fi
 
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	zip=$(find Evervolv*.zip)
+fi
+
+if [ $SCRIPT_REPO == "paranoid" ]; then
+	zip=$(find pa*.zip)
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then

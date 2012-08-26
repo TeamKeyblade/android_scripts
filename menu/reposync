@@ -31,11 +31,12 @@ if [ ! "$AUTO" ]; then
 	echo "  4. Update the Cyanogenmod 9 repository"
 	echo "  5. Update the Cyanogenmod 10 repository"
 	echo "  6. Update the Evervolv repository"
-	echo "  7. Update the Rooted & Busyboxed AOSP repository"
-	echo "  8. Update the Solana/Targa/Spyder Dev Team repository"
-	echo "  9. Update the Team Gummy repository"
-	echo "  10. Update all available repositories"
-	echo "  11. Go Back"
+	echo "  7. Update the ParanoidAndroid repository"
+	echo "  8. Update the Rooted & Busyboxed AOSP repository"
+	echo "  9. Update the Solana/Targa/Spyder Dev Team repository"
+	echo "  10. Update the Team Gummy repository"
+	echo "  11. Update all available repositories"
+	echo "  12. Go Back"
 	read version
 
 	if [ ! "$version" ]; then
@@ -51,7 +52,7 @@ if [ ! "$AUTO" ]; then
 		read -p "Press Enter to continue: " done
 	fi
 
-	if [ $version -gt "11" ]; then
+	if [ $version -gt "12" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -66,6 +67,7 @@ if [ "$test" ]; then
 		echo "cm9 = Update Cyanogenmod 9"
 		echo "cm = Update Cyanogenmod 10"
 		echo "ev = Update Evervolv"
+		echo "paranoid = Update ParanoidAndroid"
 		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "sts = Update Solana/Targa/Spyder Dev Team"
 		echo "gummy = Update Team Gummy"
@@ -97,20 +99,24 @@ if [ "$test" ]; then
 		version="6"
 	fi
 
-	if [ $test == "raosp" ]; then
+	if [ $test == "paranoid" ]; then
 		version="7"
 	fi
 
-	if [ $test == "sts" ]; then
+	if [ $test == "raosp" ]; then
 		version="8"
 	fi
 
-	if [ $test == "gummy" ]; then
+	if [ $test == "sts" ]; then
 		version="9"
 	fi
 
-	if [ $test == "all" ]; then
+	if [ $test == "gummy" ]; then
 		version="10"
+	fi
+
+	if [ $test == "all" ]; then
+		version="11"
 	fi
 fi
 
@@ -195,27 +201,34 @@ if [ $version == "6" ]; then
 fi
 
 if [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "paranoid")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_name=$(echo "ParanoidAndroid")
+	synccode
+fi
+
+if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
 fi
 
-if [ $version == "8" ]; then
+if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "sts")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Solana/Targa/Spyder Dev Team")
 	synccode
 fi
 
-if [ $version == "9" ]; then
+if [ $version == "10" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
 
-if [ $version == "10" ]; then
+if [ $version == "11" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
@@ -236,6 +249,10 @@ if [ $version == "10" ]; then
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Evervolv")
 	synccode
+	export SCRIPT_REPO=$(echo "paranoid")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_name=$(echo "ParanoidAndroid")
+	synccode
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
@@ -250,7 +267,7 @@ if [ $version == "10" ]; then
 	synccode
 fi
 
-if [ $version == "11" ]; then
+if [ $version == "12" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0

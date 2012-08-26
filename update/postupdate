@@ -10,6 +10,11 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 	./get-prebuilts
 fi
 
+if [ $SCRIPT_REPO == "paranoid" ]; then
+	cd $REPOS/paranoid-jb/vendor/cm
+	./get-prebuilts
+fi
+
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf $REPOS/raosp-jb/system/extras/su
 fi

@@ -43,6 +43,18 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 	rm -rf vendor/ev
 fi
 
+if [ $SCRIPT_REPO == "paranoid" ]; then
+	rm -rf vendor/cm
+	rm -rf vendor/pa
+	echo ""
+	echo "Updating ParanoidAndroid's local_manifest.xml"
+	if ( ! find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
+		export AUTHOR="xml"
+		scriptmakir
+	fi
+	cp -f $LOCAL/xml/cm10-local_manifest.xml $DOTREPO/local_manifest.xml
+fi
+
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf vendor/keyblade
 	echo ""
