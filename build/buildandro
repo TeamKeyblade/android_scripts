@@ -77,6 +77,10 @@ else
 	cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
 fi
 
+if [ $SCRIPT_REPO == "cna" ]; then
+	zip=$(find Codename*.zip)
+fi
+
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
 	zip=$(find cm*.zip)
 fi

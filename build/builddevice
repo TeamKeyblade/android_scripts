@@ -18,22 +18,24 @@ echo ""
 echo "Which android repository are we building from today?"
 
 if [ "$nexus7inbuild" ]; then
-	echo "  1. Cyanogenmod 10"
-	echo "  2. ParanoidAndroid"
-	echo "  3. Go Back"
-else
-	echo "  1. Cyanogenmod 9"
+	echo "  1. Codename Android"
 	echo "  2. Cyanogenmod 10"
 	echo "  3. ParanoidAndroid"
-	echo "  4. Rooted & Busyboxed AOSP"
-	echo "  5. Android Open Kang Project"
-	echo "  6. Team Gummy"
+	echo "  4. Go Back"
+else
+	echo "  1. Codename Android"
+	echo "  2. Cyanogenmod 9"
+	echo "  3. Cyanogenmod 10"
+	echo "  4. ParanoidAndroid"
+	echo "  5. Rooted & Busyboxed AOSP"
+	echo "  6. Android Open Kang Project"
+	echo "  7. Team Gummy"
 
 	if [ "$toroplusinbuild" ]; then
-		echo "  7. Go Back"
-	else
-		echo "  7. Android Open Source Project"
 		echo "  8. Go Back"
+	else
+		echo "  8. Android Open Source Project"
+		echo "  9. Go Back"
 	fi
 fi
 
@@ -54,14 +56,14 @@ if ( echo $version | grep -q [A-Za-z] ); then
 fi
 
 if [ "$toroplusinbuild" ]; then
-	if [ $version -gt "7" ]; then
+	if [ $version -gt "8" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		repomenu
 	fi
 else
-	if [ $version -gt "8" ]; then
+	if [ $version -gt "9" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -70,14 +72,14 @@ else
 fi
 
 if [ "$nexus7inbuild" ]; then
-	if [ $version -gt "3" ]; then
+	if [ $version -gt "4" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		repomenu
 	fi
 else
-	if [ $version -gt "8" ]; then
+	if [ $version -gt "9" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -87,24 +89,8 @@ fi
 
 if [ "$nexus7inbuild" ]; then
 	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "cm")
+		export SCRIPT_REPO=$(echo "cna")
 		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "3" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
-else
-	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "ics")
 	fi
 
 	if [ $version == "2" ]; then
@@ -118,33 +104,59 @@ else
 	fi
 
 	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
+		echo ""
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+else
+	if [ $version == "1" ]; then
+		export SCRIPT_REPO=$(echo "cna")
+		export REPO_PLATFORM=$(echo "jb")
+	fi
+
+	if [ $version == "2" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "ics")
+	fi
+
+	if [ $version == "3" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "jb")
+	fi
+
+	if [ $version == "4" ]; then
+		export SCRIPT_REPO=$(echo "paranoid")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
+		export SCRIPT_REPO=$(echo "raosp")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "6" ]; then
+		export SCRIPT_REPO=$(echo "aokp")
+		export REPO_PLATFORM=$(echo "jb")
+	fi
+
+	if [ $version == "7" ]; then
 		export SCRIPT_REPO=$(echo "gummy")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ "$toroplusinbuild" ]; then
-		if [ $version == "7" ]; then
+		if [ $version == "8" ]; then
 			echo ""
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		fi
 	else
-		if [ $version == "7" ]; then
+		if [ $version == "8" ]; then
 			export SCRIPT_REPO=$(echo "aosp")
 			export REPO_PLATFORM=$(echo "jb")
 		fi
 
-		if [ $version == "8" ]; then
+		if [ $version == "9" ]; then
 			echo ""
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
