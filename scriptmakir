@@ -1,7 +1,7 @@
 #!/bin/bash
 cd $LOCAL
 
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
+if [ $AUTHOR == "xml" ]; then
 
 cat << EOF > xml/cm-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -25,10 +25,6 @@ cat << EOF > xml/cm-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
 </manifest>
 EOF
-
-fi
-
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "paranoid" ] && [ $AUTHOR == "xml" ] && [ $REPO_PLATFORM == "jb" ]; then
 
 cat << EOF > xml/cm10-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,10 +52,6 @@ cat << EOF > xml/cm10-local_manifest.xml
 </manifest>
 EOF
 
-fi
-
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "aosp" ]; then
-
 cat << EOF > xml/aosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
@@ -77,10 +69,6 @@ cat << EOF > xml/aosp-jb-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="jellybean" />
 </manifest>
 EOF
-
-fi
-
-if [ $AUTHOR == "xml" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
 cat << EOF > xml/raosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>

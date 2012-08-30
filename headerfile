@@ -35,24 +35,32 @@ if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL:$PATH"
 fi
 
-if ( find $BUILDS/../publish &> /dev/null) && ( ! echo $PATH | grep -q "$HOME/bin/publish:" ); then
+if ( find $BUILDS/../publish &> /dev/null) && ( ! echo $PATH | grep -q "$PUBLISH/publish:" ); then
 	export PATH="$PUBLISH:$PATH"
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# Create necessary files/folders
-mkdir -p $LOCAL/config
-mkdir -p $LOCAL/xml
+# Create necessary files/folders if not found
+if ( ! find $LOCAL/xml &> /dev/null ); then
+	mkdir -p $LOCAL/xml
 
-if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
-	export AUTHOR="gitpuller"
+	export AUTHOR="xml"
 	scriptmakir
 fi
 
-if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
-	export AUTHOR="romeditor"
-	scriptmakir
+if ( ! find $LOCAL/config &> /dev/null ); then
+	mkdir -p $LOCAL/config
+
+	if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
+		export AUTHOR="gitpuller"
+		scriptmakir
+	fi
+
+	if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
+		export AUTHOR="romeditor"
+		scriptmakir
+	fi
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
