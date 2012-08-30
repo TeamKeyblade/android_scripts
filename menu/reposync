@@ -2,10 +2,10 @@
 # Written by Sean Donovan (swordrune10)
 
 if [ ! "$INIT" ]; then
-	export test=$(echo "$1")
+	export parameter=$(echo "$1")
 fi
 
-if [ "$test" ]; then
+if [ "$parameter" ]; then
 	export AUTO=true
 fi
 
@@ -61,8 +61,8 @@ if [ ! "$AUTO" ]; then
 	fi
 fi
 
-if [ "$test" ]; then
-	if [ $test == "list" ]; then
+if [ "$parameter" ]; then
+	if [ $parameter == "list" ]; then
 		echo "kitchen = Update Kitchen"
 		echo "aokp = Update Android Open Kang Project"
 		echo "aosp = Update Android Open Source Project"
@@ -79,55 +79,55 @@ if [ "$test" ]; then
 		exit 0
 	fi
 
-	if [ $test == "kitchen" ]; then
+	if [ $parameter == "kitchen" ]; then
 		version="1"
 	fi
 
-	if [ $test == "aokp" ]; then
+	if [ $parameter == "aokp" ]; then
 		version="2"
 	fi
 
-	if [ $test == "aosp" ]; then
+	if [ $parameter == "aosp" ]; then
 		version="3"
 	fi
 
-	if [ $test == "bamf" ]; then
+	if [ $parameter == "bamf" ]; then
 		version="4"
 	fi
 
-	if [ $test == "cna" ]; then
+	if [ $parameter == "cna" ]; then
 		version="5"
 	fi
 
-	if [ $test == "cm9" ]; then
+	if [ $parameter == "cm9" ]; then
 		version="6"
 	fi
 
-	if [ $test == "cm" ]; then
+	if [ $parameter == "cm" ]; then
 		version="7"
 	fi
 
-	if [ $test == "ev" ] || [ $test == "evervolv" ]; then
+	if [ $parameter == "ev" ] || [ $parameter == "evervolv" ]; then
 		version="8"
 	fi
 
-	if [ $test == "paranoid" ]; then
+	if [ $parameter == "paranoid" ]; then
 		version="9"
 	fi
 
-	if [ $test == "raosp" ]; then
+	if [ $parameter == "raosp" ]; then
 		version="10"
 	fi
 
-	if [ $test == "sts" ]; then
+	if [ $parameter == "sts" ]; then
 		version="11"
 	fi
 
-	if [ $test == "gummy" ]; then
+	if [ $parameter == "gummy" ]; then
 		version="12"
 	fi
 
-	if [ $test == "all" ]; then
+	if [ $parameter == "all" ]; then
 		version="13"
 	fi
 fi
