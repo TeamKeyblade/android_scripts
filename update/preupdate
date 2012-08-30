@@ -9,7 +9,7 @@ fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
 	echo ""
-	echo "Updating Android Open Source Project's  local_manifest.xml"
+	echo "Updating Android Open Source Project's local_manifest.xml"
 	if ( ! find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
 		export AUTHOR="xml"
 		scriptmakir
@@ -62,7 +62,7 @@ fi
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf vendor/keyblade
 	echo ""
-	echo "Updating Rooted & Busyboxed's  local_manifest.xml"
+	echo "Updating Rooted & Busyboxed's local_manifest.xml"
 	if ( ! find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
 		export AUTHOR="xml"
 		scriptmakir

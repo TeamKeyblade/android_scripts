@@ -1,27 +1,12 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
-	cd $REPOS/cm-ics/vendor/cm
-	./get-prebuilts
-fi
-
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
-	cd $REPOS/cm-jb/vendor/cm
-	./get-prebuilts
-fi
-
-if [ $SCRIPT_REPO == "paranoid" ]; then
-	cd $REPOS/paranoid-jb/vendor/cm
+if ( find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm &> /dev/null ); then
+	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm
 	./get-prebuilts
 fi
 
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf $REPOS/raosp-jb/system/extras/su
-fi
-
-if [ $SCRIPT_REPO == "sts" ]; then
-	cd $REPOS/sts-jb/vendor/cm
-	./get-prebuilts
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
