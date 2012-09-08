@@ -31,11 +31,12 @@ if [ "$nexus7inbuild" ]; then
 	echo "  1. Android Open Kang Project"
 	echo "  2. Android Open Source Project"
 	echo "  3. BAMF Paradigm"
-	echo "  4. Codename Android"
-	echo "  5. Cyanogenmod 10"
-	echo "  6. ParanoidAndroid"
-	echo "  7. Rooted & Busyboxed AOSP"
-	echo "  8. Go Back"
+	echo "  4. Bugless Beast"
+	echo "  5. Codename Android"
+	echo "  6. Cyanogenmod 10"
+	echo "  7. ParanoidAndroid"
+	echo "  8. Rooted & Busyboxed AOSP"
+	echo "  9. Go Back"
 fi
 
 if [ "$toroplusinbuild" ]; then
@@ -54,13 +55,14 @@ if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild
 	echo "  1. Android Open Kang Project"
 	echo "  2. Android Open Source Project"
 	echo "  3. BAMF Paradigm"
-	echo "  4. Codename Android"
-	echo "  5. Cyanogenmod 9"
-	echo "  6. Cyanogenmod 10"
-	echo "  7. ParanoidAndroid"
-	echo "  8. Rooted & Busyboxed AOSP"
-	echo "  9. Team Gummy"
-	echo "  10. Go Back"
+	echo "  4. Bugless Beast"
+	echo "  5. Codename Android"
+	echo "  6. Cyanogenmod 9"
+	echo "  7. Cyanogenmod 10"
+	echo "  8. ParanoidAndroid"
+	echo "  9. Rooted & Busyboxed AOSP"
+	echo "  10. Team Gummy"
+	echo "  11. Go Back"
 fi
 
 read version
@@ -89,7 +91,7 @@ if [ "$buildallthethings" ]; then
 fi
 
 if [ "$nexus7inbuild" ]; then
-	if [ $version -gt "8" ]; then
+	if [ $version -gt "9" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -107,7 +109,7 @@ if [ "$toroplusinbuild" ]; then
 fi
 
 if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild" ]; then
-	if [ $version -gt "10" ]; then
+	if [ $version -gt "11" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -170,26 +172,31 @@ if [ "$nexus7inbuild" ]; then
 	fi
 
 	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "cna")
+		export SCRIPT_REPO=$(echo "bugless")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "cm")
+		export SCRIPT_REPO=$(echo "cna")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
+		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "7" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
+		export SCRIPT_REPO=$(echo "paranoid")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "8" ]; then
+		export SCRIPT_REPO=$(echo "raosp")
+		export REPO_PLATFORM=$(echo "jb")
+	fi
+
+	if [ $version == "9" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
@@ -261,36 +268,41 @@ if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild
 	fi
 
 	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "cna")
+		export SCRIPT_REPO=$(echo "bugless")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "ics")
+		export SCRIPT_REPO=$(echo "cna")
+		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "6" ]; then
 		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
+		export REPO_PLATFORM=$(echo "ics")
 	fi
 
 	if [ $version == "7" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
+		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "8" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
+		export SCRIPT_REPO=$(echo "paranoid")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "9" ]; then
-		export SCRIPT_REPO=$(echo "gummy")
+		export SCRIPT_REPO=$(echo "raosp")
 		export REPO_PLATFORM=$(echo "jb")
 	fi
 
 	if [ $version == "10" ]; then
+		export SCRIPT_REPO=$(echo "gummy")
+		export REPO_PLATFORM=$(echo "jb")
+	fi
+
+	if [ $version == "11" ]; then
 		echo ""
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
