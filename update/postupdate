@@ -3,6 +3,10 @@
 if ( find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm &> /dev/null ); then
 	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm
 	./get-prebuilts
+
+	#this is rebuilt every time since this file is likely to change alot
+	wget -o /dev/null -O $LOCAL/config/cm-master-list \
+	https://raw.github.com/CyanogenMod/hudson/master/cm-build-targets
 fi
 
 if [ $SCRIPT_REPO == "raosp" ]; then
