@@ -17,53 +17,18 @@ echo "$devicefullname is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
 
-if [ "$buildallthethings" ]; then
-	echo "  1. Android Open Kang Project"
-	echo "  2. BAMF Paradigm"
-	echo "  3. Codename Android"
-	echo "  4. Cyanogenmod 10"
-	echo "  5. ParanoidAndroid"
-	echo "  6. Rooted & Busyboxed AOSP"
-	echo "  7. Go Back"
-fi
-
-if [ "$nexus7inbuild" ]; then
-	echo "  1. Android Open Kang Project"
-	echo "  2. Android Open Source Project"
-	echo "  3. BAMF Paradigm"
-	echo "  4. Bugless Beast"
-	echo "  5. Codename Android"
-	echo "  6. Cyanogenmod 10"
-	echo "  7. ParanoidAndroid"
-	echo "  8. Rooted & Busyboxed AOSP"
-	echo "  9. Go Back"
-fi
-
-if [ "$toroplusinbuild" ]; then
-	echo "  1. Android Open Kang Project"
-	echo "  2. BAMF Paradigm"
-	echo "  3. Codename Android"
-	echo "  4. Cyanogenmod 9"
-	echo "  5. Cyanogenmod 10"
-	echo "  6. ParanoidAndroid"
-	echo "  7. Rooted & Busyboxed AOSP"
-	echo "  8. Team Gummy"
-	echo "  9. Go Back"
-fi
-
-if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild" ]; then
-	echo "  1. Android Open Kang Project"
-	echo "  2. Android Open Source Project"
-	echo "  3. BAMF Paradigm"
-	echo "  4. Bugless Beast"
-	echo "  5. Codename Android"
-	echo "  6. Cyanogenmod 9"
-	echo "  7. Cyanogenmod 10"
-	echo "  8. ParanoidAndroid"
-	echo "  9. Rooted & Busyboxed AOSP"
-	echo "  10. Team Gummy"
-	echo "  11. Go Back"
-fi
+echo "  1. Android Open Kang Project"
+echo "  2. Android Open Source Project"
+echo "  3. BAMF Paradigm"
+echo "  4. Bugless Beast"
+echo "  5. Codename Android"
+echo "  6. Cyanogenmod 9"
+echo "  7. Cyanogenmod 10"
+echo "  8. Cyanogenmod 10.1"
+echo "  9. ParanoidAndroid"
+echo "  10. Rooted & Busyboxed AOSP"
+echo "  11. Team Gummy"
+echo "  12. Go Back"
 
 read version
 
@@ -81,232 +46,67 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ "$buildallthethings" ]; then
-	if [ $version -gt "7" ]; then
+if [ $version -gt "11" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		repomenu
-	fi
 fi
 
-if [ "$nexus7inbuild" ]; then
-	if [ $version -gt "9" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		repomenu
-	fi
+if [ $version == "1" ]; then
+	export SCRIPT_REPO=$(echo "aokp")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ "$toroplusinbuild" ]; then
-	if [ $version -gt "9" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		repomenu
-	fi
+if [ $version == "2" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild" ]; then
-	if [ $version -gt "11" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		repomenu
-	fi
+if [ $version == "3" ]; then
+	export SCRIPT_REPO=$(echo "bamf")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ "$buildallthethings" ]; then
-	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "bamf")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "3" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "7" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
+if [ $version == "4" ]; then
+	export SCRIPT_REPO=$(echo "bugless")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ "$nexus7inbuild" ]; then
-	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "3" ]; then
-		export SCRIPT_REPO=$(echo "bamf")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "bugless")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "7" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "8" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "9" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
+if [ $version == "5" ]; then
+	export SCRIPT_REPO=$(echo "cna")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ "$toroplusinbuild" ]; then
-	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "bamf")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "3" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "ics")
-	fi
-
-	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "8" ]; then
-		export SCRIPT_REPO=$(echo "gummy")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "9" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
+if [ $version == "6" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ ! "$buildallthethings" ] && [ ! "$nexus7inbuild" ] && [ ! "$toroplusinbuild" ]; then
-	if [ $version == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
+if [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jb")
+fi
 
-	if [ $version == "2" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
+if [ $version == "8" ]; then
+	export SCRIPT_REPO=$(echo "paranoid")
+	export REPO_PLATFORM=$(echo "jb")
+fi
 
-	if [ $version == "3" ]; then
-		export SCRIPT_REPO=$(echo "bamf")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
+if [ $version == "9" ]; then
+	export SCRIPT_REPO=$(echo "raosp")
+	export REPO_PLATFORM=$(echo "jb")
+fi
 
-	if [ $version == "4" ]; then
-		export SCRIPT_REPO=$(echo "bugless")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
+if [ $version == "10" ]; then
+	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "jb")
+fi
 
-	if [ $version == "5" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "6" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "ics")
-	fi
-
-	if [ $version == "7" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "8" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "9" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "10" ]; then
-		export SCRIPT_REPO=$(echo "gummy")
-		export REPO_PLATFORM=$(echo "jb")
-	fi
-
-	if [ $version == "11" ]; then
-		echo ""
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
+if [ $version == "11" ]; then
+	echo ""
+	read -p "Returning to Build Menu, Press Enter to continue: " done
+	exit 0
 fi
 
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
@@ -314,6 +114,128 @@ if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM &> /dev/null ); then
 	echo "The selected android repository is not setup!"
 	read -p "Press Enter to continue: " done
 	repomenu
+fi
+
+devicecount=""
+
+if [ $SCRIPT_REPO == "aokp" ]; then
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let devicecount=$devicecount+1
+
+	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		break
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! sed -e 's/.*aokp_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+fi
+
+if [ $SCRIPT_REPO == "aosp" ]; then
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let devicecount=$devicecount+1
+
+	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		break
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! sed -e 's/.*full_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/aosp-jb/vendor/*/*/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+fi
+
+if [ $SCRIPT_REPO == "cm" ]; then
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let devicecount=$devicecount+1
+
+	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		break
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! sed -e 's/.*cm_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cm-$REPO_PLATFORM/vendor/cm/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+fi
+
+if [ $SCRIPT_REPO == "raosp" ]; then
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let devicecount=$devicecount+1
+
+	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		break
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! sed -e 's/.*full_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/raosp-jb/device/*/*/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+fi
+
+if [ $SCRIPT_REPO == "gummy" ]; then
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+while true; do
+	let devicecount=$devicecount+1
+
+	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
+		break
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if ( ! sed -e 's/.*Gummy_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/gummy-jb/vendor/Gummy/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+done
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
 fi
 
 clear
@@ -340,6 +262,51 @@ done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo "Finished!"
 exit 0
+}
+
+nexus4menu(){
+clear
+
+echo "Swordrune10's Android Kitchen!"
+echo "=============================="
+echo "Today's Menu:"
+echo " 1. Build GSM Nexus 4"
+echo " 2. Go Back"
+echo ""
+echo "Which one would you like to do?"
+read buildnexus4
+
+if [ ! "$buildnexus4" ]; then
+echo ""
+echo "You did not make a proper selection, try again!"
+read -p "Press Enter to continue: " done
+fi
+
+if ( echo $buildnexus4 | grep -q [A-Za-z] ); then
+echo ""
+echo "You did not make a proper selection, try again!"
+read -p "Press Enter to continue: " done
+fi
+
+if [ $buildnexus4 -gt "2" ]; then
+echo ""
+echo "You did not make a proper selection, try again!"
+read -p "Press Enter to continue: " done
+fi
+
+if [ $buildnexus4 == "1" ]; then
+scriptdevice[1]=$(echo "mako")
+scriptdevice[2]=$(echo "EOF")
+devicefullname=$(echo "GSM Nexus 4")
+repomenu
+fi
+
+if [ $buildnexus4 == "2" ]; then
+echo ""
+read -p "Press Enter to go back: " done
+exit 0
+fi
+nexus4menu
 }
 
 gnexusmenu(){
@@ -393,7 +360,6 @@ if [ $buildgnexus == "3" ]; then
 	scriptdevice[1]=$(echo "toroplus")
 	scriptdevice[2]=$(echo "EOF")
 	devicefullname=$(echo "Sprint Galaxy Nexus")
-	toroplusinbuild=true
 	repomenu
 fi
 
@@ -403,7 +369,6 @@ if [ $buildgnexus == "4" ]; then
 	scriptdevice[3]=$(echo "toroplus")
 	scriptdevice[4]=$(echo "EOF")
 	devicefullname=$(echo "All Galaxy Nexi")
-	toroplusinbuild=true
 	repomenu
 fi
 
@@ -485,7 +450,9 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
 echo "  1. Build Wifi Nexus 7 Tablet"
-echo "  2. Go Back"
+echo "  2. Build GSM Nexus 7 Tablet"
+echo "  3. Build all above!"
+echo "  4. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildnexus7
@@ -512,11 +479,25 @@ if [ $buildnexus7 == "1" ]; then
 	scriptdevice[1]=$(echo "grouper")
 	scriptdevice[2]=$(echo "EOF")
 	devicefullname=$(echo "Wifi Nexus 7 Tablet")
-	nexus7inbuild=true
 	repomenu
 fi
 
 if [ $buildnexus7 == "2" ]; then
+	scriptdevice[1]=$(echo "tilapia")
+	scriptdevice[2]=$(echo "EOF")
+	devicefullname=$(echo "GSM Nexus 7 Tablet")
+	repomenu
+fi
+
+if [ $buildnexus7 == "3" ]; then
+	scriptdevice[1]=$(echo "grouper")
+	scriptdevice[2]=$(echo "tilapia")
+	scriptdevice[3]=$(echo "EOF")
+	devicefullname=$(echo "All Nexus 7 Tablet's")
+	repomenu
+fi
+
+if [ $buildnexus7 == "4" ]; then
 	echo ""
 	read -p "Press Enter to go back: " done
 	exit 0
@@ -597,7 +578,6 @@ scriptdevice[7]=$(echo "stingray")
 scriptdevice[8]=$(echo "wingray")
 scriptdevice[9]=$(echo "EOF")
 devicefullname=$(echo "All Nexus Devices")
-buildallthethings=true
 repomenu
 }
 
