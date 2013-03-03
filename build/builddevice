@@ -46,7 +46,7 @@ if ( echo $version | grep -q [A-Za-z] ); then
 	repomenu
 fi
 
-if [ $version -gt "11" ]; then
+if [ $version -gt "12" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -89,21 +89,26 @@ if [ $version == "7" ]; then
 fi
 
 if [ $version == "8" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "10.1")
+fi
+
+if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "9" ]; then
+if [ $version == "10" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "10" ]; then
+if [ $version == "11" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "11" ]; then
+if [ $version == "12" ]; then
 	echo ""
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
