@@ -194,7 +194,7 @@ if [ $setupanswer == "11" ]; then
 	script_repo=$(echo "cm")
 	repo_platform=$(echo "10.1")
 	repo_branch=$(echo "cm-10.1")
-	repo_name=$(echo "Cyanogenmod 10")
+	repo_name=$(echo "Cyanogenmod 10.1")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	setupcode
 fi
