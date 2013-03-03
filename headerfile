@@ -51,16 +51,16 @@ fi
 
 if ( ! find $LOCAL/config &> /dev/null ); then
 	mkdir -p $LOCAL/config
+if
 
-	if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
-		export AUTHOR="gitpuller"
-		scriptmakir
-	fi
+if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
+	export AUTHOR="gitpuller"
+	scriptmakir
+fi
 
-	if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
-		export AUTHOR="romeditor"
-		scriptmakir
-	fi
+if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
+	export AUTHOR="romeditor"
+	scriptmakir
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::

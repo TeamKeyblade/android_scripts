@@ -181,9 +181,7 @@ while true; do
 		break
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! sed -e 's/.*cm_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/cm-$REPO_PLATFORM/vendor/cm/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+	if ( ! cat $LOCAL/config/cm-master-list | grep -q "${scriptdevice[$devicecount]}" ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
