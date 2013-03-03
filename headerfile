@@ -49,9 +49,7 @@ if ( ! find $LOCAL/xml &> /dev/null ); then
 	scriptmakir
 fi
 
-if ( ! find $LOCAL/config &> /dev/null ); then
-	mkdir -p $LOCAL/config
-if
+mkdir -p $LOCAL/config
 
 if ( ! find $LOCAL/config/gitpuller &> /dev/null ); then
 	export AUTHOR="gitpuller"
