@@ -43,6 +43,17 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 	cp -f $LOCAL/xml/cm10-local_manifest.xml $DOTREPO/local_manifest.xml
 fi
 
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.1" ]; then
+	rm -rf vendor/cm
+	echo ""
+	echo "Updating Cyanogenmod 10.1's local_manifest.xml"
+	if ( ! find $LOCAL/xml/cm10.1-local_manifest.xml &> /dev/null ); then
+		export AUTHOR="xml"
+		scriptmakir
+	fi
+	cp -f $LOCAL/xml/cm10.1-local_manifest.xml $DOTREPO/local_manifest.xml
+fi
+
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	rm -rf vendor/ev
 fi
