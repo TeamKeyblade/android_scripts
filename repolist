@@ -1,6 +1,8 @@
 aokp = Android Open Kang Project
 aosp = Android Open Source Project
-cm = Cyanogenmod 9
+cm9 = Cyanogenmod 9
+cm10 = Cyanogenmod 10
+cm = Cyanogenmod 10.1
 ev = Evervolv
 rooted-aosp = Rooted & Busyboxed AOSP
 sts = Solana/Targa/Spyder Dev Team

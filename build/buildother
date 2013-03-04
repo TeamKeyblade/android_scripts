@@ -186,21 +186,8 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
-	if ( ! sed -e 's/.*cm_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/cm-ics/vendor/cm/vendorsetup.sh | grep -q $device ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		menu
-	fi
-fi
-
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
-	if ( ! sed -e 's/.*cm_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/cm-jb/vendor/cm/vendorsetup.sh | grep -q $device ); then
+if [ $SCRIPT_REPO == "cm" ]; then
+	if ( ! cat $LOCAL/config/cm-master-list | grep -q $device ); then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -250,7 +237,16 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 		adddevice=$(cat $REPOS/cm-jb/.repo/local_manifest.xml | grep $device\")
 		sed -i -e "/<manifest>/ a \
 		$adddevice" \
-		$LOCAL/xml/cm-local_manifest.xml
+		$LOCAL/xml/cm10-local_manifest.xml
+	fi
+fi
+
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.1" ]; then
+	if ( ! cat $LOCAL/xml/cm10.1-local_manifest.xml | grep -q $device\" ); then
+		adddevice=$(cat $REPOS/cm-10.1/.repo/local_manifest.xml | grep $device\")
+		sed -i -e "/<manifest>/ a \
+		$adddevice" \
+		$LOCAL/xml/cm10.1-local_manifest.xml
 	fi
 fi
 

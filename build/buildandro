@@ -90,7 +90,7 @@ if [ $SCRIPT_REPO == "cna" ]; then
 fi
 
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
-	zip=$(find cm*.zip)
+	zip=$(find cm-$REPO_PLATFORM*.zip)
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
