@@ -20,10 +20,9 @@ echo "  3. Build Nexus S"
 echo "  4. Build Nexus 7"
 echo "  5. Build Xoom Tablet"
 echo "  6. Build all above!"
-echo "  7. Build Droid 3/Droid 4/Bionic/Razr"
-echo "  8. Build other device"
-echo "  9. Build with other repository"
-echo "  10. Go Back"
+echo "  7. Build other device"
+echo "  8. Build with other repository"
+echo "  9. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildanswer
@@ -42,7 +41,7 @@ if ( echo $buildanswer | grep -q [A-Za-z] ); then
 	menu
 fi
 
-if [ $buildanswer -gt "10" ]; then
+if [ $buildanswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -86,21 +85,16 @@ if [ $buildanswer == "6" ]; then
 fi
 
 if [ $buildanswer == "7" ]; then
-	buildsts
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildanswer == "8" ]; then
 	buildother
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $buildanswer == "9" ]; then
+if [ $buildanswer == "8" ]; then
 	buildotherrepo
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $buildanswer == "10" ]; then
+if [ $buildanswer == "9" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
