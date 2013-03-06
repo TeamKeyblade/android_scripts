@@ -120,6 +120,8 @@ EOF
 cat << EOF > $LOCAL/xml/raosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote  name="github"
+           fetch="http://github.com/" />
   <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.1" />
   <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="cm-10.1" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="cm-10.1" />
