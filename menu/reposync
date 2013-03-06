@@ -169,7 +169,7 @@ else
 fi
 }
 
-if [ $version == "1" ] || [ $version == "15" ]; then
+if [ $version == "1" ] || [ $version == "14" ]; then
 	echo ""
 	echo "Updating the Kitchen app repository.."
 	cd $LOCAL/..
