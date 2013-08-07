@@ -166,7 +166,7 @@ if ( uname -a | grep -q Linux ); then
 			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
 			g++-multilib mingw32 tofrodos python-markdown \
 			libxml2-utils xsltproc zlib1g-dev:i386 \
-			gcc-4.4 g++-4.4-multilib # threw these in to make sure it builds ;)
+			gcc-4.4 g++-4.4-multilib gcc-4.6 g++-4.6-multilib # threw these in to make sure it builds ;)
 			sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 		fi
 
