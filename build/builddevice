@@ -24,7 +24,7 @@ echo "  4. Bugless Beast"
 echo "  5. Codename Android"
 echo "  6. Cyanogenmod 9"
 echo "  7. Cyanogenmod 10"
-echo "  8. Cyanogenmod 10.1"
+echo "  8. Cyanogenmod 10.2"
 echo "  9. ParanoidAndroid"
 echo "  10. Rooted & Busyboxed AOSP"
 echo "  11. Team Gummy"
@@ -90,7 +90,7 @@ fi
 
 if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.1")
+	export REPO_PLATFORM=$(echo "10.2")
 fi
 
 if [ $version == "9" ]; then
