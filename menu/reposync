@@ -33,7 +33,7 @@ if [ ! "$AUTO" ]; then
 	echo "  6. Update the Codename Android repository"
 	echo "  7. Update the Cyanogenmod 9 repository"
 	echo "  8. Update the Cyanogenmod 10 repository"
-	echo "  9. Update the Cyanogenmod 10.1 repository"
+	echo "  9. Update the Cyanogenmod 10.2 repository"
 	echo "  10. Update the Evervolv repository"
 	echo "  11. Update the ParanoidAndroid repository"
 	echo "  12. Update the Rooted & Busyboxed AOSP repository"
@@ -72,7 +72,7 @@ if [ "$parameter" ]; then
 		echo "cna = Update Codename Android"
 		echo "cm9 = Update Cyanogenmod 9"
 		echo "cm10 = Update Cyanogenmod 10"
-		echo "cm = Update Cyanogenmod 10.1"
+		echo "cm = Update Cyanogenmod 10.2"
 		echo "ev = Update Evervolv"
 		echo "paranoid = Update ParanoidAndroid"
 		echo "raosp = Update Rooted & Busyboxed AOSP"
@@ -234,8 +234,8 @@ fi
 
 if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.1")
-	repo_name=$(echo "Cyanogenmod 10.1")
+	export REPO_PLATFORM=$(echo "10.2")
+	repo_name=$(echo "Cyanogenmod 10.2")
 	synccode
 fi
 
@@ -297,8 +297,8 @@ if [ $version == "14" ]; then
 	repo_name=$(echo "Cyanogenmod 10")
 	synccode
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.1")
-	repo_name=$(echo "Cyanogenmod 10.1")
+	export REPO_PLATFORM=$(echo "10.2")
+	repo_name=$(echo "Cyanogenmod 10.2")
 	synccode
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
