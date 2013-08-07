@@ -24,7 +24,7 @@ echo "  7. initialize the Bugless Beast repository"
 echo "  8. initialize the Codename Android repository"
 echo "  9. initialize the Cyanogenmod 9 repository"
 echo "  10. initialize the Cyanogenmod 10 repository"
-echo "  11. initialize the Cyanogenmod 10.1 repository"
+echo "  11. initialize the Cyanogenmod 10.2 repository"
 echo "  12. initialize the Evervolv repository"
 echo "  13. initialize the ParanoidAndroid repository"
 echo "  14. initialize the Rooted & Busyboxed AOSP repository"
@@ -119,7 +119,7 @@ fi
 if [ $setupanswer == "3" ]; then
 	kitchensync=true
 	script_repo=$(echo "kitchen")
-	repo_branch=$(echo "stable")
+	repo_branch=$(echo "master")
 	repo_folder=$( echo "$LOCAL/.." )
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
@@ -191,9 +191,9 @@ fi
 
 if [ $setupanswer == "11" ]; then
 	script_repo=$(echo "cm")
-	repo_platform=$(echo "10.1")
-	repo_branch=$(echo "cm-10.1")
-	repo_name=$(echo "Cyanogenmod 10.1")
+	repo_platform=$(echo "10.2")
+	repo_branch=$(echo "cm-10.2")
+	repo_name=$(echo "Cyanogenmod 10.2")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	setupcode
 fi
