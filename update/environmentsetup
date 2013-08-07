@@ -183,16 +183,11 @@ if ( uname -a | grep -q Linux ); then
 
 
 		# Debian based java installation
-		echo "Installing java will take a while, to do this legally the Kitchen app will use flexion.org oab-java script"
+		echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer"
 		echo ""
-		wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O $LOCAL/../oab-java.sh
-		chmod +x $LOCAL/../oab-java.sh
-		echo "Switching to oab-java script"
-		read -p "Press Enter to continue: " done
-		sudo $LOCAL/../oab-java.sh
-		rm -f $LOCAL/../oab-java.sh
-		rm -f $LOCAL/../oab-java.sh.log
-		sudo apt-get install sun-java6-jre sun-java6-jdk
+		sudo add-apt-repository ppa:webupd8team/java
+		sudo apt-get update
+		sudo apt-get install oracle-java6-installer
 
 		echo ""
 		echo "Finished!"
