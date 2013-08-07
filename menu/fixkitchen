@@ -58,6 +58,7 @@ if [ $cleananswer == "1" ]; then
 	echo "Android Open Source Project = aosp"
 	echo "Cyanogenmod 9 = cm9"
 	echo "Cyanogenmod 10 = cm10"
+	echo "Cyanogenmod 10.2 = cm10.2"
 	echo "Rooted & Busyboxed AOSP = raosp"
 	echo "type exit to go to back"
 	read addrepo
@@ -96,9 +97,9 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		echo ""
 		echo "Adding repo to local_manifest.xml for Cyanogenmod 9.."
 		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" cm-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> cm-local_manifest.xml
-		echo "</manifest>" >> cm-local_manifest.xml
+		sed -i "/<\/manifest>/d" cm9-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> cm9-local_manifest.xml
+		echo "</manifest>" >> cm9-local_manifest.xml
 		preupdate
 		rm -r $LOCAL/../temp
 	fi
@@ -126,6 +127,33 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 		sed -i "/<\/manifest>/d" cm10-local_manifest.xml
 		cat $LOCAL/../temp/addrepo  >> cm10-local_manifest.xml
 		echo "</manifest>" >> cm10-local_manifest.xml
+		preupdate
+		rm -r $LOCAL/../temp
+	fi
+
+	if [ $addrepo == "cm10.2" ]; then
+		if ( ! find $LOCAL/xml/cm10.2-local_manifest.xml &> /dev/null ); then
+			echo ""
+			echo "local_manifest.xml for Cyanogenmod 10.2 doesn't exist!"
+			read -p "Press Enter to continue: " done
+			menu
+		fi
+
+		mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+		nano $LOCAL/../temp/addrepo
+
+		echo ""
+		echo "Adding repo to local_manifest.xml for Cyanogenmod 10.."
+		cd $LOCAL/xml
+		sed -i "/<\/manifest>/d" cm10.2-local_manifest.xml
+		cat $LOCAL/../temp/addrepo  >> cm10.2-local_manifest.xml
+		echo "</manifest>" >> cm10.2-local_manifest.xml
 		preupdate
 		rm -r $LOCAL/../temp
 	fi
