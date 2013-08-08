@@ -89,8 +89,9 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 	echo "Unzipping $zip"
 	unzip ../$zip > /dev/null
 
-	echo "Removing uneeded recovery folder from $zip"
+	echo "Removing uneeded recovery folder and file_contexts from $zip"
 	rm -r recovery
+	rm file_contexts
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		cd system
