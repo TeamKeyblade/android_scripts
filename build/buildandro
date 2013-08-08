@@ -77,40 +77,9 @@ else
 	cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
 fi
 
-if [ $SCRIPT_REPO == "bamf" ]; then
-	zip=$(find BAMF*.zip)
-fi
-
-if [ $SCRIPT_REPO == "bugless" ]; then
-	zip=$(find pete*.zip)
-fi
-
-if [ $SCRIPT_REPO == "cna" ]; then
-	zip=$(find Codename*.zip)
-fi
-
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "sts" ]; then
-	zip=$(find cm-$REPO_PLATFORM*.zip)
-fi
-
-if [ $SCRIPT_REPO == "aokp" ]; then
-	zip=$(find aokp*.zip)
-fi
-
-if [ $SCRIPT_REPO == "evervolv" ]; then
-	zip=$(find Evervolv*.zip)
-fi
-
-if [ $SCRIPT_REPO == "paranoid" ]; then
-	zip=$(find pa*.zip)
-fi
-
-if [ $SCRIPT_REPO == "gummy" ]; then
-	zip=$(find Gummy*.zip)
-fi
+zip=$(find *$SCRIPT_DEVICE*.zip)
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
-	zip=$(find full*.zip)
 
 	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $BUILDS/temp/zipout
