@@ -159,7 +159,7 @@ while true; do
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! sed -e 's/.*full_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-jb/vendor/*/"${scriptdevice[$devicecount]}"/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+	$REPOS/aosp-jb/device/*/"${scriptdevice[$devicecount]}"/vendorsetup.sh ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
