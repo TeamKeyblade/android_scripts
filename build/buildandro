@@ -122,7 +122,7 @@ newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_D
 
 echo "Copying to $BUILD_FOLDER"
 echo "$zip -> $newzip"
-cp $zip $BUILD_FOLDER/$newzip
+cp -T $zip $BUILD_FOLDER/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 	echo "Cleaning up temporary folder"
