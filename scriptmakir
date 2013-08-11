@@ -87,6 +87,7 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="cm-10.1" />
   <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_oppo" path="vendor/oppo" revision="cm-10.1" />
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="cm-10.2" />
