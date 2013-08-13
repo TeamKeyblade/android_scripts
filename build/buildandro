@@ -102,6 +102,11 @@ if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 		cd ..
 	fi
 
+	cd META-INF/com/google/android
+	sed -i "/install-recovery.sh.*/d" updater-script
+	cd $BUILDS/temp/zipout
+	
+
 	echo "Zipping $zip back up"
 	zip -r unsignedcrap.zip . > /dev/null
 
