@@ -195,7 +195,7 @@ if [ \$SCRIPT_REPO == "cm" ]; then
 fi
 
 if [ \$SCRIPT_REPO == "raosp" ]; then
-	cd \$REPOS/rooted-aosp-ics/vendor/keyblade/makefiles
+	cd \$REPOS/raosp-jb/vendor/keyblade/makefiles
 	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id
 	# sed -i 's/developerid=teamkeyblade/EDITME!/g' overrider.mk
 	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)
