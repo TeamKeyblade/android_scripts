@@ -1,5 +1,10 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+
+if ( ! find $DOTREPO/local_manifests &> /dev/null ); then
+	mkdir $DOTREPO/local_manifests
+fi
+
 if [ $SCRIPT_REPO == "aokp" ]; then
 	rm -rf vendor/aokp
 	echo ""
