@@ -119,7 +119,7 @@ fi
 if [ $setupanswer == "3" ]; then
 	kitchensync=true
 	script_repo=$(echo "kitchen")
-	repo_branch=$(echo "master")
+	repo_branch=$(echo "stable")
 	repo_folder=$( echo "$LOCAL/.." )
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
