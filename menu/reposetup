@@ -138,7 +138,7 @@ fi
 if [ $setupanswer == "5" ]; then
 	script_repo=$(echo "aosp")
 	repo_platform=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r2.1")
+	repo_branch=$(echo "android-4.3_r2.2")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcode
