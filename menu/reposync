@@ -42,23 +42,11 @@ if [ ! "$AUTO" ]; then
 	echo "  15. Go Back"
 	read version
 
-	if [ ! "$version" ]; then
+	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "15" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
-	fi
-
-	if ( echo $version | grep -q [A-Za-z] ); then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		echo "Press Enter to continue"
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $version -gt "15" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		menu
 	fi
 fi
 
@@ -140,8 +128,7 @@ fi
 
 synccode() {
 export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-export DOTREPO=$( echo "$REPO_FOLDER/.repo" )
-if ( find $DOTREPO &> /dev/null); then
+if ( find $REPO_FOLDER/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
 	cd $REPO_FOLDER
@@ -160,11 +147,21 @@ if ( find $DOTREPO &> /dev/null); then
 		read -p "Press Enter to continue: " done
 	fi
 else
-	echo ""
-	echo "$repo_name not initialized, aborting.. "
-
 	if [ ! "$AUTO" ]; then
-		read -p "Press Enter to continue: " done
+		echo ""
+		echo "$repo_name not initialized, do you want to initialize it?"
+		read init
+	
+		if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+			INIT=""
+			reposync $script_repo
+		else
+			read -p "$repo_name wasn't initialized, Press Enter to continue: " done
+			menu
+		fi
+	else
+		echo ""
+		echo "$repo_name not initialized, aborting.."
 	fi
 fi
 }
