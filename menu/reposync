@@ -127,7 +127,7 @@ if [ "$parameter" ]; then
 fi
 
 synccode() {
-export repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
 if ( find $repo_folder/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
