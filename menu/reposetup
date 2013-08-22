@@ -86,7 +86,8 @@ if ( ! find $repo_folder/.repo &> /dev/null ); then
 	echo "initializing $repo_name repository.."
 	setupcode
 else
-	echo "$repo_name already initialized.. did you want to reinitialize it?"
+	echo "$repo_name already initialized.."
+	echo "did you want to reinitialize it?"
 	read reinit
 	
 	if [ "$newreposync" == "yes" ] || [ "$newreposync" == "y" ]; then
