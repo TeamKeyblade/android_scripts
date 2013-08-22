@@ -154,7 +154,7 @@ else
 	
 		if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
 			INIT=""
-			reposync $script_repo
+			reposetup $script_repo
 		else
 			read -p "$repo_name wasn't initialized, Press Enter to continue: " done
 			menu
@@ -163,6 +163,12 @@ else
 		echo ""
 		echo "$repo_name not initialized, aborting.."
 	fi
+	
+
+	echo ""
+	echo "Finished!"
+	read -p "Press Enter to continue: " done
+	menu
 fi
 }
 
