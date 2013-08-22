@@ -34,22 +34,11 @@ echo ""
 echo "Which one would you like to do?"
 read setupanswer
 
-if [ ! "$setupanswer" ]; then
+if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "16" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $setupanswer | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $setupanswer -gt "16" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	menu
 fi
 
 if [ $setupanswer == "1" ]; then
@@ -80,6 +69,8 @@ fi
 setupcheck() {
 if [ ! "$kitchensync" ]; then
 	repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+else
+	repo_folder=$( echo "$LOCAL/.." )
 fi
 
 if ( ! find $repo_folder/.repo &> /dev/null ); then
@@ -118,9 +109,7 @@ read -p "yes/no? " newreposync
 if [ "$newreposync" == "yes" ] || [ "$newreposync" == "y" ]; then
 	INIT=""
 	reposync $script_repo
-fi
-
-if [ ! "$newreposync" ] || [ "$newreposync" == "no" ] || [ "$newreposync" == "n" ]; then
+else
 	echo ""
 	echo "$repo_name repository did not sync.."
 fi
@@ -135,7 +124,6 @@ if [ $setupanswer == "3" ]; then
 	kitchensync=true
 	script_repo=$(echo "kitchen")
 	repo_branch=$(echo "stable")
-	repo_folder=$( echo "$LOCAL/.." )
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
 	setupcheck
