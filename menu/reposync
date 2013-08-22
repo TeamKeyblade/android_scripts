@@ -168,7 +168,12 @@ else
 	echo ""
 	echo "Finished!"
 	read -p "Press Enter to continue: " done
-	menu
+
+	if [ ! "$AUTO" ]; then
+		menu
+	else
+		exit 0
+	fi
 fi
 }
 
