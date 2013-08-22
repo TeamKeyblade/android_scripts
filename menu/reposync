@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 
 if [ ! "$INIT" ]; then
-	export parameter=$(echo "$1")
+	parameter=$(echo "$1")
 fi
 
 if [ "$parameter" ]; then
@@ -127,11 +127,11 @@ if [ "$parameter" ]; then
 fi
 
 synccode() {
-export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-if ( find $REPO_FOLDER/.repo &> /dev/null); then
+export repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+if ( find $repo_folder/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
-	cd $REPO_FOLDER
+	cd $repo_folder
 
 	preupdate
 	repo sync -j$supersync
@@ -181,136 +181,136 @@ if [ $version == "1" ] || [ $version == "14" ]; then
 fi
 
 if [ $version == "2" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "aokp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	synccode
 fi
 
 if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "aosp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Android Open Source Project")
 	synccode
 fi
 
 if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "bamf")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "BAMF Paradigm")
 	synccode
 fi
 
 if [ $version == "5" ]; then
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "bugless")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Bugless Beast")
 	synccode
 fi
 
 if [ $version == "6" ]; then
-	export SCRIPT_REPO=$(echo "cna")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "cna")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Codename Android")
 	synccode
 fi
 
 if [ $version == "7" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "ics")
 	repo_name=$(echo "Cyanogenmod 9")
 	synccode
 fi
 
 if [ $version == "8" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Cyanogenmod 10")
 	synccode
 fi
 
 if [ $version == "9" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "10.2")
 	repo_name=$(echo "Cyanogenmod 10.2")
 	synccode
 fi
 
 if [ $version == "10" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "evervolv")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Evervolv")
 	synccode
 fi
 
 if [ $version == "11" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "paranoid")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "ParanoidAndroid")
 	synccode
 fi
 
 if [ $version == "12" ]; then
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "raosp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
 fi
 
 if [ $version == "13" ]; then
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "gummy")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
 
 if [ $version == "14" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "aokp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	synccode
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "aosp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Android Open Source Project")
 	synccode
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "bamf")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "BAMF Paradigm")
 	synccode
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "bugless")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Bugless Beast")
 	synccode
-	export SCRIPT_REPO=$(echo "cna")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "cna")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Codename Android")
 	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "ics")
 	repo_name=$(echo "Cyanogenmod 9")
 	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Cyanogenmod 10")
 	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
+	script_repo=$(echo "cm")
+	repo_platform=$(echo "10.2")
 	repo_name=$(echo "Cyanogenmod 10.2")
 	synccode
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "evervolv")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Evervolv")
 	synccode
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "paranoid")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "ParanoidAndroid")
 	synccode
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "raosp")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	synccode
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
+	script_repo=$(echo "gummy")
+	repo_platform=$(echo "jb")
 	repo_name=$(echo "Team Gummy")
 	synccode
 fi
