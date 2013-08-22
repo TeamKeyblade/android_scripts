@@ -131,7 +131,7 @@ export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 if ( find $REPO_FOLDER/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
-	cd $repo_folder
+	cd $REPO_FOLDER
 
 	preupdate
 	repo sync -j$supersync
