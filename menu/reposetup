@@ -206,11 +206,10 @@ else
 	echo "$repo_name repository did not sync.."
 fi
 
-echo ""
-echo "Finished!"
-read -p "Press Enter to continue: " done
-
 if [ ! "$AUTO" ]; then
+	echo ""
+	echo "Finished!"
+	read -p "Press Enter to continue: " done
 	menu
 else
 	exit 0
