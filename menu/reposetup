@@ -90,7 +90,7 @@ else
 	echo "did you want to reinitialize it?"
 	read reinit
 	
-	if [ "$newreposync" == "yes" ] || [ "$newreposync" == "y" ]; then
+	if [ "$reinit" == "yes" ] || [ "$reinit" == "y" ]; then
 		rm -rf 	$repo_folder/.repo	
 		
 		echo "reinitializing $repo_name repository.."
