@@ -183,16 +183,6 @@ else
 		menu
 	fi
 fi
-}
-
-setupcode() {
-if [ ! "$kitchensync" ]; then
-	mkdir -p $repo_folder
-fi
-
-cd $repo_folder
-
-repo init -u $repo_url -b $repo_branch
 
 echo ""
 echo "Sync $repo_name repository?"
@@ -214,6 +204,16 @@ if [ ! "$AUTO" ]; then
 else
 	exit 0
 fi
+}
+
+setupcode() {
+if [ ! "$kitchensync" ]; then
+	mkdir -p $repo_folder
+fi
+
+cd $repo_folder
+
+repo init -u $repo_url -b $repo_branch
 }
 
 if [ $setupanswer == "3" ]; then
