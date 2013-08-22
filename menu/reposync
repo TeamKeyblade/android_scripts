@@ -127,7 +127,12 @@ if [ "$parameter" ]; then
 fi
 
 synccode() {
-export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+if [ $SCRIPT_REPO == "kitchen" ]; then
+	export REPO_FOLDER=$( echo "$LOCAL/.." )
+else
+	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+fi
+
 if ( find $REPO_FOLDER/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
@@ -175,18 +180,11 @@ else
 fi
 }
 
-if [ $version == "1" ] || [ $version == "14" ]; then
-	echo ""
-	echo "Updating the Kitchen app repository.."
-	cd $LOCAL/..
-
-	repo sync -j$THREADS_TOTAL
-	echo ""
-	echo "Kitchen Update Complete!"
-
-	if [ ! "$AUTO" ]; then
-		read -p "Press Enter to continue: " done
-	fi
+if [ $version == "1" ]; then
+	export SCRIPT_REPO=$(echo "kitchen")
+	export REPO_PLATFORM=$(echo "master")
+	repo_name=$(echo "Kitchen app")
+	synccode
 fi
 
 if [ $version == "2" ]; then
@@ -274,6 +272,10 @@ if [ $version == "13" ]; then
 fi
 
 if [ $version == "14" ]; then
+	export SCRIPT_REPO=$(echo "kitchen")
+	export REPO_PLATFORM=$(echo "master")
+	repo_name=$(echo "Kitchen app")
+	synccode
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
