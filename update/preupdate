@@ -1,15 +1,16 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+dotrepo=$( echo "$REPO_FOLDER/.repo" )
 
-if ( ! find $DOTREPO/local_manifests &> /dev/null ); then
-	mkdir $DOTREPO/local_manifests
+if ( ! find $dotrepo/local_manifests &> /dev/null ); then
+	mkdir $dotrepo/local_manifests
 fi
 
 if [ $SCRIPT_REPO == "aokp" ]; then
 	rm -rf vendor/aokp
 	echo ""
 	echo "Updating Android Open Kang Project's local_manifests folder"
-	wget https://raw.github.com/AOKP/platform_manifest/jb/kernel_manifest.xml -O $DOTREPO/local_manifests/kernel_manifest.xml
+	wget https://raw.github.com/AOKP/platform_manifest/jb/kernel_manifest.xml -O $dotrepo/local_manifests/kernel_manifest.xml
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
@@ -19,7 +20,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/aosp-jb-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/aosp-jb-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "cna" ]; then
@@ -34,7 +35,7 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/cm9-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/cm9-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
@@ -45,7 +46,7 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/cm10-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/cm10-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
@@ -56,7 +57,7 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "evervolv" ]; then
@@ -72,7 +73,7 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/cm10-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/cm10-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "raosp" ]; then
@@ -83,7 +84,7 @@ if [ $SCRIPT_REPO == "raosp" ]; then
 		export AUTHOR="xml"
 		scriptmakir
 	fi
-	cp -f $LOCAL/xml/raosp-jb-local_manifest.xml $DOTREPO/local_manifests/proprietary.xml
+	cp -f $LOCAL/xml/raosp-jb-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "gummy" ]; then
