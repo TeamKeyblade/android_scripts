@@ -128,7 +128,7 @@ fi
 
 synccode() {
 export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-if ( find $repo_folder/.repo &> /dev/null); then
+if ( find $REPO_FOLDER/.repo &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository.."
 	cd $repo_folder
