@@ -170,7 +170,7 @@ else
 	echo "$repo_name not initialized, initializing now.."
 fi
 
-if [ ! "$AUTO" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+if [ "$AUTO" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
 	if [ ! $SCRIPT_REPO == "kitchen" ]; then
 		mkdir -p $REPO_FOLDER
 	fi
