@@ -159,7 +159,7 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	if [ ! $setupanswer == "16" ]
+	if [ ! $setupanswer == "16" ]; then
 		echo "$repo_name not initialized, do you want to initialize it?"
 		read init
 
