@@ -16,10 +16,8 @@ fi
 if [ $SCRIPT_REPO == "aosp" ]; then
 	echo ""
 	echo "Updating Android Open Source Project's local_manifests folder"
-	if ( ! find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/aosp-jb-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
@@ -31,10 +29,8 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 9's local_manifests folder"
-	if ( ! find $LOCAL/xml/cm9-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/cm9-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
@@ -42,10 +38,8 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 10's local_manifests folder"
-	if ( ! find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/cm10-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
@@ -53,10 +47,8 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
 	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 10.2's local_manifests folder"
-	if ( ! find $LOCAL/xml/cm10.2-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
@@ -69,10 +61,8 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 	rm -rf vendor/pa
 	echo ""
 	echo "Updating ParanoidAndroid's local_manifests folder"
-	if ( ! find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/cm10-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
@@ -80,10 +70,8 @@ if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf vendor/keyblade
 	echo ""
 	echo "Updating Rooted & Busyboxed's local_manifests folder"
-	if ( ! find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
-		export AUTHOR="xml"
-		scriptmakir
-	fi
+	export AUTHOR="xml"
+	scriptmakir
 	cp -f $LOCAL/xml/raosp-jb-local_manifest.xml $dotrepo/local_manifests/proprietary.xml
 fi
 
