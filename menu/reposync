@@ -17,7 +17,6 @@ if [ ! "$INIT" ]; then
 fi
 
 menu () {
-supersync=$( expr $THREADS_TOTAL \* 2 )
 
 if [ ! "$AUTO" ]; then
 	clear
@@ -25,24 +24,27 @@ if [ ! "$AUTO" ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "What are we updating?"
-	echo "  1. Update the Kitchen app repository"
-	echo "  2. Update the Android Open Kang Project repository"
-	echo "  3. Update the Android Open Source Project repository"
-	echo "  4. Update the BAMF Paradigm repository"
-	echo "  5. Update the Bugless Beast repository"
-	echo "  6. Update the Codename Android repository"
-	echo "  7. Update the Cyanogenmod 9 repository"
-	echo "  8. Update the Cyanogenmod 10 repository"
-	echo "  9. Update the Cyanogenmod 10.2 repository"
-	echo "  10. Update the Evervolv repository"
-	echo "  11. Update the ParanoidAndroid repository"
-	echo "  12. Update the Rooted & Busyboxed AOSP repository"
-	echo "  13. Update the Team Gummy repository"
-	echo "  14. Update all available repositories"
-	echo "  15. Go Back"
+	echo "If repo isn't initialized, it will be on update"
+	echo "  1. Install the repo command"
+	echo "  2. Setup the build enviroment"
+	echo "  3. Update the Kitchen app repository"
+	echo "  4. Update the Android Open Kang Project repository"
+	echo "  5. Update the Android Open Source Project repository"
+	echo "  6. Update the BAMF Paradigm repository"
+	echo "  7. Update the Bugless Beast repository"
+	echo "  8. Update the Codename Android repository"
+	echo "  9. Update the Cyanogenmod 9 repository"
+	echo "  10. Update the Cyanogenmod 10 repository"
+	echo "  11. Update the Cyanogenmod 10.2 repository"
+	echo "  12. Update the Evervolv repository"
+	echo "  13. Update the ParanoidAndroid repository"
+	echo "  14. Update the Rooted & Busyboxed AOSP repository"
+	echo "  15. Update the Team Gummy repository"
+	echo "  16. Update all available repositories"
+	echo "  17. Go Back"
 	read version
 
-	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "15" ]; then
+	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "17" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -126,207 +128,295 @@ if [ "$parameter" ]; then
 	fi
 fi
 
-synccode() {
+setupcheck() {
 if [ $SCRIPT_REPO == "kitchen" ]; then
 	export REPO_FOLDER=$( echo "$LOCAL/.." )
 else
 	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 fi
 
-if ( find $REPO_FOLDER/.repo &> /dev/null); then
-	echo ""
-	echo "Updating $repo_name repository.."
-	cd $REPO_FOLDER
-
-	preupdate
-	repo sync -j$supersync
-
-	$LOCAL/config/gitpuller
-
-	postupdate
-
-	echo ""
-	echo "$repo_name Update Complete!"
-
-	if [ ! "$AUTO" ]; then
-		read -p "Press Enter to continue: " done
-	fi
+if ( ! find $REPO_FOLDER/.repo &> /dev/null); then
+	setupcode
 else
-	if [ ! "$AUTO" ]; then
-		echo ""
-		echo "$repo_name not initialized, do you want to initialize it?"
-		read init
-	
-		if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
-			INIT=""
-			reposetup $SCRIPT_REPO
-		else
-			read -p "$repo_name wasn't initialized, Press Enter to continue: " done
-			menu
-		fi
-	else
-		echo ""
-		echo "$repo_name not initialized, aborting.."
-	fi
-	
-	if [ ! "$AUTO" ]; then
-		echo ""
-		echo "Finished!"
-		read -p "Press Enter to continue: " done
-		menu
-	else
-		exit 0
-	fi
+	synccode
+fi
+
+echo ""
+echo "$repo_name Update Complete!"
+
+if [ ! "$AUTO" ]; then
+	echo ""
+	echo "Finished!"
+	read -p "Press Enter to continue: " done
+	menu
+else
+	exit 0
 fi
 }
 
-if [ $version == "1" ]; then
-	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_name=$(echo "Kitchen app")
-	synccode
+setupcode() {
+echo ""
+echo "$repo_name not initialized, initializing now.."
+
+if [ ! $SCRIPT_REPO == "kitchen" ]; then
+	mkdir -p $REPO_FOLDER
 fi
 
-if [ $version == "2" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Android Open Kang Project")
-	synccode
+cd $REPO_FOLDER
+
+repo init -u $repo_url -b $repo_branch
+}
+
+synccode() {
+supersync=$( expr $THREADS_TOTAL \* 2 )
+
+echo ""
+echo "Updating $repo_name repository.."
+
+cd $REPO_FOLDER
+
+preupdate
+repo sync -j$supersync
+
+$LOCAL/config/gitpuller
+
+postupdate
+}
+
+if [ $setupanswer == "1" ]; then
+	if ( type -a repo &> /dev/null ); then
+		echo ""
+		echo "repo is already installed.."
+	else
+		echo ""
+		echo "Installing the repo command.."
+
+		if ( ! find ~/bin &> /dev/null ); then
+			mkdir ~/bin
+		fi
+
+		wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+		chmod a+x ~/bin/repo
+
+		echo ""
+		echo "Finished!"
+		read -p "Press Enter to continue: " done
+	fi
+fi
+
+if [ $setupanswer == "2" ]; then
+	environmentsetup
 fi
 
 if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Android Open Source Project")
-	synccode
+	export SCRIPT_REPO=$(echo "kitchen")
+	export REPO_PLATFORM=$(echo "master")
+	repo_branch=$(echo "master")
+	repo_name=$(echo "Kitchen app")
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "bamf")
+	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "BAMF Paradigm")
-	synccode
+	repo_branch=$(echo "jb")
+	repo_name=$(echo "Android Open Kang Project")
+	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "5" ]; then
-	export SCRIPT_REPO=$(echo "bugless")
+	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Bugless Beast")
-	synccode
+	repo_branch=$(echo "android-4.3_r2.2")
+	repo_name=$(echo "Android Open Source Project")
+	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	setupcheck
 fi
 
 if [ $version == "6" ]; then
-	export SCRIPT_REPO=$(echo "cna")
+	export SCRIPT_REPO=$(echo "bamf")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Codename Android")
-	synccode
+	repo_branch=$(echo "master")
+	repo_name=$(echo "BAMF Paradigm")
+	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "7" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	synccode
+	export SCRIPT_REPO=$(echo "bugless")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jb")
+	repo_name=$(echo "Bugless Beast")
+	repo_url=$(echo "http://github.com/peteralfonso/platform_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "8" ]; then
-	export SCRIPT_REPO=$(echo "cm")
+	export SCRIPT_REPO=$(echo "cna")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Cyanogenmod 10")
-	synccode
+	repo_name=$(echo "Codename Android")
+	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
-	repo_name=$(echo "Cyanogenmod 10.2")
-	synccode
+	export REPO_PLATFORM=$(echo "ics")
+	repo_branch=$(echo "ics")
+	repo_name=$(echo "Cyanogenmod 9")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
 fi
 
 if [ $version == "10" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
+	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Evervolv")
-	synccode
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "Cyanogenmod 10")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
 fi
 
 if [ $version == "11" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "ParanoidAndroid")
-	synccode
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "10.2")
+	repo_branch=$(echo "cm-10.2")
+	repo_name=$(echo "Cyanogenmod 10.2")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
 fi
 
 if [ $version == "12" ]; then
-	export SCRIPT_REPO=$(echo "raosp")
+	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	synccode
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "Evervolv")
+	repo_url=$(echo "http://github.com/Evervolv/android.git")
+	setupcheck
 fi
 
 if [ $version == "13" ]; then
-	export SCRIPT_REPO=$(echo "gummy")
+	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Team Gummy")
-	synccode
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "ParanoidAndroid")
+	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	setupcheck
 fi
 
 if [ $version == "14" ]; then
-	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_name=$(echo "Kitchen app")
-	synccode
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Android Open Kang Project")
-	synccode
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Android Open Source Project")
-	synccode
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "BAMF Paradigm")
-	synccode
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Bugless Beast")
-	synccode
-	export SCRIPT_REPO=$(echo "cna")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Codename Android")
-	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Cyanogenmod 10")
-	synccode
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
-	repo_name=$(echo "Cyanogenmod 10.2")
-	synccode
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Evervolv")
-	synccode
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "ParanoidAndroid")
-	synccode
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	synccode
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Team Gummy")
-	synccode
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcheck
 fi
 
 if [ $version == "15" ]; then
+	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "master")
+	repo_name=$(echo "Team Gummy")
+	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
+	setupcheck
+fi
+
+if [ $version == "16" ]; then
+	export SCRIPT_REPO=$(echo "kitchen")
+	export REPO_PLATFORM=$(echo "master")
+	repo_branch=$(echo "master")
+	repo_name=$(echo "Kitchen app")
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "aokp")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jb")
+	repo_name=$(echo "Android Open Kang Project")
+	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "android-4.3_r2.2")
+	repo_name=$(echo "Android Open Source Project")
+	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "bamf")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "master")
+	repo_name=$(echo "BAMF Paradigm")
+	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "bugless")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jb")
+	repo_name=$(echo "Bugless Beast")
+	repo_url=$(echo "http://github.com/peteralfonso/platform_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "cna")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_name=$(echo "Codename Android")
+	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "ics")
+	repo_branch=$(echo "ics")
+	repo_name=$(echo "Cyanogenmod 9")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "Cyanogenmod 10")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "10.2")
+	repo_branch=$(echo "cm-10.2")
+	repo_name=$(echo "Cyanogenmod 10.2")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "evervolv")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "Evervolv")
+	repo_url=$(echo "http://github.com/Evervolv/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "paranoid")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "ParanoidAndroid")
+	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "raosp")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
+	repo_name=$(echo "Rooted & Busyboxed AOSP")
+	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "gummy")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "master")
+	repo_name=$(echo "Team Gummy")
+	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
+	setupcheck
+fi
+
+if [ $version == "17" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
