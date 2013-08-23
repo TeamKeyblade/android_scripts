@@ -14,16 +14,22 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Main Menu:"
-echo "  1. Setup Kitchen"
+echo "  1. Setup/Update Kitchen"
 echo "  2. Configure Kitchen"
-echo "  3. Update Kitchen"
-echo "  4. Run Kitchen"
-echo "  5. Fix Kitchen"
-echo "  6. Auto Build Kitchen"
-echo "  7. Exit"
+echo "  3. Run Kitchen"
+echo "  4. Fix Kitchen"
+echo "  5. Auto Build Kitchen"
+echo "  6. Exit"
 echo ""
 echo "Which one would you like to do?"
 read answer
+
+if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "10" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+	menu
+fi
 
 if [ ! "$answer" ]; then
 	echo ""
@@ -44,7 +50,7 @@ if [ $answer -gt "10" ]; then
 fi
 
 if [ $answer == "1" ]; then
-	reposetup
+	reposync
 fi
 
 if [ $answer == "2" ]; then
@@ -52,28 +58,24 @@ if [ $answer == "2" ]; then
 fi
 
 if [ $answer == "3" ]; then
-	reposync
-fi
-
-if [ $answer == "4" ]; then
 	buildmenu
 fi
 
-if [ $answer == "5" ]; then
+if [ $answer == "4" ]; then
 	fixkitchen
 fi
 
-if [ $answer == "6" ]; then
+if [ $answer == "5" ]; then
 	buildautomenu
 fi
 
-if [ $answer == "7" ]; then
+if [ $answer == "6" ]; then
 	echo ""
 	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
 	exit 0
 fi
 
-if [ $answer == "8" ] || [ $answer == "9" ]; then
+if [ $answer == "7" ] ||[ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
