@@ -41,10 +41,11 @@ if [ ! "$AUTO" ]; then
 	echo "  14. Update the Rooted & Busyboxed AOSP repository"
 	echo "  15. Update the Team Gummy repository"
 	echo "  16. Update all available repositories"
-	echo "  17. Go Back"
+	echo "  17. Update all the repos!"
+	echo "  18. Go Back"
 	read setupanswer
 
-	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "18" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -158,19 +159,23 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	echo "$repo_name not initialized, do you want to initialize it?"
-	read init
+	if [ ! $setupanswer == "16" ]
+		echo "$repo_name not initialized, do you want to initialize it?"
+		read init
 
-	if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
-		echo "initializing $repo_name.."
+		if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+			echo "initializing $repo_name.."
+		else
+			echo "$repo_name wasn't initialized.. "
+		fi
 	else
-		echo "$repo_name wasn't initialized.. "
+		echo "$repo_name not initialized, skipping.."
 	fi
 else
 	echo "$repo_name not initialized, initializing now.."
 fi
 
-if [ "$AUTO" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+if [ "$AUTO" ] && [ $setupanswer == "17" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
 	if [ ! $SCRIPT_REPO == "kitchen" ]; then
 		mkdir -p $REPO_FOLDER
 	fi
@@ -353,7 +358,7 @@ if [ $setupanswer == "15" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "16" ]; then
+if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
@@ -446,7 +451,7 @@ if [ $setupanswer == "16" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "17" ]; then
+if [ $setupanswer == "18" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
