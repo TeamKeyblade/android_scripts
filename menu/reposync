@@ -135,7 +135,7 @@ else
 	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 fi
 
-if ( ! find $REPO_FOLDER/.repo &> /dev/null); then
+if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	setupcode
 fi
 	synccode
@@ -182,19 +182,21 @@ fi
 }
 
 synccode() {
-supersync=$( expr $THREADS_TOTAL \* 2 )
+if ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+	supersync=$( expr $THREADS_TOTAL \* 2 )
 
-echo ""
-echo "Updating $repo_name repository.."
+	echo ""
+	echo "Updating $repo_name repository.."
 
-cd $REPO_FOLDER
+	cd $REPO_FOLDER
 
-preupdate
-repo sync -j$supersync
+	preupdate
+	repo sync -j$supersync
 
-$LOCAL/config/gitpuller
+	$LOCAL/config/gitpuller
 
-postupdate
+	postupdate
+fi
 }
 
 if [ $setupanswer == "1" ]; then
