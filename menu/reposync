@@ -228,8 +228,8 @@ if [ $setupanswer == "3" ]; then
 	repo_branch=$(echo "stable")
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "4" ]; then
@@ -238,8 +238,8 @@ if [ $setupanswer == "4" ]; then
 	repo_branch=$(echo "jb")
 	repo_name=$(echo "Android Open Kang Project")
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "5" ]; then
@@ -248,8 +248,8 @@ if [ $setupanswer == "5" ]; then
 	repo_branch=$(echo "android-4.3_r2.2")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "6" ]; then
@@ -258,8 +258,8 @@ if [ $setupanswer == "6" ]; then
 	repo_branch=$(echo "master")
 	repo_name=$(echo "BAMF Paradigm")
 	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "7" ]; then
@@ -268,8 +268,8 @@ if [ $setupanswer == "7" ]; then
 	repo_branch=$(echo "jb")
 	repo_name=$(echo "Bugless Beast")
 	repo_url=$(echo "http://github.com/peteralfonso/platform_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "8" ]; then
@@ -277,8 +277,8 @@ if [ $setupanswer == "8" ]; then
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Codename Android")
 	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "9" ]; then
@@ -287,8 +287,8 @@ if [ $setupanswer == "9" ]; then
 	repo_branch=$(echo "ics")
 	repo_name=$(echo "Cyanogenmod 9")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "10" ]; then
@@ -297,8 +297,8 @@ if [ $setupanswer == "10" ]; then
 	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Cyanogenmod 10")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "11" ]; then
@@ -307,8 +307,8 @@ if [ $setupanswer == "11" ]; then
 	repo_branch=$(echo "cm-10.2")
 	repo_name=$(echo "Cyanogenmod 10.2")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "12" ]; then
@@ -317,8 +317,8 @@ if [ $setupanswer == "12" ]; then
 	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Evervolv")
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "13" ]; then
@@ -327,8 +327,8 @@ if [ $setupanswer == "13" ]; then
 	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "ParanoidAndroid")
 	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "14" ]; then
@@ -337,8 +337,8 @@ if [ $setupanswer == "14" ]; then
 	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "15" ]; then
@@ -347,8 +347,8 @@ if [ $setupanswer == "15" ]; then
 	repo_branch=$(echo "master")
 	repo_name=$(echo "Team Gummy")
 	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "16" ]; then
@@ -440,8 +440,8 @@ if [ $setupanswer == "16" ]; then
 	repo_branch=$(echo "master")
 	repo_name=$(echo "Team Gummy")
 	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
-	setupcheck
 	done=true
+	setupcheck
 fi
 
 if [ $setupanswer == "17" ]; then
