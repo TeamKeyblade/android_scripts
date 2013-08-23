@@ -157,15 +157,28 @@ fi
 
 setupcode() {
 echo ""
-echo "$repo_name not initialized, initializing now.."
+if [ ! "$AUTO" ]; then
+	echo "$repo_name not initialized, do you want to initialize it?"
+	read init
 
-if [ ! $SCRIPT_REPO == "kitchen" ]; then
-	mkdir -p $REPO_FOLDER
+	if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+		echo "initializing $repo_name.."
+	else
+		echo "$repo_name wasn't initialized.. "
+	fi
+else
+	echo "$repo_name not initialized, initializing now.."
 fi
 
-cd $REPO_FOLDER
+if [ ! "$AUTO" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+	if [ ! $SCRIPT_REPO == "kitchen" ]; then
+		mkdir -p $REPO_FOLDER
+	fi
 
-repo init -u $repo_url -b $repo_branch
+	cd $REPO_FOLDER
+
+	repo init -u $repo_url -b $repo_branch
+fi
 }
 
 synccode() {
