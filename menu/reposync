@@ -137,9 +137,8 @@ fi
 
 if ( ! find $REPO_FOLDER/.repo &> /dev/null); then
 	setupcode
-else
-	synccode
 fi
+	synccode
 
 echo ""
 echo "$repo_name Update Complete!"
