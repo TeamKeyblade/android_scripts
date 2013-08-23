@@ -42,9 +42,9 @@ if [ ! "$AUTO" ]; then
 	echo "  15. Update the Team Gummy repository"
 	echo "  16. Update all available repositories"
 	echo "  17. Go Back"
-	read version
+	read setupanswer
 
-	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "17" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -72,59 +72,59 @@ if [ "$parameter" ]; then
 	fi
 
 	if [ $parameter == "kitchen" ]; then
-		version="1"
+		setupanswer="1"
 	fi
 
 	if [ $parameter == "aokp" ]; then
-		version="2"
+		setupanswer="2"
 	fi
 
 	if [ $parameter == "aosp" ]; then
-		version="3"
+		setupanswer="3"
 	fi
 
 	if [ $parameter == "bamf" ]; then
-		version="4"
+		setupanswer="4"
 	fi
 
 	if [ $parameter == "bugless" ]; then
-		version="5"
+		setupanswer="5"
 	fi
 
 	if [ $parameter == "cna" ]; then
-		version="6"
+		setupanswer="6"
 	fi
 
 	if [ $parameter == "cm9" ]; then
-		version="7"
+		setupanswer="7"
 	fi
 
 	if [ $parameter == "cm10" ]; then
-		version="8"
+		setupanswer="8"
 	fi
 
 	if [ $parameter == "cm" ]; then
-		version="9"
+		setupanswer="9"
 	fi
 
 	if [ $parameter == "ev" ] || [ $parameter == "evervolv" ]; then
-		version="10"
+		setupanswer="10"
 	fi
 
 	if [ $parameter == "paranoid" ]; then
-		version="11"
+		setupanswer="11"
 	fi
 
 	if [ $parameter == "raosp" ]; then
-		version="12"
+		setupanswer="12"
 	fi
 
 	if [ $parameter == "gummy" ]; then
-		version="13"
+		setupanswer="13"
 	fi
 
 	if [ $parameter == "all" ]; then
-		version="14"
+		setupanswer="14"
 	fi
 fi
 
@@ -208,7 +208,7 @@ if [ $setupanswer == "2" ]; then
 	environmentsetup
 fi
 
-if [ $version == "3" ]; then
+if [ $setupanswer == "3" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
@@ -217,7 +217,7 @@ if [ $version == "3" ]; then
 	setupcheck
 fi
 
-if [ $version == "4" ]; then
+if [ $setupanswer == "4" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jb")
@@ -226,7 +226,7 @@ if [ $version == "4" ]; then
 	setupcheck
 fi
 
-if [ $version == "5" ]; then
+if [ $setupanswer == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3_r2.2")
@@ -235,7 +235,7 @@ if [ $version == "5" ]; then
 	setupcheck
 fi
 
-if [ $version == "6" ]; then
+if [ $setupanswer == "6" ]; then
 	export SCRIPT_REPO=$(echo "bamf")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "master")
@@ -244,7 +244,7 @@ if [ $version == "6" ]; then
 	setupcheck
 fi
 
-if [ $version == "7" ]; then
+if [ $setupanswer == "7" ]; then
 	export SCRIPT_REPO=$(echo "bugless")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jb")
@@ -253,7 +253,7 @@ if [ $version == "7" ]; then
 	setupcheck
 fi
 
-if [ $version == "8" ]; then
+if [ $setupanswer == "8" ]; then
 	export SCRIPT_REPO=$(echo "cna")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_name=$(echo "Codename Android")
@@ -261,7 +261,7 @@ if [ $version == "8" ]; then
 	setupcheck
 fi
 
-if [ $version == "9" ]; then
+if [ $setupanswer == "9" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_branch=$(echo "ics")
@@ -270,7 +270,7 @@ if [ $version == "9" ]; then
 	setupcheck
 fi
 
-if [ $version == "10" ]; then
+if [ $setupanswer == "10" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -279,7 +279,7 @@ if [ $version == "10" ]; then
 	setupcheck
 fi
 
-if [ $version == "11" ]; then
+if [ $setupanswer == "11" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 	repo_branch=$(echo "cm-10.2")
@@ -288,7 +288,7 @@ if [ $version == "11" ]; then
 	setupcheck
 fi
 
-if [ $version == "12" ]; then
+if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -297,7 +297,7 @@ if [ $version == "12" ]; then
 	setupcheck
 fi
 
-if [ $version == "13" ]; then
+if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -306,7 +306,7 @@ if [ $version == "13" ]; then
 	setupcheck
 fi
 
-if [ $version == "14" ]; then
+if [ $setupanswer == "14" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -315,7 +315,7 @@ if [ $version == "14" ]; then
 	setupcheck
 fi
 
-if [ $version == "15" ]; then
+if [ $setupanswer == "15" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "master")
@@ -324,7 +324,7 @@ if [ $version == "15" ]; then
 	setupcheck
 fi
 
-if [ $version == "16" ]; then
+if [ $setupanswer == "16" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
@@ -416,7 +416,7 @@ if [ $version == "16" ]; then
 	setupcheck
 fi
 
-if [ $version == "17" ]; then
+if [ $setupanswer == "17" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
