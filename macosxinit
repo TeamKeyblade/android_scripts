@@ -1,4 +1,5 @@
 #!/bin/bash
+xinit() {
 clear
 
 export POSIXLY_CORRECT=1
@@ -7,8 +8,9 @@ echo "You are running Mac OS X!"
 if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 	if ( ! find ~/android.dmg &> /dev/null ); then
 		echo ""
-		echo "We can't find android.dmg in your home folder, this is needed to build on mac os x"
+		echo "We can't find the android image to mount, this is needed to build on mac os x"
 		echo "If you already have one made please put it in its proper place with its proper title"
+		echo "It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg"
 		echo ""
 		echo "Would you like to make a new android.dmg?"
 		read diskimage
@@ -16,18 +18,16 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 		if [ ! "$diskimage" ]; then
 			echo ""
 			echo "You didn't type in anything.."
-			echo "Press Enter to continue"
-			read done
+			read -p "Press Enter to continue" done
 
-			./macosxinit
+			xinit
 			exit 0
 		fi
 
 		if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
 			echo ""
 			echo "Exiting for now.."
-			echo "Press Enter to exit"
-			read done
+			read -p "Press Enter to exit" done
 
 			exit 0
 		fi
@@ -41,7 +41,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 		hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
 
 		echo ""
-		echo "Mounting new android.dmg.."
+		echo "Mounting new android.dmg at /Volumes/android.."
 		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
 		if ( ! type -a repo &> /dev/null ); then
@@ -52,7 +52,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 				mkdir ~/bin
 			fi
 
-			wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+			curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 			chmod a+x ~/bin/repo
 
 			PATH="$HOME/bin:$PATH"
@@ -106,7 +106,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 					mkdir ~/bin
 				fi
 
-				wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+				curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 				chmod a+x ~/bin/repo
 
 				PATH="$HOME/bin:$PATH"
@@ -128,3 +128,4 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 else
 	cd /Volumes/android/swordkitchen
 fi
+}
