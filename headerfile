@@ -29,7 +29,7 @@ fi
 
 if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL/config:$PATH"
-	export PATH="$LOCAL/menu:$PATH"
+	export PATH="$LOCAL/repair:$PATH"
 	export PATH="$LOCAL/update:$PATH"
 	export PATH="$LOCAL/build:$PATH"
 	export PATH="$LOCAL:$PATH"
