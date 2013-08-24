@@ -85,7 +85,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 				echo "Press Enter to continue"
 				read done
 
-				./macosxinit
+				xinit
 				exit 0
 			fi
 
