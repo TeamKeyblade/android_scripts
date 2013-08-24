@@ -1,17 +1,13 @@
 #!/bin/sh
-if ( find .scripts 2> /dev/null 1>&2 ); then
+if ( find .scripts &> /dev/null ); then
 	.scripts/bouncer
 
 	if ( uname -a | grep -q Darwin ); then
 		.scripts/macosxinit
 	fi
-fi
-
-if ( ! find .scripts 2> /dev/null 1>&2 ); then
+else
 	echo "Can not start program, aborting.."
 	exit 0
-else
-	cd .scripts
 fi
 
 export START=true
