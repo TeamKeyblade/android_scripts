@@ -21,21 +21,7 @@ echo "  4. Go Back"
 echo ""
 read -p "Which one would you like to do?: " configs
 
-if [ ! "$configs" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	menu
-fi
-
-if ( echo $configs | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	menu
-fi
-
-if [ $configs -gt "4" ]; then
+if [ ! "$configs" ] || ( echo $configs | grep -q [A-Za-z] ) || [ $configs -gt "4" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
