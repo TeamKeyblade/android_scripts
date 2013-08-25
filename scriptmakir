@@ -240,9 +240,7 @@ if [ $AUTHOR == "destroyer" ]; then
 cat << TITLE >> $LOCAL/../$AUTHOR
 echo "Destroyer is running!"
 TITLE
-fi
-
-if [ $AUTHOR == "destroyerofworlds" ]; then
+elif [ $AUTHOR == "destroyerofworlds" ]; then
 cat << TITLE >> $LOCAL/../$AUTHOR
 echo "Destroyer of Worlds is running!"
 TITLE
