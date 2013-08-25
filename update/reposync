@@ -2,7 +2,44 @@
 # Written by Sean Donovan (swordrune10)
 
 if [ ! "$INIT" ]; then
-	parameter=$(echo "$1")
+
+usage="$(basename "$0") [-d] [-h] [-u] repo -- program to initialize/update android repos
+
+where:
+	-d  delete the appropriate folder
+	-h  show this help text
+	-u  update this particular repo
+
+	    Options list:
+	    kitchen = Update Kitchen
+	    aokp = Update Android Open Kang Project
+	    aosp = Update Android Open Source Project
+	    bamf = Update BAMF Paradigm
+	    bugless = Update Bugless Beast
+	    cna = Update Codename Android
+	    cm9 = Update Cyanogenmod 9
+	    cm10 = Update Cyanogenmod 10
+	    cm = Update Cyanogenmod 10.2
+	    ev = Update Evervolv
+	    paranoid = Update ParanoidAndroid
+	    raosp = Update Rooted & Busyboxed AOSP
+	    gummy = Update Team Gummy
+	    all = Update all available repos
+	    allthethings = Update all the repos
+
+	    Example: reposync -u cm-10.2
+
+	    typing \"reposync -u list\" will give
+	    you the options list again"
+
+while getopts ':dhu:' option; do
+	case "$option" in
+		d) deletefolder=true;;
+		h) echo "$usage" && exit 0;;
+		u) platform=${OPTARG};;
+        esac
+done
+
 fi
 
 if [ "$parameter" ]; then
@@ -138,6 +175,10 @@ if [ $SCRIPT_REPO == "kitchen" ]; then
 	export REPO_FOLDER=$( echo "$LOCAL/.." )
 else
 	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	
+	if [ "$deletefolder" ]; then
+		rm -rf $REPO_FOLDER
+	fi
 fi
 
 if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
