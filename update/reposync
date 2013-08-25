@@ -69,63 +69,67 @@ if [ "$parameter" ]; then
 		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "gummy = Update Team Gummy"
 		echo "all = Update all available repos"
+		echo "allthethings = Update all the repos"
 		exit 0
 	fi
 
 	if [ $parameter == "kitchen" ]; then
-		setupanswer="1"
-	fi
-
-	if [ $parameter == "aokp" ]; then
-		setupanswer="2"
-	fi
-
-	if [ $parameter == "aosp" ]; then
 		setupanswer="3"
 	fi
 
-	if [ $parameter == "bamf" ]; then
+	if [ $parameter == "aokp" ]; then
 		setupanswer="4"
 	fi
 
-	if [ $parameter == "bugless" ]; then
+	if [ $parameter == "aosp" ]; then
 		setupanswer="5"
 	fi
 
-	if [ $parameter == "cna" ]; then
+	if [ $parameter == "bamf" ]; then
 		setupanswer="6"
 	fi
 
-	if [ $parameter == "cm9" ]; then
+	if [ $parameter == "bugless" ]; then
 		setupanswer="7"
 	fi
 
-	if [ $parameter == "cm10" ]; then
+	if [ $parameter == "cna" ]; then
 		setupanswer="8"
 	fi
 
-	if [ $parameter == "cm" ]; then
+	if [ $parameter == "cm9" ]; then
 		setupanswer="9"
 	fi
 
-	if [ $parameter == "ev" ] || [ $parameter == "evervolv" ]; then
+	if [ $parameter == "cm10" ]; then
 		setupanswer="10"
 	fi
 
-	if [ $parameter == "paranoid" ]; then
+	if [ $parameter == "cm" ]; then
 		setupanswer="11"
 	fi
 
-	if [ $parameter == "raosp" ]; then
+	if [ $parameter == "ev" ] || [ $parameter == "evervolv" ]; then
 		setupanswer="12"
 	fi
 
-	if [ $parameter == "gummy" ]; then
+	if [ $parameter == "paranoid" ]; then
 		setupanswer="13"
 	fi
 
-	if [ $parameter == "all" ]; then
+	if [ $parameter == "raosp" ]; then
 		setupanswer="14"
+	fi
+
+	if [ $parameter == "gummy" ]; then
+		setupanswer="15"
+	fi
+
+	if [ $parameter == "all" ]; then
+		setupanswer="16"
+	fi
+	if [ $parameter == "allthethings" ]; then
+		setupanswer="17"
 	fi
 fi
 
