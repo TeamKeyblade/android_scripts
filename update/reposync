@@ -280,223 +280,142 @@ if [ $setupanswer == "2" ]; then
 fi
 
 if [ $setupanswer == "3" ]; then
-	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "Kitchen app")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	export REPOLIST="kitchen"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "4" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
-	repo_name=$(echo "Android Open Kang Project")
-	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
+	export REPOLIST="aokp"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "5" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r2.2")
-	repo_name=$(echo "Android Open Source Project")
-	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	export REPOLIST="aosp"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "6" ]; then
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "BAMF Paradigm")
-	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
+	export REPOLIST="bamf"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "7" ]; then
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
-	repo_name=$(echo "Bugless Beast")
-	repo_url=$(echo "http://github.com/peteralfonso/platform_manifest.git")
+	export REPOLIST="bugless"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "8" ]; then
-	export SCRIPT_REPO=$(echo "cna")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Codename Android")
-	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
+	export REPOLIST="cna"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "9" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_branch=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="cm9"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "10" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Cyanogenmod 10")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="cm10"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "11" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
-	repo_branch=$(echo "cm-10.2")
-	repo_name=$(echo "Cyanogenmod 10.2")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="cm"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "12" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Evervolv")
-	repo_url=$(echo "http://github.com/Evervolv/android.git")
+	export REPOLIST="ev"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "13" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "ParanoidAndroid")
-	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	export REPOLIST="paranoid"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "14" ]; then
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	export REPOLIST="raosp"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "15" ]; then
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "Team Gummy")
-	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
+	export REPOLIST="gummy"
+	repolist
 	done=true
 	setupcheck
 fi
 
 if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
-	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "Kitchen app")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	export REPOLIST="kitchen"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
-	repo_name=$(echo "Android Open Kang Project")
-	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
+	export REPOLIST="aosp"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r2.2")
-	repo_name=$(echo "Android Open Source Project")
-	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	export REPOLIST="bamf"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "BAMF Paradigm")
-	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
+	export REPOLIST="bugless"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
-	repo_name=$(echo "Bugless Beast")
-	repo_url=$(echo "http://github.com/peteralfonso/platform_manifest.git")
+	export REPOLIST="cna"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "cna")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_name=$(echo "Codename Android")
-	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
+	export REPOLIST="cm9"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_branch=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="cm10"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Cyanogenmod 10")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="cm"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
-	repo_branch=$(echo "cm-10.2")
-	repo_name=$(echo "Cyanogenmod 10.2")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	export REPOLIST="ev"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Evervolv")
-	repo_url=$(echo "http://github.com/Evervolv/android.git")
+	export REPOLIST="paranoid"
+	repolist
 	setupcheck
 
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "ParanoidAndroid")
-	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	export REPOLIST="raosp"
+	repolist
 	setupcheck
-
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
-	setupcheck
-
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "master")
-	repo_name=$(echo "Team Gummy")
-	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
+	export REPOLIST="gummy"
+	repolist
 	done=true
 	setupcheck
 fi
