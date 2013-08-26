@@ -134,6 +134,16 @@ EOF
 
 fi
 
+if [ $AUTHOR == "otherdevicesxml" ]; then
+
+cat << EOF > ./otherdevices.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+</manifest>
+EOF
+
+fi
+
 if [ $AUTHOR == "gitpuller" ]; then
 
 cat << EOF > $LOCAL/config/gitpuller
