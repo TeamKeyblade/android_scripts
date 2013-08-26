@@ -56,7 +56,7 @@ echo ""
 echo "Adding repo to otherdevices.xml for $repo_name.."
 cd $local_manifests
 
-if ( ! find $local_manifests/otherdevices.xml &> /dev/null ); then
+if ( ! find $local_manifests/otherdevices.xml -maxdepth 1 &> /dev/null ); then
 	mkdir -p $local_manifests
 	export AUTHOR="otherdevicesxml"
 	scriptmakir
