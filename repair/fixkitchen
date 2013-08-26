@@ -36,6 +36,43 @@ if [ ! "$cleananswer" ] || ( echo $cleananswer | grep -q [A-Za-z] ) || [ $cleana
 	menu
 fi
 
+adddevicetorepo() {
+localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
+
+if ( ! find $local_manifests &> /dev/null ); then
+	mkdir $local_manifests
+fi
+
+mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+nano $LOCAL/../temp/addrepo
+
+echo ""
+echo "Adding repo to otherdevices.xml for $repo_name.."
+cd $local_manifests
+
+if ( ! find $local_manifests/otherdevices.xml &> /dev/null ); then
+	export AUTHOR="otherdevicesxml"
+	scriptmakir
+fi
+
+sed -i "/<\/manifest>/d" otherdevices.xml
+cat $LOCAL/../temp/addrepo  >> otherdevices.xml
+echo "</manifest>" >> otherdevices.xml
+rm -r $LOCAL/../temp
+}
+
+purgelocalmanifest() {
+rm -rf $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/.repo/local_manifests
+preupdate
+echo "Purged $repo_name local_manifests folder"
+}
+
 if [ $cleananswer == "1" ]; then
 	clear
 
@@ -518,42 +555,5 @@ if [ $cleananswer == "9" ]; then
 fi
 
 menu
-}
-
-adddevicetorepo() {
-localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
-
-if ( ! find $local_manifests &> /dev/null ); then
-	mkdir $local_manifests
-fi
-
-mkdir -p $LOCAL/../temp
-
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
-
-nano $LOCAL/../temp/addrepo
-
-echo ""
-echo "Adding repo to otherdevices.xml for $repo_name.."
-cd $local_manifests
-
-if ( ! find $local_manifests/otherdevices.xml &> /dev/null ); then
-	export AUTHOR="otherdevicesxml"
-	scriptmakir
-fi
-
-sed -i "/<\/manifest>/d" otherdevices.xml
-cat $LOCAL/../temp/addrepo  >> otherdevices.xml
-echo "</manifest>" >> otherdevices.xml
-rm -r $LOCAL/../temp
-}
-
-purgelocalmanifest() {
-rm -rf $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/.repo/local_manifests
-preupdate
-echo "Purged $repo_name local_manifests folder"
 }
 menu
