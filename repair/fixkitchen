@@ -11,55 +11,47 @@ fi
 menu () {
 clear
 
-if ( find $LOCAL/../redeemer &> /dev/null ); then
-	rm -f $LOCAL/../redeemer
-fi
-
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Something is not working right? What should we do?"
 echo "Purge = remove files, download from origin"
 echo "Delete = delete it!"
-echo "  1. Add a repo to a certain local_manifest.xml file"
-echo "  2. Purge a certain local_manifest.xml source file"
-echo "  3. Purge all local_manifest.xml source files"
-echo "  4. Purge/Delete a certain repository"
-echo "  5. Purge/Delete all the repositories"
-echo "  6. Purge/Delete the Kitchen app"
-echo "  7. Delete the Kitchen app, and its dependencies"
-echo "  8. Delete entire computer"
+echo "  1. Add a repo to a certain local_manifests folder"
+echo "  2. Purge a certain local_manifests folder"
+echo "  3. Purge/Delete a certain repository"
+echo "  4. Purge/Delete all the repositories"
+echo "  5. Purge/Delete the Kitchen app"
+echo "  6. Delete the Kitchen app, and its dependencies"
+echo "  7. Delete entire computer"
+echo "  8. Delete the internet"
 echo "  9. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read cleananswer
 
-if [ ! "$cleananswer" ]; then
+if [ ! "$cleananswer" ] || ( echo $cleananswer | grep -q [A-Za-z] ) || [ $cleananswer -gt "9" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $cleananswer | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $cleananswer -gt "9" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	menu
 fi
 
 if [ $cleananswer == "1" ]; then
 	clear
 
 	echo "which repo would you like to modify?"
-	echo "Android Open Source Project = aosp"
-	echo "Cyanogenmod 9 = cm9"
-	echo "Cyanogenmod 10 = cm10"
-	echo "Cyanogenmod 10.2 = cm10.2"
-	echo "Rooted & Busyboxed AOSP = raosp"
+	echo "aokp = Android Open Kang Project"
+	echo "aosp = Android Open Source Project"
+	echo "bamf = BAMF Paradigm"
+	echo "bugless = Bugless Beast"
+	echo "cna = Codename Android"
+	echo "cm9 = Cyanogenmod 9"
+	echo "cm10 = Cyanogenmod 10"
+	echo "cm = Cyanogenmod 10.2"
+	echo "ev = Evervolv"
+	echo "paranoid = ParanoidAndroid"
+	echo "raosp = Rooted & Busyboxed AOSP"
+	echo "gummy = Team Gummy"
 	echo "type exit to go to back"
 	read addrepo
 
@@ -68,148 +60,94 @@ if [ $cleananswer == "1" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-
-	if [ $addrepo == "exit" ]; then
+	elif [ $addrepo == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 
-	if [ $addrepo == "cm9" ]; then
-		if ( ! find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 9 doesn't exist!"
-			read -p "Press Enter to continue: " done
-			menu
-		fi
-
-		mkdir -p $LOCAL/../temp
-
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
-
-		nano $LOCAL/../temp/addrepo
-
-		echo ""
-		echo "Adding repo to local_manifest.xml for Cyanogenmod 9.."
-		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" cm9-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> cm9-local_manifest.xml
-		echo "</manifest>" >> cm9-local_manifest.xml
-		preupdate
-		rm -r $LOCAL/../temp
-	fi
-
-	if [ $addrepo == "cm10" ]; then
-		if ( ! find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 10 doesn't exist!"
-			read -p "Press Enter to continue: " done
-			menu
-		fi
-
-		mkdir -p $LOCAL/../temp
-
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
-
-		nano $LOCAL/../temp/addrepo
-
-		echo ""
-		echo "Adding repo to local_manifest.xml for Cyanogenmod 10.."
-		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" cm10-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> cm10-local_manifest.xml
-		echo "</manifest>" >> cm10-local_manifest.xml
-		preupdate
-		rm -r $LOCAL/../temp
-	fi
-
-	if [ $addrepo == "cm10.2" ]; then
-		if ( ! find $LOCAL/xml/cm10.2-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Cyanogenmod 10.2 doesn't exist!"
-			read -p "Press Enter to continue: " done
-			menu
-		fi
-
-		mkdir -p $LOCAL/../temp
-
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
-
-		nano $LOCAL/../temp/addrepo
-
-		echo ""
-		echo "Adding repo to local_manifest.xml for Cyanogenmod 10.."
-		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" cm10.2-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> cm10.2-local_manifest.xml
-		echo "</manifest>" >> cm10.2-local_manifest.xml
-		preupdate
-		rm -r $LOCAL/../temp
-	fi
-
-	if [ $addrepo == "raosp" ]; then
-		if ( ! find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Rooted & Busyboxed AOSP doesn't exist!"
-			read -p "Press Enter to continue: " done
-			menu
-		fi
-
-		mkdir -p $LOCAL/../temp
-
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
-
-		nano $LOCAL/../temp/addrepo
-
-		echo ""
-		echo "Adding repo to local_manifest.xml for Rooted & Busyboxed AOSP.."
-		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" raosp-jb-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> raosp-jb-local_manifest.xml
-		echo "</manifest>" >> raosp-jb-local_manifest.xml
-		preupdate
-		rm -r $LOCAL/../temp
+	if [ $addrepo == "aokp" ]; then
+		script_repo=$(echo "aokp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Kang Project")
+		adddevicetorepo
 	fi
 
 	if [ $addrepo == "aosp" ]; then
-		if ( ! find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "local_manifest.xml for Android Open Source Project doesn't exist!"
-			read -p "Press Enter to continue: " done
-			menu
-		fi
+		script_repo=$(echo "aosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Source Project")
+		adddevicetorepo
+	fi
 
-		mkdir -p $LOCAL/../temp
+	if [ $addrepo == "bamf" ]; then
+		script_repo=$(echo "bamf")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "BAMF Paradigm")
+		adddevicetorepo
+	fi
 
-echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
-path=\"PATH INSIDE REPO\" \
-remote=\"github\" \
-revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+	if [ $addrepo == "bugless" ]; then
+		script_repo=$(echo "bugless")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Bugless Beast")
+		adddevicetorepo
+	fi
 
-		nano $LOCAL/../temp/addrepo
+	if [ $addrepo == "cna" ]; then
+		script_repo=$(echo "cna")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Codename Android")
+		adddevicetorepo
+	fi
 
-		echo ""
-		echo "Adding repo to local_manifest.xml for Android Open Source Project.."
-		cd $LOCAL/xml
-		sed -i "/<\/manifest>/d" aosp-jb-local_manifest.xml
-		cat $LOCAL/../temp/addrepo  >> aosp-jb-local_manifest.xml
-		echo "</manifest>" >> aosp-jb-local_manifest.xml
-		preupdate
-		rm -r $LOCAL/../temp
+	if [ $addrepo == "cm9" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "ics")
+		repo_name=$(echo "Cyanogenmod 9")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "cm10" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Cyanogenmod 10")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "cm10.2" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "10.2")
+		repo_name=$(echo "Cyanogenmod 10.2")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "ev" ]; then
+		script_repo=$(echo "evervolv")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Evervolv")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "paranoid" ]; then
+		script_repo=$(echo "paranoid")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "ParanoidAndroid")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "raosp" ]; then
+		script_repo=$(echo "raosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Rooted & Busyboxed AOSP")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "gummy" ]; then
+		script_repo=$(echo "gummy")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Team Gummy")
+		adddevicetorepo
 	fi
 
 	echo ""
@@ -221,97 +159,114 @@ if [ $cleananswer == "2" ]; then
 	clear
 
 	echo "which repo would you like to modify?"
-	echo "Android Open Source Project = aosp"
-	echo "Cyanogenmod 9 = cm9"
-	echo "Cyanogenmod 9 = cm10"
-	echo "Rooted & Busyboxed AOSP = raosp"
+	echo "aokp = Android Open Kang Project"
+	echo "aosp = Android Open Source Project"
+	echo "bamf = BAMF Paradigm"
+	echo "bugless = Bugless Beast"
+	echo "cna = Codename Android"
+	echo "cm9 = Cyanogenmod 9"
+	echo "cm10 = Cyanogenmod 10"
+	echo "cm = Cyanogenmod 10.2"
+	echo "ev = Evervolv"
+	echo "paranoid = ParanoidAndroid"
+	echo "raosp = Rooted & Busyboxed AOSP"
+	echo "gummy = Team Gummy"
 	echo "type exit to go to back"
 	read cleanse
 
-	if [ ! "$cleanse" ]; then
+	if [ "$cleanse" == "" ]; then
 		echo ""
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-
-	if [ $cleanse == "exit" ]; then
+	elif [ $cleanse == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 
-	if [ $cleanse == "cm9" ]; then
-		if ( find $LOCAL/xml/cm-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
-			rm -f $LOCAL/xml/cm-local_manifest.xml
-			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "ics")
-			export AUTHOR="xml"
-			scriptmakir
-		else
-			echo ""
-			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "ics")
-			echo "Purging local_manifest.xml source file for Cyanogenmod 9.."
-			export AUTHOR="xml"
-			scriptmakir
-		fi
-	fi
-
-	if [ $cleanse == "cm10" ]; then
-		if ( find $LOCAL/xml/cm10-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
-			rm -f $LOCAL/xml/cm10-local_manifest.xml
-			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "jb")
-			export AUTHOR="xml"
-			scriptmakir
-		else
-			echo ""
-			export SCRIPT_REPO=$(echo "cm")
-			export REPO_PLATFORM=$(echo "jb")
-			echo "Purging local_manifest.xml source file for Cyanogenmod 10.."
-			export AUTHOR="xml"
-			scriptmakir
-		fi
-	fi
-
-	if [ $cleanse == "raosp" ]; then
-		if ( find $LOCAL/xml/raosp-jb-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
-			rm -f $LOCAL/xml/raosp-jb-local_manifest.xml
-			export SCRIPT_REPO=$(echo "raosp")
-			export AUTHOR="xml"
-			scriptmakir
-		else
-			echo ""
-			echo "Purging local_manifest.xml source file for Rooted & Busyboxed AOSP.."
-			export SCRIPT_REPO=$(echo "raosp")
-			export AUTHOR="xml"
-			scriptmakir
-		fi
+	if [ $cleanse == "aokp" ]; then
+		export SCRIPT_REPO=$(echo "aokp")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Android Open Kang Project")
+		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "aosp" ]; then
-		if ( find $LOCAL/xml/aosp-jb-local_manifest.xml &> /dev/null ); then
-			echo ""
-			echo "Purging local_manifest.xml source file for Android Open Source Project.."
-			rm -f $LOCAL/xml/aosp-jb-local_manifest.xml
-			export SCRIPT_REPO=$(echo "aosp")
-			export AUTHOR="xml"
-			scriptmakir
-		else
-			echo ""
-			echo "Purging local_manifest.xml source file for Android Open Source Project.."
-			export SCRIPT_REPO=$(echo "aosp")
-			export AUTHOR="xml"
-			scriptmakir
-		fi
+		export SCRIPT_REPO=$(echo "aosp")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Android Open Source Project")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "bamf" ]; then
+		export SCRIPT_REPO=$(echo "bamf")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "BAMF Paradigm")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "bugless" ]; then
+		export SCRIPT_REPO=$(echo "bugless")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Bugless Beast")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "cna" ]; then
+		export SCRIPT_REPO=$(echo "cna")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Codename Android")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "cm9" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "ics")
+		repo_name=$(echo "Cyanogenmod 9")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "cm10" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Cyanogenmod 10")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "cm10.2" ]; then
+		export SCRIPT_REPO=$(echo "cm")
+		export REPO_PLATFORM=$(echo "10.2")
+		repo_name=$(echo "Cyanogenmod 10.2")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "ev" ]; then
+		export SCRIPT_REPO=$(echo "evervolv")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Evervolv")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "paranoid" ]; then
+		export SCRIPT_REPO=$(echo "paranoid")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "ParanoidAndroid")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "raosp" ]; then
+		export SCRIPT_REPO=$(echo "raosp")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Rooted & Busyboxed AOSP")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "gummy" ]; then
+		export SCRIPT_REPO=$(echo "gummy")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "Team Gummy")
+		purgelocalmanifest
 	fi
 
 	echo ""
@@ -320,48 +275,22 @@ if [ $cleananswer == "2" ]; then
 fi
 
 if [ $cleananswer == "3" ]; then
-	echo ""
-	echo "Purging all local_manifest.xml source files.."
-
-	if ( find $LOCAL/xml &> /dev/null ); then
-		rm -rf $LOCAL/xml
-	fi
-
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	export AUTHOR="xml"
-	scriptmakir
-
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	export AUTHOR="xml"
-	scriptmakir
-
-	export SCRIPT_REPO=$(echo "raosp")
-	export AUTHOR="xml"
-	scriptmakir
-
-	export SCRIPT_REPO=$(echo "aosp")
-	export AUTHOR="xml"
-	scriptmakir
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $cleananswer == "4" ]; then
 	clear
 
 	echo ""
 	echo "which repo would you like to modify?"
-	echo "Android Open Kang Project = aokp-jb"
-	echo "Android Open Source Project = aosp-jb"
-	echo "Cyanogenmod 9 = cm-ics"
-	echo "Cyanogenmod 10 = cm-jb"
-	echo "Evervolv = evervolv-jb"
-	echo "Rooted & Busyboxed AOSP = raosp-jb"
-	echo "Team Gummy = gummy-jb"
+	echo "aokp = Android Open Kang Project"
+	echo "aosp = Android Open Source Project"
+	echo "bamf = BAMF Paradigm"
+	echo "bugless = Bugless Beast"
+	echo "cna = Codename Android"
+	echo "cm9 = Cyanogenmod 9"
+	echo "cm10 = Cyanogenmod 10"
+	echo "cm = Cyanogenmod 10.2"
+	echo "ev = Evervolv"
+	echo "paranoid = ParanoidAndroid"
+	echo "raosp = Rooted & Busyboxed AOSP"
+	echo "gummy = Team Gummy"
 	echo "type exit to go to back"
 	read modify
 
@@ -370,9 +299,7 @@ if [ $cleananswer == "4" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-	if [ $modify == "exit" ]; then
+	elif [ $modify == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
@@ -390,9 +317,7 @@ if [ $cleananswer == "4" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-	if [ $remover == "exit" ]; then
+	elif [ $remover == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
@@ -401,13 +326,9 @@ if [ $cleananswer == "4" ]; then
 	cd $REPOS/$modify
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-		rm -rf *
-		repo sync
-	fi
-
-	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		cd ..
-		rm -rf $modify
+		reposync -p -u $modify
+	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
+		reposync -d $modify
 	fi
 
 	echo ""
@@ -415,7 +336,7 @@ if [ $cleananswer == "4" ]; then
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $cleananswer == "5" ]; then
+if [ $cleananswer == "4" ]; then
 	clear
 
 	echo ""
@@ -430,124 +351,16 @@ if [ $cleananswer == "5" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-	if [ $remover == "exit" ]; then
+	elif [ $remover == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 
-	if ( find $REPOS/aokp-jb &> /dev/null ); then
-		cd $REPOS/aokp-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf aokp-jb
-		fi
-	fi
-
-	if ( find $REPOS/aosp-jb &> /dev/null ); then
-		cd $REPOS/aosp-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf aosp-jb
-		fi
-	fi
-
-	if ( find $REPOS/cm-ics &> /dev/null ); then
-		cd $REPOS/cm-ics
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf cm-ics
-		fi
-	fi
-
-	if ( find $REPOS/cm-jb &> /dev/null ); then
-		cd $REPOS/cm-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf cm-jb
-		fi
-	fi
-
-	if ( find $REPOS/evervolv-jb &> /dev/null ); then
-		cd $REPOS/evervolv-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf evervolv-jb
-		fi
-	fi
-
-	if ( find $REPOS/raosp-jb &> /dev/null ); then
-		cd $REPOS/raosp-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf raosp-jb
-		fi
-	fi
-
-	if ( find $REPOS/sts-jb &> /dev/null ); then
-		cd $REPOS/sts-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf sts-jb
-		fi
-	fi
-
-	if ( find $REPOS/gummy-jb &> /dev/null ); then
-		cd $REPOS/gummy-jb
-
-		if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-			rm -rf *
-			repo sync
-		fi
-
-		if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-			cd ..
-			rm -rf gummy-jb
-		fi
+	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		reposync -p -u allthethings
+	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
+		rm -rf $REPOS
 	fi
 
 	echo ""
@@ -555,7 +368,7 @@ if [ $cleananswer == "5" ]; then
 	read -p "Press Enter to continue: " done
 fi
 
-if [ $cleananswer == "6" ]; then
+if [ $cleananswer == "5" ]; then
 	clear
 
 	echo ""
@@ -570,9 +383,7 @@ if [ $cleananswer == "6" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-	if [ $remover == "exit" ]; then
+	elif [ $remover == "exit" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
 		menu
@@ -588,12 +399,12 @@ if [ $cleananswer == "6" ]; then
 		echo "Switching to Redeemer script.."
 		echo ""
 		./redeemer
+		rm -rf $LOCAL/../redeemer
+
 		echo ""
 		echo "Finished!"
 		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $remover == "Delete" ] || [ $remover == "delete" ]; then
+	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		echo ""
 		echo "Are you sure you want to remove the Kitchen app?"
 		echo "You must type in \"yes\" to continue"
@@ -606,9 +417,7 @@ if [ $cleananswer == "6" ]; then
 			echo "You didn't type in anything.."
 			read -p "Press Enter to continue: " done
 			menu
-		fi
-
-		if [ ! $destroyer == "yes" ]; then
+		elif [ ! $destroyer == "yes" ]; then
 			echo ""
 			echo "Aborting.."
 			read -p "Press Enter to continue: " done
@@ -628,7 +437,7 @@ if [ $cleananswer == "6" ]; then
 	fi
 fi
 
-if [ $cleananswer == "7" ]; then
+if [ $cleananswer == "6" ]; then
 	clear
 
 	echo ""
@@ -644,9 +453,7 @@ if [ $cleananswer == "7" ]; then
 		echo "You didn't type in anything.."
 		read -p "Press Enter to continue: " done
 		menu
-	fi
-
-	if [ ! $destroyerofworlds == "yes" ]; then
+	elif [ ! $destroyerofworlds == "yes" ]; then
 		echo ""
 		echo "Aborting.."
 		read -p "Press Enter to continue: " done
@@ -666,15 +473,15 @@ if [ $cleananswer == "7" ]; then
 	fi
 fi
 
-if [ $cleananswer == "8" ]; then
+if [ $cleananswer == "7" ]; then
 	clear
 
 	echo ""
-	echo "Are you sure..? this will delete everything on your computer, including external drives and flash drives!!"
-	echo "You must type in \"yes, please delete everything off my computer\" to continue"
+	echo "Are you sure..? this will delete everything on your computer, including mounted external drives and flash drives!!"
+	echo "You must type in \"yes, please delete everything off of my computer\" to continue"
 	echo ""
 	echo "Type in anything else to bail out"
-	read -p "yes/no? " suicidenote
+	read suicidenote
 
 	if [ ! "$suicidenote" ]; then
 		echo ""
@@ -683,12 +490,10 @@ if [ $cleananswer == "8" ]; then
 		menu
 	fi
 
-	if [ ! $suicidenote == "yes, please delete everything off my computer" ]; then
+	if [ ! $suicidenote == "yes, please delete everything off of my computer" ]; then
 		echo ""
 		echo "Please dont try that again..."
-	fi
-
-	if [ $suicidenote == "yes, please delete everything off my computer" ]; then
+	elif [ $suicidenote == "yes, please delete everything off of my computer" ]; then
 		echo ""
 		echo "Please type in your password to destroy everything"
 		sudo rm -rf /
@@ -699,6 +504,13 @@ if [ $cleananswer == "8" ]; then
 	read -p "Press Enter to continue: " done
 fi
 
+if [ $cleananswer == "8" ]; then
+	echo "Oh man, I bet you wish it was that easy!"
+	echo ""
+	echo "Aborting.."
+	read -p "Press Enter to continue: " done
+fi
+
 if [ $cleananswer == "9" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
@@ -706,5 +518,42 @@ if [ $cleananswer == "9" ]; then
 fi
 
 menu
+}
+
+adddevicetorepo() {
+localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
+
+if ( ! find $local_manifests &> /dev/null ); then
+	mkdir $local_manifests
+fi
+
+mkdir -p $LOCAL/../temp
+
+echo "  <project name=\"GITHUB ACCOUNT/PROJECT\" \
+path=\"PATH INSIDE REPO\" \
+remote=\"github\" \
+revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
+
+nano $LOCAL/../temp/addrepo
+
+echo ""
+echo "Adding repo to otherdevices.xml for $repo_name.."
+cd $local_manifests
+
+if ( ! find $local_manifests/otherdevices.xml &> /dev/null ); then
+	export AUTHOR="otherdevicesxml"
+	scriptmakir
+fi
+
+sed -i "/<\/manifest>/d" otherdevices.xml
+cat $LOCAL/../temp/addrepo  >> otherdevices.xml
+echo "</manifest>" >> otherdevices.xml
+rm -r $LOCAL/../temp
+}
+
+purgelocalmanifest() {
+rm -rf $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/.repo/local_manifests
+preupdate
+echo "Purged $repo_name local_manifests folder"
 }
 menu
