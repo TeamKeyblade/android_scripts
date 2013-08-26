@@ -39,8 +39,8 @@ fi
 adddevicetorepo() {
 localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
 
-if ( ! find $local_manifests &> /dev/null ); then
-	mkdir $local_manifests
+if ( ! find $local_manifests -maxdepth &> /dev/null ); then
+	mkdir -p $local_manifests
 fi
 
 mkdir -p $LOCAL/../temp
@@ -57,7 +57,6 @@ echo "Adding repo to otherdevices.xml for $repo_name.."
 cd $local_manifests
 
 if ( ! find $local_manifests/otherdevices.xml -maxdepth 1 &> /dev/null ); then
-	mkdir -p $local_manifests
 	export AUTHOR="otherdevicesxml"
 	scriptmakir
 fi
