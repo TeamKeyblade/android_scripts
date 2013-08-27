@@ -35,10 +35,10 @@ where:
 
 while getopts ':dhpu:' option; do
 	case "$option" in
-		d) deletefolderandthatsit=true;;
-		h) echo "$usage" && exit 0;;
-		p) deletefolder=true;;
-		u) platform=$OPTARG;;
+		d) deletefolderandthatsit=true; shift ;;
+		h) echo "$usage" && exit 0; shift ;;
+		p) deletefolder=true; shift ;;
+		u) platform=$OPTARG; shift ;;
         esac
 done
 
