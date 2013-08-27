@@ -8,16 +8,15 @@ else
 fi
 
 if [ $LOCAL == $HOME/bin/kitchen ]; then
-	export REPOS=$( echo "$LOCAL/../../Documents/android/repos" )
+	export REPOS=$( cd "$LOCAL/../../Documents/android/repos" && pwd )
 else
-	export REPOS=$( echo "$LOCAL/../../repos" )
+	export REPOS=$( cd "$LOCAL/../../repos" && pwd )
 fi
 
 export BUILDS=$( echo "$REPOS/../builds" )
 
 if ( find $BUILDS/../publish &> /dev/null); then
-	cd $BUILDS/../publish
-	export PUBLISH=$( cd $(dirname $0) && pwd )
+	export PUBLISH=$( cd $BUILDS/../publish && pwd )
 fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
