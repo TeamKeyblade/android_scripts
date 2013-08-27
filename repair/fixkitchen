@@ -326,28 +326,24 @@ if [ $cleananswer == "3" ]; then
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
 	echo "Which repo would you like to purge or delete?"
-	echo "  aokp = Android Open Kang Project"
-	echo "  aosp = Android Open Source Project"
-	echo "  bamf = BAMF Paradigm"
-	echo "  bugless = Bugless Beast"
-	echo "  cna = Codename Android"
-	echo "  cm9 = Cyanogenmod 9"
-	echo "  cm10 = Cyanogenmod 10"
-	echo "  cm = Cyanogenmod 10.2"
-	echo "  ev = Evervolv"
-	echo "  paranoid = ParanoidAndroid"
-	echo "  raosp = Rooted & Busyboxed AOSP"
-	echo "  gummy = Team Gummy"
-	echo "  type exit to go to back"
+	echo "  1. Android Open Kang Project repository"
+	echo "  2. Android Open Source Project repository"
+	echo "  3. BAMF Paradigm repository"
+	echo "  4. Bugless Beast repository"
+	echo "  5. Codename Android repository"
+	echo "  6. Cyanogenmod 9 repository"
+	echo "  7. Cyanogenmod 10 repository"
+	echo "  8. Cyanogenmod 10.2 repository"
+	echo "  9. Evervolv repository"
+	echo "  10. ParanoidAndroid repository"
+	echo "  11. Rooted & Busyboxed AOSP repository"
+	echo "  12. Team Gummy repository"
+	echo "  13. Go Back"
 	read modify
 
-	if [ ! "$modify" ]; then
+	if [ ! "$modify" ] || ( echo $modify | grep -q [A-Za-z] ) || [ $modify -gt "13" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
-		menu
-	elif [ $modify == "exit" ]; then
-		echo ""
+		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		menu
 	fi
@@ -370,12 +366,102 @@ if [ $cleananswer == "3" ]; then
 		menu
 	fi
 
+	if [ $modify == "1" ]; then
+		script_repo=$(echo "aokp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Kang Project")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "2" ]; then
+		script_repo=$(echo "aosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Source Project")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "3" ]; then
+		script_repo=$(echo "bamf")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "BAMF Paradigm")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "4" ]; then
+		script_repo=$(echo "bugless")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Bugless Beast")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "5" ]; then
+		script_repo=$(echo "cna")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Codename Android")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "6" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "ics")
+		repo_name=$(echo "Cyanogenmod 9")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "7" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Cyanogenmod 10")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "8" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "10.2")
+		repo_name=$(echo "Cyanogenmod 10.2")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "9" ]; then
+		script_repo=$(echo "evervolv")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Evervolv")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "10" ]; then
+		script_repo=$(echo "paranoid")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "ParanoidAndroid")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "11" ]; then
+		script_repo=$(echo "raosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Rooted & Busyboxed AOSP")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "12" ]; then
+		script_repo=$(echo "gummy")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Team Gummy")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "13" ]; then
+		echo ""
+		read -p "Going back, Press Enter to continue: " done
+		menu
+	fi
+
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		export INIT=""
-		reposync -p -u $modify
+		reposync -p -u $script_repo
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		export INIT=""
-		reposync -d -u $modify
+		reposync -d -u $script_repo
 	fi
 
 	echo ""
