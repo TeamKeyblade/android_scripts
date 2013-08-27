@@ -68,7 +68,8 @@ rm -r $LOCAL/../temp
 }
 
 purgelocalmanifest() {
-rm -rf $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/.repo/local_manifests
+export REPO_FOLDER=$( echo "$REPOS/$script_repo-$repo_platform" )
+rm -rf $REPO_FOLDER/.repo/local_manifests
 preupdate
 echo "Purged $repo_name local_manifests folder"
 }
@@ -225,85 +226,85 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "aokp")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Android Open Kang Project")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "2" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "aosp")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Android Open Source Project")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "3" ]; then
-		export SCRIPT_REPO=$(echo "bamf")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "bamf")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "BAMF Paradigm")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "4" ]; then
-		export SCRIPT_REPO=$(echo "bugless")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "bugless")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Bugless Beast")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "5" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "cna")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Codename Android")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "6" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "ics")
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "7" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "8" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "10.2")
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "9" ]; then
-		export SCRIPT_REPO=$(echo "evervolv")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "evervolv")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Evervolv")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "10" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "paranoid")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "11" ]; then
-		export SCRIPT_REPO=$(echo "raosp")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "raosp")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "12" ]; then
-		export SCRIPT_REPO=$(echo "gummy")
-		export REPO_PLATFORM=$(echo "jb")
+		script_repo=$(echo "gummy")
+		repo_platform=$(echo "jb")
 		repo_name=$(echo "Team Gummy")
 		purgelocalmanifest
 	fi
