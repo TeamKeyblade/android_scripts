@@ -39,7 +39,7 @@ fi
 adddevicetorepo() {
 localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
 
-if ( ! find $local_manifests -maxdepth &> /dev/null ); then
+if ( ! find $local_manifests -maxdepth 1 &> /dev/null ); then
 	mkdir -p $local_manifests
 fi
 
