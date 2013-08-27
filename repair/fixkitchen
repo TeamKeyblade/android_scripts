@@ -363,9 +363,11 @@ if [ $cleananswer == "3" ]; then
 	cd $REPOS/$modify
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		INIT=""
 		reposync -p -u $modify
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		reposync -d $modify
+		INIT=""
+		reposync -d -u $modify
 	fi
 
 	echo ""
@@ -395,6 +397,7 @@ if [ $cleananswer == "4" ]; then
 	fi
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+		INIT=""
 		reposync -p -u allthethings
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		rm -rf $REPOS
