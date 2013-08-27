@@ -371,10 +371,10 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-		INIT=""
+		export INIT=""
 		reposync -p -u $modify
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		INIT=""
+		export INIT=""
 		reposync -d -u $modify
 	fi
 
@@ -406,7 +406,7 @@ if [ $cleananswer == "4" ]; then
 	fi
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-		INIT=""
+		export INIT=""
 		reposync -p -u allthethings
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		rm -rf $REPOS
