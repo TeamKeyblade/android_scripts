@@ -370,12 +370,10 @@ if [ $cleananswer == "3" ]; then
 		menu
 	fi
 
-	cd $REPOS/$modify
-
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		reposync -p -u $modify
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		reposync -d $modify
+		reposync -d -u $modify
 	fi
 
 	echo ""
