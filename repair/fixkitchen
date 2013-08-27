@@ -18,9 +18,9 @@ echo "Purge = remove files, download from origin"
 echo "Delete = delete it!"
 echo "  1. Add a repo to a certain local_manifests folder"
 echo "  2. Purge a certain local_manifests folder"
-echo "  3. Purge/Delete a certain repository"
-echo "  4. Purge/Delete all the repositories"
-echo "  5. Purge/Delete the Kitchen app"
+echo "  3. Purge or Delete a certain repository"
+echo "  4. Purge or Delete all the repositories"
+echo "  5. Purge or Delete the Kitchen app"
 echo "  6. Delete the Kitchen app, and its dependencies"
 echo "  7. Delete entire computer"
 echo "  8. Delete the internet"
@@ -37,9 +37,9 @@ if [ ! "$cleananswer" ] || ( echo $cleananswer | grep -q [A-Za-z] ) || [ $cleana
 fi
 
 adddevicetorepo() {
-localmanifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
+local_manifests=$( echo "$REPOS/$script_repo-$repo_platform/.repo/local_manifests" )
 
-if ( ! find $local_manifests -maxdepth &> /dev/null ); then
+if ( ! find $local_manifests -maxdepth 1 &> /dev/null ); then
 	mkdir -p $local_manifests
 fi
 
@@ -68,7 +68,8 @@ rm -r $LOCAL/../temp
 }
 
 purgelocalmanifest() {
-rm -rf $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/.repo/local_manifests
+export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+rm -rf $REPO_FOLDER/.repo/local_manifests
 preupdate
 echo "Purged $repo_name local_manifests folder"
 }
@@ -76,115 +77,119 @@ echo "Purged $repo_name local_manifests folder"
 if [ $cleananswer == "1" ]; then
 	clear
 
-	echo "which repo would you like to modify?"
-	echo "aokp = Android Open Kang Project"
-	echo "aosp = Android Open Source Project"
-	echo "bamf = BAMF Paradigm"
-	echo "bugless = Bugless Beast"
-	echo "cna = Codename Android"
-	echo "cm9 = Cyanogenmod 9"
-	echo "cm10 = Cyanogenmod 10"
-	echo "cm = Cyanogenmod 10.2"
-	echo "ev = Evervolv"
-	echo "paranoid = ParanoidAndroid"
-	echo "raosp = Rooted & Busyboxed AOSP"
-	echo "gummy = Team Gummy"
-	echo "type exit to go to back"
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Which repo would you like to add to?"
+	echo "  1. Android Open Kang Project repository"
+	echo "  2. Android Open Source Project repository"
+	echo "  3. BAMF Paradigm repository"
+	echo "  4. Bugless Beast repository"
+	echo "  5. Codename Android repository"
+	echo "  6. Cyanogenmod 9 repository"
+	echo "  7. Cyanogenmod 10 repository"
+	echo "  8. Cyanogenmod 10.2 repository"
+	echo "  9. Evervolv repository"
+	echo "  10. ParanoidAndroid repository"
+	echo "  11. Rooted & Busyboxed AOSP repository"
+	echo "  12. Team Gummy repository"
+	echo "  13. Go Back"
 	read addrepo
 
-	if [ "$addrepo" == "" ]; then
+	if [ ! "$addrepo" ] || ( echo $addrepo | grep -q [A-Za-z] ) || [ $addrepo -gt "13" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
-		menu
-	elif [ $addrepo == "exit" ]; then
-		echo ""
+		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 
-	if [ $addrepo == "aokp" ]; then
+	if [ $addrepo == "1" ]; then
 		script_repo=$(echo "aokp")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Android Open Kang Project")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "aosp" ]; then
+	if [ $addrepo == "2" ]; then
 		script_repo=$(echo "aosp")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Android Open Source Project")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "bamf" ]; then
+	if [ $addrepo == "3" ]; then
 		script_repo=$(echo "bamf")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "BAMF Paradigm")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "bugless" ]; then
+	if [ $addrepo == "4" ]; then
 		script_repo=$(echo "bugless")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Bugless Beast")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "cna" ]; then
+	if [ $addrepo == "5" ]; then
 		script_repo=$(echo "cna")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Codename Android")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "cm9" ]; then
+	if [ $addrepo == "6" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "cm10" ]; then
+	if [ $addrepo == "7" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "cm10.2" ]; then
+	if [ $addrepo == "8" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "ev" ]; then
+	if [ $addrepo == "9" ]; then
 		script_repo=$(echo "evervolv")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Evervolv")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "paranoid" ]; then
+	if [ $addrepo == "10" ]; then
 		script_repo=$(echo "paranoid")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "raosp" ]; then
+	if [ $addrepo == "11" ]; then
 		script_repo=$(echo "raosp")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "gummy" ]; then
+	if [ $addrepo == "12" ]; then
 		script_repo=$(echo "gummy")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Team Gummy")
 		adddevicetorepo
+	fi
+
+	if [ $addrepo == "13" ]; then
+		echo ""
+		read -p "Going back, Press Enter to continue: " done
+		menu
 	fi
 
 	echo ""
@@ -195,115 +200,119 @@ fi
 if [ $cleananswer == "2" ]; then
 	clear
 
-	echo "which repo would you like to modify?"
-	echo "aokp = Android Open Kang Project"
-	echo "aosp = Android Open Source Project"
-	echo "bamf = BAMF Paradigm"
-	echo "bugless = Bugless Beast"
-	echo "cna = Codename Android"
-	echo "cm9 = Cyanogenmod 9"
-	echo "cm10 = Cyanogenmod 10"
-	echo "cm = Cyanogenmod 10.2"
-	echo "ev = Evervolv"
-	echo "paranoid = ParanoidAndroid"
-	echo "raosp = Rooted & Busyboxed AOSP"
-	echo "gummy = Team Gummy"
-	echo "type exit to go to back"
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Which repo would you like to purge its local_manifests folder?"
+	echo "  1. Android Open Kang Project repository"
+	echo "  2. Android Open Source Project repository"
+	echo "  3. BAMF Paradigm repository"
+	echo "  4. Bugless Beast repository"
+	echo "  5. Codename Android repository"
+	echo "  6. Cyanogenmod 9 repository"
+	echo "  7. Cyanogenmod 10 repository"
+	echo "  8. Cyanogenmod 10.2 repository"
+	echo "  9. Evervolv repository"
+	echo "  10. ParanoidAndroid repository"
+	echo "  11. Rooted & Busyboxed AOSP repository"
+	echo "  12. Team Gummy repository"
+	echo "  13. Go Back"
 	read cleanse
 
-	if [ "$cleanse" == "" ]; then
+	if [ ! "$cleanse" ] || ( echo $cleanse | grep -q [A-Za-z] ) || [ $cleanse -gt "13" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
-		menu
-	elif [ $cleanse == "exit" ]; then
-		echo ""
+		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		menu
 	fi
 
-	if [ $cleanse == "aokp" ]; then
+	if [ $cleanse == "1" ]; then
 		export SCRIPT_REPO=$(echo "aokp")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Android Open Kang Project")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "aosp" ]; then
+	if [ $cleanse == "2" ]; then
 		export SCRIPT_REPO=$(echo "aosp")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Android Open Source Project")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "bamf" ]; then
+	if [ $cleanse == "3" ]; then
 		export SCRIPT_REPO=$(echo "bamf")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "BAMF Paradigm")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "bugless" ]; then
+	if [ $cleanse == "4" ]; then
 		export SCRIPT_REPO=$(echo "bugless")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Bugless Beast")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "cna" ]; then
+	if [ $cleanse == "5" ]; then
 		export SCRIPT_REPO=$(echo "cna")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Codename Android")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "cm9" ]; then
+	if [ $cleanse == "6" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "cm10" ]; then
+	if [ $cleanse == "7" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "cm10.2" ]; then
+	if [ $cleanse == "8" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "ev" ]; then
+	if [ $cleanse == "9" ]; then
 		export SCRIPT_REPO=$(echo "evervolv")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Evervolv")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "paranoid" ]; then
+	if [ $cleanse == "10" ]; then
 		export SCRIPT_REPO=$(echo "paranoid")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "raosp" ]; then
+	if [ $cleanse == "11" ]; then
 		export SCRIPT_REPO=$(echo "raosp")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "gummy" ]; then
+	if [ $cleanse == "12" ]; then
 		export SCRIPT_REPO=$(echo "gummy")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Team Gummy")
 		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "13" ]; then
+		echo ""
+		read -p "Going back, Press Enter to continue: " done
+		menu
 	fi
 
 	echo ""
@@ -314,30 +323,27 @@ fi
 if [ $cleananswer == "3" ]; then
 	clear
 
-	echo ""
-	echo "which repo would you like to modify?"
-	echo "aokp = Android Open Kang Project"
-	echo "aosp = Android Open Source Project"
-	echo "bamf = BAMF Paradigm"
-	echo "bugless = Bugless Beast"
-	echo "cna = Codename Android"
-	echo "cm9 = Cyanogenmod 9"
-	echo "cm10 = Cyanogenmod 10"
-	echo "cm = Cyanogenmod 10.2"
-	echo "ev = Evervolv"
-	echo "paranoid = ParanoidAndroid"
-	echo "raosp = Rooted & Busyboxed AOSP"
-	echo "gummy = Team Gummy"
-	echo "type exit to go to back"
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Which repo would you like to purge or delete?"
+	echo "  1. Android Open Kang Project repository"
+	echo "  2. Android Open Source Project repository"
+	echo "  3. BAMF Paradigm repository"
+	echo "  4. Bugless Beast repository"
+	echo "  5. Codename Android repository"
+	echo "  6. Cyanogenmod 9 repository"
+	echo "  7. Cyanogenmod 10 repository"
+	echo "  8. Cyanogenmod 10.2 repository"
+	echo "  9. Evervolv repository"
+	echo "  10. ParanoidAndroid repository"
+	echo "  11. Rooted & Busyboxed AOSP repository"
+	echo "  12. Team Gummy repository"
+	echo "  13. Go Back"
 	read modify
 
-	if [ ! "$modify" ]; then
+	if [ ! "$modify" ] || ( echo $modify | grep -q [A-Za-z] ) || [ $modify -gt "13" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
-		menu
-	elif [ $modify == "exit" ]; then
-		echo ""
+		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
 		menu
 	fi
@@ -360,14 +366,102 @@ if [ $cleananswer == "3" ]; then
 		menu
 	fi
 
-	cd $REPOS/$modify
+	if [ $modify == "1" ]; then
+		script_repo=$(echo "aokp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Kang Project")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "2" ]; then
+		script_repo=$(echo "aosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Android Open Source Project")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "3" ]; then
+		script_repo=$(echo "bamf")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "BAMF Paradigm")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "4" ]; then
+		script_repo=$(echo "bugless")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Bugless Beast")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "5" ]; then
+		script_repo=$(echo "cna")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Codename Android")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "6" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "ics")
+		repo_name=$(echo "Cyanogenmod 9")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "7" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Cyanogenmod 10")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "8" ]; then
+		script_repo=$(echo "cm")
+		repo_platform=$(echo "10.2")
+		repo_name=$(echo "Cyanogenmod 10.2")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "9" ]; then
+		script_repo=$(echo "evervolv")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Evervolv")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "10" ]; then
+		script_repo=$(echo "paranoid")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "ParanoidAndroid")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "11" ]; then
+		script_repo=$(echo "raosp")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Rooted & Busyboxed AOSP")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "12" ]; then
+		script_repo=$(echo "gummy")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "Team Gummy")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "13" ]; then
+		echo ""
+		read -p "Going back, Press Enter to continue: " done
+		menu
+	fi
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		export INIT=""
-		reposync -p -u $modify
+		reposync -p -u $script_repo
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		export INIT=""
-		reposync -d -u $modify
+		reposync -d -u $script_repo
 	fi
 
 	echo ""
@@ -378,8 +472,9 @@ fi
 if [ $cleananswer == "4" ]; then
 	clear
 
-	echo ""
-	echo "Purge or Delete the repositories?"
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Purge or Delete all of the repositories?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
 	echo "type exit to go to back"
@@ -411,8 +506,9 @@ fi
 if [ $cleananswer == "5" ]; then
 	clear
 
-	echo ""
-	echo "Purge or Delete?"
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Purge or Delete the Kitchen app?"
 	echo "Purge = remove files, download from origin"
 	echo "Delete = delete it!"
 	echo "type exit to go back"
@@ -480,9 +576,10 @@ fi
 if [ $cleananswer == "6" ]; then
 	clear
 
-	echo ""
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
 	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
-	echo "Please note: the builds directory will not be deleted?"
+	echo "Please note: the builds directory will not be deleted"
 	echo "You must type in \"yes\" to continue"
 	echo ""
 	echo "Type in anything else to abort operation"
@@ -516,7 +613,8 @@ fi
 if [ $cleananswer == "7" ]; then
 	clear
 
-	echo ""
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
 	echo "Are you sure..? this will delete everything on your computer, including mounted external drives and flash drives!!"
 	echo "You must type in \"yes, please delete everything off of my computer\" to continue"
 	echo ""
@@ -545,6 +643,8 @@ if [ $cleananswer == "7" ]; then
 fi
 
 if [ $cleananswer == "8" ]; then
+	echo "Trollface's Android Kitchen!"
+	echo "=============================="
 	echo "Oh man, I bet you wish it was that easy!"
 	echo ""
 	echo "Aborting.."
