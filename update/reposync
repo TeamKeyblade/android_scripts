@@ -6,9 +6,9 @@ if [ ! "$INIT" ]; then
 usage="$(basename "$0") [-d] [-h] [-p] [-u] repo -- program to initialize/update android repos
 
 where:
-	-d  delete the appropriate folder and then exit program
+	-d  delete the appropriate folder and then exit program, depends on -u
 	-h  show this help text
-	-p  purge folder, reinit, and then update
+	-p  purge folder, reinit, and then update, depends on -u
 	-u  update this particular repo
 
 	    Options list:
@@ -38,13 +38,13 @@ while getopts ':dhpu:' option; do
 		d) deletefolderandthatsit=true; shift ;;
 		h) echo "$usage" && exit 0; shift ;;
 		p) deletefolder=true; shift ;;
-		u) platform=$OPTARG; shift ;;
+		u) export PLATFORM=$OPTARG; shift ;;
         esac
 done
 
 fi
 
-if [ "$platform" ]; then
+if [ "$PLATFORM" ]; then
 	export AUTO=true
 fi
 
@@ -92,8 +92,8 @@ if [ ! "$AUTO" ]; then
 	fi
 fi
 
-if [ "$platform" ]; then
-	if [ $platform == "list" ]; then
+if [ "$PLATFORM" ]; then
+	if [ $PLATFORM == "list" ]; then
 		echo "kitchen = Update Kitchen"
 		echo "aokp = Update Android Open Kang Project"
 		echo "aosp = Update Android Open Source Project"
@@ -112,62 +112,62 @@ if [ "$platform" ]; then
 		exit 0
 	fi
 
-	if [ $platform == "kitchen" ]; then
+	if [ $PLATFORM == "kitchen" ]; then
 		setupanswer="3"
 	fi
 
-	if [ $platform == "aokp" ]; then
+	if [ $PLATFORM == "aokp" ]; then
 		setupanswer="4"
 	fi
 
-	if [ $platform == "aosp" ]; then
+	if [ $PLATFORM == "aosp" ]; then
 		setupanswer="5"
 	fi
 
-	if [ $platform == "bamf" ]; then
+	if [ $PLATFORM == "bamf" ]; then
 		setupanswer="6"
 	fi
 
-	if [ $platform == "bugless" ]; then
+	if [ $PLATFORM == "bugless" ]; then
 		setupanswer="7"
 	fi
 
-	if [ $platform == "cna" ]; then
+	if [ $PLATFORM == "cna" ]; then
 		setupanswer="8"
 	fi
 
-	if [ $platform == "cm9" ]; then
+	if [ $PLATFORM == "cm9" ]; then
 		setupanswer="9"
 	fi
 
-	if [ $platform == "cm10" ]; then
+	if [ $PLATFORM == "cm10" ]; then
 		setupanswer="10"
 	fi
 
-	if [ $platform == "cm" ]; then
+	if [ $PLATFORM == "cm" ]; then
 		setupanswer="11"
 	fi
 
-	if [ $platform == "ev" ] || [ $platform == "evervolv" ]; then
+	if [ $PLATFORM == "ev" ] || [ $PLATFORM == "evervolv" ]; then
 		setupanswer="12"
 	fi
 
-	if [ $platform == "paranoid" ]; then
+	if [ $PLATFORM == "paranoid" ]; then
 		setupanswer="13"
 	fi
 
-	if [ $platform == "raosp" ]; then
+	if [ $PLATFORM == "raosp" ]; then
 		setupanswer="14"
 	fi
 
-	if [ $platform == "gummy" ]; then
+	if [ $PLATFORM == "gummy" ]; then
 		setupanswer="15"
 	fi
 
-	if [ $platform == "all" ]; then
+	if [ $PLATFORM == "all" ]; then
 		setupanswer="16"
 	fi
-	if [ $platform == "allthethings" ]; then
+	if [ $PLATFORM == "allthethings" ]; then
 		setupanswer="17"
 	fi
 fi
