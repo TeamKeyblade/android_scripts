@@ -38,7 +38,7 @@ while getopts ':dhpu:' option; do
 		d) deletefolderandthatsit=true;;
 		h) echo "$usage" && exit 0;;
 		p) deletefolder=true;;
-		u) platform=${OPTARG};;
+		u) platform=$OPTARG;;
         esac
 done
 
