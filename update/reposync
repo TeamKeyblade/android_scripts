@@ -33,6 +33,8 @@ where:
 	    typing \"reposync -u list\" will give
 	    you the options list again"
 
+	export AUTO=true
+
 while getopts ':dhpu:' option; do
 	case "$option" in
 		d) deletefolderandthatsit=true; shift ;;
@@ -42,10 +44,6 @@ while getopts ':dhpu:' option; do
         esac
 done
 
-fi
-
-if [ "$PLATFORM" ]; then
-	export AUTO=true
 fi
 
 if [ ! "$INIT" ]; then
