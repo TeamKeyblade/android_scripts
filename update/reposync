@@ -230,10 +230,10 @@ if [ ! "$AUTO" ]; then
 		fi
 	else
 		echo "$repo_name not initialized, skipping.."
-		init=$( echo "yes" )
 	fi
 else
 	echo "$repo_name not initialized, initializing now.."
+	init=$( echo "yes" )
 fi
 
 if [ "$AUTO" ] && [ $setupanswer == "17" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
