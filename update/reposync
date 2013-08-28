@@ -38,7 +38,7 @@ where:
 while getopts 'd:hp:u:' option; do
 	if [ $option == "d" ]; then
 		export PLATFORM=$OPTARG
-		deletefolderandthatsit="true"
+		export DELETEFOLDERANDTHATSIT="true"
 	fi
 
 	if [ $option == "h" ]; then
@@ -48,7 +48,7 @@ while getopts 'd:hp:u:' option; do
 
 	if [ $option == "p" ]; then
 		export PLATFORM=$OPTARG
-		deletefolder="true"
+		export DELETEFOLDER="true"
 	fi
 
 	if [ $option == "u" ]; then
@@ -188,9 +188,9 @@ if [ $SCRIPT_REPO == "kitchen" ]; then
 else
 	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 	
-	if [ "$deletefolder" ]; then
+	if [ "$DELETEFOLDER" ]; then
 		rm -rf $REPO_FOLDER
-	elif [ "$deletefolderandthatsit" ]; then
+	elif [ "$DELETEFOLDERANDTHATSIT" ]; then
 		rm -rf $REPO_FOLDER
 		exit 0
 	fi
