@@ -232,7 +232,9 @@ if [ ! "$AUTO" ]; then
 		echo "$repo_name not initialized, skipping.."
 	fi
 else
-	echo "$repo_name not initialized, initializing now.."
+	if [ ! "$DELETEFOLDER" ]; then
+		echo "$repo_name not initialized, initializing now.."
+	fi
 	init=$( echo "yes" )
 fi
 
