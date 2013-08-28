@@ -3,7 +3,7 @@
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
-	export SCRIPT=$(echo "configkitchen")
+	export SCRIPT=$(echo "buildautomenu")
 	../headerfile
 	exit 0
 fi
