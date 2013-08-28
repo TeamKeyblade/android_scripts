@@ -631,6 +631,8 @@ if [ $cleananswer == "7" ]; then
 fi
 
 if [ $cleananswer == "8" ]; then
+	clear
+
 	echo "Trollface's Android Kitchen!"
 	echo "=============================="
 	echo "Oh man, I bet you wish it was that easy!"
