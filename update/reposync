@@ -6,9 +6,9 @@ if [ ! "$INIT" ]; then
 usage="$(basename "$0") [-d] [-h] [-p] [-u] repo -- program to initialize/update android repos
 
 where:
-	-d  delete the appropriate folder and then exit program, depends on -u
+	-d  delete the appropriate folder and then exit program
 	-h  show this help text
-	-p  purge folder, reinit, and then update, depends on -u
+	-p  purge folder, reinit, and then update
 	-u  update this particular repo
 
 	    Options list:
@@ -35,13 +35,25 @@ where:
 
 	export AUTO=true
 
-while getopts ':dhpu:' option; do
-	case "$option" in
-		d) deletefolderandthatsit=true; shift ;;
-		h) echo "$usage" && exit 0; shift ;;
-		p) deletefolder=true; shift ;;
-		u) export PLATFORM=$OPTARG; shift ;;
-        esac
+while getopts 'd:hp:u:' option; do
+	if [ $option == "d" ]; then
+		export PLATFORM=$OPTARG
+		deletefolderandthatsit="true"
+	fi
+
+	if [ $option == "h" ]; then
+		echo "$usage"
+		exit 0
+	fi
+
+	if [ $option == "p" ]; then
+		export PLATFORM=$OPTARG
+		deletefolder="true"
+	fi
+
+	if [ $option == "u" ]; then
+		export PLATFORM=$OPTARG
+	fi
 done
 
 fi
