@@ -447,9 +447,9 @@ if [ $cleananswer == "3" ]; then
 	export INIT=""
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
-		reposync -p -u $script_repo
+		reposync -p $script_repo
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
-		reposync -d -u $script_repo
+		reposync -d $script_repo
 	fi
 
 	echo ""
@@ -481,7 +481,7 @@ if [ $cleananswer == "4" ]; then
 
 	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		export INIT=""
-		reposync -p -u allthethings
+		reposync -p allthethings
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		rm -rf $REPOS
 	fi
