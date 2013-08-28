@@ -28,9 +28,7 @@ if [ ! $SLOPPYSECONDS ]; then
 
 	if [ $AUTO ]; then
 		make clobber
-	fi
-
-	if [ ! $AUTO ]; then
+	elif [ ! $AUTO ]; then
 		echo "clean out folder?"
 		read -p "yes/no? " purgeout
 
