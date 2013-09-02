@@ -95,6 +95,7 @@ if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
 fi
 
 devicecheck
+}
 
 devicecheck(){
 
@@ -507,8 +508,7 @@ devicecheck
 }
 
 if [ ! "$BUILDDEVICEMENU" ]; then
-	echo "$usage"
-	exit 0
+	buildmenu
 else
 	$BUILDDEVICEMENU
 fi
