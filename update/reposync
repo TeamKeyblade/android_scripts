@@ -281,8 +281,8 @@ fi
 
 if [ $setupanswer == "3" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_branch=$(echo "master")
+	export REPO_PLATFORM=$(echo "stable")
+	repo_branch=$(echo "stable")
 	repo_name=$(echo "Kitchen app")
 	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
 	done=true
