@@ -96,6 +96,7 @@ if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
 fi
 
 devicecheck
+}
 
 devicecheck(){
 
