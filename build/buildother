@@ -130,17 +130,17 @@ while [ $device == "list" ]; do
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
 		sed -e 's/.*cm_//g' \
-		cm-build-targets.txt | sed "/#/d" | sed "/jellybean/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
+		$LOCAL/config/cm-master-list | sed "/#/d" | sed "/jellybean/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
 	fi
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
 		sed -e 's/.*cm_//g' \
-		cm-build-targets.txt | sed "/#/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
+		$LOCAL/config/cm-master-list | sed "/#/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
 	fi
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
 		sed -e 's/.*cm_//g' \
-		cm-build-targets.txt | sed "/#/d" | sed 's/-userdebug[^@]*$//' | less
+		$LOCAL/config/cm-master-list | sed "/#/d" | sed 's/-userdebug[^@]*$//' | less
 	fi
 
 	if [ $SCRIPT_REPO == "evervolv" ]; then
