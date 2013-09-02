@@ -201,7 +201,7 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	if [ ! $setupanswer == "16" ]; then
+	if [ ! $setupanswer == "13" ] || [ ! $setupanswer == "14" ]; then
 		echo "$repo_name not initialized, do you want to initialize it?"
 		read init
 
@@ -220,7 +220,7 @@ else
 	init=$( echo "yes" )
 fi
 
-if [ "$AUTO" ] && [ $setupanswer == "17" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+if [ "$AUTO" ] && [ $setupanswer == "14" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
 	if [ ! $SCRIPT_REPO == "kitchen" ]; then
 		mkdir -p $REPO_FOLDER
 	fi
