@@ -18,8 +18,6 @@ where:
 
 	    Example: builddevice -d nexus7menu"
 
-export AUTO=true
-
 while getopts 'd:h' option; do
 	if [ $option == "d" ]; then
 		export BUILDDEVICEMENU=$OPTARG
