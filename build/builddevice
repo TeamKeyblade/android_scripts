@@ -53,23 +53,23 @@ if [ $version == "3" ]; then
 fi
 
 if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-fi
-
-if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $version == "6" ]; then
+if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "7" ]; then
+if [ $version == "6" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
+fi
+
+if [ $version == "7" ]; then
+	export SCRIPT_REPO=$(echo "evervolv")
+	export REPO_PLATFORM=$(echo "jb")
 fi
 
 if [ $version == "8" ]; then
