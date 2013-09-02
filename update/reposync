@@ -201,7 +201,9 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	if [ ! $setupanswer == "13" ] || [ ! $setupanswer == "14" ]; then
+	if [ $setupanswer == "13" ] || [ $setupanswer == "14" ]; then
+		echo "$repo_name not initialized, skipping.."
+	else
 		echo "$repo_name not initialized, do you want to initialize it?"
 		read init
 
@@ -210,8 +212,6 @@ if [ ! "$AUTO" ]; then
 		else
 			echo "$repo_name wasn't initialized.. "
 		fi
-	else
-		echo "$repo_name not initialized, skipping.."
 	fi
 else
 	if [ ! "$DELETEFOLDER" ]; then
