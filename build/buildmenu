@@ -36,36 +36,43 @@ if [ ! "$buildanswer" ] || ( echo $buildanswer | grep -q [A-Za-z] ) || [ $builda
 fi
 
 if [ $buildanswer == "1" ]; then
+	export INIT=""
 	builddevice -d nexus4menu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "2" ]; then
+	export INIT=""
 	builddevice -d gnexusmenu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "3" ]; then
+	export INIT=""
 	builddevice -d nexussmenu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "4" ]; then
+	export INIT=""
 	builddevice -d nexus7menu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "5" ]; then
+	export INIT=""
 	builddevice -d nexus10menu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "6" ]; then
+	export INIT=""
 	builddevice -d xoommenu
 	read -p "Press Enter to continue: " done
 fi
 
 if [ $buildanswer == "7" ]; then
+	export INIT=""
 	builddevice -d allmenu
 	read -p "Press Enter to continue: " done
 fi
