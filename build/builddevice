@@ -539,7 +539,8 @@ devicecheck
 }
 
 if [ ! "$BUILDDEVICEMENU" ]; then
-	buildmenu
+	echo "$usage"
+	exit 0
 else
 	$BUILDDEVICEMENU
 fi
