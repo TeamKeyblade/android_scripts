@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-if ( find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm &> /dev/null ); then
-	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM/vendor/cm
+if [ $SCRIPT_REPO == "cm" ]; then
+	cd $REPOS/cm-$REPO_PLATFORM/vendor/cm
 	./get-prebuilts
 
 	#this is rebuilt every time since this file is likely to change alot
@@ -11,9 +11,4 @@ fi
 
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf $REPOS/raosp-jb/system/extras/su
-fi
-
-if [ $SCRIPT_REPO == "gummy" ]; then
-	cd $REPOS/gummy-jb/vendor/Gummy
-	./get-prebuilts
 fi
