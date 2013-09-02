@@ -2,7 +2,7 @@
 # Written by Sean Donovan (swordrune10)
 if [ ! "$INIT" ]; then
 
-usage="$(basename "$0") [-d] [-h] [-p] [-u] devicemenu -- program to build android roms
+usage="$(basename "$0") [-h] [-d] devicemenu -- program to build android roms
 
 where:
 	-d  go to certain buildmenu
@@ -20,9 +20,14 @@ where:
 
 export AUTO=true
 
-while getopts 'd:' option; do
+while getopts 'd:h' option; do
 	if [ $option == "d" ]; then
 		export BUILDDEVICEMENU=$OPTARG
+	fi
+
+	if [ $option == "h" ]; then
+		echo "$usage"
+		exit 0
 	fi
 done
 
