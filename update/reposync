@@ -414,7 +414,7 @@ fi
 
 if [ $setupanswer == "15" ]; then
 	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "ics")
 	repo_branch=$(echo "master")
 	repo_name=$(echo "Team Gummy")
 	repo_url=$(echo "http://github.com/teamgummy/platform_manifest.git")
