@@ -1,35 +1,5 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-if [ ! "$INIT" ]; then
-
-usage="$(basename "$0") [-h] [-d] devicemenu -- program to build android roms
-
-where:
-	-d  go to certain buildmenu
-
-	    Options list:
-	    nexus4menu = Nexus 4 Menu
-	    gnexusmenu = Galaxy Nexus Menu
-	    nexussmenu = Nexus S Menu
-	    nexus7menu = Nexus 7 Menu
-	    nexus10menu = Nexus 10 Menu
-	    xoommenu = Xoom Menu
-	    allmenu = All Devices Menu
-
-	    Example: builddevice -d nexus7menu"
-
-while getopts 'd:h' option; do
-	if [ $option == "d" ]; then
-		export BUILDDEVICEMENU=$OPTARG
-	fi
-
-	if [ $option == "h" ]; then
-		echo "$usage"
-		exit 0
-	fi
-done
-
-fi
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
