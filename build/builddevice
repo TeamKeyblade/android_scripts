@@ -16,7 +16,6 @@ echo "=============================="
 echo "$devicefullname is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
-
 echo "  1. Android Open Kang Project"
 echo "  2. Android Open Source Project"
 echo "  3. Codename Android"
@@ -144,7 +143,7 @@ fi
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/ev-jb/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
