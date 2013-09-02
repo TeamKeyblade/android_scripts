@@ -305,7 +305,7 @@ fi
 if [ $setupanswer == "4" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
+	repo_branch=$(echo "jb-mr2")
 	repo_name=$(echo "Android Open Kang Project")
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
 	done=true
@@ -325,9 +325,9 @@ fi
 if [ $setupanswer == "6" ]; then
 	export SCRIPT_REPO=$(echo "bamf")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "master")
+	repo_branch=$(echo "bamf-4.3-i605")
 	repo_name=$(echo "BAMF Paradigm")
-	repo_url=$(echo "http://github.com/TeamBAMF/platform_manifest.git")
+	repo_url=$(echo "http://github.com/TeamBAMF/android.git")
 	done=true
 	setupcheck
 fi
@@ -345,6 +345,7 @@ fi
 if [ $setupanswer == "8" ]; then
 	export SCRIPT_REPO=$(echo "cna")
 	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "Codename Android")
 	repo_url=$(echo "http://github.com/CNA/android_manifest.git")
 	done=true
@@ -384,7 +385,7 @@ fi
 if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
+	repo_branch=$(echo "jellybean-4.3")
 	repo_name=$(echo "Evervolv")
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	done=true
@@ -394,9 +395,9 @@ fi
 if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
+	repo_branch=$(echo "jb43")
 	repo_name=$(echo "ParanoidAndroid")
-	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
+	repo_url=$(echo "http://github.com/ParanoidAndroid/manifest.git")
 	done=true
 	setupcheck
 fi
