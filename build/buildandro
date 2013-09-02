@@ -136,3 +136,6 @@ fi
 cd $BUILD_FOLDER
 md5sum $newzip
 md5sum $newzip > $newzip.md5sum
+
+echo "Finished!"
+read -p "Press Enter to continue: " done

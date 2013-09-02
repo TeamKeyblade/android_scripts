@@ -176,7 +176,6 @@ fi
 
 buildandro
 
-echo "Finished!"
 exit 0
 }
 

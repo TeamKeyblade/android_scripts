@@ -84,8 +84,6 @@ if [ $buildanswer == "10" ]; then
 	exit 0
 fi
 
-read -p "Press Enter to continue: " done
-
 menu
 }
 menu
