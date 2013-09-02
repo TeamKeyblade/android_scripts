@@ -1,5 +1,32 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
+if [ ! "$INIT" ]; then
+
+usage="$(basename "$0") [-d] [-h] [-p] [-u] devicemenu -- program to build android roms
+
+where:
+	-d  go to certain buildmenu
+
+	    Options list:
+	    nexus4menu = Nexus 4 Menu
+	    gnexusmenu = Galaxy Nexus Menu
+	    nexussmenu = Nexus S Menu
+	    nexus7menu = Nexus 7 Menu
+	    nexus10menu = Nexus 10 Menu
+	    xoommenu = Xoom Menu
+	    allmenu = All Devices Menu
+
+	    Example: builddevice -d nexus7menu"
+
+export AUTO=true
+
+while getopts 'd:' option; do
+	if [ $option == "d" ]; then
+		export BUILDDEVICEMENU=$OPTARG
+	fi
+done
+
+fi
 
 if [ ! "$INIT" ]; then
 	cd $(dirname $0)
@@ -19,38 +46,22 @@ echo "Which android repository are we building from today?"
 
 echo "  1. Android Open Kang Project"
 echo "  2. Android Open Source Project"
-echo "  3. BAMF Paradigm"
-echo "  4. Bugless Beast"
-echo "  5. Codename Android"
-echo "  6. Cyanogenmod 9"
-echo "  7. Cyanogenmod 10"
-echo "  8. Cyanogenmod 10.2"
-echo "  9. ParanoidAndroid"
-echo "  10. Rooted & Busyboxed AOSP"
-echo "  11. Team Gummy"
-echo "  12. Go Back"
+echo "  3. Codename Android"
+echo "  4. Cyanogenmod 9"
+echo "  5. Cyanogenmod 10"
+echo "  6. Cyanogenmod 10.2"
+echo "  7. Evervolv"
+echo "  8. ParanoidAndroid"
+echo "  9. Rooted & Busyboxed AOSP"
+echo "  10. Go Back"
 
 read version
 
-if [ ! "$version" ]; then
+if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "10" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-	repomenu
-fi
-
-if ( echo $version | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	repomenu
-fi
-
-if [ $version -gt "12" ]; then
-		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
-		repomenu
+	menu
 fi
 
 if [ $version == "1" ]; then
@@ -64,51 +75,41 @@ if [ $version == "2" ]; then
 fi
 
 if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "bamf")
-	export REPO_PLATFORM=$(echo "jb")
-fi
-
-if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "bugless")
-	export REPO_PLATFORM=$(echo "jb")
-fi
-
-if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cna")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "6" ]; then
+if [ $version == "4" ]; then
+	export SCRIPT_REPO=$(echo "evervolv")
+	export REPO_PLATFORM=$(echo "jb")
+fi
+
+if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $version == "7" ]; then
+if [ $version == "6" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "8" ]; then
+if [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 fi
 
-if [ $version == "9" ]; then
+if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "10" ]; then
+if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "11" ]; then
-	export SCRIPT_REPO=$(echo "gummy")
-	export REPO_PLATFORM=$(echo "jb")
-fi
-
-if [ $version == "12" ]; then
+if [ $version == "10" ]; then
 	echo ""
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
@@ -121,148 +122,87 @@ if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
 	repomenu
 fi
 
-devicecount=""
+devicecheck
+
+devicecheck(){
 
 if [ $SCRIPT_REPO == "aokp" ]; then
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! sed -e 's/.*aokp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
 	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! sed -e 's/.*full_//g' \
+	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-jb/device/*/"${scriptdevice[$devicecount]}"/vendorsetup.sh ); then
+	$REPOS/aosp-jb/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+	fi	
+fi
+
+if [ $SCRIPT_REPO == "cna" ]; then
+	if ( ! sed -e 's/.*cna_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/cna-jb/vendor/cna/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi	
 fi
 
 if [ $SCRIPT_REPO == "cm" ]; then
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! cat $LOCAL/config/cm-master-list | grep -q "${scriptdevice[$devicecount]}" ); then
+	if ( ! cat $LOCAL/config/cm-master-list | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
 	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+fi
+
+if [ $SCRIPT_REPO == "evervolv" ]; then
+	if ( ! sed -e 's/.*ev_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/ev-jb/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+fi
+
+if [ $SCRIPT_REPO == "paranoid" ]; then
+	if ( ! sed -e 's/.*pa_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
 fi
 
 if [ $SCRIPT_REPO == "raosp" ]; then
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! sed -e 's/.*full_//g' \
+	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/raosp-jb/device/*/*/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
+	$REPOS/raosp-jb/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
 		exit 0
 	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
 fi
 
-if [ $SCRIPT_REPO == "gummy" ]; then
+buildandro
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	if ( ! sed -e 's/.*Gummy_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/gummy-jb/vendor/Gummy/vendorsetup.sh | grep -q "${scriptdevice[$devicecount]}" ); then
-		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-fi
-
-clear
-
-devicecount=""
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-while true; do
-	let devicecount=$devicecount+1
-
-	if [ $devicecount == "2" ]; then
-		export SLOPPYSECONDS=true
-	fi
-
-	if ( echo "${scriptdevice[$devicecount]}" | grep -q "EOF" ); then
-		export SLOPPYSECONDS=""
-		break
-	fi
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	export SCRIPT_DEVICE="${scriptdevice[$devicecount]}"
-	buildandro
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-done
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo "Finished!"
 exit 0
 }
@@ -279,35 +219,23 @@ echo ""
 echo "Which one would you like to do?"
 read buildnexus4
 
-if [ ! "$buildnexus4" ]; then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildnexus4 | grep -q [A-Za-z] ); then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
-fi
-
-if [ $buildnexus4 -gt "2" ]; then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
+if [ ! "$buildnexus4" ] || ( echo $buildnexus4 | grep -q [A-Za-z] ) || [ $buildnexus4 -gt "2" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+	nexus4menu
 fi
 
 if [ $buildnexus4 == "1" ]; then
-scriptdevice[1]=$(echo "mako")
-scriptdevice[2]=$(echo "EOF")
-devicefullname=$(echo "GSM Nexus 4")
-repomenu
+	export SCRIPT_DEVICE=$(echo "mako")
+	devicefullname=$(echo "GSM Nexus 4")
+	repomenu
 fi
 
 if [ $buildnexus4 == "2" ]; then
-echo ""
-read -p "Press Enter to go back: " done
-exit 0
+	echo ""
+	read -p "Press Enter to go back: " done
+	exit 0
 fi
 nexus4menu
 }
@@ -327,52 +255,43 @@ echo ""
 echo "Which one would you like to do?"
 read buildgnexus
 
-if [ ! "$buildgnexus" ]; then
+if [ ! "$buildgnexus" ] || ( echo $buildgnexus | grep -q [A-Za-z] ) || [ $buildgnexus -gt "5" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildgnexus | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildgnexus -gt "5" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	gnexusmenu
 fi
 
 if [ $buildgnexus == "1" ]; then
-	scriptdevice[1]=$(echo "toro")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "toro")
 	devicefullname=$(echo "Verizon Galaxy Nexus")
 	repomenu
 fi
 
 if [ $buildgnexus == "2" ]; then
-	scriptdevice[1]=$(echo "maguro")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "maguro")
 	devicefullname=$(echo "GSM Galaxy Nexus")
 	repomenu
 fi
 
 if [ $buildgnexus == "3" ]; then
-	scriptdevice[1]=$(echo "toroplus")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "toroplus")
 	devicefullname=$(echo "Sprint Galaxy Nexus")
 	repomenu
 fi
 
 if [ $buildgnexus == "4" ]; then
-	scriptdevice[1]=$(echo "toro")
-	scriptdevice[2]=$(echo "maguro")
-	scriptdevice[3]=$(echo "toroplus")
-	scriptdevice[4]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "toro")
 	devicefullname=$(echo "All Galaxy Nexi")
 	repomenu
+
+	export SCRIPT_DEVICE=$(echo "maguro")
+	export SLOPPYSECONDS=true
+	devicecheck
+
+	export SCRIPT_DEVICE=$(echo "toroplus")
+	export SLOPPYSECONDS=true
+	devicecheck
 fi
 
 if [ $buildgnexus == "5" ]; then
@@ -398,44 +317,33 @@ echo ""
 echo "Which one would you like to do?"
 read buildnexuss
 
-if [ ! "$buildnexuss" ]; then
+if [ ! "$buildnexuss" ] || ( echo $buildnexuss | grep -q [A-Za-z] ) || [ $buildnexuss -gt "4" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildnexuss | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildnexuss -gt "4" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	nexussmenu
 fi
 
 if [ $buildnexuss == "1" ]; then
-	scriptdevice[1]=$(echo "crespo")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "crespo")
 	devicefullname=$(echo "GSM Nexus S")
 	repomenu
 fi
 
 if [ $buildnexuss == "2" ]; then
-	scriptdevice[1]=$(echo "crespo4g")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "crespo4g")
 	devicefullname=$(echo "Sprint Nexus S 4G")
 	repomenu
 fi
 
 if [ $buildnexuss == "3" ]; then
-	scriptdevice[1]=$(echo "crespo")
-	scriptdevice[2]=$(echo "crespo4g")
-	scriptdevice[3]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "crespo")
 	devicefullname=$(echo "All Nexus S'")
 	repomenu
+
+	export SCRIPT_DEVICE=$(echo "crespo4g")
+	export SLOPPYSECONDS=true
+	devicecheck
 fi
 
 if [ $buildnexuss == "4" ]; then
@@ -460,44 +368,33 @@ echo ""
 echo "Which one would you like to do?"
 read buildnexus7
 
-if [ ! "$buildnexus7" ]; then
+if [ ! "$buildnexus7" ] || ( echo $buildnexus7 | grep -q [A-Za-z] ) || [ $buildnexus7 -gt "4" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildnexus7 | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildnexus7 -gt "4" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	nexus7menu
 fi
 
 if [ $buildnexus7 == "1" ]; then
-	scriptdevice[1]=$(echo "grouper")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "grouper")
 	devicefullname=$(echo "Wifi Nexus 7 Tablet")
 	repomenu
 fi
 
 if [ $buildnexus7 == "2" ]; then
-	scriptdevice[1]=$(echo "tilapia")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "tilapia")
 	devicefullname=$(echo "GSM Nexus 7 Tablet")
 	repomenu
 fi
 
 if [ $buildnexus7 == "3" ]; then
-	scriptdevice[1]=$(echo "grouper")
-	scriptdevice[2]=$(echo "tilapia")
-	scriptdevice[3]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "grouper")
 	devicefullname=$(echo "All Nexus 7 Tablet's")
 	repomenu
+
+	export SCRIPT_DEVICE=$(echo "tilapia")
+	export SLOPPYSECONDS=true
+	devicecheck
 fi
 
 if [ $buildnexus7 == "4" ]; then
@@ -520,29 +417,17 @@ echo ""
 echo "Which one would you like to do?"
 read buildnexus10
 
-if [ ! "$buildnexus10" ]; then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildnexus10 | grep -q [A-Za-z] ); then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
-fi
-
-if [ $buildnexus10 -gt "2" ]; then
-echo ""
-echo "You did not make a proper selection, try again!"
-read -p "Press Enter to continue: " done
+if [ ! "$buildnexus10" ] || ( echo $buildnexus10 | grep -q [A-Za-z] ) || [ $buildnexus10 -gt "2" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+	nexus10menu
 fi
 
 if [ $buildnexus10 == "1" ]; then
-scriptdevice[1]=$(echo "manta")
-scriptdevice[2]=$(echo "EOF")
-devicefullname=$(echo "Wifi Nexus 10")
-repomenu
+	export SCRIPT_DEVICE=$(echo "manta")
+	devicefullname=$(echo "Wifi Nexus 10")
+	repomenu
 fi
 
 if [ $buildnexus10 == "2" ]; then
@@ -567,44 +452,33 @@ echo ""
 echo "Which one would you like to do?"
 read buildxoom
 
-if [ ! "$buildxoom" ]; then
+if [ ! "$buildxoom" ] || ( echo $buildxoom | grep -q [A-Za-z] ) || [ $buildxoom -gt "4" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildxoom | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildxoom -gt "4" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	nexus10menu
 fi
 
 if [ $buildxoom == "1" ]; then
-	scriptdevice[1]=$(echo "stingray")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "stingray")
 	devicefullname=$(echo "Verizon Xoom Tablet")
 	repomenu
 fi
 
 if [ $buildxoom == "2" ]; then
-	scriptdevice[1]=$(echo "wingray")
-	scriptdevice[2]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "wingray")
 	devicefullname=$(echo "Wifi Xoom Tablet")
 	repomenu
 fi
 
 if [ $buildxoom == "3" ]; then
-	scriptdevice[1]=$(echo "stingray")
-	scriptdevice[2]=$(echo "wingray")
-	scriptdevice[3]=$(echo "EOF")
+	export SCRIPT_DEVICE=$(echo "stingray")
 	devicefullname=$(echo "All Xoom Tablets")
 	repomenu
+
+	export SCRIPT_DEVICE=$(echo "wingray")
+	export SLOPPYSECONDS=true
+	devicecheck
 fi
 
 if [ $buildxoom == "4" ]; then
@@ -616,23 +490,53 @@ xoommenu
 }
 
 allmenu(){
-scriptdevice[1]=$(echo "toro")
-scriptdevice[2]=$(echo "maguro")
-scriptdevice[3]=$(echo "toroplus")
-scriptdevice[4]=$(echo "crespo")
-scriptdevice[5]=$(echo "crespo4g")
-scriptdevice[6]=$(echo "grouper")
-scriptdevice[7]=$(echo "tilapia")
-scriptdevice[8]=$(echo "manta")
-scriptdevice[9]=$(echo "stingray")
-scriptdevice[10]=$(echo "wingray")
-scriptdevice[11]=$(echo "EOF")
+export SCRIPT_DEVICE=$(echo "mako")
 devicefullname=$(echo "All Nexus Devices")
 repomenu
+
+export SCRIPT_DEVICE=$(echo "toro")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "maguro")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "toroplus")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "crespo")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "crespo4g")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "grouper")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "tilapia")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "manta")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "stingray")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "wingray")
+export SLOPPYSECONDS=true
+devicecheck
 }
 
-if [ ! "$builddevicemenu" ]; then
+if [ ! "$BUILDDEVICEMENU" ]; then
 	buildmenu
 else
-	$builddevicemenu
+	$BUILDDEVICEMENU
 fi
