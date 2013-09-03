@@ -9,6 +9,11 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	https://raw.github.com/CyanogenMod/hudson/master/cm-build-targets
 fi
 
+if [ $SCRIPT_REPO == "pacman" ]; then
+	cd $REPOS/pacman-$REPO_PLATFORM/vendor/cm
+	./get-prebuilts
+fi
+
 if [ $SCRIPT_REPO == "raosp" ]; then
 	rm -rf $REPOS/raosp-jb/system/extras/su
 fi

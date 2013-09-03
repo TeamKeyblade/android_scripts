@@ -20,6 +20,7 @@ where:
 	    cm10 = Update Cyanogenmod 10
 	    cm = Update Cyanogenmod 10.2
 	    ev = Update Evervolv
+	    pacman = Update PAC-man
 	    paranoid = Update ParanoidAndroid
 	    raosp = Update Rooted & Busyboxed AOSP
 	    all = Update all available repos
@@ -81,14 +82,15 @@ if [ ! "$AUTO" ]; then
 	echo "  8. Update the Cyanogenmod 10 repository"
 	echo "  9. Update the Cyanogenmod 10.2 repository"
 	echo "  10. Update the Evervolv repository"
-	echo "  11. Update the ParanoidAndroid repository"
-	echo "  12. Update the Rooted & Busyboxed AOSP repository"
-	echo "  13. Update all available repositories"
-	echo "  14. Update all the repos!"
-	echo "  15. Go Back"
+	echo "  11. Update the PAC-man repository"
+	echo "  12. Update the ParanoidAndroid repository"
+	echo "  13. Update the Rooted & Busyboxed AOSP repository"
+	echo "  14. Update all available repositories"
+	echo "  15. Update all the repos!"
+	echo "  16. Go Back"
 	read setupanswer
 
-	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "15" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "16" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -108,6 +110,7 @@ if [ "$PLATFORM" ]; then
 		echo "cm10 = Update Cyanogenmod 10"
 		echo "cm = Update Cyanogenmod 10.2"
 		echo "ev = Update Evervolv"
+		echo "pacman = Update PAC-man"
 		echo "paranoid = Update ParanoidAndroid"
 		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "gummy = Update Team Gummy"
@@ -148,19 +151,23 @@ if [ "$PLATFORM" ]; then
 		setupanswer="10"
 	fi
 
-	if [ $PLATFORM == "paranoid" ]; then
+	if [ $PLATFORM == "pacman" ]; then
 		setupanswer="11"
 	fi
 
-	if [ $PLATFORM == "raosp" ]; then
+	if [ $PLATFORM == "paranoid" ]; then
 		setupanswer="12"
 	fi
 
-	if [ $PLATFORM == "all" ]; then
+	if [ $PLATFORM == "raosp" ]; then
 		setupanswer="13"
 	fi
-	if [ $PLATFORM == "allthethings" ]; then
+
+	if [ $PLATFORM == "all" ]; then
 		setupanswer="14"
+	fi
+	if [ $PLATFORM == "allthethings" ]; then
+		setupanswer="15"
 	fi
 fi
 
@@ -201,7 +208,7 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	if [ $setupanswer == "13" ] || [ $setupanswer == "14" ]; then
+	if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 		echo "$repo_name not initialized, skipping.."
 	else
 		echo "$repo_name not initialized, do you want to initialize it?"
@@ -355,6 +362,16 @@ if [ $setupanswer == "10" ]; then
 fi
 
 if [ $setupanswer == "11" ]; then
+	export SCRIPT_REPO=$(echo "pacman")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "cm-10.2")
+	repo_name=$(echo "PAC-man")
+	repo_url=$(echo "http://github.com/PAC-man/android.git")
+	done=true
+	setupcheck
+fi
+
+if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jb43")
@@ -364,7 +381,7 @@ if [ $setupanswer == "11" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "12" ]; then
+if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -374,7 +391,7 @@ if [ $setupanswer == "12" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "13" ] || [ $setupanswer == "14" ]; then
+if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
@@ -430,6 +447,14 @@ if [ $setupanswer == "13" ] || [ $setupanswer == "14" ]; then
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	setupcheck
 
+	export SCRIPT_REPO=$(echo "pacman")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "cm-10.2")
+	repo_name=$(echo "PAC-man")
+	repo_url=$(echo "http://github.com/PAC-man/android.git")
+	done=true
+	setupcheck
+
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -445,7 +470,7 @@ if [ $setupanswer == "13" ] || [ $setupanswer == "14" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "15" ]; then
+if [ $setupanswer == "16" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
