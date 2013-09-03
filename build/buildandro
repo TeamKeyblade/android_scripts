@@ -46,7 +46,7 @@ if [ ! $SLOPPYSECONDS ]; then
 fi
 
 #build android
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "paranoid" ] || [ $SCRIPT_REPO == "sts" ]; then
+if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "pacman" ] || [ $SCRIPT_REPO == "paranoid" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
 else
 	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then

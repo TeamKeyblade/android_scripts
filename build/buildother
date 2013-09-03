@@ -23,12 +23,13 @@ echo "  4. Cyanogenmod 9"
 echo "  5. Cyanogenmod 10"
 echo "  6. Cyanogenmod 10.2"
 echo "  7. Evervolv"
-echo "  8. ParanoidAndroid"
-echo "  9. Rooted & Busyboxed AOSP"
-echo "  10. Go Back"
+echo "  8. PAC-man"
+echo "  9. ParanoidAndroid"
+echo "  10. Rooted & Busyboxed AOSP"
+echo "  11. Go Back"
 read version
 
-if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "10" ]; then
+if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "11" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -71,16 +72,21 @@ if [ $version == "7" ]; then
 fi
 
 if [ $version == "8" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
+	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
 if [ $version == "9" ]; then
-	export SCRIPT_REPO=$(echo "raosp")
+	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
 if [ $version == "10" ]; then
+	export SCRIPT_REPO=$(echo "raosp")
+	export REPO_PLATFORM=$(echo "jb")
+fi
+
+if [ $version == "11" ]; then
 	echo ""
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
@@ -147,6 +153,12 @@ while [ $device == "list" ]; do
 		sed -e 's/.*ev_//g' \
 		-e 's/-userdebug//' \
 		$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+	fi
+
+	if [ $SCRIPT_REPO == "pacman" ]; then
+		sed -e 's/.*pac_//g' \
+		-e 's/-userdebug//' \
+		$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	if [ $SCRIPT_REPO == "paranoid" ]; then
@@ -222,6 +234,17 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
 	$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep -q $device ); then
+		echo ""
+		echo "This device is not compatible with this repository, try again!"
+		read -p "Returning to Build Menu, Press Enter to continue: " done
+		exit 0
+	fi
+fi
+
+if [ $SCRIPT_REPO == "pacman" ]; then
+	if ( ! sed -e 's/.*pac_//g' \
+	-e 's/-userdebug//' \
+	$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done

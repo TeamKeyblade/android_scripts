@@ -87,12 +87,13 @@ if [ $cleananswer == "1" ]; then
 	echo "  5. Cyanogenmod 10 repository"
 	echo "  6. Cyanogenmod 10.2 repository"
 	echo "  7. Evervolv repository"
-	echo "  8. ParanoidAndroid repository"
-	echo "  9. Rooted & Busyboxed AOSP repository"
-	echo "  10. Go Back"
+	echo "  8. PAC-man repository"
+	echo "  9. ParanoidAndroid repository"
+	echo "  10. Rooted & Busyboxed AOSP repository"
+	echo "  11. Go Back"
 	read addrepo
 
-	if [ ! "$addrepo" ] || ( echo $addrepo | grep -q [A-Za-z] ) || [ $addrepo -gt "10" ]; then
+	if [ ! "$addrepo" ] || ( echo $addrepo | grep -q [A-Za-z] ) || [ $addrepo -gt "11" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -149,20 +150,27 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $addrepo == "8" ]; then
+		script_repo=$(echo "pacman")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "PAC-man")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "9" ]; then
 		script_repo=$(echo "paranoid")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "9" ]; then
+	if [ $addrepo == "10" ]; then
 		script_repo=$(echo "raosp")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "10" ]; then
+	if [ $addrepo == "11" ]; then
 		echo ""
 		read -p "Going back, Press Enter to continue: " done
 		menu
@@ -186,12 +194,13 @@ if [ $cleananswer == "2" ]; then
 	echo "  5. Cyanogenmod 10 repository"
 	echo "  6. Cyanogenmod 10.2 repository"
 	echo "  7. Evervolv repository"
-	echo "  8. ParanoidAndroid repository"
-	echo "  9. Rooted & Busyboxed AOSP repository"
-	echo "  10. Go Back"
+	echo "  8. PAC-man repository"
+	echo "  9. ParanoidAndroid repository"
+	echo "  10. Rooted & Busyboxed AOSP repository"
+	echo "  11. Go Back"
 	read cleanse
 
-	if [ ! "$cleanse" ] || ( echo $cleanse | grep -q [A-Za-z] ) || [ $cleanse -gt "10" ]; then
+	if [ ! "$cleanse" ] || ( echo $cleanse | grep -q [A-Za-z] ) || [ $cleanse -gt "11" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -248,20 +257,27 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "8" ]; then
+		script_repo=$(echo "pacman")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "PAC-man")
+		adddevicetorepo
+	fi
+
+	if [ $cleanse == "9" ]; then
 		export SCRIPT_REPO=$(echo "paranoid")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "9" ]; then
+	if [ $cleanse == "10" ]; then
 		export SCRIPT_REPO=$(echo "raosp")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "10" ]; then
+	if [ $cleanse == "11" ]; then
 		echo ""
 		read -p "Going back, Press Enter to continue: " done
 		menu
@@ -285,9 +301,10 @@ if [ $cleananswer == "3" ]; then
 	echo "  5. Cyanogenmod 10 repository"
 	echo "  6. Cyanogenmod 10.2 repository"
 	echo "  7. Evervolv repository"
-	echo "  8. ParanoidAndroid repository"
-	echo "  9. Rooted & Busyboxed AOSP repository"
-	echo "  10. Go Back"
+	echo "  8. PAC-man repository"
+	echo "  9. ParanoidAndroid repository"
+	echo "  10. Rooted & Busyboxed AOSP repository"
+	echo "  11. Go Back"
 	read modify
 
 	if [ ! "$modify" ] || ( echo $modify | grep -q [A-Za-z] ) || [ $modify -gt "10" ]; then
@@ -358,18 +375,25 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	if [ $modify == "8" ]; then
+		script_repo=$(echo "pacman")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "PAC-man")
+		adddevicetorepo
+	fi
+
+	if [ $modify == "9" ]; then
 		script_repo=$(echo "paranoid")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "ParanoidAndroid")
 	fi
 
-	if [ $modify == "9" ]; then
+	if [ $modify == "10" ]; then
 		script_repo=$(echo "raosp")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Rooted & Busyboxed AOSP")
 	fi
 
-	if [ $modify == "10" ]; then
+	if [ $modify == "11" ]; then
 		echo ""
 		read -p "Going back, Press Enter to continue: " done
 		menu
