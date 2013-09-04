@@ -125,7 +125,7 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		sed -e 's/.*aosp_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/aosp-jb/device/*/$device/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		$REPOS/aosp-jb/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	if [ $SCRIPT_REPO == "cna" ]; then
@@ -170,7 +170,7 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "raosp" ]; then
 		sed -e 's/.*aosp_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/raosp-jb/device/*/$device/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		$REPOS/raosp-jb/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	clear
