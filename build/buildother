@@ -119,7 +119,7 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "aokp" ]; then
 		sed -e 's/.*aokp_//g' \
 		-e 's/-userdebug//' \
-		$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | less
+		$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
