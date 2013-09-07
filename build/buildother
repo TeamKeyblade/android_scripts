@@ -116,64 +116,68 @@ if [ ! "$device" ]; then
 fi
 
 while [ $device == "list" ]; do
+	clear
+
+	echo "Device List"
+	echo "==========="
+
 	if [ $SCRIPT_REPO == "aokp" ]; then
-		sed -e 's/.*aokp_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		cat $REPOS/aokp-jb/vendor/aokp/vendorsetup.sh |  sed "/#.*/d" | \
+		sed "/^$/d" | sed 's/.*aokp_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
-		sed -e 's/.*aosp_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/aosp-jb/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		for vendorsetup in `ls $REPOS/aosp-jb/device/*/*/vendorsetup.sh 2> /dev/null`
+		do
+			cat $vendorsetup | sed "/#.*/d" | sed "/^$/d" | sed 's/.*aosp_//' | \
+			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
+		done
 	fi
 
 	if [ $SCRIPT_REPO == "cna" ]; then
-		sed -e 's/.*cna_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/cna-jb/vendor/cna/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less	
+		cat $REPOS/cna-jb/vendor/cna/vendorsetup.sh |  sed "/#.*/d" | sed "/^$/d" | \
+		sed 's/.*cna_//' | sed 's/-userdebug//' | sed "/combo.*/d"	
 	fi
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "ics" ]; then
-		sed -e 's/.*cm_//g' \
-		$LOCAL/config/cm-master-list | sed "/#/d" | sed "/jellybean/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
+		cat $LOCAL/config/cm-master-list | grep "ics" | sed "s/cm_//" | sed "/#/d" | \
+		sed "/^$/d" | sed 's/-userdebug//' | sed "s/ics.*//"
 	fi
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "jb" ]; then
-		sed -e 's/.*cm_//g' \
-		$LOCAL/config/cm-master-list | sed "/#/d" | sed "/10.1/d" | sed 's/-userdebug[^@]*$//' | less
+		cat $LOCAL/config/cm-master-list | grep "jellybean" | sed "s/cm_//" | \
+		sed "/#/d" | sed "/^$/d" | sed 's/-userdebug//' | sed "s/jellybean.*//"
 	fi
 
 	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
-		sed -e 's/.*cm_//g' \
-		$LOCAL/config/cm-master-list | sed "/#/d" | sed 's/-userdebug[^@]*$//' | less
+		cat $LOCAL/config/cm-master-list | grep "10.2" | sed "s/cm_//" | \
+		sed "/#/d" | sed "/^$/d" | sed 's/-userdebug//' | sed "s/cm-10.2.*//"
 	fi
 
 	if [ $SCRIPT_REPO == "evervolv" ]; then
-		sed -e 's/.*ev_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		cat $REPOS/evervolv-jb/vendor/ev/vendorsetup.sh |  sed "/#.*/d" | \
+		sed "/^$/d" | sed 's/.*ev_//' | sed 's/-eng//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "pacman" ]; then
-		sed -e 's/.*pac_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		cat $REPOS/pacman-jb/vendor/pac/vendorsetup.sh |  sed "/#.*/d" | \
+		sed "/^$/d" | sed 's/.*pac_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "paranoid" ]; then
-		sed -e 's/.*pa_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		cat $REPOS/paranoid-jb/vendor/pa/vendorsetup.sh |  sed "/#.*/d" | \
+		sed "/^$/d" | sed 's/.*pa_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "raosp" ]; then
-		sed -e 's/.*aosp_//g' \
-		-e 's/-userdebug//' \
-		$REPOS/raosp-jb/device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
+		for vendorsetup in `ls $REPOS/raosp-jb/device/*/*/vendorsetup.sh 2> /dev/null`
+		do
+			cat $vendorsetup | sed "/#.*/d" | sed "/^$/d" | sed 's/.*aosp_//' | \
+			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
+		done
 	fi
 
-	clear
+	echo ""
 
 	echo "Swordrune10's Android Kitchen!"
 	echo "=============================="
