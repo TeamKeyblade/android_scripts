@@ -219,6 +219,15 @@ chmod a+x $LOCAL/config/romeditor
 
 fi
 
+if [ $AUTHOR == "otherrepo" ]; then
+
+cat << EOF > $LOCAL/config/otherrepo
+# Add below this line the name of the desired repo
+# Location it should be in is [Wherever repo folder is]/otherrepo
+EOF
+
+fi
+
 if [ $AUTHOR == "redeemer" ]; then
 
 cat << EOF > $LOCAL/../redeemer
