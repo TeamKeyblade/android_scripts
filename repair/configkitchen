@@ -40,7 +40,10 @@ fi
 
 if [ $configs == "3" ]; then
 	cd $LOCAL/config
+	read -p "editing custom repos file location.." done
 	nano otherrepo
+	read -p "editing custom repos name" done
+	nano otherreponame
 fi
 
 if [ $configs == "4" ]; then

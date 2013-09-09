@@ -122,20 +122,20 @@ while [ $device == "list" ]; do
 	echo "==========="
 
 	if [ $SCRIPT_REPO == "aokp" ]; then
-		cat $REPOS/aokp-jb/vendor/aokp/vendorsetup.sh |  sed "/#.*/d" | \
-		sed "/^$/d" | sed 's/.*aokp_//' | sed 's/-userdebug//' | sed "/combo.*/d"
+		cat $REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep "add_lunch_combo" | \
+		sed 's/.*aokp_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		for vendorsetup in `ls $REPOS/aosp-jb/device/*/*/vendorsetup.sh 2> /dev/null`
 		do
-			cat $vendorsetup | sed "/#.*/d" | sed "/^$/d" | sed 's/.*aosp_//' | \
+			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*aosp_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
 		done
 	fi
 
 	if [ $SCRIPT_REPO == "cna" ]; then
-		cat $REPOS/cna-jb/vendor/cna/vendorsetup.sh |  sed "/#.*/d" | sed "/^$/d" | \
+		cat $REPOS/cna-jb/vendor/cna/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*cna_//' | sed 's/-userdebug//' | sed "/combo.*/d"	
 	fi
 
@@ -155,24 +155,24 @@ while [ $device == "list" ]; do
 	fi
 
 	if [ $SCRIPT_REPO == "evervolv" ]; then
-		cat $REPOS/evervolv-jb/vendor/ev/vendorsetup.sh |  sed "/#.*/d" | \
-		sed "/^$/d" | sed 's/.*ev_//' | sed 's/-eng//' | sed "/combo.*/d"
+		cat $REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep "add_lunch_combo" | \
+		sed 's/.*ev_//' | sed 's/-eng//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "pacman" ]; then
-		cat $REPOS/pacman-jb/vendor/pac/vendorsetup.sh |  sed "/#.*/d" | \
-		sed "/^$/d" | sed 's/.*pac_//' | sed 's/-userdebug//' | sed "/combo.*/d"
+		cat $REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep "add_lunch_combo" | \
+		sed 's/.*pac_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "paranoid" ]; then
-		cat $REPOS/paranoid-jb/vendor/pa/vendorsetup.sh |  sed "/#.*/d" | \
-		sed "/^$/d" | sed 's/.*pa_//' | sed 's/-userdebug//' | sed "/combo.*/d"
+		cat $REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep "add_lunch_combo" | \
+		sed 's/.*pa_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "raosp" ]; then
 		for vendorsetup in `ls $REPOS/raosp-jb/device/*/*/vendorsetup.sh 2> /dev/null`
 		do
-			cat $vendorsetup | sed "/#.*/d" | sed "/^$/d" | sed 's/.*aosp_//' | \
+			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*aosp_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
 		done
 	fi

@@ -221,10 +221,8 @@ fi
 
 if [ $AUTHOR == "otherrepo" ]; then
 
-cat << EOF > $LOCAL/config/otherrepo
-# Add below this line the name of the desired repo
-# Location it should be in is [Wherever repo folder is]/otherrepo
-EOF
+touch $LOCAL/config/otherrepo
+touch $LOCAL/config/otherreponame
 
 fi
 
