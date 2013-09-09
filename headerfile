@@ -60,6 +60,14 @@ if ( ! find $LOCAL/config/romeditor &> /dev/null ); then
 	scriptmakir
 fi
 
+<<<<<<< HEAD
+=======
+if ( ! find $LOCAL/config/otherrepo &> /dev/null ) || ( ! find $LOCAL/config/otherreponame &> /dev/null ); then
+	export AUTHOR="otherrepo"
+	scriptmakir
+fi
+
+>>>>>>> cd26c45... otherrepo complete overhaul
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Declare number of threads from processor

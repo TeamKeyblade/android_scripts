@@ -8,25 +8,25 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
+menu () {
 clear
 
-if [ ! "$( cat $LOCAL/config/otherrepo | head -n1 )" ]; then
+if [ ! $( cat $LOCAL/config/otherrepo ) ] || [ ! $( cat $LOCAL/config/otherreponame ) ]; then
 	echo "other repo file is empty, please add to file then try again!"
 	exit 0
 fi
 
-echo "EOF" >> $LOCAL/config/otherrepo
+echo "EOF" >> $LOCAL/config/otherreponame
 
 while true; do
 	let count=$count+1
 	filelurker[$count]=$( cat $LOCAL/config/otherrepo | sed -n "$count"p )
+	filelurkername[$count]=$( cat $LOCAL/config/otherreponame | sed -n "$count"p )
 
-	if [ "${filelurker[$count]}" == "EOF" ]; then
+	if [ "${filelurkername[$count]}" == "EOF" ]; then
 		break
 	fi
 done
-
-sed -i "/EOF/d" $LOCAL/config/otherrepo
 
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
@@ -36,38 +36,24 @@ echo "Which custom android repository are we building from today?"
 while true; do
 	let countdown=$countdown+1
 
-	if [ "${filelurker[$countdown]}" == "EOF" ]; then
+	if [ "${filelurkername[$countdown]}" == "EOF" ]; then
 		break
 	fi
 
-	echo "  "$countdown". "${filelurker[$countdown]}
+	echo "  "$countdown". "${filelurkername[$countdown]}
 
 done
 echo "  $count. Go Back"
+
+sed -i "/EOF/d" $LOCAL/config/otherreponame
+
 read version
 
-if [ ! "$version" ]; then
+if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt $count ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-if ( echo $version | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-if [ $version -gt $count ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
+	menu
 fi
 
 if [ $version == $count ]; then
@@ -76,32 +62,13 @@ if [ $version == $count ]; then
 	exit 0
 fi
 
-if ( ! find "${filelurker[$version]}" &> /dev/null ); then
+otherrepo=$(echo "$REPOS/otherrepo/"${filelurker[$version]}"")
+
+if ( ! find $otherrepo/.repo &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
 	read -p "Press Enter to continue: " done
 	menu
-fi
-
-clear
-
-echo ""
-echo "What should you name this repo?"
-echo "This will serve as naming the build and putting it in a proper folder"
-echo "Type in exit to go to back"
-read reponame
-
-if [ ! "$reponame" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
-if [ $reponame == "exit" ]; then
-	buildotherrepo
-	exit 0
 fi
 
 clear
@@ -122,21 +89,16 @@ if [ ! "$device" ]; then
 fi
 
 while [ $device == "list" ]; do
-	cd "${filelurker[$version]}"
 
-	while true; do
-		let dcount=$dcount+1
-		devicefinder[$dcount]=$( . build/envsetup.sh | sed 's/including //g' | sed -n "$dcount"p )
+	echo "Device List"
+	echo "==========="
 
-		if ( ! echo "${devicefinder[$dcount]}" | grep -q "device" ) && ( ! echo "${devicefinder[$dcount]}" | grep -q "vendor" ); then
-			devicefinder[$dcount]=""
-			break
-		fi
+	for vendorsetup in `ls $otherrepo/vendor/*/vendorsetup.sh \
+	$otherrepo/vendor/*/*/vendorsetup.sh $otherrepo/device/*/*/vendorsetup.sh 2> /dev/null`
+	do
+		cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*_//' | \
+		sed 's/-.*//' | sed "/combo.*/d"
 	done
-
-	sed -e 's/.*_//g' \
-	-e 's/-.*//' \
-	${devicefinder[*]} | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | less
 
 	clear
 
@@ -162,7 +124,16 @@ if [ $device == "exit" ]; then
 	exit 0
 fi
 
-export OTHER_REPO_FOLDER=$(echo "${filelurker[$version]}")
+if ( ! cat $otherrepo/vendor/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepo/vendor/*/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepo/device/*/$device/vendorsetup.sh | grep -q $device ); then
+	echo ""
+	echo "This device is not compatible with this repository, try again!"
+	read -p "Returning to Build Menu, Press Enter to continue: " done
+	exit 0
+fi	
+
+export OTHER_REPO_FOLDER=true
 
 clear
 
@@ -170,3 +141,6 @@ export SCRIPT_DEVICE=$(echo $device)
 buildandro
 
 echo "Finished!"
+menu
+}
+menu

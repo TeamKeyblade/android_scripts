@@ -87,10 +87,11 @@ if [ ! "$AUTO" ]; then
 	echo "  13. Update the Rooted & Busyboxed AOSP repository"
 	echo "  14. Update all available repositories"
 	echo "  15. Update all the repos!"
-	echo "  16. Go Back"
+	echo "  16. Update/add otherrepo"
+	echo "  17. Go Back"
 	read setupanswer
 
-	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "16" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -175,7 +176,11 @@ setupcheck() {
 if [ $SCRIPT_REPO == "kitchen" ]; then
 	export REPO_FOLDER=$( echo "$LOCAL/.." )
 else
-	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	if [ $otherreposync ]; then
+		export REPO_FOLDER=$( echo "$REPOS/otherrepo/$SCRIPT_REPO-$REPO_PLATFORM" )
+	else
+		export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	fi
 fi
 
 if [ "$DELETEFOLDER" ]; then
@@ -471,6 +476,68 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 fi
 
 if [ $setupanswer == "16" ]; then
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Are we adding or updating otherrepo?"
+	echo ""
+	echo "Which android repository are we building from today?"
+	echo "  1. Add to custom repo folder"
+	echo "  2. Update all the custom repos"
+	echo "  3. Go Back"
+	read otheranswer
+
+	if [ ! "$otheranswer" ] || ( echo $otheranswer | grep -q [A-Za-z] ) || [ $otheranswer -gt "3" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		menu
+	fi
+
+	if [ $otheranswer == "1" ]; then
+		echo "What is the repo's name?"
+		read manifestname
+
+		echo "What is a short name for this repo? Example: Android Open Source Project = aosp"
+		read manifestshortname
+
+		echo "What is the url to the repo's manifest?"
+		read manifesturl
+
+		echo "What is the branch the repo's manifest you want to use?"
+		read manifestbranch
+
+		export SCRIPT_REPO=$(echo $manifestshortname)
+		export REPO_PLATFORM=$(echo $manifestbranch)
+		repo_branch=$(echo $manifestbranch)
+		repo_name=$(echo $manifestname)
+		repo_url=$(echo $manifesturl)
+		done=true
+		otherreposync=true
+	
+		echo $manifestshortname-$manifestbranch >> $LOCAL/config/otherrepo
+		echo $manifestname >> $LOCAL/config/otherreponame
+		
+		setupcheck
+	fi
+
+	if [ $otheranswer == "2" ]; then
+		for otherreposync in `ls $REPOS/otherrepo/* 2> /dev/null`
+		do
+			cd $otherreposync
+			repo sync
+		done
+	fi
+
+	if [ $setupanswer == "17" ]; then
+		echo ""
+		read -p "Returning to Main Menu, Press Enter to continue: " done
+		menu
+	fi
+fi
+
+if [ $setupanswer == "17" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
