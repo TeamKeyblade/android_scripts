@@ -62,9 +62,9 @@ if [ $version == $count ]; then
 	exit 0
 fi
 
-otherrepo=$(echo "$REPOS/otherrepo/"${filelurker[$version]}"")
+otherrepofolder=$(echo "$REPOS/otherrepo/"${filelurker[$version]}"")
 
-if ( ! find $otherrepo/.repo &> /dev/null ); then
+if ( ! find $otherrepofolder/.repo &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
 	read -p "Press Enter to continue: " done
@@ -93,8 +93,8 @@ while [ $device == "list" ]; do
 	echo "Device List"
 	echo "==========="
 
-	for vendorsetup in `ls $otherrepo/vendor/*/vendorsetup.sh \
-	$otherrepo/vendor/*/*/vendorsetup.sh $otherrepo/device/*/*/vendorsetup.sh 2> /dev/null`
+	for vendorsetup in `ls $otherrepofolder/vendor/*/vendorsetup.sh \
+	$otherrepofolder/vendor/*/*/vendorsetup.sh $otherrepofolder/device/*/*/vendorsetup.sh 2> /dev/null`
 	do
 		cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*_//' | \
 		sed 's/-.*//' | sed "/combo.*/d"
@@ -124,19 +124,17 @@ if [ $device == "exit" ]; then
 	exit 0
 fi
 
-if ( ! cat $otherrepo/vendor/*/vendorsetup.sh | grep -q $device ) && \
-( ! cat $otherrepo/vendor/*/*/vendorsetup.sh | grep -q $device ) && \
-( ! cat $otherrepo/device/*/$device/vendorsetup.sh | grep -q $device ); then
+if ( ! cat $otherrepofolder/vendor/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepofolder/vendor/*/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepofolder/device/*/$device/vendorsetup.sh | grep -q $device ); then
 	echo ""
 	echo "This device is not compatible with this repository, try again!"
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
 fi	
 
-export OTHER_REPO_FOLDER=true
-
-clear
-
+export OTHER_REPO=$(echo "${filelurker[$version]}")
+export OTHER_REPO_FOLDER=$(echo $otherrepofolder)
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
 

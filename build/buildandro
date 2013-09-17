@@ -1,14 +1,13 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
 #setup build
-export BUILD_FOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
-export DOTREPO=$( echo "$REPO_FOLDER/.repo" )
-
-if [ "$OTHER_REPO_FOLDER" ]; then
-	export REPO_FOLDER=$( echo "$REPOS/otherrepo/$SCRIPT_REPO-$REPO_PLATFORM" )
+if [ "$OTHER_REPO" ]; then
+	export REPO_FOLDER=$( echo "$OTHER_REPO_FOLDER" )
+	export BUILD_FOLDER=$( echo "$BUILDS/$OTHER_REPO" )
 
 else
 	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	export BUILD_FOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
 fi
 
 outfolder=$(echo "$REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
@@ -69,7 +68,7 @@ cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
 
 zip=$(find *$SCRIPT_DEVICE*.zip)
 
-if [ ! "$OTHER_REPO_FOLDER" ] && [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
+if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 
 	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $BUILDS/temp/zipout
