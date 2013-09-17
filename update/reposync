@@ -401,7 +401,7 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	export REPO_PLATFORM=$(echo "stable")
 	repo_branch=$(echo "stable")
 	repo_name=$(echo "Kitchen app")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	repo_url=$(echo "http://github.com/TeamKeyblade/kitchen_manifest.git")
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "aokp")
