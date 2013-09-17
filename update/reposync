@@ -389,9 +389,9 @@ fi
 if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
+	repo_branch=$(echo "android-4.3_r3")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	repo_url=$(echo "http://github.com/TeamKeyblade/android_manifest.git")
+	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
 	setupcheck
 fi
