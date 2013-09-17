@@ -85,4 +85,5 @@ if [ $SCRIPT_REPO == "raosp" ]; then
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/raosp-jb-local_manifest.xml $localmanifests/proprietary.xml
+	curl https://raw.github.com/TeamKeyblade/android_manifest/raosp/raosp.xml > $localmanifests/raosp.xml
 fi
