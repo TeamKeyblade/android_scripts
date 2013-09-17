@@ -219,8 +219,6 @@ chmod a+x $LOCAL/config/romeditor
 
 fi
 
-<<<<<<< HEAD
-=======
 if [ $AUTHOR == "otherrepo" ]; then
 
 touch $LOCAL/config/otherrepo
@@ -228,7 +226,6 @@ touch $LOCAL/config/otherreponame
 
 fi
 
->>>>>>> cd26c45... otherrepo complete overhaul
 if [ $AUTHOR == "redeemer" ]; then
 
 cat << EOF > $LOCAL/../redeemer

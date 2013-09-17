@@ -40,23 +40,10 @@ fi
 
 if [ $configs == "3" ]; then
 	cd $LOCAL/config
-<<<<<<< HEAD
-	if [ "$(cat otherrepo)" == "" ]; then
-		echo "# Add below this line the absolute path to the desired repo" > otherrepo
-	else
-		sed -i -e "0,/.*/ i \
-# Add below this line the absolute path to the desired repo" \
-		otherrepo
-	fi
-
-	nano otherrepo
-	sed -i "/# /d" otherrepo
-=======
 	read -p "editing custom repos file location.." done
 	nano otherrepo
 	read -p "editing custom repos name" done
 	nano otherreponame
->>>>>>> cd26c45... otherrepo complete overhaul
 fi
 
 if [ $configs == "4" ]; then
