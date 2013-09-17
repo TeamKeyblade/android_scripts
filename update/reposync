@@ -516,8 +516,8 @@ if [ $setupanswer == "16" ]; then
 		done=true
 		otherreposync=true
 	
-		echo $manifestshortname-$manifestbranch >> $LOCAL/config/otherrepo
-		echo $manifestname >> $LOCAL/config/otherreponame
+		echo $SCRIPT_REPO-$REPO_PLATFORM >> $LOCAL/config/otherrepo
+		echo $repo_name >> $LOCAL/config/otherreponame
 		
 		setupcheck
 	fi
