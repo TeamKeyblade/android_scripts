@@ -65,7 +65,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 		cd swordkitchen
 
 		echo "Setting up kitchen.."
-		repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable
+		repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b stable
 		repo sync -j4
 
 	else
@@ -119,7 +119,7 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 			cd swordkitchen
 
 			echo "Setting up kitchen.."
-			repo init -u http://github.com/TeamKeyblade/android_manifest.git -b stable
+			repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b stable
 			repo sync -j4
 		else
 			cd /Volumes/android/swordkitchen
