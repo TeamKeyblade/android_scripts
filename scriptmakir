@@ -239,7 +239,7 @@ rm -rf .scripts
 rm -f swordkitchen.sh
 echo "Settng Up Kitchen"
 echo ""
-repo init -u http://github.com/TeamKeyblade/android_manifest.git -b master
+repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
 repo sync
 EOF
 
