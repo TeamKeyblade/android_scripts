@@ -274,6 +274,7 @@ if [ $setupanswer == "1" ]; then
 	if ( type -a repo &> /dev/null ); then
 		echo ""
 		echo "repo is already installed.."
+		read -p "Press Enter to continue: " done
 	else
 		echo ""
 		echo "Installing the repo command.."
@@ -282,7 +283,7 @@ if [ $setupanswer == "1" ]; then
 			mkdir ~/bin
 		fi
 
-		wget https://dl-ssl.google.com/dl/googlesource/git-repo/repo -O ~/bin/repo
+		curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 		chmod a+x ~/bin/repo
 
 		echo ""
