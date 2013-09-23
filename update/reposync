@@ -214,7 +214,7 @@ setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
 	if [ $setupanswer == "14" ]; then
-		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null)
+		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 			echo "$repo_name not initialized, skipping.."
 		else
 			echo "Updating $repo_name's manifest"
@@ -239,7 +239,7 @@ else
 	fi
 
 	if [ $setupanswer == "14" ]; then
-		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null)
+		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 			echo "$repo_name not initialized, skipping.."
 		else
 			echo "Updating $repo_name's manifest"
