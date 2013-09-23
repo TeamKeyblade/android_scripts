@@ -191,6 +191,7 @@ elif [ "$DELETEFOLDERANDTHATSIT" ]; then
 fi
 
 initmanifest=""
+echo ""
 
 if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping.."
@@ -198,7 +199,6 @@ elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/n
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-	echo ""
 	if [ ! "$AUTO" ]; then
 		if [ $setupanswer == "15" ]; then
 			echo "$repo_name not initialized, initializing now.."
