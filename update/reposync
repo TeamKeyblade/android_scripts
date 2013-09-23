@@ -23,7 +23,7 @@ where:
 	    pacman = Update PAC-man
 	    paranoid = Update ParanoidAndroid
 	    raosp = Update Rooted & Busyboxed AOSP
-	    all = Update all available repos
+	    all = Update all available repos and their manifests
 	    allthethings = Update all the repos
 
 	    Example: reposync -u cm-10.2
@@ -85,7 +85,7 @@ if [ ! "$AUTO" ]; then
 	echo "  11. Update the PAC-man repository"
 	echo "  12. Update the ParanoidAndroid repository"
 	echo "  13. Update the Rooted & Busyboxed AOSP repository"
-	echo "  14. Update all available repositories"
+	echo "  14. Update all available repositories and their manifests"
 	echo "  15. Update all the repos!"
 	echo "  16. Update/add otherrepo"
 	echo "  17. Go Back"
@@ -115,7 +115,7 @@ if [ "$PLATFORM" ]; then
 		echo "paranoid = Update ParanoidAndroid"
 		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "gummy = Update Team Gummy"
-		echo "all = Update all available repos"
+		echo "all = Update all available repos and their manifests"
 		echo "allthethings = Update all the repos"
 		exit 0
 	fi
@@ -190,7 +190,7 @@ elif [ "$DELETEFOLDERANDTHATSIT" ]; then
 	exit 0
 fi
 
-if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null) || [ $setupanswer == "14" ]; then
 	setupcode
 fi
 	synccode
@@ -213,7 +213,14 @@ fi
 setupcode() {
 echo ""
 if [ ! "$AUTO" ]; then
-	if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
+	if [ $setupanswer == "14" ]; then
+		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null)
+			echo "$repo_name not initialized, skipping.."
+		else
+			echo "Updating $repo_name's manifest"
+			init=$( echo "yes" )
+		fi
+	elif [ $setupanswer == "15" ]; then
 		echo "$repo_name not initialized, skipping.."
 	else
 		echo "$repo_name not initialized, do you want to initialize it?"
@@ -228,11 +235,22 @@ if [ ! "$AUTO" ]; then
 else
 	if [ ! "$DELETEFOLDER" ]; then
 		echo "$repo_name not initialized, initializing now.."
+		init=$( echo "yes" )
 	fi
-	init=$( echo "yes" )
+
+	if [ $setupanswer == "14" ]; then
+		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null)
+			echo "$repo_name not initialized, skipping.."
+		else
+			echo "Updating $repo_name's manifest"
+			init=$( echo "yes" )
+		fi
+	else
+		init=$( echo "yes" )
+	fi
 fi
 
-if [ "$AUTO" ] && [ $setupanswer == "14" ] || [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
 	if [ ! $SCRIPT_REPO == "kitchen" ]; then
 		mkdir -p $REPO_FOLDER
 	fi
