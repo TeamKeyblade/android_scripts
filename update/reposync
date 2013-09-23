@@ -190,9 +190,39 @@ elif [ "$DELETEFOLDERANDTHATSIT" ]; then
 	exit 0
 fi
 
-if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null) || [ $setupanswer == "14" ]; then
-	setupcode
+if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+	echo ""
+	if [ ! "$AUTO" ]; then
+		if [ $setupanswer == "15" ]; then
+			echo "$repo_name not initialized, initializing now.."
+			initmanifest=true
+		else
+			echo "$repo_name not initialized, do you want to initialize it?"
+			read init
+
+			if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+				echo "initializing $repo_name.."
+				initmanifest=true
+			else
+				echo "$repo_name wasn't initialized.. "
+			fi
+		fi
+	else
+		if [ ! "$DELETEFOLDER" ]; then
+			echo "$repo_name not initialized, initializing now.."
+		fi
+
+		initmanifest=true
+	fi
 fi
+
+if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+	echo "$repo_name not initialized, skipping.."
+elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+	echo "Updating $repo_name's manifest"
+	initmanifest=true
+fi
+	setupcode
 	synccode
 
 if [ "$done" ]; then
@@ -211,46 +241,7 @@ fi
 }
 
 setupcode() {
-echo ""
-if [ ! "$AUTO" ]; then
-	if [ $setupanswer == "14" ]; then
-		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-			echo "$repo_name not initialized, skipping.."
-		else
-			echo "Updating $repo_name's manifest"
-			init=$( echo "yes" )
-		fi
-	elif [ $setupanswer == "15" ]; then
-		echo "$repo_name not initialized, skipping.."
-	else
-		echo "$repo_name not initialized, do you want to initialize it?"
-		read init
-
-		if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
-			echo "initializing $repo_name.."
-		else
-			echo "$repo_name wasn't initialized.. "
-		fi
-	fi
-else
-	if [ ! "$DELETEFOLDER" ]; then
-		echo "$repo_name not initialized, initializing now.."
-		init=$( echo "yes" )
-	fi
-
-	if [ $setupanswer == "14" ]; then
-		if ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-			echo "$repo_name not initialized, skipping.."
-		else
-			echo "Updating $repo_name's manifest"
-			init=$( echo "yes" )
-		fi
-	else
-		init=$( echo "yes" )
-	fi
-fi
-
-if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
+if [ "$initmanifest" ]; then
 	if [ ! $SCRIPT_REPO == "kitchen" ]; then
 		mkdir -p $REPO_FOLDER
 	fi
