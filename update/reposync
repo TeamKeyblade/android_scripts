@@ -190,6 +190,8 @@ elif [ "$DELETEFOLDERANDTHATSIT" ]; then
 	exit 0
 fi
 
+initmanifest=""
+
 if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping.."
 elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
