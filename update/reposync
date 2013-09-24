@@ -254,12 +254,11 @@ fi
 
 synccode() {
 if ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-	echo ""
-	echo "Updating $repo_name repository.."
-
 	cd $REPO_FOLDER
 
 	preupdate
+	echo ""
+	echo "Updating $repo_name repository"
 	repo sync -n -j $NETWORKSYNC
 	repo sync -l -j $LOCALSYNC
 
