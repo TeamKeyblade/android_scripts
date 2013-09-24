@@ -194,29 +194,29 @@ initmanifest=""
 echo ""
 
 if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-	echo "$repo_name not initialized, skipping.."
+	echo "$repo_name not initialized, skipping"
 elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
 		if [ $setupanswer == "15" ]; then
-			echo "$repo_name not initialized, initializing now.."
+			echo "$repo_name not initialized, initializing now"
 			initmanifest=true
 		else
 			echo "$repo_name not initialized, do you want to initialize it?"
 			read init
 
 			if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
-				echo "initializing $repo_name.."
+				echo "initializing $repo_name"
 				initmanifest=true
 			else
-				echo "$repo_name wasn't initialized.. "
+				echo "$repo_name wasn't initialized"
 			fi
 		fi
 	else
 		if [ ! "$DELETEFOLDER" ]; then
-			echo "$repo_name not initialized, initializing now.."
+			echo "$repo_name not initialized, initializing now"
 		fi
 
 		initmanifest=true
@@ -271,11 +271,11 @@ fi
 if [ $setupanswer == "1" ]; then
 	if ( type -a repo &> /dev/null ); then
 		echo ""
-		echo "repo is already installed.."
+		echo "repo is already installed"
 		read -p "Press Enter to continue: " done
 	else
 		echo ""
-		echo "Installing the repo command.."
+		echo "Installing the repo command"
 
 		if ( ! find ~/bin &> /dev/null ); then
 			mkdir ~/bin
