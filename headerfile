@@ -68,17 +68,19 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# Declare number of threads from processor
+# Declare number of threads from processor and declare sync number
 processors=$( cat /proc/cpuinfo | grep "physical id" | sort -u | wc -l )
 cores=$( cat /proc/cpuinfo | grep -m 1 "cpu cores" | grep -o [0-9] )
 threads=$( cat /proc/cpuinfo | grep -m 1 siblings | grep -o [0-9] )
 
-export THREADS_TOTAL=$( expr $processors \* $threads \* $cores )
+export CPU_POWER_TOTAL=$( expr $processors \* $cores \* $threads )
 
-if [ "$THREADS_TOTAL" == "0" ]; then
-	export THREADS_TOTAL=$( echo "2" )
+if [ "$CPU_POWER_TOTAL" == "0" ]; then
+	export CPU_POWER_TOTAL=$( echo "1" )
 fi
 
+export NETWORKSYNC=$( expr $CPU_POWER_TOTAL \* 2 )
+export LOCALSYNC=$( expr $NETWORKSYNC \* 4 )
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Start kitchen
