@@ -11,6 +11,7 @@ cat << EOF > $LOCAL/xml/cm9-local_manifest.xml
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="ics" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="ics" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="ics" />
+
   <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="ics" />
   <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="ics" />
@@ -31,11 +32,13 @@ cat << EOF > $LOCAL/xml/cm10-local_manifest.xml
 <manifest>
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="jellybean" />
+
   <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="jellybean" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="jellybean" />
+
   <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="jellybean" />
   <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="jellybean" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="jellybean" />
@@ -63,15 +66,19 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-10.2" />
   <project name="n3ocort3x/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-10.2" />
+
   <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-10.2" />
+
   <project name="CyanogenMod/android_kernel_samsung_manta" path="kernel/samsung/manta" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_manta" path="device/samsung/manta" remote="github" revision="cm-10.2" />
+
   <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-10.2" />
+
   <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_amazon" path="vendor/amazon" revision="cm-10.2" />
