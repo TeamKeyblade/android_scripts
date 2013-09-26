@@ -216,8 +216,8 @@ if [ ! "$buildnexus4" ] || ( echo $buildnexus4 | grep -q [A-Za-z] ) || [ $buildn
 fi
 
 if [ $buildnexus4 == "1" ]; then
-	export SCRIPT_DEVICE=$(echo "mako")
 	devicefullname=$(echo "GSM Nexus 4")
+	export SCRIPT_DEVICE=$(echo "mako")
 	repomenu
 fi
 
@@ -252,26 +252,27 @@ if [ ! "$buildgnexus" ] || ( echo $buildgnexus | grep -q [A-Za-z] ) || [ $buildg
 fi
 
 if [ $buildgnexus == "1" ]; then
-	export SCRIPT_DEVICE=$(echo "toro")
 	devicefullname=$(echo "Verizon Galaxy Nexus")
+	export SCRIPT_DEVICE=$(echo "toro")
 	repomenu
 fi
 
 if [ $buildgnexus == "2" ]; then
-	export SCRIPT_DEVICE=$(echo "maguro")
 	devicefullname=$(echo "GSM Galaxy Nexus")
+	export SCRIPT_DEVICE=$(echo "maguro")
 	repomenu
 fi
 
 if [ $buildgnexus == "3" ]; then
-	export SCRIPT_DEVICE=$(echo "toroplus")
 	devicefullname=$(echo "Sprint Galaxy Nexus")
+	export SCRIPT_DEVICE=$(echo "toroplus")
 	repomenu
 fi
 
 if [ $buildgnexus == "4" ]; then
-	export SCRIPT_DEVICE=$(echo "toro")
 	devicefullname=$(echo "All Galaxy Nexi")
+
+	export SCRIPT_DEVICE=$(echo "toro")
 	repomenu
 
 	export SCRIPT_DEVICE=$(echo "maguro")
@@ -314,20 +315,21 @@ if [ ! "$buildnexuss" ] || ( echo $buildnexuss | grep -q [A-Za-z] ) || [ $buildn
 fi
 
 if [ $buildnexuss == "1" ]; then
-	export SCRIPT_DEVICE=$(echo "crespo")
 	devicefullname=$(echo "GSM Nexus S")
+	export SCRIPT_DEVICE=$(echo "crespo")
 	repomenu
 fi
 
 if [ $buildnexuss == "2" ]; then
-	export SCRIPT_DEVICE=$(echo "crespo4g")
 	devicefullname=$(echo "Sprint Nexus S 4G")
+	export SCRIPT_DEVICE=$(echo "crespo4g")
 	repomenu
 fi
 
 if [ $buildnexuss == "3" ]; then
-	export SCRIPT_DEVICE=$(echo "crespo")
 	devicefullname=$(echo "All Nexus S'")
+
+	export SCRIPT_DEVICE=$(echo "crespo")
 	repomenu
 
 	export SCRIPT_DEVICE=$(echo "crespo4g")
@@ -349,15 +351,18 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
-echo "  1. Build Wifi Nexus 7 Tablet"
-echo "  2. Build GSM Nexus 7 Tablet"
-echo "  3. Build all above!"
-echo "  4. Go Back"
+echo "  1. Build Wifi Nexus 7 (2012) Tablet"
+echo "  2. Build GSM Nexus 7 (2012) Tablet"
+echo "  3. Build all (2012) ones!"
+echo "  4. Build Wifi Nexus 7 (2013) Tablet"
+echo "  5. Build LTE Nexus 7 (2013) Tablet"
+echo "  6. Build all (2013) ones!"
+echo "  7. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildnexus7
 
-if [ ! "$buildnexus7" ] || ( echo $buildnexus7 | grep -q [A-Za-z] ) || [ $buildnexus7 -gt "4" ]; then
+if [ ! "$buildnexus7" ] || ( echo $buildnexus7 | grep -q [A-Za-z] ) || [ $buildnexus7 -gt "7" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -365,20 +370,21 @@ if [ ! "$buildnexus7" ] || ( echo $buildnexus7 | grep -q [A-Za-z] ) || [ $buildn
 fi
 
 if [ $buildnexus7 == "1" ]; then
+	devicefullname=$(echo "Wifi Nexus 7 (2012) Tablet")
 	export SCRIPT_DEVICE=$(echo "grouper")
-	devicefullname=$(echo "Wifi Nexus 7 Tablet")
 	repomenu
 fi
 
 if [ $buildnexus7 == "2" ]; then
+	devicefullname=$(echo "GSM Nexus 7 (2012) Tablet")
 	export SCRIPT_DEVICE=$(echo "tilapia")
-	devicefullname=$(echo "GSM Nexus 7 Tablet")
 	repomenu
 fi
 
 if [ $buildnexus7 == "3" ]; then
+	devicefullname=$(echo "All Nexus 7 (2012) Tablet's")
+
 	export SCRIPT_DEVICE=$(echo "grouper")
-	devicefullname=$(echo "All Nexus 7 Tablet's")
 	repomenu
 
 	export SCRIPT_DEVICE=$(echo "tilapia")
@@ -387,6 +393,29 @@ if [ $buildnexus7 == "3" ]; then
 fi
 
 if [ $buildnexus7 == "4" ]; then
+	devicefullname=$(echo "Wifi Nexus 7 (2013) Tablet")
+	export SCRIPT_DEVICE=$(echo "flo")
+	repomenu
+fi
+
+if [ $buildnexus7 == "5" ]; then
+	devicefullname=$(echo "LTE Nexus 7 (2013) Tablet")
+	export SCRIPT_DEVICE=$(echo "deb")
+	repomenu
+fi
+
+if [ $buildnexus7 == "6" ]; then
+	devicefullname=$(echo "All Nexus 7 (2013) Tablet's")
+
+	export SCRIPT_DEVICE=$(echo "flo")
+	repomenu
+
+	export SCRIPT_DEVICE=$(echo "deb")
+	export SLOPPYSECONDS=true
+	devicecheck
+fi
+
+if [ $buildnexus7 == "7" ]; then
 	echo ""
 	read -p "Press Enter to go back: " done
 	exit 0
@@ -414,8 +443,8 @@ if [ ! "$buildnexus10" ] || ( echo $buildnexus10 | grep -q [A-Za-z] ) || [ $buil
 fi
 
 if [ $buildnexus10 == "1" ]; then
-	export SCRIPT_DEVICE=$(echo "manta")
 	devicefullname=$(echo "Wifi Nexus 10")
+	export SCRIPT_DEVICE=$(echo "manta")
 	repomenu
 fi
 
@@ -433,8 +462,8 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
-echo "  1. Build Verizon Xoom Tablet"
-echo "  2. Build Wifi Xoom Tablet"
+echo "  1. Build Wifi Xoom Tablet"
+echo "  2. Build Verizon Xoom Tablet"
 echo "  3. Build all above!"
 echo "  4. Go Back"
 echo ""
@@ -449,20 +478,21 @@ if [ ! "$buildxoom" ] || ( echo $buildxoom | grep -q [A-Za-z] ) || [ $buildxoom 
 fi
 
 if [ $buildxoom == "1" ]; then
-	export SCRIPT_DEVICE=$(echo "stingray")
-	devicefullname=$(echo "Verizon Xoom Tablet")
+	devicefullname=$(echo "Wifi Xoom Tablet")
+	export SCRIPT_DEVICE=$(echo "wingray")
 	repomenu
 fi
 
 if [ $buildxoom == "2" ]; then
-	export SCRIPT_DEVICE=$(echo "wingray")
-	devicefullname=$(echo "Wifi Xoom Tablet")
+	devicefullname=$(echo "Verizon Xoom Tablet")
+	export SCRIPT_DEVICE=$(echo "stingray")
 	repomenu
 fi
 
 if [ $buildxoom == "3" ]; then
-	export SCRIPT_DEVICE=$(echo "stingray")
 	devicefullname=$(echo "All Xoom Tablets")
+
+	export SCRIPT_DEVICE=$(echo "stingray")
 	repomenu
 
 	export SCRIPT_DEVICE=$(echo "wingray")
@@ -479,8 +509,9 @@ xoommenu
 }
 
 allmenu(){
-export SCRIPT_DEVICE=$(echo "mako")
 devicefullname=$(echo "All Nexus Devices")
+
+export SCRIPT_DEVICE=$(echo "mako")
 repomenu
 
 export SCRIPT_DEVICE=$(echo "toro")
@@ -508,6 +539,14 @@ export SLOPPYSECONDS=true
 devicecheck
 
 export SCRIPT_DEVICE=$(echo "tilapia")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "flo")
+export SLOPPYSECONDS=true
+devicecheck
+
+export SCRIPT_DEVICE=$(echo "deb")
 export SLOPPYSECONDS=true
 devicecheck
 
