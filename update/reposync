@@ -15,6 +15,7 @@ where:
 	    kitchen = Update Kitchen
 	    aokp = Update Android Open Kang Project
 	    aosp = Update Android Open Source Project
+	    carbon = Update Carbon
 	    cna = Update Codename Android
 	    cm9 = Update Cyanogenmod 9
 	    cm10 = Update Cyanogenmod 10
@@ -77,21 +78,22 @@ if [ ! "$AUTO" ]; then
 	echo "  3. Update the Kitchen app repository"
 	echo "  4. Update the Android Open Kang Project repository"
 	echo "  5. Update the Android Open Source Project repository"
-	echo "  6. Update the Codename Android repository"
-	echo "  7. Update the Cyanogenmod 9 repository"
-	echo "  8. Update the Cyanogenmod 10 repository"
-	echo "  9. Update the Cyanogenmod 10.2 repository"
-	echo "  10. Update the Evervolv repository"
-	echo "  11. Update the PAC-man repository"
-	echo "  12. Update the ParanoidAndroid repository"
-	echo "  13. Update the Rooted & Busyboxed AOSP repository"
-	echo "  14. Update all available repositories and their manifests"
-	echo "  15. Update all the repos!"
-	echo "  16. Update/add otherrepo"
-	echo "  17. Go Back"
+	echo "  6. Update the Carbon repository"
+	echo "  7. Update the Codename Android repository"
+	echo "  8. Update the Cyanogenmod 9 repository"
+	echo "  9. Update the Cyanogenmod 10 repository"
+	echo "  10. Update the Cyanogenmod 10.2 repository"
+	echo "  11. Update the Evervolv repository"
+	echo "  12. Update the PAC-man repository"
+	echo "  13. Update the ParanoidAndroid repository"
+	echo "  14. Update the Rooted & Busyboxed AOSP repository"
+	echo "  15. Update all available repositories and their manifests"
+	echo "  16. Update all the repos!"
+	echo "  17. Update/add otherrepo"
+	echo "  18. Go Back"
 	read setupanswer
 
-	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "18" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -106,6 +108,7 @@ if [ "$PLATFORM" ]; then
 		echo "aosp = Update Android Open Source Project"
 		echo "bamf = Update BAMF Paradigm"
 		echo "bugless = Update Bugless Beast"
+		echo "carbon = Update Carbon"
 		echo "cna = Update Codename Android"
 		echo "cm9 = Update Cyanogenmod 9"
 		echo "cm10 = Update Cyanogenmod 10"
@@ -132,43 +135,47 @@ if [ "$PLATFORM" ]; then
 		setupanswer="5"
 	fi
 
-	if [ $PLATFORM == "cna" ]; then
+	if [ $PLATFORM == "carbon" ]; then
 		setupanswer="6"
 	fi
 
-	if [ $PLATFORM == "cm9" ]; then
+	if [ $PLATFORM == "cna" ]; then
 		setupanswer="7"
 	fi
 
-	if [ $PLATFORM == "cm10" ]; then
+	if [ $PLATFORM == "cm9" ]; then
 		setupanswer="8"
 	fi
 
-	if [ $PLATFORM == "cm" ]; then
+	if [ $PLATFORM == "cm10" ]; then
 		setupanswer="9"
 	fi
 
-	if [ $PLATFORM == "ev" ] || [ $PLATFORM == "evervolv" ]; then
+	if [ $PLATFORM == "cm" ]; then
 		setupanswer="10"
 	fi
 
-	if [ $PLATFORM == "pacman" ]; then
+	if [ $PLATFORM == "ev" ] || [ $PLATFORM == "evervolv" ]; then
 		setupanswer="11"
 	fi
 
-	if [ $PLATFORM == "paranoid" ]; then
+	if [ $PLATFORM == "pacman" ]; then
 		setupanswer="12"
 	fi
 
-	if [ $PLATFORM == "raosp" ]; then
+	if [ $PLATFORM == "paranoid" ]; then
 		setupanswer="13"
 	fi
 
-	if [ $PLATFORM == "all" ]; then
+	if [ $PLATFORM == "raosp" ]; then
 		setupanswer="14"
 	fi
-	if [ $PLATFORM == "allthethings" ]; then
+
+	if [ $PLATFORM == "all" ]; then
 		setupanswer="15"
+	fi
+	if [ $PLATFORM == "allthethings" ]; then
+		setupanswer="16"
 	fi
 fi
 
@@ -193,14 +200,14 @@ fi
 initmanifest=""
 echo ""
 
-if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+if [ $setupanswer == "15" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping"
-elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+elif [ $setupanswer == "15" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
-		if [ $setupanswer == "15" ]; then
+		if [ $setupanswer == "16" ]; then
 			echo "$repo_name not initialized, initializing now"
 			initmanifest=true
 		else
@@ -325,6 +332,16 @@ if [ $setupanswer == "5" ]; then
 fi
 
 if [ $setupanswer == "6" ]; then
+	export SCRIPT_REPO=$(echo "carbon")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jb3")
+	repo_name=$(echo "Carbon")
+	repo_url=$(echo "http://github.com/CarbonDev/android.git")
+	done=true
+	setupcheck
+fi
+
+if [ $setupanswer == "7" ]; then
 	export SCRIPT_REPO=$(echo "cna")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -334,7 +351,7 @@ if [ $setupanswer == "6" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "7" ]; then
+if [ $setupanswer == "8" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "ics")
 	repo_branch=$(echo "ics")
@@ -344,7 +361,7 @@ if [ $setupanswer == "7" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "8" ]; then
+if [ $setupanswer == "9" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean")
@@ -354,7 +371,7 @@ if [ $setupanswer == "8" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "9" ]; then
+if [ $setupanswer == "10" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 	repo_branch=$(echo "cm-10.2")
@@ -364,7 +381,7 @@ if [ $setupanswer == "9" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "10" ]; then
+if [ $setupanswer == "11" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean-4.3")
@@ -374,7 +391,7 @@ if [ $setupanswer == "10" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "11" ]; then
+if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "cm-10.2")
@@ -384,7 +401,7 @@ if [ $setupanswer == "11" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "12" ]; then
+if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jb43")
@@ -394,7 +411,7 @@ if [ $setupanswer == "12" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "13" ]; then
+if [ $setupanswer == "14" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3_r3.1")
@@ -404,7 +421,7 @@ if [ $setupanswer == "13" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
+if [ $setupanswer == "15" ] || [ $setupanswer == "16" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
@@ -424,6 +441,13 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	repo_branch=$(echo "android-4.3_r3.1")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "carbon")
+	export REPO_PLATFORM=$(echo "jb")
+	repo_branch=$(echo "jb3")
+	repo_name=$(echo "Carbon")
+	repo_url=$(echo "http://github.com/CarbonDev/android.git")
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "cna")
@@ -483,7 +507,7 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "16" ]; then
+if [ $setupanswer == "17" ]; then
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -538,14 +562,14 @@ if [ $setupanswer == "16" ]; then
 		done
 	fi
 
-	if [ $setupanswer == "17" ]; then
+	if [ $otheranswer == "3" ]; then
 		echo ""
-		read -p "Returning to Main Menu, Press Enter to continue: " done
+		read -p "Press Enter to continue: " done
 		menu
 	fi
 fi
 
-if [ $setupanswer == "17" ]; then
+if [ $setupanswer == "18" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
