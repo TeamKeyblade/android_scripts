@@ -62,7 +62,7 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
 <manifest>
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-10.2" />
-  <project name="CyanogenMod/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-10.1" />
+  <project name="n3ocort3x/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_kernel_samsung_manta" path="kernel/samsung/manta" remote="github" revision="cm-10.2" />
