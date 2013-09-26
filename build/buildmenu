@@ -15,10 +15,10 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
 echo "  1. Build Nexus 4"
-echo "  2. Build Galaxy Nexus"
-echo "  3. Build Nexus S"
-echo "  4. Build Nexus 7"
-echo "  5. Build Nexus 10"
+echo "  2. Build Nexus 7"
+echo "  3. Build Nexus 10"
+echo "  4. Build Galaxy Nexus"
+echo "  5. Build Nexus S"
 echo "  6. Build Xoom Tablet"
 echo "  7. Build all above!"
 echo "  8. Build other device"
@@ -41,22 +41,22 @@ if [ $buildanswer == "1" ]; then
 fi
 
 if [ $buildanswer == "2" ]; then
-	export BUILDDEVICEMENU="gnexusmenu"
-	builddevice
-fi
-
-if [ $buildanswer == "3" ]; then
-	export BUILDDEVICEMENU="nexussmenu"
-	builddevice
-fi
-
-if [ $buildanswer == "4" ]; then
 	export BUILDDEVICEMENU="nexus7menu"
 	builddevice
 fi
 
-if [ $buildanswer == "5" ]; then
+if [ $buildanswer == "3" ]; then
 	export BUILDDEVICEMENU="nexus10menu"
+	builddevice
+fi
+
+if [ $buildanswer == "4" ]; then
+	export BUILDDEVICEMENU="gnexusmenu"
+	builddevice
+fi
+
+if [ $buildanswer == "5" ]; then
+	export BUILDDEVICEMENU="nexussmenu"
 	builddevice
 fi
 
