@@ -465,7 +465,6 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	repo_branch=$(echo "cm-10.2")
 	repo_name=$(echo "PAC-man")
 	repo_url=$(echo "http://github.com/PAC-man/android.git")
-	done=true
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "paranoid")
@@ -480,6 +479,7 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	repo_branch=$(echo "android-4.3_r3.1")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
+	done=true
 	setupcheck
 fi
 
