@@ -24,7 +24,7 @@ if [ ! $SLOPPYSECONDS ]; then
 
 	if [ $AUTO ]; then
 		make clobber
-	elif [ ! $AUTO ]; then
+	else
 		echo "clean out folder?"
 		read -p "yes/no? " purgeout
 
@@ -45,21 +45,22 @@ fi
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "pacman" ] || [ $SCRIPT_REPO == "paranoid" ]; then
 	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
 else
-	if ( find vendor/*/vendorsetup.sh &> /dev/null ); then
-		vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
-		-e 's/_.*/_/' \
-		vendor/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
-	elif ( find device/*/*/vendorsetup.sh &> /dev/null ); then
-			vendor_lunch=$(sed -e 's/add_lunch_combo //g' \
-			-e 's/_.*/_/' \
-			device/*/*/vendorsetup.sh | sed "/#.*/d" | sed "/combo.*/d" | sed "/panda.*/d" | sed "/^$/d" | head -n 1)
-		else
+	if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
+		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
+		| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+	fi
+
+	if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
+		lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+	fi
+
+	if [ ! "$lunch_device" ]; then
 			echo "Repository not supported!"
 			read -p "Press Enter to continue: " done
 			exit 0
 	fi
 
-	lunch $vendor_lunch$SCRIPT_DEVICE-userdebug
+	lunch $lunch_device
 	make otapackage -j$THREADS_TOTAL
 fi
 
@@ -68,7 +69,7 @@ cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
 
 zip=$(find *$SCRIPT_DEVICE*.zip)
 
-if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
+if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
 	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $BUILDS/temp/zipout
