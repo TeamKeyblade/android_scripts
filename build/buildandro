@@ -6,6 +6,9 @@ if [ "$OTHER_REPO" ]; then
 	repofolder=$( echo "$OTHER_REPO_FOLDER" )
 	buildfolder=$( echo "$BUILDS/$OTHER_REPO" )
 
+elif [ "$AUTO_BUILD" ]; then
+	repofolder=$( echo "$REPOS/$AUTO_BUILD_FOLDER" )
+	buildfolder=$( echo "$BUILDS/$AUTO_BUILD_FOLDER" )
 else
 	repofolder=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 	buildfolder=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )

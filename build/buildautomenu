@@ -14,67 +14,182 @@ clear
 echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Auto Builder Menu"
-echo "  1. List all available repository tags for Auto Builder"
-echo "  2. Edit what repositories Auto Builder uses"
-echo "  3. Edit what devices Auto Builder builds"
-echo "  4. Edit where Auto Builder's output goes"
-echo "  5. Toggle Auto Builder build other repo"
-echo "  6. Toggle Auto Builder's sleep function"
-echo "  7. Go Back"
+echo "  1. Add to auto build list"
+echo "  2. Clear auto build list"
+echo "  3. Edit where Auto Builder's output goes"
+echo "  4. Toggle Auto Builder build other repo"
+echo "  5. Toggle Auto Builder's sleep function"
+echo "  6. Go Back"
 echo ""
 read -p "Which one would you like to do?: " buildautoconfig
 
-if [ ! "$buildautoconfig" ]; then
+if [ ! "$buildautoconfig" ] || ( echo $buildautoconfig | grep -q [A-Za-z] ) || [ $version -gt "6" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
-fi
-
-if ( echo $buildautoconfig | grep -q [A-Za-z] ); then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-fi
-
-if [ $buildautoconfig -gt "7" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	menu
 fi
 
 if [ $buildautoconfig == "1" ]; then
-	cat $LOCAL/repolist | less
+	addautorepo () {
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Which android repository are we setting for auto build?"
+	echo "  1. Android Open Kang Project repository"
+	echo "  2. Android Open Source Project repository"
+	echo "  3. Carbon repository"
+	echo "  4. Codename Android repository"
+	echo "  5. Cyanogenmod 9 repository"
+	echo "  6. Cyanogenmod 10 repository"
+	echo "  7. Cyanogenmod 10.2 repository"
+	echo "  8. Evervolv repository"
+	echo "  9. PAC-man repository"
+	echo "  10. ParanoidAndroid repository"
+	echo "  11. Rooted & Busyboxed AOSP repository"
+	echo "  12. Finished with adding repos, move on to adding devices"
+	echo "  13. Go Back"
+	read version
+
+	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "13" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		menu
+	fi
+
+	if [ $version == "1" ]; then
+		auto_folder=$(echo "aokp-jb")
+		reposync_tag=$(echo "aokp")
+	fi
+
+	if [ $version == "2" ]; then
+		auto_folder=$(echo "aosp-jb")
+		reposync_tag=$(echo "aosp")
+	fi
+
+	if [ $version == "3" ]; then
+		auto_folder=$(echo "carbon-jb")
+		reposync_tag=$(echo "carbon")
+	fi
+
+	if [ $version == "4" ]; then
+		auto_folder=$(echo "cna-jb")
+		reposync_tag=$(echo "cna")
+	fi
+
+	if [ $version == "5" ]; then
+		auto_folder=$(echo "cm-ics")
+		reposync_tag=$(echo "cm9")
+	fi
+
+	if [ $version == "6" ]; then
+		auto_folder=$(echo "cm-jb")
+		reposync_tag=$(echo "cm10")
+	fi
+
+	if [ $version == "7" ]; then
+		auto_folder=$(echo "cm-10.2")
+		reposync_tag=$(echo "cm")
+	fi
+
+	if [ $version == "8" ]; then
+		auto_folder=$(echo "evervolv-jb")
+		reposync_tag=$(echo "ev")
+	fi
+
+	if [ $version == "9" ]; then
+		auto_folder=$(echo "pacman-jb")
+		reposync_tag=$(echo "pacman")
+	fi
+
+	if [ $version == "10" ]; then
+		auto_folder=$(echo "paranoid-jb")
+		reposync_tag=$(echo "paranoid")
+	fi
+
+	if [ $version == "11" ]; then
+		auto_folder=$(echo "raosp-jb")
+		reposync_tag=$(echo "raosp")
+	fi
+
+	if [ $version == "12" ]; then
+		addautodevice
+	fi
+
+	if [ $version == "13" ]; then
+		echo ""
+		read -p "Press Enter to continue: " done
+		buildautomenu
+	fi
+
+	if ( ! find $LOCAL/config/scriptfolder &> /dev/null ); then
+		echo $auto_folder > $LOCAL/config/scriptfolder
+	else
+		echo $auto_folder >> $LOCAL/config/scriptfolder
+	fi
+
+	if ( ! find $LOCAL/config/scriptautosync &> /dev/null ); then
+		echo $reposync_tag > $LOCAL/config/scriptautosync
+	else
+		echo $reposync_tag >> $LOCAL/config/scriptautosync
+	fi
+	
+	addautorepo
+	}
+
+	addautodevice(){
+	clear
+
+	echo "Swordrune10's Android Kitchen!"
+	echo "=============================="
+	echo "Please type in Which android device are we setting for auto build"
+	echo "Type in list to see all supported devices"
+	echo "Type in exit to go back"
+	read auto_device
+
+	if [ ! "$auto_device" ]; then
+		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		addautodevice
+	fi
+
+	if [ $auto_device == "exit" ]; then
+		read -p "Press Enter to continue: " done
+		buildautomenu
+	fi
+
+	if ( ! find $LOCAL/config/scriptdevice &> /dev/null ); then
+		echo $auto_device > $LOCAL/config/scriptdevice
+	else
+		echo $auto_device >> $LOCAL/config/scriptdevice
+	fi
+
+	addautodevice
+	}
+
+	addautorepo
 fi
 
 if [ $buildautoconfig == "2" ]; then
-	cd $LOCAL/config
-	if [ "$(cat scriptrepo &> /dev/null)" == "" ]; then
-		echo "# Add below this line the repo tag you want to auto build, list each repo per line" > scriptrepo
-	else
-		sed -i -e "0,/.*/ i \
-# Add below this line the repo tag you want to auto build, list each repo per line" \
-		scriptrepo
-	fi
+	echo ""
+	echo "Are you sure you want to clear auto build files?"
+	read clearanswer
 
-	nano scriptrepo
-	sed -i "/# /d" scriptrepo
+	if [ "$clearanswer" == "yes" ] || [ "$clearanswer" == "y" ]; then
+		rm -rf $LOCAL/config/scriptfolder
+		rm -rf $LOCAL/config/scriptautosync
+		rm -rf $LOCAL/config/scriptdevice
+	else
+		echo "auto build files left untouched"
+		read -p "Press Enter to continue: " done
+		buildautomenu
+	fi
 fi
 
 if [ $buildautoconfig == "3" ]; then
-	cd $LOCAL/config
-	if [ "$(cat scriptdevice &> /dev/null)" == "" ]; then
-		echo "# Add below this line the device codename you want to auto build, list each device per line" > scriptdevice
-	else
-		sed -i -e "0,/.*/ i \
-# Add below this line the device codename you want to auto build, list each device per line" \
-		scriptdevice
-	fi
-
-	nano scriptdevice
-	sed -i "/# /d" scriptdevice
-fi
-
-if [ $buildautoconfig == "4" ]; then
 	cd $LOCAL/config
 	echo "Please type the absolute path of where u want the buildoutput.txt to be"
 	read outfilelocation
@@ -82,30 +197,18 @@ if [ $buildautoconfig == "4" ]; then
 	echo $outfilelocation > outfile
 fi
 
-if [ $buildautoconfig == "5" ]; then
+if [ $buildautoconfig == "4" ]; then
 	if ( ! find $LOCAL/config/otherrepoauto ); then
 		cd $LOCAL/config
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if [ "$(cat scriptrepo &> /dev/null)" == "" ]; then
-			echo "# Add below this line the repo tag you want to auto build, list each repo per line" > otherrepoauto
-		else
-			sed -i -e "0,/.*/ i \
-# Add below this line the repo tag you want to auto build, list each repo per line" \
-			otherrepoauto
-		fi
+		echo "# Add below this line the repo folder you want to auto build, otherrepo are in the otherrepo folder, list each repo per line" > otherrepoauto
 
 		nano otherrepoauto
 		sed -i "/# /d" otherrepoauto
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if [ "$(cat scriptdevice &> /dev/null)" == "" ]; then
-			echo "# Add below this line the device codename you want to auto build, list each device per line" > otherdeviceauto
-		else
-			sed -i -e "0,/.*/ i \
-# Add below this line the device codename you want to auto build, list each device per line" \
-			otherdeviceauto
-		fi
-
+		echo "# Add below this line the device codename you want to auto build, list each device per line" > otherdeviceauto
+		
 		nano otherdeviceauto
 		sed -i "/# /d" otherdeviceauto
 
@@ -121,7 +224,7 @@ if [ $buildautoconfig == "5" ]; then
 	fi
 fi
 
-if [ $buildautoconfig == "6" ]; then
+if [ $buildautoconfig == "5" ]; then
 	if ( ! find $LOCAL/config/sleepybuildserver ); then
 		cd $LOCAL/config
 		echo "How long would you like for the build server to sleep after building?"
@@ -156,7 +259,7 @@ if [ $buildautoconfig == "6" ]; then
 
 fi
 
-if [ $buildautoconfig == "7" ]; then
+if [ $buildautoconfig == "6" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
