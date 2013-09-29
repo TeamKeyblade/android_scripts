@@ -1,21 +1,26 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-#setup build
+
+#declare variables
 if [ "$OTHER_REPO" ]; then
-	export REPO_FOLDER=$( echo "$OTHER_REPO_FOLDER" )
-	export BUILD_FOLDER=$( echo "$BUILDS/$OTHER_REPO" )
+	repofolder=$( echo "$OTHER_REPO_FOLDER" )
+	buildfolder=$( echo "$BUILDS/$OTHER_REPO" )
 
 else
-	export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-	export BUILD_FOLDER=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	repofolder=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	buildfolder=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
 fi
 
-outfolder=$(echo "$REPO_FOLDER/out/target/product/$SCRIPT_DEVICE")
+outfolder=$(echo "$repofolder/out/target/product/$SCRIPT_DEVICE")
 
+zip=$(find *$SCRIPT_DEVICE*.zip)
+newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
+
+#setup build
 rm -f $outfolder/system/build.prop
 rm -f $outfolder/*.zip*
 
-cd $REPO_FOLDER
+cd $repofolder
 
 . build/envsetup.sh
 
@@ -65,9 +70,7 @@ else
 fi
 
 #build aftermath
-cd $REPO_FOLDER/out/target/product/$SCRIPT_DEVICE
-
-zip=$(find *$SCRIPT_DEVICE*.zip)
+cd $repofolder/out/target/product/$SCRIPT_DEVICE
 
 if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
@@ -87,7 +90,7 @@ if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [
 		cd system
 		echo "Adding rom manager items to $zip's build.prop"
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
-		echo "ro.modversion=$(echo "aosp-$REPO_PLATFORM-$(date +%Y%m%d)-$SCRIPT_DEVICE")" >> build.prop
+		echo "ro.modversion=$newzip >> build.prop
 
 		cd ..
 	fi
@@ -104,30 +107,28 @@ if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [
 	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
 fi
 
-if ( find $BUILD_FOLDER/*$SCRIPT_DEVICE.zip &> /dev/null); then
-	mkdir -p $BUILD_FOLDER/old
+if ( find $buildfolder/*$SCRIPT_DEVICE.zip &> /dev/null); then
+	mkdir -p $buildfolder/old
 
-	echo "Moving older build to $BUILD_FOLDER/old"
+	echo "Moving older build to $buildfolder/old"
 
-	mv $BUILD_FOLDER/*$SCRIPT_DEVICE.zip $BUILD_FOLDER/old
-	mv $BUILD_FOLDER/*$SCRIPT_DEVICE.zip.md5sum $BUILD_FOLDER/old
+	mv $buildfolder/*$SCRIPT_DEVICE.zip $buildfolder/old
+	mv $buildfolder/*$SCRIPT_DEVICE.zip.md5sum $buildfolder/old
 fi
 
-newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
+mkdir -p $buildfolder
 
-mkdir -p $BUILD_FOLDER
-
-echo "Copying to $BUILD_FOLDER"
+echo "Copying to $buildfolder"
 echo "$zip -> $newzip"
-cat $zip > $BUILD_FOLDER/$newzip
+cat $zip > $buildfolder/$newzip
 
-if [ ! "$OTHER_REPO_FOLDER" ] && [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
+if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "raosp" ]; then
 	echo "Cleaning up temporary folder"
 	cd $BUILDS
 	rm -r temp
 fi
 
-cd $BUILD_FOLDER
+cd $buildfolder
 md5sum $newzip
 md5sum $newzip > $newzip.md5sum
 
