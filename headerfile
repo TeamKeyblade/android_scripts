@@ -13,7 +13,7 @@ else
 	export REPOS=$( cd "$LOCAL/../../repos" && pwd )
 fi
 
-export BUILDS=$( echo "$REPOS/../builds" )
+export BUILDS=$( cd "$REPOS/../builds" && pwd )
 
 if ( find $BUILDS/../publish &> /dev/null); then
 	export PUBLISH=$( cd $BUILDS/../publish && pwd )
