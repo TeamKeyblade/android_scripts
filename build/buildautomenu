@@ -23,7 +23,7 @@ echo "  6. Go Back"
 echo ""
 read -p "Which one would you like to do?: " buildautoconfig
 
-if [ ! "$buildautoconfig" ] || ( echo $buildautoconfig | grep -q [A-Za-z] ) || [ $version -gt "6" ]; then
+if [ ! "$buildautoconfig" ] || ( echo $buildautoconfig | grep -q [A-Za-z] ) || [ $buildautoconfig -gt "6" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -62,56 +62,67 @@ if [ $buildautoconfig == "1" ]; then
 	if [ $version == "1" ]; then
 		auto_folder=$(echo "aokp-jb")
 		reposync_tag=$(echo "aokp")
+		repo_name=$(echo "Android Open Kang Project")
 	fi
 
 	if [ $version == "2" ]; then
 		auto_folder=$(echo "aosp-jb")
 		reposync_tag=$(echo "aosp")
+		repo_name=$(echo "Android Open Source Project")
 	fi
 
 	if [ $version == "3" ]; then
 		auto_folder=$(echo "carbon-jb")
 		reposync_tag=$(echo "carbon")
+		repo_name=$(echo "Carbon")
 	fi
 
 	if [ $version == "4" ]; then
 		auto_folder=$(echo "cna-jb")
 		reposync_tag=$(echo "cna")
+		repo_name=$(echo "Codename Android")
 	fi
 
 	if [ $version == "5" ]; then
 		auto_folder=$(echo "cm-ics")
 		reposync_tag=$(echo "cm9")
+		repo_name=$(echo "Cyanogenmod 9")
 	fi
 
 	if [ $version == "6" ]; then
 		auto_folder=$(echo "cm-jb")
 		reposync_tag=$(echo "cm10")
+		repo_name=$(echo "Cyanogenmod 10")
 	fi
 
 	if [ $version == "7" ]; then
 		auto_folder=$(echo "cm-10.2")
 		reposync_tag=$(echo "cm")
+		repo_name=$(echo "Cyanogenmod 10.2")
 	fi
 
 	if [ $version == "8" ]; then
 		auto_folder=$(echo "evervolv-jb")
 		reposync_tag=$(echo "ev")
+		repo_name=$(echo "Evervolv")
 	fi
 
 	if [ $version == "9" ]; then
 		auto_folder=$(echo "pacman-jb")
 		reposync_tag=$(echo "pacman")
+		repo_name=$(echo "PAC-man")
 	fi
 
 	if [ $version == "10" ]; then
 		auto_folder=$(echo "paranoid-jb")
 		reposync_tag=$(echo "paranoid")
+		repo_name=$(echo "ParanoidAndroid")
 	fi
 
 	if [ $version == "11" ]; then
 		auto_folder=$(echo "raosp-jb")
 		reposync_tag=$(echo "raosp")
+		repo_name=$(echo "Rooted & Busyboxed AOSP")
 	fi
 
 	if [ $version == "12" ]; then
@@ -135,6 +146,9 @@ if [ $buildautoconfig == "1" ]; then
 	else
 		echo $reposync_tag >> $LOCAL/config/scriptautosync
 	fi
+
+	echo "Added $reponame to auto build files"
+	read -p "Press Enter to continue: " done
 	
 	addautorepo
 	}
@@ -166,6 +180,9 @@ if [ $buildautoconfig == "1" ]; then
 	else
 		echo $auto_device >> $LOCAL/config/scriptdevice
 	fi
+
+	echo "Added $auto_device to auto build files"
+	read -p "Press Enter to continue: " done
 
 	addautodevice
 	}
