@@ -8,7 +8,7 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
-buildautomenu(){
+menu(){
 clear
 
 echo "Swordrune10's Android Kitchen!"
@@ -121,7 +121,7 @@ if [ $buildautoconfig == "1" ]; then
 	if [ $version == "13" ]; then
 		echo ""
 		read -p "Press Enter to continue: " done
-		buildautomenu
+		menu
 	fi
 
 	if ( ! find $LOCAL/config/scriptfolder &> /dev/null ); then
@@ -158,7 +158,7 @@ if [ $buildautoconfig == "1" ]; then
 
 	if [ $auto_device == "exit" ]; then
 		read -p "Press Enter to continue: " done
-		buildautomenu
+		menu
 	fi
 
 	if ( ! find $LOCAL/config/scriptdevice &> /dev/null ); then
@@ -185,7 +185,7 @@ if [ $buildautoconfig == "2" ]; then
 	else
 		echo "auto build files left untouched"
 		read -p "Press Enter to continue: " done
-		buildautomenu
+		menu
 	fi
 fi
 
@@ -264,6 +264,6 @@ if [ $buildautoconfig == "6" ]; then
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
 fi
-buildautomenu
+menu
 }
-buildautomenu
+menu
