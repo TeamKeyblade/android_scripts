@@ -135,6 +135,7 @@ fi
 
 export OTHER_REPO=$(echo "${filelurker[$version]}")
 export OTHER_REPO_FOLDER=$(echo $otherrepofolder)
+export SCRIPT_REPO=$( echo "${filelurker[$version]}" )
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
 

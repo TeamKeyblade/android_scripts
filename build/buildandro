@@ -5,19 +5,20 @@
 if [ "$OTHER_REPO" ]; then
 	repofolder=$( echo "$OTHER_REPO_FOLDER" )
 	buildfolder=$( echo "$BUILDS/$OTHER_REPO" )
-
+	newzip=$(echo $OTHER_REPO-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 elif [ "$AUTO_BUILD" ]; then
 	repofolder=$( echo "$REPOS/$AUTO_BUILD_FOLDER" )
 	buildfolder=$( echo "$BUILDS/$AUTO_BUILD_FOLDER" )
+	newzip=$(echo $AUTO_BUILD_FOLDER-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 else
 	repofolder=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 	buildfolder=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
+	newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 fi
 
 outfolder=$(echo "$repofolder/out/target/product/$SCRIPT_DEVICE")
 
 zip=$(find *$SCRIPT_DEVICE*.zip)
-newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
 
 #setup build
 rm -f $outfolder/system/build.prop
