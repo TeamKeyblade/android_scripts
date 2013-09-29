@@ -106,7 +106,7 @@ while true; do
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
-		export REPO_SYNC=$( cat $LOCAL/config/scriptautosync | sed -n "$repocount"p )
+		export REPO_SYNC=$( cat $LOCAL/config/scriptautosync | sed -n "$repocountdown"p )
 		INIT=""
 		reposync -u $REPO_SYNC >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 	else
