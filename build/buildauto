@@ -130,13 +130,17 @@ while true; do
 	if ( echo "${scriptfolder[$repocountdown]}" | grep -q "EOF" ); then
 		break
 	fi
+
+	export SCRIPT_REPO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
 		export AUTO_BUILD=true
 		export AUTO_BUILD_FOLDER=$( echo "${scriptfolder[$repocountdown]}" )
+		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
 	else
 		export OTHER_REPO=$( echo "${scriptfolder[$repocountdown]}" )
 		export OTHER_REPO_FOLDER=$(echo "$REPOS/otherrepo/"${scriptfolder[$repocountdown]}"")
+		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
@@ -150,6 +154,8 @@ while true; do
 			export SLOPPYSECONDS=""
 			break
 		fi
+
+		export SCRIPT_DEVICE=$( echo "${scriptdevice[$devicecountdown]}" )
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
