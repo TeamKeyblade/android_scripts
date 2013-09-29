@@ -199,6 +199,9 @@ if [ $buildautoconfig == "2" ]; then
 		rm -rf $LOCAL/config/scriptfolder
 		rm -rf $LOCAL/config/scriptautosync
 		rm -rf $LOCAL/config/scriptdevice
+		echo "auto build files cleared"
+		read -p "Press Enter to continue: " done
+		menu
 	else
 		echo "auto build files left untouched"
 		read -p "Press Enter to continue: " done
