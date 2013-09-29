@@ -147,7 +147,7 @@ if [ $buildautoconfig == "1" ]; then
 		echo $reposync_tag >> $LOCAL/config/scriptautosync
 	fi
 
-	echo "Added $reponame to auto build files"
+	echo "Added $repo_name to auto build files"
 	read -p "Press Enter to continue: " done
 	
 	addautorepo
