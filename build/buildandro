@@ -43,7 +43,7 @@ fi
 
 #build android
 if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "pacman" ] || [ $SCRIPT_REPO == "paranoid" ]; then
-	brunch $SCRIPT_DEVICE -j$THREADS_TOTAL
+	brunch $SCRIPT_DEVICE -j $THREADS_TOTAL
 else
 	if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
 		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
@@ -61,7 +61,7 @@ else
 	fi
 
 	lunch $lunch_device
-	make otapackage -j$THREADS_TOTAL
+	make otapackage -j $THREADS_TOTAL
 fi
 
 #build aftermath
@@ -119,7 +119,7 @@ mkdir -p $BUILD_FOLDER
 
 echo "Copying to $BUILD_FOLDER"
 echo "$zip -> $newzip"
-cp $zip $BUILD_FOLDER/$newzip
+cat $zip > $BUILD_FOLDER/$newzip
 
 if [ ! "$OTHER_REPO_FOLDER" ] && [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
 	echo "Cleaning up temporary folder"
