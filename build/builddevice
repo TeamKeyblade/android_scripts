@@ -78,7 +78,7 @@ if [ $version == "8" ]; then
 fi
 
 if [ $version == "9" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
+	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
