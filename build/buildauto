@@ -137,10 +137,12 @@ while true; do
 		export AUTO_BUILD=true
 		export AUTO_BUILD_FOLDER=$( echo "${scriptfolder[$repocountdown]}" )
 		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
+		export REPO_PLATFORM=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
 	else
 		export OTHER_REPO=$( echo "${scriptfolder[$repocountdown]}" )
 		export OTHER_REPO_FOLDER=$(echo "$REPOS/otherrepo/"${scriptfolder[$repocountdown]}"")
 		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
+		export REPO_PLATFORM=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
