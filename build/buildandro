@@ -18,8 +18,6 @@ fi
 
 outfolder=$(echo "$repofolder/out/target/product/$SCRIPT_DEVICE")
 
-zip=$(find *$SCRIPT_DEVICE*.zip)
-
 #setup build
 rm -f $outfolder/system/build.prop
 rm -f $outfolder/*.zip*
@@ -75,6 +73,7 @@ fi
 
 #build aftermath
 cd $repofolder/out/target/product/$SCRIPT_DEVICE
+zip=$(find *$SCRIPT_DEVICE*.zip)
 
 if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
