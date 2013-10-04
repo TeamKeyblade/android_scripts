@@ -93,7 +93,7 @@ if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [
 		cd system
 		echo "Adding rom manager items to $zip's build.prop"
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
-		echo "ro.modversion=$newzip >> build.prop
+		echo "ro.modversion=$newzip >> build.prop"
 
 		cd ..
 	fi
