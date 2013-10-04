@@ -73,7 +73,13 @@ fi
 
 #build aftermath
 cd $repofolder/out/target/product/$SCRIPT_DEVICE
-zip=$(find *$SCRIPT_DEVICE*.zip)
+zip=$( find *$SCRIPT_DEVICE*.zip 2> /dev/null )
+
+if [ ! $zip ]; then
+	echo "Build messed up! Returning to build menu"
+	read -p "Press Enter to continue: " done
+	exit 0
+fi
 
 if [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "aosp" ] || [ ! "$OTHER_REPO" ] && [ $SCRIPT_REPO == "raosp" ]; then
 
