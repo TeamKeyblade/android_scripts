@@ -131,8 +131,6 @@ cat << EOF > $LOCAL/xml/paranoid-local_manifest.xml
   <project name="ParanoidAndroid/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="jb43" />
   <project name="ParanoidAndroid/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="jb43" />
 
-  <project name="CyanogenMod/android_device_sample" path="device/sample" remote="cm" revision="cm-10.2" />
-
   <project name="ParanoidAndroid/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="jb43" />
   <project name="ParanoidAndroid/proprietary_vendor_audience" path="vendor/audience" remote="github" revision="jb43" />
   <project name="ParanoidAndroid/proprietary_vendor_broadcom" path="vendor/broadcom" remote="github" revision="jb43" />
