@@ -30,7 +30,7 @@ if [ ! $SLOPPYSECONDS ]; then
 	$LOCAL/config/romeditor
 
 	if [ $AUTO ]; then
-		make clobber
+		make clean
 	else
 		echo "clean out folder?"
 		read -p "yes/no? " purgeout
@@ -39,34 +39,47 @@ if [ ! $SLOPPYSECONDS ]; then
 			echo ""
 			echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
 
-			make clobber
+			make clean
 		fi
 
 		if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
-			make clobber
+			make clean
 		fi
 	fi
 fi
 
 #build android
-if [ $SCRIPT_REPO == "cm" ] || [ $SCRIPT_REPO == "pacman" ] || [ $SCRIPT_REPO == "paranoid" ]; then
+if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
+	lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
+	| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+fi
+
+if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
+	lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+fi
+
+if [ ! "$lunch_device" ]; then
+		echo "Repository not supported!"
+		read -p "Press Enter to continue: " done
+		exit 0
+fi
+
+if [ $SCRIPT_REPO == "cm" ]; then
 	brunch $SCRIPT_DEVICE -j $THREADS_TOTAL
+elif [ $SCRIPT_REPO == "pacman" ]; then
+	rm -f out/target/product/$SCRIPT_DEVICE/obj/KERNEL_OBJ/.version
+
+	lunch pac_$SCRIPT_DEVICE-userdebug
+	make bacon -j $THREADS_TOTAL
+
+	vendor/pac/tools/squisher
+
+	rm -f $outfolder/cm-*.*
+	rm -f $outfolder/pac_*-ota*.zip
+elif [ $SCRIPT_REPO == "paranoid" ]; then
+	lunch pa_$SCRIPT_DEVICE-userdebug
+	mka bacon
 else
-	if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
-		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
-		| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
-	fi
-
-	if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
-		lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
-	fi
-
-	if [ ! "$lunch_device" ]; then
-			echo "Repository not supported!"
-			read -p "Press Enter to continue: " done
-			exit 0
-	fi
-
 	lunch $lunch_device
 	make otapackage -j $THREADS_TOTAL
 fi
