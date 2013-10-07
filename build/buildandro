@@ -48,6 +48,58 @@ if [ ! $SLOPPYSECONDS ]; then
 	fi
 fi
 
+#setup ccache
+if ( ! find ~/.ccache &> /dev/null); then
+	echo "The kitchen did not detect the ccache file, did you want to make one now?"
+	echo "If ccache is located at another location type in other"
+	read ccacheuse
+
+	if [ $ccacheuse == "yes" ] || [ $ccacheuse == "y" ]; then
+		echo "How big do you want ccache? suggested size is 50 - 100 gigabytes"
+		echo "Keep in mind the amount typed is in gigabytes"
+		read ccachesize
+
+		if ( uname -a | grep -q Darwin ); then
+			if ( find prebuilts/misc/darwin-x86/ccache/ccache &> /dev/null); then
+				prebuilts/misc/darwin-x86/ccache/ccache -M $ccachesizeG
+			elif ( find prebuilt/darwin-x86/ccache/ccache &> /dev/null); then
+				prebuilt/darwin-x86/ccache/ccache -M $ccachesizeG
+			else
+				echo "Repository does not support ccache, continuing without it"
+				noccache=true
+			fi
+		else
+			if ( find prebuilts/misc/linux-x86/ccache/ccache &> /dev/null); then
+				prebuilts/misc/linux-x86/ccache/ccache -M $ccachesizeG
+			elif ( find prebuilt/linux-x86/ccache/ccache &> /dev/null); then
+				prebuilt/linux-x86/ccache/ccache -M $ccachesizeG
+			else
+				echo "Repository does not support ccache, continuing without it"
+				noccache=true
+			fi
+		fi
+	elif [ $ccacheuse == "other" ]; then
+		echo "Where is the exact location of ccache? Example of where default location is is ~/.ccache"
+		read ccachelocation
+
+		if ( ! find $ccachelocation &> /dev/null); then
+			echo "Location specified was not found, continuing without it"
+			noccache=true
+		else
+			export CCACHE_DIR=$( echo "$ccachelocation" )
+		fi
+	else
+		echo "Continuing without ccache use"
+		noccache=true
+	fi
+
+	if [ ! "$noccache" ]; then
+		export USE_CCACHE=1
+	fi
+else
+	export USE_CCACHE=1
+fi
+
 #build android
 if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
 	lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
