@@ -61,18 +61,18 @@ if ( ! find ~/.ccache &> /dev/null); then
 
 		if ( uname -a | grep -q Darwin ); then
 			if ( find prebuilts/misc/darwin-x86/ccache/ccache &> /dev/null); then
-				prebuilts/misc/darwin-x86/ccache/ccache -M $ccachesizeG
+				prebuilts/misc/darwin-x86/ccache/ccache -M "$ccachesize"G
 			elif ( find prebuilt/darwin-x86/ccache/ccache &> /dev/null); then
-				prebuilt/darwin-x86/ccache/ccache -M $ccachesizeG
+				prebuilt/darwin-x86/ccache/ccache -M "$ccachesize"G
 			else
 				echo "Repository does not support ccache, continuing without it"
 				noccache=true
 			fi
 		else
 			if ( find prebuilts/misc/linux-x86/ccache/ccache &> /dev/null); then
-				prebuilts/misc/linux-x86/ccache/ccache -M $ccachesizeG
+				prebuilts/misc/linux-x86/ccache/ccache -M "$ccachesize"G
 			elif ( find prebuilt/linux-x86/ccache/ccache &> /dev/null); then
-				prebuilt/linux-x86/ccache/ccache -M $ccachesizeG
+				prebuilt/linux-x86/ccache/ccache -M "$ccachesize"G
 			else
 				echo "Repository does not support ccache, continuing without it"
 				noccache=true
