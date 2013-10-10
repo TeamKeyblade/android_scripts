@@ -321,7 +321,7 @@ fi
 if [ $setupanswer == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r3.1")
+	repo_branch=$(echo "android-4.3.1_r1")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
@@ -411,7 +411,7 @@ fi
 if [ $setupanswer == "14" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r3.1")
+	repo_branch=$(echo "android-4.3.1_r1")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
@@ -435,7 +435,7 @@ if [ $setupanswer == "15" ] || [ $setupanswer == "16" ]; then
 
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r3.1")
+	repo_branch=$(echo "android-4.3.1_r1")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcheck
@@ -497,7 +497,7 @@ if [ $setupanswer == "15" ] || [ $setupanswer == "16" ]; then
 
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3_r3.1")
+	repo_branch=$(echo "android-4.3.1_r1")
 	repo_name=$(echo "Rooted & Busyboxed AOSP")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
