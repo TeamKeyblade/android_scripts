@@ -53,12 +53,17 @@ if [ $SCRIPT_REPO == "carbon" ]; then
 	rm -rf vendor/carbon
 fi
 
-if [ $SCRIPT_REPO == "cna" ]; then
-	rm -rf vendor/cna
-fi
-
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	rm -rf vendor/ev
+fi
+
+if [ $SCRIPT_REPO == "omni" ]; then
+	rm -rf vendor/custom
+	echo ""
+	echo "Updating omnirom's local_manifests folder"
+	export AUTHOR="xml"
+	scriptmakir
+	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "pacman" ]; then

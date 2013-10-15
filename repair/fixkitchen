@@ -83,11 +83,11 @@ if [ $cleananswer == "1" ]; then
 	echo "  1. Android Open Kang Project repository"
 	echo "  2. Android Open Source Project repository"
 	echo "  3. Carbon repository"
-	echo "  4. Codename Android repository"
-	echo "  5. Cyanogenmod 9 repository"
-	echo "  6. Cyanogenmod 10 repository"
-	echo "  7. Cyanogenmod 10.2 repository"
-	echo "  8. Evervolv repository"
+	echo "  4. Cyanogenmod 9 repository"
+	echo "  5. Cyanogenmod 10 repository"
+	echo "  6. Cyanogenmod 10.2 repository"
+	echo "  7. Evervolv repository"
+	echo "  8. omnirom repository"
 	echo "  9. PAC-man repository"
 	echo "  10. ParanoidAndroid repository"
 	echo "  11. Rooted & Busyboxed AOSP repository"
@@ -123,37 +123,37 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $addrepo == "4" ]; then
-		script_repo=$(echo "cna")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Codename Android")
-		adddevicetorepo
-	fi
-
-	if [ $addrepo == "5" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "6" ]; then
+	if [ $addrepo == "5" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "7" ]; then
+	if [ $addrepo == "6" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 		adddevicetorepo
 	fi
 
-	if [ $addrepo == "8" ]; then
+	if [ $addrepo == "7" ]; then
 		script_repo=$(echo "evervolv")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Evervolv")
+		adddevicetorepo
+	fi
+
+	if [ $addrepo == "8" ]; then
+		script_repo=$(echo "omni")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "omnirom")
 		adddevicetorepo
 	fi
 
@@ -198,11 +198,11 @@ if [ $cleananswer == "2" ]; then
 	echo "  1. Android Open Kang Project repository"
 	echo "  2. Android Open Source Project repository"
 	echo "  3. Carbon repository"
-	echo "  4. Codename Android repository"
-	echo "  5. Cyanogenmod 9 repository"
-	echo "  6. Cyanogenmod 10 repository"
-	echo "  7. Cyanogenmod 10.2 repository"
-	echo "  8. Evervolv repository"
+	echo "  4. Cyanogenmod 9 repository"
+	echo "  5. Cyanogenmod 10 repository"
+	echo "  6. Cyanogenmod 10.2 repository"
+	echo "  7. Evervolv repository"
+	echo "  8. omnirom repository"
 	echo "  9. PAC-man repository"
 	echo "  10. ParanoidAndroid repository"
 	echo "  11. Rooted & Busyboxed AOSP repository"
@@ -238,37 +238,37 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "4" ]; then
-		export SCRIPT_REPO=$(echo "cna")
-		export REPO_PLATFORM=$(echo "jb")
-		repo_name=$(echo "Codename Android")
-		purgelocalmanifest
-	fi
-
-	if [ $cleanse == "5" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "6" ]; then
+	if [ $cleanse == "5" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "7" ]; then
+	if [ $cleanse == "6" ]; then
 		export SCRIPT_REPO=$(echo "cm")
 		export REPO_PLATFORM=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 		purgelocalmanifest
 	fi
 
-	if [ $cleanse == "8" ]; then
+	if [ $cleanse == "7" ]; then
 		export SCRIPT_REPO=$(echo "evervolv")
 		export REPO_PLATFORM=$(echo "jb")
 		repo_name=$(echo "Evervolv")
+		purgelocalmanifest
+	fi
+
+	if [ $cleanse == "8" ]; then
+		export SCRIPT_REPO=$(echo "omni")
+		export REPO_PLATFORM=$(echo "jb")
+		repo_name=$(echo "omnirom")
 		purgelocalmanifest
 	fi
 
@@ -313,11 +313,11 @@ if [ $cleananswer == "3" ]; then
 	echo "  1. Android Open Kang Project repository"
 	echo "  2. Android Open Source Project repository"
 	echo "  3. Carbon repository"
-	echo "  4. Codename Android repository"
-	echo "  5. Cyanogenmod 9 repository"
-	echo "  6. Cyanogenmod 10 repository"
-	echo "  7. Cyanogenmod 10.2 repository"
-	echo "  8. Evervolv repository"
+	echo "  4. Cyanogenmod 9 repository"
+	echo "  5. Cyanogenmod 10 repository"
+	echo "  6. Cyanogenmod 10.2 repository"
+	echo "  7. Evervolv repository"
+	echo "  8. omnirom repository"
 	echo "  9. PAC-man repository"
 	echo "  10. ParanoidAndroid repository"
 	echo "  11. Rooted & Busyboxed AOSP repository"
@@ -368,33 +368,33 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	if [ $modify == "4" ]; then
-		script_repo=$(echo "cna")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Codename Android")
-	fi
-
-	if [ $modify == "5" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "ics")
 		repo_name=$(echo "Cyanogenmod 9")
 	fi
 
-	if [ $modify == "6" ]; then
+	if [ $modify == "5" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Cyanogenmod 10")
 	fi
 
-	if [ $modify == "7" ]; then
+	if [ $modify == "6" ]; then
 		script_repo=$(echo "cm")
 		repo_platform=$(echo "10.2")
 		repo_name=$(echo "Cyanogenmod 10.2")
 	fi
 
-	if [ $modify == "8" ]; then
+	if [ $modify == "7" ]; then
 		script_repo=$(echo "evervolv")
 		repo_platform=$(echo "jb")
 		repo_name=$(echo "Evervolv")
+	fi
+
+	if [ $modify == "8" ]; then
+		script_repo=$(echo "omni")
+		repo_platform=$(echo "jb")
+		repo_name=$(echo "omnirom")
 	fi
 
 	if [ $modify == "9" ]; then
