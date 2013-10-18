@@ -375,7 +375,7 @@ else
 	echo "Operating System not supported!"
 	echo "==============================="
 	echo "Supported Operating Systems (only 64-bit):"
-	echo "Ubuntu 10.04 - 13.04 (Full Support)"
+	echo "Ubuntu 10.04 - 13.10 (Full Support)"
 	echo "Debian (General Support)"
 	echo "Linux Mint (General Support)"
 	echo "Arch Linux (General Support)"
