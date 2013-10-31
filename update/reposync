@@ -529,7 +529,7 @@ if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "17" ]; then
+if [ $setupanswer == "18" ]; then
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -591,7 +591,7 @@ if [ $setupanswer == "17" ]; then
 	fi
 fi
 
-if [ $setupanswer == "18" ]; then
+if [ $setupanswer == "19" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
