@@ -15,20 +15,21 @@ echo "Swordrune10's Android Kitchen!"
 echo "=============================="
 echo "Today's Menu:"
 echo "  1. Build Nexus 4"
-echo "  2. Build Nexus 7"
-echo "  3. Build Nexus 10"
-echo "  4. Build Galaxy Nexus"
-echo "  5. Build Nexus S"
-echo "  6. Build Xoom Tablet"
-echo "  7. Build all above!"
-echo "  8. Build other device"
-echo "  9. Build with other repository"
-echo "  10. Go Back"
+echo "  2. Build Nexus 5"
+echo "  3. Build Nexus 7"
+echo "  4. Build Nexus 10"
+echo "  5. Build Galaxy Nexus"
+echo "  6. Build Nexus S"
+echo "  7. Build Xoom Tablet"
+echo "  8. Build all above!"
+echo "  9. Build other device"
+echo "  10. Build with other repository"
+echo "  11. Go Back"
 echo ""
 echo "Which one would you like to do?"
 read buildanswer
 
-if [ ! "$buildanswer" ] || ( echo $buildanswer | grep -q [A-Za-z] ) || [ $buildanswer -gt "12" ]; then
+if [ ! "$buildanswer" ] || ( echo $buildanswer | grep -q [A-Za-z] ) || [ $buildanswer -gt "11" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -41,44 +42,49 @@ if [ $buildanswer == "1" ]; then
 fi
 
 if [ $buildanswer == "2" ]; then
-	export BUILDDEVICEMENU="nexus7menu"
+	export BUILDDEVICEMENU="nexus5menu"
 	builddevice
 fi
 
 if [ $buildanswer == "3" ]; then
-	export BUILDDEVICEMENU="nexus10menu"
+	export BUILDDEVICEMENU="nexus7menu"
 	builddevice
 fi
 
 if [ $buildanswer == "4" ]; then
-	export BUILDDEVICEMENU="gnexusmenu"
+	export BUILDDEVICEMENU="nexus10menu"
 	builddevice
 fi
 
 if [ $buildanswer == "5" ]; then
-	export BUILDDEVICEMENU="nexussmenu"
+	export BUILDDEVICEMENU="gnexusmenu"
 	builddevice
 fi
 
 if [ $buildanswer == "6" ]; then
-	export BUILDDEVICEMENU="xoommenu"
+	export BUILDDEVICEMENU="nexussmenu"
 	builddevice
 fi
 
 if [ $buildanswer == "7" ]; then
-	export BUILDDEVICEMENU="allmenu"
+	export BUILDDEVICEMENU="xoommenu"
 	builddevice
 fi
 
 if [ $buildanswer == "8" ]; then
-	buildother
+	export BUILDDEVICEMENU="allmenu"
+	builddevice
 fi
 
 if [ $buildanswer == "9" ]; then
-	buildotherrepo
+	buildother
 fi
 
 if [ $buildanswer == "10" ]; then
+	buildotherrepo
+fi
+
+if [ $buildanswer == "11" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0
