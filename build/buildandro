@@ -109,7 +109,7 @@ if [ ! "$noccache" ]; then
 fi
 
 #build android
-if ( cat vendor/*/vendorsetup.sh | grep $SCRIPT_DEVICE &> /dev/null ); then
+if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $SCRIPT_DEVICE &> /dev/null ); then
 	lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
 	| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
 fi
