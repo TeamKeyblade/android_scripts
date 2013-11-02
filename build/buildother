@@ -17,20 +17,21 @@ echo "Build other device is selected to be built!"
 echo ""
 echo "Which android repository are we building from today?"
 echo "  1. Android Open Kang Project repository"
-echo "  2. Android Open Source Project repository"
-echo "  3. Carbon repository"
-echo "  4. Cyanogenmod 9 repository"
-echo "  5. Cyanogenmod 10 repository"
-echo "  6. Cyanogenmod 10.2 repository"
-echo "  7. Evervolv repository"
-echo "  8. omnirom repository"
-echo "  9. PAC-man repository"
-echo "  10. ParanoidAndroid repository"
-echo "  11. Rooted & Busyboxed AOSP repository"
-echo "  12. Go Back"
+echo "  2. Android Open Source Project repository 4.3"
+echo "  3. Android Open Source Project repository 4.4"
+echo "  4. Carbon repository"
+echo "  5. Cyanogenmod 9 repository"
+echo "  6. Cyanogenmod 10 repository"
+echo "  7. Cyanogenmod 10.2 repository"
+echo "  8. Evervolv repository"
+echo "  9. omnirom repository"
+echo "  10. PAC-man repository"
+echo "  11. ParanoidAndroid repository"
+echo "  12. Rooted & Busyboxed AOSP repository"
+echo "  13. Go Back"
 read version
 
-if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "12" ]; then
+if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "13" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -48,51 +49,56 @@ if [ $version == "2" ]; then
 fi
 
 if [ $version == "3" ]; then
+	export SCRIPT_REPO=$(echo "aosp")
+	export REPO_PLATFORM=$(echo "kitkat")
+fi
+
+if [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "carbon")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "4" ]; then
+if [ $version == "5" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "ics")
 fi
 
-if [ $version == "5" ]; then
+if [ $version == "6" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "6" ]; then
+if [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 fi
 
-if [ $version == "7" ]; then
+if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "8" ]; then
+if [ $version == "9" ]; then
 	export SCRIPT_REPO=$(echo "omni")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "9" ]; then
+if [ $version == "10" ]; then
 	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "10" ]; then
+if [ $version == "11" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "11" ]; then
+if [ $version == "12" ]; then
 	export SCRIPT_REPO=$(echo "raosp")
 	export REPO_PLATFORM=$(echo "jb")
 fi
 
-if [ $version == "12" ]; then
+if [ $version == "13" ]; then
 	echo ""
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
@@ -133,7 +139,7 @@ while [ $device == "list" ]; do
 	fi
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
-		for vendorsetup in `ls $REPOS/aosp-jb/device/*/*/vendorsetup.sh 2> /dev/null`
+		for vendorsetup in `ls $REPOS/aosp-$REPO_PLATFORM/device/*/*/vendorsetup.sh 2> /dev/null`
 		do
 			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*aosp_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
@@ -220,7 +226,7 @@ fi
 if [ $SCRIPT_REPO == "aosp" ]; then
 	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-jb/device/*/$device/vendorsetup.sh | grep -q $device ); then
+	$REPOS/aosp-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
