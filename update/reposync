@@ -204,14 +204,14 @@ fi
 initmanifest=""
 echo ""
 
-if [ $setupanswer == "15" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+if [ $setupanswer == "16" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping"
-elif [ $setupanswer == "15" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+elif [ $setupanswer == "16" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
-		if [ $setupanswer == "16" ]; then
+		if [ $setupanswer == "17" ]; then
 			echo "$repo_name not initialized, initializing now"
 			initmanifest=true
 		else
