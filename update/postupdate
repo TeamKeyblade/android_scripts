@@ -12,8 +12,3 @@ if [ $SCRIPT_REPO == "pacman" ]; then
 	cd $REPOS/pacman-$REPO_PLATFORM/vendor/cm
 	./get-prebuilts
 fi
-
-if [ $SCRIPT_REPO == "raosp" ]; then
-	cd $REPOS/raosp-$REPO_PLATFORM/vendor/keyblade/scripts
-	./setup-repo
-fi
