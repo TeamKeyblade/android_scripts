@@ -17,14 +17,12 @@ where:
 	    aosp43 = Update Android Open Source Project 4.3
 	    aosp = Update Android Open Source Project 4.4
 	    carbon = Update Carbon
-	    cm9 = Update Cyanogenmod 9
-	    cm10 = Update Cyanogenmod 10
-	    cm = Update Cyanogenmod 10.2
+	    cm10 = Update Cyanogenmod 10.2
+	    cm10 = Update Cyanogenmod 11
 	    ev = Update Evervolv
 	    omni = Update omnirom
 	    pacman = Update PAC-man
 	    paranoid = Update ParanoidAndroid
-	    raosp = Update Rooted & Busyboxed AOSP
 	    all = Update all available repos and their manifests
 	    allthethings = Update all the repos
 
@@ -81,21 +79,19 @@ if [ ! "$AUTO" ]; then
 	echo "  5. Update the Android Open Source Project 4.3 repository"
 	echo "  6. Update the Android Open Source Project 4.4 repository"
 	echo "  7. Update the Carbon repository"
-	echo "  8. Update the Cyanogenmod 9 repository"
-	echo "  9. Update the Cyanogenmod 10 repository"
-	echo "  10. Update the Cyanogenmod 10.2 repository"
-	echo "  11. Update the Evervolv repository"
-	echo "  12. Update the omnirom repository"
-	echo "  13. Update the PAC-man repository"
-	echo "  14. Update the ParanoidAndroid repository"
-	echo "  15. Update the Rooted & Busyboxed AOSP repository"
-	echo "  16. Update all available repositories and their manifests"
-	echo "  17. Update all the repos!"
-	echo "  18. Update/add otherrepo"
-	echo "  19. Go Back"
+	echo "  8. Update the Cyanogenmod 10.2 repository"
+	echo "  9. Update the Cyanogenmod 11 repository"
+	echo "  10. Update the Evervolv repository"
+	echo "  11. Update the omnirom repository"
+	echo "  12. Update the PAC-man repository"
+	echo "  13. Update the ParanoidAndroid repository"
+	echo "  14. Update all available repositories and their manifests"
+	echo "  15. Update all the repos!"
+	echo "  16. Update/add otherrepo"
+	echo "  17. Go Back"
 	read setupanswer
 
-	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "19" ]; then
+	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
@@ -110,14 +106,12 @@ if [ "$PLATFORM" ]; then
 		echo "aosp43 = Update Android Open Source Project 4.3"
 		echo "aosp = Update Android Open Source Project 4.4"
 		echo "carbon = Update Carbon"
-		echo "cm9 = Update Cyanogenmod 9"
-		echo "cm10 = Update Cyanogenmod 10"
-		echo "cm = Update Cyanogenmod 10.2"
+		echo "cm10 = Update Cyanogenmod 10.2"
+		echo "cm = Update Cyanogenmod 11"
 		echo "evervolv = Update Evervolv"
 		echo "omni = Update omnirom"
 		echo "pacman = Update PAC-man"
 		echo "paranoid = Update ParanoidAndroid"
-		echo "raosp = Update Rooted & Busyboxed AOSP"
 		echo "all = Update all available repos and their manifests"
 		echo "allthethings = Update all the repos"
 		exit 0
@@ -143,43 +137,35 @@ if [ "$PLATFORM" ]; then
 		setupanswer="7"
 	fi
 
-	if [ $PLATFORM == "cm9" ]; then
+	if [ $PLATFORM == "cm10" ]; then
 		setupanswer="8"
 	fi
 
-	if [ $PLATFORM == "cm10" ]; then
+	if [ $PLATFORM == "cm" ]; then
 		setupanswer="9"
 	fi
 
-	if [ $PLATFORM == "cm" ]; then
+	if [ $PLATFORM == "ev" ] || [ $PLATFORM == "evervolv" ]; then
 		setupanswer="10"
 	fi
 
-	if [ $PLATFORM == "ev" ] || [ $PLATFORM == "evervolv" ]; then
+	if [ $PLATFORM == "omni" ]; then
 		setupanswer="11"
 	fi
 
-	if [ $PLATFORM == "omni" ]; then
+	if [ $PLATFORM == "pacman" ]; then
 		setupanswer="12"
 	fi
 
-	if [ $PLATFORM == "pacman" ]; then
+	if [ $PLATFORM == "paranoid" ]; then
 		setupanswer="13"
 	fi
 
-	if [ $PLATFORM == "paranoid" ]; then
+	if [ $PLATFORM == "all" ]; then
 		setupanswer="14"
 	fi
-
-	if [ $PLATFORM == "raosp" ]; then
-		setupanswer="15"
-	fi
-
-	if [ $PLATFORM == "all" ]; then
-		setupanswer="16"
-	fi
 	if [ $PLATFORM == "allthethings" ]; then
-		setupanswer="17"
+		setupanswer="15"
 	fi
 fi
 
@@ -204,14 +190,14 @@ fi
 initmanifest=""
 echo ""
 
-if [ $setupanswer == "16" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping"
-elif [ $setupanswer == "16" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
-		if [ $setupanswer == "17" ]; then
+		if [ $setupanswer == "15" ]; then
 			echo "$repo_name not initialized, initializing now"
 			initmanifest=true
 		else
@@ -357,26 +343,6 @@ fi
 
 if [ $setupanswer == "8" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_branch=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	done=true
-	setupcheck
-fi
-
-if [ $setupanswer == "9" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Cyanogenmod 10")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	done=true
-	setupcheck
-fi
-
-if [ $setupanswer == "10" ]; then
-	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 	repo_branch=$(echo "cm-10.2")
 	repo_name=$(echo "Cyanogenmod 10.2")
@@ -385,7 +351,17 @@ if [ $setupanswer == "10" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "11" ]; then
+if [ $setupanswer == "9" ]; then
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "11")
+	repo_branch=$(echo "cm-11.0")
+	repo_name=$(echo "Cyanogenmod 11")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	done=true
+	setupcheck
+fi
+
+if [ $setupanswer == "10" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jellybean-4.3")
@@ -395,7 +371,7 @@ if [ $setupanswer == "11" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "12" ]; then
+if [ $setupanswer == "11" ]; then
 	export SCRIPT_REPO=$(echo "omni")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3")
@@ -405,7 +381,7 @@ if [ $setupanswer == "12" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "13" ]; then
+if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "cm-10.2")
@@ -415,7 +391,7 @@ if [ $setupanswer == "13" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "14" ]; then
+if [ $setupanswer == "13" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "jb43")
@@ -425,17 +401,7 @@ if [ $setupanswer == "14" ]; then
 	setupcheck
 fi
 
-if [ $setupanswer == "15" ]; then
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
-	done=true
-	setupcheck
-fi
-
-if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
+if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "stable")
 	repo_branch=$(echo "stable")
@@ -472,23 +438,16 @@ if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "ics")
-	repo_branch=$(echo "ics")
-	repo_name=$(echo "Cyanogenmod 9")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	setupcheck
-
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
-	repo_name=$(echo "Cyanogenmod 10")
-	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	setupcheck
-
-	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 	repo_branch=$(echo "cm-10.2")
 	repo_name=$(echo "Cyanogenmod 10.2")
+	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
+	setupcheck
+
+	export SCRIPT_REPO=$(echo "cm")
+	export REPO_PLATFORM=$(echo "11")
+	repo_branch=$(echo "cm-11.0")
+	repo_name=$(echo "Cyanogenmod 11")
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	setupcheck
 
@@ -518,18 +477,11 @@ if [ $setupanswer == "16" ] || [ $setupanswer == "17" ]; then
 	repo_branch=$(echo "jellybean")
 	repo_name=$(echo "ParanoidAndroid")
 	repo_url=$(echo "http://github.com/ParanoidAndroid/android.git")
-	setupcheck
-
-	export SCRIPT_REPO=$(echo "raosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo "Rooted & Busyboxed AOSP")
-	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
 	setupcheck
 fi
 
-if [ $setupanswer == "18" ]; then
+if [ $setupanswer == "16" ]; then
 	clear
 
 	echo "Swordrune10's Android Kitchen!"
@@ -591,7 +543,7 @@ if [ $setupanswer == "18" ]; then
 	fi
 fi
 
-if [ $setupanswer == "19" ]; then
+if [ $setupanswer == "17" ]; then
 	echo ""
 	read -p "Returning to Main Menu, Press Enter to continue: " done
 	exit 0

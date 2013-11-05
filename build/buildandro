@@ -157,7 +157,7 @@ if [ ! $zip ]; then
 	exit 0
 fi
 
-if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ]; then
 
 	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $BUILDS/temp/zipout
@@ -207,7 +207,7 @@ echo "Copying to $buildfolder"
 echo "$zip -> $newzip"
 cat $zip > $buildfolder/$newzip
 
-if [ $SCRIPT_REPO == "aosp" ] || [ $SCRIPT_REPO == "raosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ]; then
 	echo "Cleaning up temporary folder"
 	cd $BUILDS
 	rm -r temp

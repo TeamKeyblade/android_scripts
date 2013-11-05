@@ -3,63 +3,6 @@ if [ $AUTHOR == "xml" ]; then
 
 rm -rf $LOCAL/xml/*
 
-cat << EOF > $LOCAL/xml/cm9-local_manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="ics" />
-  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="ics" />
-  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="ics" />
-  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="ics" />
-  <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="ics" />
-
-  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_hp" path="vendor/hp" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_semc" path="vendor/semc" revision="ics" />
-  <project name="TheMuppets/proprietary_vendor_zte" path="vendor/zte" revision="ics" />
-</manifest>
-EOF
-
-cat << EOF > $LOCAL/xml/cm10-local_manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="jellybean" />
-  <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="jellybean" />
-
-  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="jellybean" />
-  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="jellybean" />
-  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="jellybean" />
-  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="jellybean" />
-  <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="jellybean" />
-
-  <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_bn" path="vendor/bn" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_semc" path="vendor/semc" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="jellybean" />
-  <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="jellybean" />
-</manifest>
-EOF
-
 cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
@@ -107,6 +50,53 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
 </manifest>
 EOF
 
+cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="CyanogenMod/android_kernel_google_msm" path="kernel/google/msm" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_asus_flo" path="device/asus/flo" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_asus_deb" path="device/asus/deb" remote="github" revision="cm-10.2" />
+
+  <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-10.2" />
+
+  <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-10.2" />
+
+  <project name="CyanogenMod/android_kernel_samsung_manta" path="kernel/samsung/manta" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_manta" path="device/samsung/manta" remote="github" revision="cm-10.2" />
+
+  <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-10.2" />
+
+  <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_amazon" path="vendor/amazon" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_bn" path="vendor/bn" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_hardkernel" path="vendor/hardkernel" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" revision="cm-11.0" />
+  <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_oppo" path="vendor/oppo" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="cm-10.2" />
+</manifest>
+EOF
+
 cat << EOF > $LOCAL/xml/aosp-jb-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
@@ -126,14 +116,15 @@ cat << EOF > $LOCAL/xml/aosp-jb-local_manifest.xml
 </manifest>
 EOF
 
-cat << EOF > $LOCAL/xml/raosp-jb-local_manifest.xml
+cat << EOF > $LOCAL/xml/aosp-kitkat-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote  name="github"
+           fetch="http://github.com/" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" remote="github" revision="cm-10.2" />
-  <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" remote="github" revision="cm-10.2" />
