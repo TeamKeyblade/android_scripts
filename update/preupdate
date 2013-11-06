@@ -42,7 +42,7 @@ fi
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
 	rm -rf vendor/cm
 	echo ""
-	echo "Updating Cyanogenmod 10.2's local_manifests folder"
+	echo "Updating Cyanogenmod 11's local_manifests folder"
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/cm11-local_manifest.xml $localmanifests/proprietary.xml
