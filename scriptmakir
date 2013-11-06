@@ -94,7 +94,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_hardkernel" path="vendor/hardkernel" revision="cm-10.2" />
-  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_imgtec" path="vendor/imgtec" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" revision="cm-10.2" />
