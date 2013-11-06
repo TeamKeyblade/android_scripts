@@ -257,7 +257,7 @@ if ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo ""
 	echo "Updating $repo_name repository"
 	repo sync -n -j $NETWORKSYNC
-	repo sync -l -d -j $LOCALSYNC
+	repo sync -l -j $LOCALSYNC
 
 	$LOCAL/config/gitpuller
 
