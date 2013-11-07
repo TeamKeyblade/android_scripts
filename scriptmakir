@@ -103,7 +103,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_oppo" path="vendor/oppo" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="cm-10.2" />
-  <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="cm-10.2" />
 </manifest>
 EOF
