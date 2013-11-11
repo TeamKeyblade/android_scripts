@@ -26,8 +26,8 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
 
   <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-10.2" />
-  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-10.2" />
 
   <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.2" />
@@ -79,9 +79,9 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="CyanogenMod/android_device_samsung_manta" path="device/samsung/manta" remote="github" revision="cm-10.2" />
 
   <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="cm-11.0" />
-  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-10.2" />
-  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-11.0" />
 
   <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.2" />
@@ -102,7 +102,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_nxp" path="vendor/nxp" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_oppo" path="vendor/oppo" revision="cm-10.2" />
-  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_sony" path="vendor/sony" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_widevine" path="vendor/widevine" revision="cm-10.2" />
 </manifest>
