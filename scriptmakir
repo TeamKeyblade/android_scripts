@@ -66,7 +66,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="TeamKeyblade/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-11.0" />
 
   <project name="CyanogenMod/android_kernel_lge_hammerhead" path="kernel/lge/hammerhead" remote="github" revision="cm-11.0" />
-  <!-- <project name="CyanogenMod/android_device_lge_hammerhead" path="device/lge/hammerhead" remote="github" revision="cm-11.0" /> -->
+  <project name="CyanogenMod/android_device_lge_hammerhead" path="device/lge/hammerhead" remote="github" revision="cm-11.0" />
 
   <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-11.0" />
