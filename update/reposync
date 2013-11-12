@@ -373,8 +373,8 @@ fi
 
 if [ $setupanswer == "11" ]; then
 	export SCRIPT_REPO=$(echo "omni")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "android-4.4")
 	repo_name=$(echo "omnirom")
 	repo_url=$(echo "http://github.com/omnirom/android.git")
 	done=true
