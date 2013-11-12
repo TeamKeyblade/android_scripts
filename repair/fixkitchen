@@ -123,7 +123,7 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $addrepo == "4" ]; then
 		script_repo=$(echo "carbon")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "Carbon")
 		adddevicetorepo
 	fi
@@ -144,14 +144,14 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $addrepo == "7" ]; then
 		script_repo=$(echo "evervolv")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "Evervolv")
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "8" ]; then
 		script_repo=$(echo "omni")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "omnirom")
 		adddevicetorepo
 	fi
@@ -230,7 +230,7 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "4" ]; then
 		export SCRIPT_REPO=$(echo "carbon")
-		export REPO_PLATFORM=$(echo "jb")
+		export REPO_PLATFORM=$(echo "kitkat")
 		repo_name=$(echo "Carbon")
 		purgelocalmanifest
 	fi
@@ -251,14 +251,14 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "7" ]; then
 		export SCRIPT_REPO=$(echo "evervolv")
-		export REPO_PLATFORM=$(echo "jb")
+		export REPO_PLATFORM=$(echo "kitkat")
 		repo_name=$(echo "Evervolv")
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "8" ]; then
 		export SCRIPT_REPO=$(echo "omni")
-		export REPO_PLATFORM=$(echo "jb")
+		export REPO_PLATFORM=$(echo "kitkat")
 		repo_name=$(echo "omnirom")
 		purgelocalmanifest
 	fi
@@ -352,7 +352,7 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $modify == "4" ]; then
 		script_repo=$(echo "carbon")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "Carbon")
 	fi
 
@@ -371,13 +371,13 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $modify == "7" ]; then
 		script_repo=$(echo "evervolv")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "Evervolv")
 	fi
 
 	if [ $modify == "8" ]; then
 		script_repo=$(echo "omni")
-		repo_platform=$(echo "jb")
+		repo_platform=$(echo "kitkat")
 		repo_name=$(echo "omnirom")
 	fi
 

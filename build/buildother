@@ -53,7 +53,7 @@ fi
 
 if [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "carbon")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "5" ]; then
@@ -68,12 +68,12 @@ fi
 
 if [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "omni")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "9" ]; then
@@ -135,7 +135,7 @@ while [ $device == "list" ]; do
 	fi
 
 	if [ $SCRIPT_REPO == "carbon" ]; then
-		cat $REPOS/carbon-jb/vendor/carbon/vendorsetup.sh | grep "add_lunch_combo" | \
+		cat $REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*carbon_//' | sed 's/-userdebug//' | sed "/combo.*/d"	
 	fi
 
@@ -150,12 +150,12 @@ while [ $device == "list" ]; do
 	fi
 
 	if [ $SCRIPT_REPO == "evervolv" ]; then
-		cat $REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep "add_lunch_combo" | \
+		cat $REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*ev_//' | sed 's/-eng//' | sed "/combo.*/d"
 	fi
 
 	if [ $SCRIPT_REPO == "omni" ]; then
-		for vendorsetup in `ls $REPOS/omni-jb/device/*/*/vendorsetup.sh 2> /dev/null`
+		for vendorsetup in `ls $REPOS/omni-kitkat/device/*/*/vendorsetup.sh 2> /dev/null`
 		do
 			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*custom_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
@@ -212,7 +212,7 @@ fi
 if [ $SCRIPT_REPO == "carbon" ]; then
 	if ( ! sed -e 's/.*carbon_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/carbon-jb/vendor/carbon/vendorsetup.sh | grep -q $device ); then
+	$REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -232,7 +232,7 @@ fi
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep -q $device ); then
+	$REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep -q $device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -243,7 +243,7 @@ fi
 if [ $SCRIPT_REPO == "omni" ]; then
 	if ( ! sed -e 's/.*custom_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/omni-jb/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/omni-kitkat/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done

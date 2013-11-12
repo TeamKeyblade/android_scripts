@@ -53,7 +53,7 @@ fi
 
 if [ $version == "4" ]; then
 	export SCRIPT_REPO=$(echo "carbon")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "5" ]; then
@@ -68,12 +68,12 @@ fi
 
 if [ $version == "7" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "8" ]; then
 	export SCRIPT_REPO=$(echo "omni")
-	export REPO_PLATFORM=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
 fi
 
 if [ $version == "9" ]; then
@@ -115,21 +115,10 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "jb" ]; then
+if [ $SCRIPT_REPO == "aosp" ]; then
 	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-jb/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
-		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
-	fi	
-fi
-
-if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "kitkat" ]; then
-	if ( ! sed -e 's/.*aosp_//g' \
-	-e 's/-userdebug//' \
-	$REPOS/aosp-kitkat/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/aosp-$REPO_PLATFORM/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -140,7 +129,7 @@ fi
 if [ $SCRIPT_REPO == "carbon" ]; then
 	if ( ! sed -e 's/.*carbon_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/carbon-jb/vendor/carbon/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -160,7 +149,7 @@ fi
 if [ $SCRIPT_REPO == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/evervolv-jb/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -171,7 +160,7 @@ fi
 if [ $SCRIPT_REPO == "omni" ]; then
 	if ( ! sed -e 's/.*custom_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/omni-jb/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/omni-kitkat/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done

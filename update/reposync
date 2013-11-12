@@ -324,7 +324,7 @@ fi
 if [ $setupanswer == "6" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
-	repo_branch=$(echo "kitkat-release")
+	repo_branch=$(echo "android-4.4_r1")
 	repo_name=$(echo "Android Open Source Project")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
@@ -431,8 +431,8 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "carbon")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb3")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kk")
 	repo_name=$(echo "Carbon")
 	repo_url=$(echo "http://github.com/CarbonDev/android.git")
 	setupcheck
@@ -452,15 +452,15 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kitkat")
 	repo_name=$(echo "Evervolv")
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "omni")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "android-4.4")
 	repo_name=$(echo "omnirom")
 	repo_url=$(echo "http://github.com/omnirom/android.git")
 	setupcheck
