@@ -363,8 +363,8 @@ fi
 
 if [ $setupanswer == "10" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jellybean-4.3")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kitkat")
 	repo_name=$(echo "Evervolv")
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	done=true
