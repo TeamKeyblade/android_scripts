@@ -333,8 +333,8 @@ fi
 
 if [ $setupanswer == "7" ]; then
 	export SCRIPT_REPO=$(echo "carbon")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb3")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kk")
 	repo_name=$(echo "Carbon")
 	repo_url=$(echo "http://github.com/CarbonDev/android.git")
 	done=true
