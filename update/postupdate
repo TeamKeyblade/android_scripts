@@ -14,7 +14,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 		git revert c57c15503c3a3222e26d874c7866c06750d901e3
 		git revert 943b70f35055d0e9c33015d9334b4b3c85812a45
 
-		mv arch/arm/configs/tuna_defconfig arch/arm/configs/cyanogenmod_tuna_defconfig
+		mv arch/arm/configs/fancykernel_big_tuna_defconfig arch/arm/configs/cyanogenmod_tuna_defconfig
 	fi
 fi
 
