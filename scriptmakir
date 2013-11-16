@@ -80,7 +80,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
 
   <project name="CyanogenMod/android_kernel_samsung_tuna" path="kernel/samsung/tuna" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_tuna" path="device/samsung/tuna" remote="github" revision="cm-11.0" />
-  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_samsung_maguro" path="device/samsung/maguro" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-11.0" />
 
