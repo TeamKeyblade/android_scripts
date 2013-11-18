@@ -91,7 +91,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_bn" path="vendor/bn" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="cm-11.0" />
-  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_hardkernel" path="vendor/hardkernel" revision="cm-10.2" />
   <project name="TheMuppets/proprietary_vendor_htc" path="vendor/htc" revision="cm-11.0" />
@@ -135,7 +135,7 @@ cat << EOF > $LOCAL/xml/aosp-kitkat-local_manifest.xml
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" remote="github" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" remote="github" revision="cm-11.0" />
-  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" remote="github" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" remote="github" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_invensense" path="vendor/invensense" remote="github" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_nvidia" path="vendor/nvidia" remote="github" revision="cm-11.0" />
