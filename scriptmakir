@@ -63,7 +63,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
 
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-11.0" />
-  <project name="TeamKeyblade/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-11.0" />
+  <project name="CyanogenMod/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-11.0" />
 
   <project name="CyanogenMod/android_kernel_lge_hammerhead" path="kernel/lge/hammerhead" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_lge_hammerhead" path="device/lge/hammerhead" remote="github" revision="cm-11.0" />
