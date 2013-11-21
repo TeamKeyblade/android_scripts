@@ -1,7 +1,7 @@
 #!/bin/bash
 # Initial setup
 if [ ! "$INIT" ]; then
-	export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
+	export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 	cd $(dirname $0)
 	export SCRIPT=$(echo "buildauto")
 	../headerfile
@@ -45,13 +45,18 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# Buildoutput folder init
-if ( ! find $LOCAL/config/outfile &> /dev/null ); then
-	outfile=$(echo $LOCAL/..)
+# Buildoutput if
+if ( ! find $LOCAL/config/toggleoutfile &> /dev/null ); then
+	toggleout=""
 else
-	outfile=$(cat $LOCAL/config/outfile | head -n 1)
-fi
+	if ( ! find $LOCAL/config/outfile &> /dev/null ); then
+		outfile=$(echo $LOCAL/..)
+	else
+		outfile=$(cat $LOCAL/config/outfile | head -n 1)
+	fi
 
+	toggleout="2>&1 | tee -a $outfile/buildoutput-$(date +%Y%m%d).txt"
+fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Repo folder setup
@@ -94,7 +99,7 @@ sed -i "/EOF/d" $LOCAL/config/$autodevice
 
 # Sync repos
 INIT=""
-reposync -u kitchen > $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+reposync -u kitchen "$toggleout"
 repocountdown=""
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,10 +113,10 @@ while true; do
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
 		export REPO_SYNC=$( cat $LOCAL/config/scriptautosync | sed -n "$repocountdown"p )
 		INIT=""
-		reposync -u $REPO_SYNC >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+		reposync -u $REPO_SYNC "$toggleout"
 	else
 		cd "$REPOS/otherrepo/${scriptfolder[$repocountdown]}"
-		repo sync -j $NETWORKSYNC >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+		repo sync -j $NETWORKSYNC "$toggleout"
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 done
@@ -159,11 +164,11 @@ while true; do
 
 		export SCRIPT_DEVICE=$( echo "${scriptdevice[$devicecountdown]}" )
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		buildandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+		buildandro "$toggleout"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# Publish Build ( if possible )
 		if ( find $PUBLISH -maxdepth 1 &> /dev/null); then
-			publishandro >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+			publishandro "$toggleout"
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	done
@@ -175,10 +180,10 @@ done
 
 # Put computer to sleep ( if setup to do so )
 if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
-	echo "" >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
-	echo "Waiting for ten minutes! this is not a countdown.." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	echo "" "$toggleout"
+	echo "Waiting for ten minutes! this is not a countdown.." "$toggleout"
 	sleep 10m
-	echo "Sleep..." >> $outfile/buildoutput-$(date +%Y%m%d).txt 2>&1
+	echo "Sleep..." "$toggleout"
 
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )

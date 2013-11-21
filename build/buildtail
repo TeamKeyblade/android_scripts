@@ -7,8 +7,7 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
-if ( ! cat $LOCAL/config/outfile &> /dev/null ) \
-|| [ ! "$(cat $LOCAL/config/outfile | head -n 1)" ]; then
+if ( ! find $LOCAL/config/outfile &> /dev/null ); then
 	outfile=$(echo $LOCAL/..)
 else
 	outfile=$(cat $LOCAL/config/outfile | head -n 1)
