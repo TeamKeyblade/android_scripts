@@ -58,7 +58,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="CyanogenMod/android_kernel_google_msm" path="kernel/google/msm" remote="github" revision="cm-11.0" />
-  <project name="CyanogenMod/android_device_asus_flo" path="device/asus/flo" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_asus_flo" path="device/asus/flo" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_asus_deb" path="device/asus/deb" remote="github" revision="cm-10.2" />
 
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-11.0" />
