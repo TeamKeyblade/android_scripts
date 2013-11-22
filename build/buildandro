@@ -151,7 +151,7 @@ fi
 cd $repofolder/out/target/product/$SCRIPT_DEVICE
 zip=$( find *$SCRIPT_DEVICE*.zip 2> /dev/null )
 
-if [ ! $zip ]; then
+if [ ! "$zip" ]; then
 	echo "Build messed up! Returning to build menu"
 	read -p "Press Enter to continue: " done
 	exit 0
@@ -218,4 +218,7 @@ md5sum $newzip
 md5sum $newzip > $newzip.md5sum
 
 echo "Finished!"
-read -p "Press Enter to continue: " done
+
+if [ ! $AUTO ]; then
+	read -p "Press Enter to continue: " done
+fi
