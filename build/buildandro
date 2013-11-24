@@ -109,20 +109,6 @@ if [ ! "$noccache" ]; then
 fi
 
 #build android
-if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $SCRIPT_DEVICE &> /dev/null ); then
-	lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
-	| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
-fi
-
-if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
-	lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
-fi
-
-if [ ! "$lunch_device" ]; then
-		echo "Repository not supported!"
-		read -p "Press Enter to continue: " done
-		exit 0
-fi
 
 if [ $SCRIPT_REPO == "cm" ]; then
 	brunch $SCRIPT_DEVICE -j $CPU_POWER_TOTAL
@@ -143,6 +129,21 @@ elif [ $SCRIPT_REPO == "paranoid" ]; then
 	lunch pa_$SCRIPT_DEVICE-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
 else
+	if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $SCRIPT_DEVICE &> /dev/null ); then
+		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
+		| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+	fi
+
+	if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
+		lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+	fi
+
+	if [ ! "$lunch_device" ]; then
+			echo "Repository not supported!"
+			read -p "Press Enter to continue: " done
+			exit 0
+	fi
+
 	lunch $lunch_device
 	make otapackage -j $CPU_POWER_TOTAL
 fi
