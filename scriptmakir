@@ -9,13 +9,11 @@ cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
   <project name="CyanogenMod/android_kernel_google_msm" path="kernel/google/msm" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_flo" path="device/asus/flo" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_deb" path="device/asus/deb" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-10.2" />
 
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_asus_tilapia" path="device/asus/tilapia" remote="github" revision="cm-10.2" />
-
-  <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
-  <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-10.2" />
 
   <project name="CyanogenMod/android_kernel_samsung_crespo" path="kernel/samsung/crespo" remote="github" revision="cm-10.2" />
   <project name="CyanogenMod/android_device_samsung_crespo" path="device/samsung/crespo" remote="github" revision="cm-10.2" />
@@ -60,6 +58,7 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="CyanogenMod/android_kernel_google_msm" path="kernel/google/msm" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_asus_flo" path="device/asus/flo" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_asus_deb" path="device/asus/deb" remote="github" revision="cm-10.2" />
+  <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-11.0" />
 
   <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="cm-11.0" />
@@ -67,9 +66,6 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
 
   <project name="CyanogenMod/android_kernel_lge_hammerhead" path="kernel/lge/hammerhead" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_lge_hammerhead" path="device/lge/hammerhead" remote="github" revision="cm-11.0" />
-
-  <project name="CyanogenMod/lge-kernel-mako" path="kernel/lge/mako" remote="github" revision="cm-10.2" />
-  <project name="CyanogenMod/android_device_lge_mako" path="device/lge/mako" remote="github" revision="cm-11.0" />
 
   <project name="CyanogenMod/android_kernel_samsung_crespo" path="kernel/samsung/crespo" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_crespo" path="device/samsung/crespo" remote="github" revision="cm-11.0" />
