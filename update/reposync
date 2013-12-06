@@ -315,7 +315,7 @@ if [ $setupanswer == "5" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo "Android Open Source Project")
+	repo_name=$(echo "Android Open Source Project 4.3")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
 	setupcheck
@@ -325,7 +325,7 @@ if [ $setupanswer == "6" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "android-4.4_r1.2")
-	repo_name=$(echo "Android Open Source Project")
+	repo_name=$(echo "Android Open Source Project 4.4")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
 	setupcheck
@@ -419,14 +419,14 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo "Android Open Source Project")
+	repo_name=$(echo "Android Open Source Project 4.3")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "android-4.4_r1.2")
-	repo_name=$(echo "Android Open Source Project")
+	repo_name=$(echo "Android Open Source Project 4.4")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcheck
 
