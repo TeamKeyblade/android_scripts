@@ -324,7 +324,7 @@ fi
 if [ $setupanswer == "6" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
-	repo_branch=$(echo "android-4.4_r1.2")
+	repo_branch=$(echo "android-4.4.1_r1")
 	repo_name=$(echo "Android Open Source Project 4.4")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	done=true
@@ -425,7 +425,7 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
-	repo_branch=$(echo "android-4.4_r1.2")
+	repo_branch=$(echo "android-4.4.1_r1")
 	repo_name=$(echo "Android Open Source Project 4.4")
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	setupcheck
