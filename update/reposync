@@ -23,7 +23,7 @@ where:
 	    omni = Update omnirom
 	    pacman = Update PAC-man
 	    paranoid = Update ParanoidAndroid
-	    all = Update all available repos and their manifests
+	    all = Update all available repos
 	    allthethings = Update all the repos
 
 	    Example: reposync -u cm-10.2
@@ -85,7 +85,7 @@ if [ ! "$AUTO" ]; then
 	echo "  11. Update the omnirom repository"
 	echo "  12. Update the PAC-man repository"
 	echo "  13. Update the ParanoidAndroid repository"
-	echo "  14. Update all available repositories and their manifests"
+	echo "  14. Update all available repositories"
 	echo "  15. Update all the repos!"
 	echo "  16. Update/add otherrepo"
 	echo "  17. Go Back"
@@ -112,7 +112,7 @@ if [ "$PLATFORM" ]; then
 		echo "omni = Update omnirom"
 		echo "pacman = Update PAC-man"
 		echo "paranoid = Update ParanoidAndroid"
-		echo "all = Update all available repos and their manifests"
+		echo "all = Update all available repos"
 		echo "allthethings = Update all the repos"
 		exit 0
 	fi
@@ -192,7 +192,7 @@ echo ""
 
 if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping"
-elif [ $setupanswer == "14" ] && ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+elif ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
