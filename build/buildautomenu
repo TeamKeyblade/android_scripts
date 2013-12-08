@@ -242,7 +242,7 @@ if [ $buildautoconfig == "5" ]; then
 fi
 
 if [ $buildautoconfig == "6" ]; then
-	if ( ! find $LOCAL/config/sleepybuildserver ); then
+	if ( ! find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 		cd $LOCAL/config
 		echo "How long would you like for the build server to sleep after building?"
 		echo "The number being inputted is in hours"
