@@ -303,8 +303,8 @@ fi
 
 if [ $setupanswer == "4" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb-mr2")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kitkat")
 	repo_name=$(echo "Android Open Kang Project")
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
 	done=true
@@ -383,8 +383,8 @@ fi
 
 if [ $setupanswer == "12" ]; then
 	export SCRIPT_REPO=$(echo "pacman")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "cm-10.2")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "pac-4.4")
 	repo_name=$(echo "PAC-man")
 	repo_url=$(echo "http://github.com/PAC-man/android.git")
 	done=true
@@ -410,8 +410,8 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kitkat")
 	repo_name=$(echo "Android Open Kang Project")
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
 	setupcheck
@@ -466,8 +466,8 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	setupcheck
 
 	export SCRIPT_REPO=$(echo "pacman")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "cm-10.2")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "pac-4.4")
 	repo_name=$(echo "PAC-man")
 	repo_url=$(echo "http://github.com/PAC-man/android.git")
 	setupcheck
