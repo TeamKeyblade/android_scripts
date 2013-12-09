@@ -187,8 +187,19 @@ if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )
+	timekind=$( cat $LOCAL/config/sleepybuildserver | sed -n 3p )
 
-	echo $passy | sudo -S rtcwake -n -l -m mem -s $sleeptime > $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
-	sleep 30
-	echo $passy | sudo -S rtcwake -l -m mem -s $sleeptime >> $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
+	if [ $timekind == "specifictime" ]; then
+		rawsleeptime=$((`date +%s -d $sleeptime` + 24*60*60))
+
+		echo $passy | sudo -S rtcwake -n -l -m mem -t $rawsleeptime > $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
+		sleep 30
+		echo $passy | sudo -S rtcwake -l -m mem -t $rawsleeptime >> $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
+	elif [ $timekind == "hoursfromnow" ]; then
+		rawsleeptime=$((($sleeptime * 60) * 60))
+
+		echo $passy | sudo -S rtcwake -n -l -m mem -s $rawsleeptime > $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
+		sleep 30
+		echo $passy | sudo -S rtcwake -l -m mem -s $rawsleeptime >> $outfile/sleeptime-$(date +%Y%m%d).txt 2>&1
+	fi
 fi
