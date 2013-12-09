@@ -60,7 +60,7 @@ if [ $buildautoconfig == "2" ]; then
 		echo ""
 		echo "You did not make a proper selection, try again!"
 		read -p "Press Enter to continue: " done
-		menu
+		addautorepo
 	fi
 
 	if [ $version == "1" ]; then
@@ -244,12 +244,49 @@ fi
 if [ $buildautoconfig == "6" ]; then
 	if ( ! find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 		cd $LOCAL/config
-		echo "How long would you like for the build server to sleep after building?"
-		echo "The number being inputted is in hours"
-		read sleeptime
 
-		sleeptime=$((($sleeptime * 60) * 60))
-		echo $sleeptime > sleepybuildserver
+		sleepymenu(){
+
+		echo "Swordrune10's Android Kitchen!"
+		echo "=============================="
+		echo "Do you want the computer to sleep for a"
+		echo "certain amount of hours or wake up at a certain time?"
+		echo "  1. Wake up at a certain time"
+		echo "  2. Certain amount of hours"
+		echo "  3. Go Back"
+		echo ""
+		read -p "Which one would you like to do?: " kindoftime
+
+		if [ ! "$kindoftime" ] || ( echo $kindoftime | grep -q [A-Za-z] ) || [ $kindoftime -gt "3" ]; then
+			echo ""
+			echo "You did not make a proper selection, try again!"
+			read -p "Press Enter to continue: " done
+			sleepymenu
+		fi
+
+		if [ $kindoftime == "1" ]; then
+			timekind=$(echo "specifictime")
+			echo "What time do you want the build server to wake up at the next day?"
+			echo "24 hours configuration, Example: for 2pm put 14:00, for 7am put 07:00"
+			read sleeptime
+
+			echo $sleeptime > sleepybuildserver
+		fi
+
+		if [ $kindoftime == "2" ]; then
+			timekind=$(echo "hoursfromnow")
+			echo "How long would you like for the build server to sleep after building?"
+			echo "The number being inputted is in hours"
+			read sleeptime
+
+			echo $sleeptime > sleepybuildserver
+		fi
+
+		if [ $kindoftime == "3" ]; then
+			echo ""
+			read -p "Press Enter to continue: " done
+			menu
+		fi
 
 		echo "Please type in your user's password, so the build server can sleep"
 		while true; do
@@ -265,9 +302,13 @@ if [ $buildautoconfig == "6" ]; then
 
 		echo
 		echo $passy >> sleepybuildserver
+		echo $timekind >> sleepybuildserver
 
 		echo "Auto Builder's sleep function is now on!"
 		read -p "Press Enter to continue: " done
+		
+		}
+		sleepymenu
 	else
 		rm -f $LOCAL/config/sleepybuildserver
 		echo "Auto Builder's sleep function is now off!"
