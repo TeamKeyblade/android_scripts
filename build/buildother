@@ -37,53 +37,53 @@ if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "1
 fi
 
 if [ $version == "1" ]; then
-	export SCRIPT_REPO=$(echo "aokp")
-	export REPO_PLATFORM=$(echo "jb")
+	repodefine=$(echo "aokp")
+	. repodefiner
 fi
 
 if [ $version == "2" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
+	repodefine=$(echo "aosp43")
+	. repodefiner
 fi
 
 if [ $version == "3" ]; then
-	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "kitkat")
+	repodefine=$(echo "aosp")
+	. repodefiner
 fi
 
 if [ $version == "4" ]; then
-	export SCRIPT_REPO=$(echo "carbon")
-	export REPO_PLATFORM=$(echo "kitkat")
+	repodefine=$(echo "carbon")
+	. repodefiner
 fi
 
 if [ $version == "5" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
+	repodefine=$(echo "cm10")
+	. repodefiner
 fi
 
 if [ $version == "6" ]; then
-	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "11")
+	repodefine=$(echo "cm")
+	. repodefiner
 fi
 
 if [ $version == "7" ]; then
-	export SCRIPT_REPO=$(echo "evervolv")
-	export REPO_PLATFORM=$(echo "kitkat")
+	repodefine=$(echo "evervolv")
+	. repodefiner
 fi
 
 if [ $version == "8" ]; then
-	export SCRIPT_REPO=$(echo "omni")
-	export REPO_PLATFORM=$(echo "kitkat")
+	repodefine=$(echo "omni")
+	. repodefiner
 fi
 
 if [ $version == "9" ]; then
-	export SCRIPT_REPO=$(echo "pacman")
-	export REPO_PLATFORM=$(echo "jb")
+	repodefine=$(echo "pacman")
+	. repodefiner
 fi
 
 if [ $version == "10" ]; then
-	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
+	repodefine=$(echo "paranoid")
+	. repodefiner
 fi
 
 if [ $version == "11" ]; then
@@ -92,7 +92,7 @@ if [ $version == "11" ]; then
 	exit 0
 fi
 
-if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
+if ( ! find $REPOS/$script_repo-$repo_platform -maxdepth 1 &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
 	read -p "Press Enter to continue: " done
@@ -106,69 +106,69 @@ echo "=============================="
 echo "Please type in which device you would like to build"
 echo "Type in list to see all supported devices"
 echo "Type in exit to go back"
-read device
+read script_device
 
-if [ ! "$device" ]; then
+if [ ! "$script_device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
 	menu
 fi
 
-while [ $device == "list" ]; do
+while [ $script_device == "list" ]; do
 	clear
 
 	echo "Device List"
 	echo "==========="
 
-	if [ $SCRIPT_REPO == "aokp" ]; then
-		cat $REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep "add_lunch_combo" | \
+	if [ $script_repo == "aokp" ]; then
+		cat $REPOS/aokp-$repo_platform/vendor/aokp/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*aokp_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
-	if [ $SCRIPT_REPO == "aosp" ]; then
-		for vendorsetup in `ls $REPOS/aosp-$REPO_PLATFORM/device/*/*/vendorsetup.sh 2> /dev/null`
+	if [ $script_repo == "aosp" ]; then
+		for vendorsetup in `ls $REPOS/aosp-$repo_platform/script_device/*/*/vendorsetup.sh 2> /dev/null`
 		do
 			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*aosp_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
 		done
 	fi
 
-	if [ $SCRIPT_REPO == "carbon" ]; then
-		cat $REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep "add_lunch_combo" | \
+	if [ $script_repo == "carbon" ]; then
+		cat $REPOS/carbon-$repo_platform/vendor/carbon/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*carbon_//' | sed 's/-userdebug//' | sed "/combo.*/d"	
 	fi
 
-	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
+	if [ $script_repo == "cm" ] && [ $repo_platform == "10.2" ]; then
 		cat $LOCAL/config/cm-master-list | grep "10.2" | sed "s/cm_//" | \
 		sed "/#/d" | sed "/^$/d" | sed 's/-userdebug//' | sed "s/cm-10.2.*//"
 	fi
 
-	if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
+	if [ $script_repo == "cm" ] && [ $repo_platform == "11" ]; then
 		cat $LOCAL/config/cm-master-list | grep "11.0" | sed "s/cm_//" | \
 		sed "/#/d" | sed "/^$/d" | sed 's/-userdebug//' | sed "s/cm-11.0.*//"
 	fi
 
-	if [ $SCRIPT_REPO == "evervolv" ]; then
-		cat $REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep "add_lunch_combo" | \
+	if [ $script_repo == "evervolv" ]; then
+		cat $REPOS/evervolv-$repo_platform/vendor/ev/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*ev_//' | sed 's/-eng//' | sed "/combo.*/d"
 	fi
 
-	if [ $SCRIPT_REPO == "omni" ]; then
-		for vendorsetup in `ls $REPOS/omni-kitkat/device/*/*/vendorsetup.sh 2> /dev/null`
+	if [ $script_repo == "omni" ]; then
+		for vendorsetup in `ls $REPOS/omni-$repo_platform/script_device/*/*/vendorsetup.sh 2> /dev/null`
 		do
 			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*custom_//' | \
 			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
 		done
 	fi
 
-	if [ $SCRIPT_REPO == "pacman" ]; then
-		cat $REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep "add_lunch_combo" | \
+	if [ $script_repo == "pacman" ]; then
+		cat $REPOS/pacman-$repo_platform/vendor/pac/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*pac_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
-	if [ $SCRIPT_REPO == "paranoid" ]; then
-		cat $REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep "add_lunch_combo" | \
+	if [ $script_repo == "paranoid" ]; then
+		cat $REPOS/paranoid-$repo_platform/vendor/pa/vendorsetup.sh | grep "add_lunch_combo" | \
 		sed 's/.*pa_//' | sed 's/-userdebug//' | sed "/combo.*/d"
 	fi
 
@@ -179,18 +179,18 @@ while [ $device == "list" ]; do
 	echo "Please type in which device you would like to build"
 	echo "Type in list to see all supported devices"
 	echo "Type in exit to go to back"
-	read device
+	read script_device
 done
 
-if [ $device == "exit" ]; then
+if [ $script_device == "exit" ]; then
 	read -p "Press Enter to continue: " done
 	exit 0
 fi
 
-if [ $SCRIPT_REPO == "aokp" ]; then
+if [ $script_repo == "aokp" ]; then
 	if ( ! sed -e 's/.*aokp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q $device ); then
+	$REPOS/aokp-$repo_platform/vendor/aokp/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -198,10 +198,10 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "aosp" ]; then
+if [ $script_repo == "aosp" ]; then
 	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
+	$REPOS/aosp-$repo_platform/device/*/$script_device/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -209,10 +209,10 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	fi	
 fi
 
-if [ $SCRIPT_REPO == "carbon" ]; then
+if [ $script_repo == "carbon" ]; then
 	if ( ! sed -e 's/.*carbon_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep -q $device ); then
+	$REPOS/carbon-$repo_platform/vendor/carbon/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -220,8 +220,8 @@ if [ $SCRIPT_REPO == "carbon" ]; then
 	fi	
 fi
 
-if [ $SCRIPT_REPO == "cm" ]; then
-	if ( ! cat $LOCAL/config/cm-master-list | grep -q $device ); then
+if [ $script_repo == "cm" ]; then
+	if ( ! cat $LOCAL/config/cm-master-list | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -229,10 +229,10 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "evervolv" ]; then
+if [ $script_repo == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep -q $device ); then
+	$REPOS/evervolv-$repo_platform/vendor/ev/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -240,10 +240,10 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "omni" ]; then
+if [ $script_repo == "omni" ]; then
 	if ( ! sed -e 's/.*custom_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/omni-kitkat/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
+	$REPOS/omni-$repo_platform/device/*/$script_device/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -251,10 +251,10 @@ if [ $SCRIPT_REPO == "omni" ]; then
 	fi	
 fi
 
-if [ $SCRIPT_REPO == "pacman" ]; then
+if [ $script_repo == "pacman" ]; then
 	if ( ! sed -e 's/.*pac_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep -q $device ); then
+	$REPOS/pacman-$repo_platform/vendor/pac/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -262,10 +262,10 @@ if [ $SCRIPT_REPO == "pacman" ]; then
 	fi
 fi
 
-if [ $SCRIPT_REPO == "paranoid" ]; then
+if [ $script_repo == "paranoid" ]; then
 	if ( ! sed -e 's/.*pa_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep -q $device ); then
+	$REPOS/paranoid-$repo_platform/vendor/pa/vendorsetup.sh | grep -q $script_device ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -273,10 +273,7 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 	fi
 fi
 
-clear
-
-export SCRIPT_DEVICE=$(echo $device)
-buildandro
+. buildandro
 
 exit 0
 }

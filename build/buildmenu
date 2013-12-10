@@ -37,43 +37,43 @@ if [ ! "$buildanswer" ] || ( echo $buildanswer | grep -q [A-Za-z] ) || [ $builda
 fi
 
 if [ $buildanswer == "1" ]; then
-	export BUILDDEVICEMENU="nexus4menu"
-	builddevice
+	builddevicemenu="nexus4menu"
+	. builddevice
 fi
 
 if [ $buildanswer == "2" ]; then
-	export BUILDDEVICEMENU="nexus5menu"
-	builddevice
+	builddevicemenu="nexus5menu"
+	. builddevice
 fi
 
 if [ $buildanswer == "3" ]; then
-	export BUILDDEVICEMENU="nexus7menu"
-	builddevice
+	builddevicemenu="nexus7menu"
+	. builddevice
 fi
 
 if [ $buildanswer == "4" ]; then
-	export BUILDDEVICEMENU="nexus10menu"
-	builddevice
+	builddevicemenu="nexus10menu"
+	. builddevice
 fi
 
 if [ $buildanswer == "5" ]; then
-	export BUILDDEVICEMENU="gnexusmenu"
-	builddevice
+	builddevicemenu="gnexusmenu"
+	. builddevice
 fi
 
 if [ $buildanswer == "6" ]; then
-	export BUILDDEVICEMENU="nexussmenu"
-	builddevice
+	builddevicemenu="nexussmenu"
+	. builddevice
 fi
 
 if [ $buildanswer == "7" ]; then
-	export BUILDDEVICEMENU="xoommenu"
-	builddevice
+	builddevicemenu="xoommenu"
+	. builddevice
 fi
 
 if [ $buildanswer == "8" ]; then
-	export BUILDDEVICEMENU="allmenu"
-	builddevice
+	builddevicemenu="allmenu"
+	. builddevice
 fi
 
 if [ $buildanswer == "9" ]; then
