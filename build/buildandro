@@ -2,21 +2,21 @@
 # Written by Sean Donovan (swordrune10)
 
 #declare variables
-if [ "$OTHER_REPO" ]; then
-	repofolder=$( echo "$OTHER_REPO_FOLDER" )
-	buildfolder=$( echo "$BUILDS/$OTHER_REPO" )
-	newzip=$(echo $OTHER_REPO-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
-elif [ "$AUTO_BUILD" ]; then
-	repofolder=$( echo "$REPOS/$AUTO_BUILD_FOLDER" )
-	buildfolder=$( echo "$BUILDS/$AUTO_BUILD_FOLDER" )
-	newzip=$(echo $AUTO_BUILD_FOLDER-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
+if [ "$other_repo" ]; then
+	repofolder=$( echo "$other_repo_folder" )
+	buildfolder=$( echo "$BUILDS/$other_repo" )
+	newzip=$(echo $other_repo-$(date +%Y%m%d)-SWORDKITCHEN-$script_device.zip)
+elif [ "$auto_build" ]; then
+	repofolder=$( echo "$REPOS/$auto_build_folder" )
+	buildfolder=$( echo "$BUILDS/$auto_build_folder" )
+	newzip=$(echo $auto_build_folder-$(date +%Y%m%d)-SWORDKITCHEN-$script_device.zip)
 else
-	repofolder=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-	buildfolder=$( echo "$BUILDS/$SCRIPT_REPO-$REPO_PLATFORM" )
-	newzip=$(echo $SCRIPT_REPO-$REPO_PLATFORM-$(date +%Y%m%d)-SWORDKITCHEN-$SCRIPT_DEVICE.zip)
+	repofolder=$( echo "$REPOS/$script_repo-$repo_platform" )
+	buildfolder=$( echo "$BUILDS/$script_repo-$repo_platform" )
+	newzip=$(echo $script_repo-$repo_platform-$(date +%Y%m%d)-SWORDKITCHEN-$script_device.zip)
 fi
 
-outfolder=$(echo "$repofolder/out/target/product/$SCRIPT_DEVICE")
+outfolder=$(echo "$repofolder/out/target/product/$script_device")
 
 #setup build
 rm -f $outfolder/system/build.prop
@@ -26,7 +26,7 @@ cd $repofolder
 
 . build/envsetup.sh
 
-if [ ! $SLOPPYSECONDS ]; then
+if [ ! $sloppyseconds ]; then
 	$LOCAL/config/romeditor
 
 	if [ $AUTO ]; then
@@ -110,32 +110,32 @@ fi
 
 #build android
 
-if [ $SCRIPT_REPO == "cm" ]; then
-	brunch $SCRIPT_DEVICE -j $CPU_POWER_TOTAL
-elif [ $SCRIPT_REPO == "omni" ]; then
-	lunch custom_$SCRIPT_DEVICE-userdebug
+if [ $script_repo == "cm" ]; then
+	brunch $script_device -j $CPU_POWER_TOTAL
+elif [ $script_repo == "omni" ]; then
+	lunch custom_$script_device-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
-elif [ $SCRIPT_REPO == "pacman" ]; then
-	rm -f out/target/product/$SCRIPT_DEVICE/obj/KERNEL_OBJ/.version
+elif [ $script_repo == "pacman" ]; then
+	rm -f out/target/product/$script_device/obj/KERNEL_OBJ/.version
 
-	lunch pac_$SCRIPT_DEVICE-userdebug
+	lunch pac_$script_device-userdebug
 	make bacon -j $CPU_POWER_TOTAL
 
 	vendor/pac/tools/squisher
 
 	rm -f $outfolder/cm-*.*
 	rm -f $outfolder/pac_*-ota*.zip
-elif [ $SCRIPT_REPO == "paranoid" ]; then
-	lunch pa_$SCRIPT_DEVICE-userdebug
+elif [ $script_repo == "paranoid" ]; then
+	lunch pa_$script_device-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
 else
-	if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $SCRIPT_DEVICE &> /dev/null ); then
+	if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $script_device &> /dev/null ); then
 		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
-		| grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+		| grep $script_device | sed 's/add_lunch_combo //' )
 	fi
 
-	if [ ! "$lunch_device" ] && ( find device/*/$SCRIPT_DEVICE/vendorsetup.sh &> /dev/null ); then
-		lunch_device=$( cat device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep $SCRIPT_DEVICE | sed 's/add_lunch_combo //' )
+	if [ ! "$lunch_device" ] && ( find device/*/$script_device/vendorsetup.sh &> /dev/null ); then
+		lunch_device=$( cat device/*/$script_device/vendorsetup.sh | grep $script_device | sed 's/add_lunch_combo //' )
 	fi
 
 	if [ ! "$lunch_device" ]; then
@@ -149,8 +149,8 @@ else
 fi
 
 #build aftermath
-cd $repofolder/out/target/product/$SCRIPT_DEVICE
-zip=$( find *$SCRIPT_DEVICE*.zip 2> /dev/null )
+cd $repofolder/out/target/product/$script_device
+zip=$( find *$script_device*.zip 2> /dev/null )
 
 if [ ! "$zip" ]; then
 	echo "Build messed up! Returning to build menu"
@@ -158,7 +158,7 @@ if [ ! "$zip" ]; then
 	exit 0
 fi
 
-if [ $SCRIPT_REPO == "aosp" ]; then
+if [ $script_repo == "aosp" ]; then
 
 	echo "Making temporary folder for post-building $zip fixes"
 	mkdir -p $BUILDS/temp/zipout
@@ -172,7 +172,7 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	rm -r recovery
 	rm file_contexts
 
-	if [ $SCRIPT_REPO == "aosp" ]; then
+	if [ $script_repo == "aosp" ]; then
 		cd system
 		echo "Adding rom manager items to $zip's build.prop"
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
@@ -193,13 +193,13 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	java -Xmx2048m -jar $repofolder/out/host/linux-x86/framework/signapk.jar -w $repofolder/build/target/product/security/testkey.x509.pem $repofolder/build/target/product/security/testkey.pk8 unsignedcrap.zip $zip
 fi
 
-if ( find $buildfolder/*$SCRIPT_DEVICE.zip &> /dev/null); then
+if ( find $buildfolder/*$script_device.zip &> /dev/null); then
 	mkdir -p $buildfolder/old
 
 	echo "Moving older build to $buildfolder/old"
 
-	mv $buildfolder/*$SCRIPT_DEVICE.zip $buildfolder/old
-	mv $buildfolder/*$SCRIPT_DEVICE.zip.md5sum $buildfolder/old
+	mv $buildfolder/*$script_device.zip $buildfolder/old
+	mv $buildfolder/*$script_device.zip.md5sum $buildfolder/old
 fi
 
 mkdir -p $buildfolder
@@ -208,7 +208,7 @@ echo "Copying to $buildfolder"
 echo "$zip -> $newzip"
 cat $zip > $buildfolder/$newzip
 
-if [ $SCRIPT_REPO == "aosp" ]; then
+if [ $script_repo == "aosp" ]; then
 	echo "Cleaning up temporary folder"
 	cd $BUILDS
 	rm -r temp

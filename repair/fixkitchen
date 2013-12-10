@@ -68,9 +68,9 @@ rm -r $LOCAL/../temp
 }
 
 purgelocalmanifest() {
-export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
-rm -rf $REPO_FOLDER/.repo/local_manifests
-preupdate
+repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+rm -rf $repo_folder/.repo/local_manifests
+. preupdate
 echo "Purged $repo_name local_manifests folder"
 }
 
@@ -101,72 +101,62 @@ if [ $cleananswer == "1" ]; then
 	fi
 
 	if [ $addrepo == "1" ]; then
-		script_repo=$(echo "aokp")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Android Open Kang Project")
+		repodefine=$(echo "aokp")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "2" ]; then
-		script_repo=$(echo "aosp")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp43")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "3" ]; then
-		script_repo=$(echo "aosp")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "4" ]; then
-		script_repo=$(echo "carbon")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Carbon")
+		repodefine=$(echo "carbon")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "5" ]; then
-		script_repo=$(echo "cm")
-		repo_platform=$(echo "10.2")
-		repo_name=$(echo "Cyanogenmod 10.2")
+		repodefine=$(echo "cm10")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "6" ]; then
-		script_repo=$(echo "cm")
-		repo_platform=$(echo "11")
-		repo_name=$(echo "Cyanogenmod 11")
+		repodefine=$(echo "cm")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "7" ]; then
-		script_repo=$(echo "evervolv")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Evervolv")
+		repodefine=$(echo "evervolv")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "8" ]; then
-		script_repo=$(echo "omni")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "omnirom")
+		repodefine=$(echo "omni")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "9" ]; then
-		script_repo=$(echo "pacman")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "PAC-man")
+		repodefine=$(echo "pacman")
+		. repodefiner
 		adddevicetorepo
 	fi
 
 	if [ $addrepo == "10" ]; then
-		script_repo=$(echo "paranoid")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "ParanoidAndroid")
+		repodefine=$(echo "paranoid")
+		. repodefiner
 		adddevicetorepo
 	fi
 
@@ -208,72 +198,62 @@ if [ $cleananswer == "2" ]; then
 	fi
 
 	if [ $cleanse == "1" ]; then
-		export SCRIPT_REPO=$(echo "aokp")
-		export REPO_PLATFORM=$(echo "jb")
-		repo_name=$(echo "Android Open Kang Project")
+		repodefine=$(echo "aokp")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "2" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "jb")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp43")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "3" ]; then
-		export SCRIPT_REPO=$(echo "aosp")
-		export REPO_PLATFORM=$(echo "kitkat")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "4" ]; then
-		export SCRIPT_REPO=$(echo "carbon")
-		export REPO_PLATFORM=$(echo "kitkat")
-		repo_name=$(echo "Carbon")
+		repodefine=$(echo "carbon")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "5" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "10.2")
-		repo_name=$(echo "Cyanogenmod 10.2")
+		repodefine=$(echo "cm10")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "6" ]; then
-		export SCRIPT_REPO=$(echo "cm")
-		export REPO_PLATFORM=$(echo "11")
-		repo_name=$(echo "Cyanogenmod 11")
+		repodefine=$(echo "cm")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "7" ]; then
-		export SCRIPT_REPO=$(echo "evervolv")
-		export REPO_PLATFORM=$(echo "kitkat")
-		repo_name=$(echo "Evervolv")
+		repodefine=$(echo "evervolv")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "8" ]; then
-		export SCRIPT_REPO=$(echo "omni")
-		export REPO_PLATFORM=$(echo "kitkat")
-		repo_name=$(echo "omnirom")
+		repodefine=$(echo "omni")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "9" ]; then
-		export SCRIPT_REPO=$(echo "pacman")
-		export REPO_PLATFORM=$(echo "jb")
-		repo_name=$(echo "PAC-man")
+		repodefine=$(echo "pacman")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
 	if [ $cleanse == "10" ]; then
-		export SCRIPT_REPO=$(echo "paranoid")
-		export REPO_PLATFORM=$(echo "jb")
-		repo_name=$(echo "ParanoidAndroid")
+		repodefine=$(echo "paranoid")
+		. repodefiner
 		purgelocalmanifest
 	fi
 
@@ -333,64 +313,54 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	if [ $modify == "1" ]; then
-		script_repo=$(echo "aokp")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Android Open Kang Project")
+		repodefine=$(echo "aokp")
+		. repodefiner
 	fi
 
 	if [ $modify == "2" ]; then
-		script_repo=$(echo "aosp")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp43")
+		. repodefiner
 	fi
 
 	if [ $modify == "3" ]; then
-		script_repo=$(echo "aosp")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp")
+		. repodefiner
 	fi
 
 	if [ $modify == "4" ]; then
-		script_repo=$(echo "carbon")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Carbon")
+		repodefine=$(echo "carbon")
+		. repodefiner
 	fi
 
 	if [ $modify == "5" ]; then
-		script_repo=$(echo "cm")
-		repo_platform=$(echo "10.2")
-		repo_name=$(echo "Cyanogenmod 10.2")
+		repodefine=$(echo "cm10")
+		. repodefiner
 	fi
 
 
 	if [ $modify == "6" ]; then
-		script_repo=$(echo "cm")
-		repo_platform=$(echo "11")
-		repo_name=$(echo "Cyanogenmod 11")
+		repodefine=$(echo "cm")
+		. repodefiner
 	fi
 
 	if [ $modify == "7" ]; then
-		script_repo=$(echo "evervolv")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "Evervolv")
+		repodefine=$(echo "evervolv")
+		. repodefiner
 	fi
 
 	if [ $modify == "8" ]; then
-		script_repo=$(echo "omni")
-		repo_platform=$(echo "kitkat")
-		repo_name=$(echo "omnirom")
+		repodefine=$(echo "omni")
+		. repodefiner
 	fi
 
 	if [ $modify == "9" ]; then
-		script_repo=$(echo "pacman")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "PAC-man")
+		repodefine=$(echo "pacman")
+		. repodefiner
 	fi
 
 	if [ $modify == "10" ]; then
-		script_repo=$(echo "paranoid")
-		repo_platform=$(echo "jb")
-		repo_name=$(echo "ParanoidAndroid")
+		repodefine=$(echo "paranoid")
+		. repodefiner
 	fi
 
 	if [ $modify == "11" ]; then

@@ -17,8 +17,8 @@ echo "Auto Builder Menu"
 echo "  1. Run Auto Builder"
 echo "  2. Add to auto build list"
 echo "  3. Clear auto build list"
-echo "  4. Edit where Auto Builder's output goes"
-echo "  5. Toggle Auto Builder build other repo"
+echo "  4. Toggle Auto Builder's output"
+echo "  5. Toggle Auto Builder's build other repo"
 echo "  6. Toggle Auto Builder's sleep function"
 echo "  7. Go Back"
 echo ""
@@ -64,64 +64,55 @@ if [ $buildautoconfig == "2" ]; then
 	fi
 
 	if [ $version == "1" ]; then
-		auto_folder=$(echo "aokp-jb")
-		reposync_tag=$(echo "aokp")
-		repo_name=$(echo "Android Open Kang Project")
+		repodefine=$(echo "aokp")
+		. repodefiner
 	fi
 
 	if [ $version == "2" ]; then
-		auto_folder=$(echo "aosp-jb")
-		reposync_tag=$(echo "aosp")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp43")
+		. repodefiner
 	fi
 
 	if [ $version == "3" ]; then
-		auto_folder=$(echo "aosp-kitkat")
-		reposync_tag=$(echo "aosp")
-		repo_name=$(echo "Android Open Source Project")
+		repodefine=$(echo "aosp")
+		. repodefiner
 	fi
 
 	if [ $version == "4" ]; then
-		auto_folder=$(echo "carbon-kitkat")
-		reposync_tag=$(echo "carbon")
-		repo_name=$(echo "Carbon")
+		repodefine=$(echo "carbon")
+		. repodefiner
 	fi
 
 	if [ $version == "5" ]; then
-		auto_folder=$(echo "cm-10.2")
-		reposync_tag=$(echo "cm")
-		repo_name=$(echo "Cyanogenmod 10.2")
+		repodefine=$(echo "cm10")
+		. repodefiner
 	fi
 
 	if [ $version == "6" ]; then
-		auto_folder=$(echo "cm-11")
-		reposync_tag=$(echo "cm")
-		repo_name=$(echo "Cyanogenmod 11")
+		repodefine=$(echo "cm")
+		. repodefiner
 	fi
 
 	if [ $version == "7" ]; then
-		auto_folder=$(echo "evervolv-kitkat")
-		reposync_tag=$(echo "ev")
-		repo_name=$(echo "Evervolv")
+		repodefine=$(echo "evervolv")
+		. repodefiner
 	fi
 
 	if [ $version == "8" ]; then
-		auto_folder=$(echo "omni-kitkat")
-		reposync_tag=$(echo "omni")
-		repo_name=$(echo "omnirom")
+		repodefine=$(echo "omni")
+		. repodefiner
 	fi
 
 	if [ $version == "9" ]; then
-		auto_folder=$(echo "pacman-jb")
-		reposync_tag=$(echo "pacman")
-		repo_name=$(echo "PAC-man")
+		repodefine=$(echo "pacman")
+		. repodefiner
 	fi
 
 	if [ $version == "10" ]; then
-		auto_folder=$(echo "paranoid-jb")
-		reposync_tag=$(echo "paranoid")
-		repo_name=$(echo "ParanoidAndroid")
+		repodefine=$(echo "paranoid")
+		. repodefiner
 	fi
+
 	if [ $version == "11" ]; then
 		addautodevice
 	fi
@@ -133,15 +124,15 @@ if [ $buildautoconfig == "2" ]; then
 	fi
 
 	if ( ! find $LOCAL/config/scriptfolder &> /dev/null ); then
-		echo $auto_folder > $LOCAL/config/scriptfolder
+		echo "$script_repo-$repo_platform" > $LOCAL/config/scriptfolder
 	else
-		echo $auto_folder >> $LOCAL/config/scriptfolder
+		echo "$script_repo-$repo_platform" >> $LOCAL/config/scriptfolder
 	fi
 
 	if ( ! find $LOCAL/config/scriptautosync &> /dev/null ); then
-		echo $reposync_tag > $LOCAL/config/scriptautosync
+		echo $repodefine > $LOCAL/config/scriptautosync
 	else
-		echo $reposync_tag >> $LOCAL/config/scriptautosync
+		echo $repodefine >> $LOCAL/config/scriptautosync
 	fi
 
 	echo "Added $repo_name repository to auto build files"

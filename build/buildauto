@@ -135,36 +135,34 @@ while true; do
 	if ( echo "${scriptfolder[$repocountdown]}" | grep -q "EOF" ); then
 		break
 	fi
-
-	export SCRIPT_REPO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
-		export AUTO_BUILD=true
-		export AUTO_BUILD_FOLDER=$( echo "${scriptfolder[$repocountdown]}" )
-		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
-		export REPO_PLATFORM=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
+		auto_build=true
+		auto_build_folder=$( echo "${scriptfolder[$repocountdown]}" )
+		script_repo=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
+		repo_platform=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
 	else
-		export OTHER_REPO=$( echo "${scriptfolder[$repocountdown]}" )
-		export OTHER_REPO_FOLDER=$(echo "$REPOS/otherrepo/"${scriptfolder[$repocountdown]}"")
-		export SCRIPT_REPO=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
-		export REPO_PLATFORM=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
+		other_repo=$( echo "${scriptfolder[$repocountdown]}" )
+		other_repo_folder=$(echo "$REPOS/otherrepo/"${scriptfolder[$repocountdown]}"")
+		script_repo=$( echo "${scriptfolder[$repocountdown]}" | sed 's/-.*//' )
+		repo_platform=$( echo "${scriptfolder[$repocountdown]}" | sed 's/.*-//' )
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	while true; do
 		let devicecountdown=$devicecountdown+1
 
 		if [ $devicecountdown == "2" ]; then
-			export SLOPPYSECONDS=true
+			sloppyseconds=true
 		fi
 
 		if ( echo "${scriptdevice[$devicecountdown]}" | grep -q "EOF" ); then
-			export SLOPPYSECONDS=""
+			sloppyseconds=""
 			break
 		fi
 
-		export SCRIPT_DEVICE=$( echo "${scriptdevice[$devicecountdown]}" )
+		script_device=$( echo "${scriptdevice[$devicecountdown]}" )
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		buildandro "$toggleout"
+		. buildandro "$toggleout"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# Publish Build ( if possible )
 		if ( find $PUBLISH -maxdepth 1 &> /dev/null); then
