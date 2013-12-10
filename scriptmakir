@@ -161,56 +161,48 @@ if [ \$script_repo == "aokp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "aosp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "cm" ] && [ \$repo_platform == "10.2" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "cm" ] && [ \$repo_platform == "11" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "evervolv" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "omni" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "pacman" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 
 if [ \$script_repo == "paranoid" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
-	exit 0
 fi
 EOF
 
