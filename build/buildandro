@@ -27,7 +27,7 @@ cd $repofolder
 . build/envsetup.sh
 
 if [ ! $sloppyseconds ]; then
-	$LOCAL/config/romeditor
+	. $LOCAL/config/romeditor
 
 	if [ $AUTO ]; then
 		make clean
