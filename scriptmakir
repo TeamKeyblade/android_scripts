@@ -157,49 +157,49 @@ if [ $AUTHOR == "gitpuller" ]; then
 
 cat << EOF > $LOCAL/config/gitpuller
 #!/bin/bash
-if [ \$script_repo == "aokp" ]; then
+if [ \$SCRIPT_REPO == "aokp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "aosp" ]; then
+if [ \$SCRIPT_REPO == "aosp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "cm" ] && [ \$repo_platform == "10.2" ]; then
+if [ \$SCRIPT_REPO == "cm" ] && [ \$repo_platform == "10.2" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "cm" ] && [ \$repo_platform == "11" ]; then
+if [ \$SCRIPT_REPO == "cm" ] && [ \$repo_platform == "11" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "evervolv" ]; then
+if [ \$SCRIPT_REPO == "evervolv" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "omni" ]; then
+if [ \$SCRIPT_REPO == "omni" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "pacman" ]; then
+if [ \$SCRIPT_REPO == "pacman" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
 fi
 
-if [ \$script_repo == "paranoid" ]; then
+if [ \$SCRIPT_REPO == "paranoid" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
 	# git pull repo-you-want-to-pull
@@ -214,14 +214,14 @@ if [ $AUTHOR == "romeditor" ]; then
 
 cat << EOF > $LOCAL/config/romeditor
 #!/bin/bash
-if [ \$script_repo == "cm" ]; then
+if [ \$SCRIPT_REPO == "cm" ]; then
 	cd \$REPOS/cm-\$repo_platform/vendor/cm/config
 	sed -i 's/developerid=cyanogenmod/developerid=\$(shell whoami)/g' common.mk
 	sed -i 's/CM_BUILDTYPE := UNOFFICIAL/CM_BUILDTYPE := SWORDKITCHEN/g' common.mk
 	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk
 fi
 
-if [ \$script_repo == "raosp" ]; then
+if [ \$SCRIPT_REPO == "raosp" ]; then
 	cd \$REPOS/raosp-jb/vendor/keyblade/makefiles
 	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id
 	# sed -i 's/developerid=teamkeyblade/EDITME!/g' overrider.mk

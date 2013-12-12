@@ -92,7 +92,7 @@ if [ $version == "11" ]; then
 	exit 0
 fi
 
-if ( ! find $REPOS/$script_repo-$repo_platform -maxdepth 1 &> /dev/null ); then
+if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
 	echo ""
 	echo "The selected android repository is not setup!"
 	read -p "Press Enter to continue: " done
@@ -104,10 +104,10 @@ devicecheck
 
 devicecheck(){
 
-if [ $script_repo == "aokp" ]; then
+if [ $SCRIPT_REPO == "aokp" ]; then
 	if ( ! sed -e 's/.*aokp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/aokp-jb/vendor/aokp/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -115,10 +115,10 @@ if [ $script_repo == "aokp" ]; then
 	fi
 fi
 
-if [ $script_repo == "aosp" ]; then
+if [ $SCRIPT_REPO == "aosp" ]; then
 	if ( ! sed -e 's/.*aosp_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/aosp-$repo_platform/device/*/$script_device/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/aosp-$REPO_PLATFORM/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -126,10 +126,10 @@ if [ $script_repo == "aosp" ]; then
 	fi	
 fi
 
-if [ $script_repo == "carbon" ]; then
+if [ $SCRIPT_REPO == "carbon" ]; then
 	if ( ! sed -e 's/.*carbon_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/carbon-kitkat/vendor/carbon/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -137,8 +137,8 @@ if [ $script_repo == "carbon" ]; then
 	fi	
 fi
 
-if [ $script_repo == "cm" ]; then
-	if ( ! cat $LOCAL/config/cm-master-list | grep -q $script_device ); then
+if [ $SCRIPT_REPO == "cm" ]; then
+	if ( ! cat $LOCAL/config/cm-master-list | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -146,10 +146,10 @@ if [ $script_repo == "cm" ]; then
 	fi
 fi
 
-if [ $script_repo == "evervolv" ]; then
+if [ $SCRIPT_REPO == "evervolv" ]; then
 	if ( ! sed -e 's/.*ev_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/evervolv-kitkat/vendor/ev/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -157,10 +157,10 @@ if [ $script_repo == "evervolv" ]; then
 	fi
 fi
 
-if [ $script_repo == "omni" ]; then
+if [ $SCRIPT_REPO == "omni" ]; then
 	if ( ! sed -e 's/.*custom_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/omni-kitkat/device/*/$script_device/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/omni-kitkat/device/*/$SCRIPT_DEVICE/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -168,10 +168,10 @@ if [ $script_repo == "omni" ]; then
 	fi	
 fi
 
-if [ $script_repo == "pacman" ]; then
+if [ $SCRIPT_REPO == "pacman" ]; then
 	if ( ! sed -e 's/.*pac_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/pacman-jb/vendor/pac/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -179,10 +179,10 @@ if [ $script_repo == "pacman" ]; then
 	fi
 fi
 
-if [ $script_repo == "paranoid" ]; then
+if [ $SCRIPT_REPO == "paranoid" ]; then
 	if ( ! sed -e 's/.*pa_//g' \
 	-e 's/-userdebug//' \
-	$REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep -q $script_device ); then
+	$REPOS/paranoid-jb/vendor/pa/vendorsetup.sh | grep -q $SCRIPT_DEVICE ); then
 		echo ""
 		echo "This device is not compatible with this repository, try again!"
 		read -p "Returning to Build Menu, Press Enter to continue: " done
@@ -190,7 +190,7 @@ if [ $script_repo == "paranoid" ]; then
 	fi
 fi
 
-. buildandro
+buildandro
 
 exit 0
 }
@@ -216,7 +216,7 @@ fi
 
 if [ $buildnexus4 == "1" ]; then
 	devicefullname=$(echo "GSM Nexus 4")
-	script_device=$(echo "mako")
+	export SCRIPT_DEVICE=$(echo "mako")
 	repomenu
 fi
 
@@ -249,7 +249,7 @@ fi
 
 if [ $buildnexus5 == "1" ]; then
 	devicefullname=$(echo "LTE Nexus 5")
-	script_device=$(echo "hammerhead")
+	export SCRIPT_DEVICE=$(echo "hammerhead")
 	repomenu
 fi
 
@@ -285,34 +285,34 @@ fi
 
 if [ $buildgnexus == "1" ]; then
 	devicefullname=$(echo "GSM Galaxy Nexus")
-	script_device=$(echo "maguro")
+	export SCRIPT_DEVICE=$(echo "maguro")
 	repomenu
 fi
 
 if [ $buildgnexus == "2" ]; then
 	devicefullname=$(echo "Sprint Galaxy Nexus")
-	script_device=$(echo "toroplus")
+	export SCRIPT_DEVICE=$(echo "toroplus")
 	repomenu
 fi
 
 if [ $buildgnexus == "3" ]; then
 	devicefullname=$(echo "Verizon Galaxy Nexus")
-	script_device=$(echo "toro")
+	export SCRIPT_DEVICE=$(echo "toro")
 	repomenu
 fi
 
 if [ $buildgnexus == "4" ]; then
 	devicefullname=$(echo "All Galaxy Nexi")
 
-	script_device=$(echo "maguro")
+	export SCRIPT_DEVICE=$(echo "maguro")
 	repomenu
 
-	script_device=$(echo "toroplus")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "toroplus")
+	export SLOPPYSECONDS=true
 	devicecheck
 
-	script_device=$(echo "toro")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "toro")
+	export SLOPPYSECONDS=true
 	devicecheck
 fi
 
@@ -348,24 +348,24 @@ fi
 
 if [ $buildnexuss == "1" ]; then
 	devicefullname=$(echo "GSM Nexus S")
-	script_device=$(echo "crespo")
+	export SCRIPT_DEVICE=$(echo "crespo")
 	repomenu
 fi
 
 if [ $buildnexuss == "2" ]; then
 	devicefullname=$(echo "Sprint Nexus S 4G")
-	script_device=$(echo "crespo4g")
+	export SCRIPT_DEVICE=$(echo "crespo4g")
 	repomenu
 fi
 
 if [ $buildnexuss == "3" ]; then
 	devicefullname=$(echo "All Nexus S'")
 
-	script_device=$(echo "crespo")
+	export SCRIPT_DEVICE=$(echo "crespo")
 	repomenu
 
-	script_device=$(echo "crespo4g")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "crespo4g")
+	export SLOPPYSECONDS=true
 	devicecheck
 fi
 
@@ -403,47 +403,47 @@ fi
 
 if [ $buildnexus7 == "1" ]; then
 	devicefullname=$(echo "Wifi Nexus 7 (2012) Tablet")
-	script_device=$(echo "grouper")
+	export SCRIPT_DEVICE=$(echo "grouper")
 	repomenu
 fi
 
 if [ $buildnexus7 == "2" ]; then
 	devicefullname=$(echo "GSM Nexus 7 (2012) Tablet")
-	script_device=$(echo "tilapia")
+	export SCRIPT_DEVICE=$(echo "tilapia")
 	repomenu
 fi
 
 if [ $buildnexus7 == "3" ]; then
 	devicefullname=$(echo "All Nexus 7 (2012) Tablet's")
 
-	script_device=$(echo "grouper")
+	export SCRIPT_DEVICE=$(echo "grouper")
 	repomenu
 
-	script_device=$(echo "tilapia")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "tilapia")
+	export SLOPPYSECONDS=true
 	devicecheck
 fi
 
 if [ $buildnexus7 == "4" ]; then
 	devicefullname=$(echo "Wifi Nexus 7 (2013) Tablet")
-	script_device=$(echo "flo")
+	export SCRIPT_DEVICE=$(echo "flo")
 	repomenu
 fi
 
 if [ $buildnexus7 == "5" ]; then
 	devicefullname=$(echo "LTE Nexus 7 (2013) Tablet")
-	script_device=$(echo "deb")
+	export SCRIPT_DEVICE=$(echo "deb")
 	repomenu
 fi
 
 if [ $buildnexus7 == "6" ]; then
 	devicefullname=$(echo "All Nexus 7 (2013) Tablet's")
 
-	script_device=$(echo "flo")
+	export SCRIPT_DEVICE=$(echo "flo")
 	repomenu
 
-	script_device=$(echo "deb")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "deb")
+	export SLOPPYSECONDS=true
 	devicecheck
 fi
 
@@ -476,7 +476,7 @@ fi
 
 if [ $buildnexus10 == "1" ]; then
 	devicefullname=$(echo "Wifi Nexus 10")
-	script_device=$(echo "manta")
+	export SCRIPT_DEVICE=$(echo "manta")
 	repomenu
 fi
 
@@ -511,24 +511,24 @@ fi
 
 if [ $buildxoom == "1" ]; then
 	devicefullname=$(echo "Wifi Xoom Tablet")
-	script_device=$(echo "wingray")
+	export SCRIPT_DEVICE=$(echo "wingray")
 	repomenu
 fi
 
 if [ $buildxoom == "2" ]; then
 	devicefullname=$(echo "Verizon Xoom Tablet")
-	script_device=$(echo "stingray")
+	export SCRIPT_DEVICE=$(echo "stingray")
 	repomenu
 fi
 
 if [ $buildxoom == "3" ]; then
 	devicefullname=$(echo "All Xoom Tablets")
 
-	script_device=$(echo "stingray")
+	export SCRIPT_DEVICE=$(echo "stingray")
 	repomenu
 
-	script_device=$(echo "wingray")
-	sloppyseconds=true
+	export SCRIPT_DEVICE=$(echo "wingray")
+	export SLOPPYSECONDS=true
 	devicecheck
 fi
 
@@ -543,64 +543,64 @@ xoommenu
 allmenu(){
 devicefullname=$(echo "All Nexus Devices")
 
-script_device=$(echo "mako")
+export SCRIPT_DEVICE=$(echo "mako")
 repomenu
 
-script_device=$(echo "hammerhead")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "hammerhead")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "maguro")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "maguro")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "toroplus")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "toroplus")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "toro")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "toro")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "crespo")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "crespo")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "crespo4g")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "crespo4g")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "grouper")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "grouper")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "tilapia")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "tilapia")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "flo")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "flo")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "deb")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "deb")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "manta")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "manta")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "stingray")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "stingray")
+export SLOPPYSECONDS=true
 devicecheck
 
-script_device=$(echo "wingray")
-sloppyseconds=true
+export SCRIPT_DEVICE=$(echo "wingray")
+export SLOPPYSECONDS=true
 devicecheck
 }
 
-if [ ! "$builddevicemenu" ]; then
+if [ ! "$BUILDDEVICEMENU" ]; then
 	buildmenu
 else
-	$builddevicemenu
+	$BUILDDEVICEMENU
 fi
