@@ -369,16 +369,8 @@ if [ $setupanswer == "13" ]; then
 fi
 
 if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
-<<<<<<< HEAD
-	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "stable")
-	repo_branch=$(echo "stable")
-	repo_name=$(echo "Kitchen app")
-	repo_url=$(echo "http://github.com/TeamKeyblade/kitchen_manifest.git")
-=======
 	repodefine=$(echo "kitchen")
 	. repodefiner
->>>>>>> a4773a1... repodefiner: init/reposync: use repodefiner for repo variables
 	setupcheck
 
 	repodefine=$(echo "aokp")
