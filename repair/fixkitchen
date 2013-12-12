@@ -68,9 +68,9 @@ rm -r $LOCAL/../temp
 }
 
 purgelocalmanifest() {
-repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
-rm -rf $repo_folder/.repo/local_manifests
-. preupdate
+export REPO_FOLDER=$( echo "$REPOS/$script_repo-$repo_platform" )
+rm -rf $REPO_FOLDER/.repo/local_manifests
+preupdate
 echo "Purged $repo_name local_manifests folder"
 }
 
