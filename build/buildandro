@@ -190,7 +190,7 @@ if [ $script_repo == "aosp" ]; then
 	zip -r unsignedcrap.zip . > /dev/null
 
 	echo "Signing $zip with test keys"
-	java -Xmx1024m -classpath $LOCAL/testsign.jar testsign unsignedcrap.zip $zip
+	java -Xmx2048m -jar $repofolder/out/host/linux-x86/framework/signapk.jar -w $repofolder/build/target/product/security/testkey.x509.pem $repofolder/build/target/product/security/testkey.pk8 unsignedcrap.zip $zip
 fi
 
 if ( find $buildfolder/*$script_device.zip &> /dev/null); then
