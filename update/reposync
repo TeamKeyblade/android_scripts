@@ -259,7 +259,7 @@ if ( find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
 	repo sync -n -j $NETWORKSYNC
 	repo sync -l -j $LOCALSYNC
 
-	. $LOCAL/config/gitpuller
+	$LOCAL/config/gitpuller
 
 	. postupdate
 fi
