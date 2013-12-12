@@ -220,14 +220,6 @@ if [ \$SCRIPT_REPO == "cm" ]; then
 	sed -i 's/CM_BUILDTYPE := UNOFFICIAL/CM_BUILDTYPE := SWORDKITCHEN/g' common.mk
 	sed -i 's/shell date -u +%Y%m%d/shell date +%Y%m%d/g' common.mk
 fi
-
-if [ \$SCRIPT_REPO == "raosp" ]; then
-	cd \$REPOS/raosp-jb/vendor/keyblade/makefiles
-	# uncomment (remove the #) and edit the EDITME! in between the slashes with ur rom manager developer id
-	# sed -i 's/developerid=teamkeyblade/EDITME!/g' overrider.mk
-	# uncomment (remove the #) and edit the EDITME! in between the slashes with the desired modversion (used for rom manager)
-	# sed -i 's/\$(MOD_VERSION)/EDITME!/g' overrider.mk
-fi
 EOF
 
 chmod a+x $LOCAL/config/romeditor
