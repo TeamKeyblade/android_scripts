@@ -1,16 +1,16 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-localmanifests=$( echo "$repo_folder/.repo/local_manifests" )
+localmanifests=$( echo "$REPO_FOLDER/.repo/local_manifests" )
 
 if ( ! find $localmanifests &> /dev/null ); then
 	mkdir $localmanifests
 fi
 
-if [ $script_repo == "aokp" ]; then
+if [ $SCRIPT_REPO == "aokp" ]; then
 	rm -rf vendor/aokp
 fi
 
-if [ $script_repo == "aosp" ] && [ $repo_platform == "jb" ]; then
+if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "jb" ]; then
 	echo ""
 	echo "Updating Android Open Source Project's local_manifests folder"
 	export AUTHOR="xml"
@@ -18,7 +18,7 @@ if [ $script_repo == "aosp" ] && [ $repo_platform == "jb" ]; then
 	cp -f $LOCAL/xml/aosp-jb-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "aosp" ] && [ $repo_platform == "kitkat" ]; then
+if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "kitkat" ]; then
 	echo ""
 	echo "Updating Android Open Source Project's local_manifests folder"
 	export AUTHOR="xml"
@@ -26,11 +26,11 @@ if [ $script_repo == "aosp" ] && [ $repo_platform == "kitkat" ]; then
 	cp -f $LOCAL/xml/aosp-kitkat-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "cna" ]; then
+if [ $SCRIPT_REPO == "cna" ]; then
 	rm -rf vendor/cna
 fi
 
-if [ $script_repo == "cm" ] && [ $repo_platform == "10.2" ]; then
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
 	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 10.2's local_manifests folder"
@@ -39,7 +39,7 @@ if [ $script_repo == "cm" ] && [ $repo_platform == "10.2" ]; then
 	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "cm" ] && [ $repo_platform == "11" ]; then
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
 	rm -rf vendor/cm
 	echo ""
 	echo "Updating Cyanogenmod 11's local_manifests folder"
@@ -48,15 +48,15 @@ if [ $script_repo == "cm" ] && [ $repo_platform == "11" ]; then
 	cp -f $LOCAL/xml/cm11-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "carbon" ]; then
+if [ $SCRIPT_REPO == "carbon" ]; then
 	rm -rf vendor/carbon
 fi
 
-if [ $script_repo == "evervolv" ]; then
+if [ $SCRIPT_REPO == "evervolv" ]; then
 	rm -rf vendor/ev
 fi
 
-if [ $script_repo == "omni" ]; then
+if [ $SCRIPT_REPO == "omni" ]; then
 	rm -rf vendor/custom
 	echo ""
 	echo "Updating omnirom's local_manifests folder"
@@ -65,7 +65,7 @@ if [ $script_repo == "omni" ]; then
 	cp -f $LOCAL/xml/aosp-kitkat-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "pacman" ]; then
+if [ $SCRIPT_REPO == "pacman" ]; then
 	rm -rf vendor/cm
 	rm -rf vendor/pa
 	rm -rf vendor/pac
@@ -76,6 +76,6 @@ if [ $script_repo == "pacman" ]; then
 	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
-if [ $script_repo == "paranoid" ]; then
+if [ $SCRIPT_REPO == "paranoid" ]; then
 	rm -rf vendor/pa
 fi
