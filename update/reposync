@@ -170,32 +170,32 @@ if [ "$PLATFORM" ]; then
 fi
 
 setupcheck() {
-if [ $script_repo == "kitchen" ]; then
-	repo_folder=$( echo "$LOCAL/.." )
+if [ $SCRIPT_REPO == "kitchen" ]; then
+	export REPO_FOLDER=$( echo "$LOCAL/.." )
 else
 	if [ $otherreposync ]; then
-		repo_folder=$( echo "$REPOS/otherrepo/$script_repo-$repo_platform" )
+		export REPO_FOLDER=$( echo "$REPOS/otherrepo/$SCRIPT_REPO-$REPO_PLATFORM" )
 	else
-		repo_folder=$( echo "$REPOS/$script_repo-$repo_platform" )
+		export REPO_FOLDER=$( echo "$REPOS/$SCRIPT_REPO-$REPO_PLATFORM" )
 	fi
 fi
 
 if [ "$DELETEFOLDER" ]; then
-	rm -rf $repo_folder
+	rm -rf $REPO_FOLDER
 elif [ "$DELETEFOLDERANDTHATSIT" ]; then
-	rm -rf $repo_folder
+	rm -rf $REPO_FOLDER
 	exit 0
 fi
 
 initmanifest=""
 echo ""
 
-if [ $setupanswer == "14" ] && ( ! find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
+if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "$repo_name not initialized, skipping"
-elif ( find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
+elif ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	echo "Updating $repo_name's manifest"
 	initmanifest=true
-elif ( ! find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
+elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
 		if [ $setupanswer == "15" ]; then
 			echo "$repo_name not initialized, initializing now"
@@ -239,21 +239,21 @@ fi
 
 setupcode() {
 if [ "$initmanifest" ]; then
-	if [ ! $script_repo == "kitchen" ]; then
-		mkdir -p $repo_folder
+	if [ ! $SCRIPT_REPO == "kitchen" ]; then
+		mkdir -p $REPO_FOLDER
 	fi
 
-	cd $repo_folder
+	cd $REPO_FOLDER
 
 	repo init -u $repo_url -b $repo_branch
 fi
 }
 
 synccode() {
-if ( find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
-	cd $repo_folder
+if ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
+	cd $REPO_FOLDER
 
-	. preupdate
+	preupdate
 	echo ""
 	echo "Updating $repo_name repository"
 	repo sync -n -j $NETWORKSYNC
@@ -261,7 +261,7 @@ if ( find $repo_folder/.repo -maxdepth 1 &> /dev/null); then
 
 	$LOCAL/config/gitpuller
 
-	. postupdate
+	postupdate
 fi
 }
 
@@ -448,15 +448,15 @@ if [ $setupanswer == "16" ]; then
 		echo "What is the branch the repo's manifest you want to use?"
 		read manifestbranch
 
-		script_repo=$(echo $manifestshortname)
-		repo_platform=$(echo $manifestbranch)
+		export SCRIPT_REPO=$(echo $manifestshortname)
+		export REPO_PLATFORM=$(echo $manifestbranch)
 		repo_branch=$(echo $manifestbranch)
 		repo_name=$(echo $manifestname)
 		repo_url=$(echo $manifesturl)
 		done=true
 		otherreposync=true
 	
-		echo $script_repo-$repo_platform >> $LOCAL/config/otherrepo
+		echo $SCRIPT_REPO-$REPO_PLATFORM >> $LOCAL/config/otherrepo
 		echo $repo_name >> $LOCAL/config/otherreponame
 		
 		setupcheck
