@@ -78,9 +78,9 @@ echo "=============================="
 echo "Please type in which device you would like to build"
 echo "Type in list to see all supported devices"
 echo "Type in exit to go back"
-read script_device
+read device
 
-if [ ! "$script_device" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -88,7 +88,7 @@ if [ ! "$script_device" ]; then
 	exit 0
 fi
 
-while [ $script_device == "list" ]; do
+while [ $device == "list" ]; do
 
 	echo "Device List"
 	echo "==========="
@@ -107,10 +107,10 @@ while [ $script_device == "list" ]; do
 	echo "Please type in which device you would like to build"
 	echo "Type in list to see all supported devices"
 	echo "Type in exit to go to back"
-	read script_device
+	read device
 done
 
-if [ ! "$script_device" ]; then
+if [ ! "$device" ]; then
 	echo ""
 	echo "You did not make a proper selection, try again!"
 	read -p "Press Enter to continue: " done
@@ -118,26 +118,27 @@ if [ ! "$script_device" ]; then
 	exit 0
 fi
 
-if [ $script_device == "exit" ]; then
+if [ $device == "exit" ]; then
 	read -p "Press Enter to continue: " done
 	buildotherrepo
 	exit 0
 fi
 
-if ( ! cat $otherrepofolder/vendor/*/vendorsetup.sh | grep -q $script_device ) && \
-( ! cat $otherrepofolder/vendor/*/*/vendorsetup.sh | grep -q $script_device ) && \
-( ! cat $otherrepofolder/device/*/$script_device/vendorsetup.sh | grep -q $script_device ); then
+if ( ! cat $otherrepofolder/vendor/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepofolder/vendor/*/*/vendorsetup.sh | grep -q $device ) && \
+( ! cat $otherrepofolder/device/*/$device/vendorsetup.sh | grep -q $device ); then
 	echo ""
 	echo "This device is not compatible with this repository, try again!"
 	read -p "Returning to Build Menu, Press Enter to continue: " done
 	exit 0
 fi	
 
-other_repo=$(echo "${filelurker[$version]}")
-other_repo_folder=$(echo $otherrepofolder)
-script_repo=$( echo "${filelurker[$version]}" | sed 's/-.*//' )
-repo_platform=$( echo "${filelurker[$version]}" | sed 's/.*-//' )
-. buildandro
+export OTHER_REPO=$(echo "${filelurker[$version]}")
+export OTHER_REPO_FOLDER=$(echo $otherrepofolder)
+export SCRIPT_REPO=$( echo "${filelurker[$version]}" | sed 's/-.*//' )
+export REPO_PLATFORM=$( echo "${filelurker[$version]}" | sed 's/.*-//' )
+export SCRIPT_DEVICE=$(echo $device)
+buildandro
 
 echo "Finished!"
 menu
