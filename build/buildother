@@ -195,9 +195,9 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -216,9 +216,9 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -237,9 +237,9 @@ if [ $SCRIPT_REPO == "carbon" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -256,9 +256,9 @@ if [ $SCRIPT_REPO == "cm" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -277,9 +277,9 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -298,9 +298,9 @@ if [ $SCRIPT_REPO == "omni" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -319,9 +319,9 @@ if [ $SCRIPT_REPO == "pacman" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
@@ -340,9 +340,9 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 		echo "This device is not compatible with this repository, build anyways?"
 		read answer
 
-		if [ $answer == "yes" ] || [ $answer == "y" ]
+		if [ $answer == "yes" ] || [ $answer == "y" ]; then
 			echo "Continuing the build"
-		elif [ $answer == "no" ] || [ $answer == "n" ]
+		elif [ $answer == "no" ] || [ $answer == "n" ]; then
 			read -p "Returning to Build Menu, Press Enter to continue: " done
 			exit 0
 		else
