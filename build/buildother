@@ -192,9 +192,19 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/aokp-$REPO_PLATFORM/vendor/aokp/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
@@ -203,9 +213,19 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/aosp-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi	
 fi
 
@@ -214,18 +234,38 @@ if [ $SCRIPT_REPO == "carbon" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/carbon-$REPO_PLATFORM/vendor/carbon/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi	
 fi
 
 if [ $SCRIPT_REPO == "cm" ]; then
 	if ( ! cat $LOCAL/config/cm-master-list | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
@@ -234,9 +274,19 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/evervolv-$REPO_PLATFORM/vendor/ev/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
@@ -245,9 +295,19 @@ if [ $SCRIPT_REPO == "omni" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/omni-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi	
 fi
 
@@ -256,9 +316,19 @@ if [ $SCRIPT_REPO == "pacman" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/pacman-$REPO_PLATFORM/vendor/pac/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
@@ -267,9 +337,19 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/paranoid-$REPO_PLATFORM/vendor/pa/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, try again!"
-		read -p "Returning to Build Menu, Press Enter to continue: " done
-		exit 0
+		echo "This device is not compatible with this repository, build anyways?"
+		read answer
+
+		if [ $answer == "yes" ] || [ $answer == "y" ]
+			echo "Continuing the build"
+		elif [ $answer == "no" ] || [ $answer == "n" ]
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		else
+			echo "Not a vaild answer, not going to build"
+			read -p "Returning to Build Menu, Press Enter to continue: " done
+			exit 0
+		fi
 	fi
 fi
 
