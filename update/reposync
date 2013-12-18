@@ -245,7 +245,7 @@ if [ "$initmanifest" ]; then
 
 	cd $REPO_FOLDER
 
-	repo init -u $repo_url -b $repo_branch
+	repo init -u $repo_url -b $repo_branch -m $manifest_name
 fi
 }
 
