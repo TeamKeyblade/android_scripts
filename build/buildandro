@@ -150,7 +150,11 @@ fi
 
 #build aftermath
 cd $repofolder/out/target/product/$SCRIPT_DEVICE
-zip=$( find *$SCRIPT_DEVICE*.zip 2> /dev/null )
+if ( find *$SCRIPT_DEVICE.zip 2> /dev/null); then
+	zip=$( find *$SCRIPT_DEVICE.zip 2> /dev/null )
+else
+	zip=$( find *$SCRIPT_DEVICE*.zip 2> /dev/null )
+fi
 
 if [ ! "$zip" ]; then
 	echo "Build messed up! Returning to build menu"
