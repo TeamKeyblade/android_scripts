@@ -111,7 +111,8 @@ fi
 #build android
 
 if [ $SCRIPT_REPO == "cm" ]; then
-	brunch $SCRIPT_DEVICE -j $CPU_POWER_TOTAL
+	lunch cm_$SCRIPT_DEVICE-userdebug
+	mka bacon recoveryzip recoveryimage checkapi -j $CPU_POWER_TOTAL
 elif [ $SCRIPT_REPO == "omni" ]; then
 	lunch custom_$SCRIPT_DEVICE-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
