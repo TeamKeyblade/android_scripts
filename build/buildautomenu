@@ -203,7 +203,7 @@ if [ $buildautoconfig == "4" ]; then
 		touch toggleoutfile
 		echo "this will output buildauto into swordkitchen script folder"
 		echo "unless you want it to be somewhere else?"
-		read answer
+		read -p "Type yes to output somewhere else:" answer
 
 		if [ "$answer" == "y" ] || [ "$answer" == "yes" ]; then
 			echo "Please type the absolute path of where u want the buildoutput.txt to be"
