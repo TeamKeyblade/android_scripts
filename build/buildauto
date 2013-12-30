@@ -47,7 +47,7 @@ fi
 
 # Buildoutput if
 if ( ! find $LOCAL/config/toggleoutfile &> /dev/null ); then
-	toggleout=""
+	toggleout="cat"
 	outfile=$(echo $LOCAL/..)
 else
 	if ( ! find $LOCAL/config/outfile &> /dev/null ); then
@@ -56,7 +56,7 @@ else
 		outfile=$(cat $LOCAL/config/outfile | head -n 1)
 	fi
 
-	toggleout="2>&1 | tee -a $outfile/buildoutput-$(date +%Y%m%d).txt"
+	toggleout="tee -a $outfile/buildoutput-$(date +%Y%m%d).txt"
 fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -100,7 +100,7 @@ sed -i "/EOF/d" $LOCAL/config/$autodevice
 
 # Sync repos
 INIT=""
-reposync -u kitchen "$toggleout"
+reposync -u kitchen 2>&1 | $toggleout
 repocountdown=""
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,10 +114,10 @@ while true; do
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
 		export REPO_SYNC=$( cat $LOCAL/config/scriptautosync | sed -n "$repocountdown"p )
 		INIT=""
-		reposync -u $REPO_SYNC "$toggleout"
+		reposync -u $REPO_SYNC 2>&1 | $toggleout
 	else
 		cd "$REPOS/otherrepo/${scriptfolder[$repocountdown]}"
-		repo sync -j $NETWORKSYNC "$toggleout"
+		repo sync -j $NETWORKSYNC 2>&1 | $toggleout
 	fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 done
@@ -165,11 +165,11 @@ while true; do
 
 		export SCRIPT_DEVICE=$( echo "${scriptdevice[$devicecountdown]}" )
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		buildandro "$toggleout"
+		buildandro 2>&1 | $toggleout
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# Publish Build ( if possible )
 		if ( find $PUBLISH -maxdepth 1 &> /dev/null); then
-			publishandro "$toggleout"
+			publishandro 2>&1 | $toggleout
 		fi
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	done
@@ -181,10 +181,10 @@ done
 
 # Put computer to sleep ( if setup to do so )
 if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
-	echo "" "$toggleout"
-	echo "Waiting for ten minutes! this is not a countdown.." "$toggleout"
+	echo "" 2>&1 | $toggleout
+	echo "Waiting for ten minutes! this is not a countdown.." 2>&1 | $toggleout
 	sleep 10m
-	echo "Sleep..." "$toggleout"
+	echo "Sleep..." 2>&1 | $toggleout
 
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )
