@@ -205,16 +205,16 @@ if [ $buildautoconfig == "4" ]; then
 		echo "unless you want it to be somewhere else?"
 		read answer
 
-		if [ $answer == "y"] || [ $answer == "yes" ]; then
+		if [ "$answer" == "y"] || [ "$answer" == "yes" ]; then
 			echo "Please type the absolute path of where u want the buildoutput.txt to be"
 			read outfilelocation
 
 			echo $outfilelocation > outfile
-			echo "Output sent to $outfilelocation"
+			echo "Output will be sent to $outfilelocation"
 			read -p "Press Enter to continue: " done
 			menu
 		else
-			echo "Output sent to $( cd $LOCAL/.. && pwd )"
+			echo "Output will be sent to $( cd $LOCAL/.. && pwd )"
 			read -p "Press Enter to continue: " done
 			menu
 		fi
