@@ -124,9 +124,9 @@ if [ $buildautoconfig == "2" ]; then
 	fi
 
 	if ( ! find $LOCAL/config/scriptfolder &> /dev/null ); then
-		echo "$script_repo-$repo_platform" > $LOCAL/config/scriptfolder
+		echo "$SCRIPT_REPO-$REPO_PLATFORM" > $LOCAL/config/scriptfolder
 	else
-		echo "$script_repo-$repo_platform" >> $LOCAL/config/scriptfolder
+		echo "$SCRIPT_REPO-$REPO_PLATFORM" >> $LOCAL/config/scriptfolder
 	fi
 
 	if ( ! find $LOCAL/config/scriptautosync &> /dev/null ); then
