@@ -205,7 +205,7 @@ if [ $buildautoconfig == "4" ]; then
 		echo "unless you want it to be somewhere else?"
 		read answer
 
-		if [ "$answer" == "y"] || [ "$answer" == "yes" ]; then
+		if [ "$answer" == "y" ] || [ "$answer" == "yes" ]; then
 			echo "Please type the absolute path of where u want the buildoutput.txt to be"
 			read outfilelocation
 
