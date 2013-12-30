@@ -201,7 +201,8 @@ if [ $buildautoconfig == "4" ]; then
 	if ( ! find $LOCAL/config/toggleoutfile &> /dev/null ); then
 		cd $LOCAL/config
 		touch toggleoutfile
-		echo "this will output buildauto into swordkitchen script folder, unless you want it to be somewhere else?"
+		echo "this will output buildauto into swordkitchen script folder"
+		echo "unless you want it to be somewhere else?"
 		read answer
 
 		if [ $answer == "y"] || [ $answer == "yes" ]; then
