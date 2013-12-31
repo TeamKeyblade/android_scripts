@@ -1,10 +1,5 @@
 #!/bin/bash
 # Written by Sean Donovan (swordrune10)
-if [ $(whoami) == "root" ] && [ ! $SCRIPT_REPO == "kitchen" ]; then
-	cd $REPOS/$SCRIPT_REPO-$REPO_PLATFORM
-	chmod -R 777 .
-fi
-
 if [ $SCRIPT_REPO == "cm" ]; then
 	cd $REPOS/cm-$REPO_PLATFORM/vendor/cm
 	./get-prebuilts
