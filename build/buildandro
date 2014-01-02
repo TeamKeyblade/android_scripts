@@ -117,18 +117,22 @@ elif [ $SCRIPT_REPO == "omni" ]; then
 	lunch omni_$SCRIPT_DEVICE-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
 elif [ $SCRIPT_REPO == "pacman" ]; then
+	. ./vendor/pac/tools/colors
+	vendor/pac/tools/getdependencies.py $SCRIPT_DEVICE
+
 	rm -f out/target/product/$SCRIPT_DEVICE/obj/KERNEL_OBJ/.version
 
 	lunch pac_$SCRIPT_DEVICE-userdebug
-	make bacon -j $CPU_POWER_TOTAL
+	make -j $CPU_POWER_TOTAL bacon
 
 	vendor/pac/tools/squisher
 
 	rm -f $outfolder/cm-*.*
 	rm -f $outfolder/pac_*-ota*.zip
 elif [ $SCRIPT_REPO == "paranoid" ]; then
+        export PREFS_FROM_SOURCE
 	lunch pa_$SCRIPT_DEVICE-userdebug
-	mka bacon -j $CPU_POWER_TOTAL
+	mka bacon
 else
 	if ( cat vendor/*/vendorsetup.sh 2> /dev/null | grep $SCRIPT_DEVICE &> /dev/null ); then
 		lunch_device=$( cat $( find vendor/*/vendorsetup.sh | sed "/cm\/vendorsetup.sh/d" | head -n 1 ) \
