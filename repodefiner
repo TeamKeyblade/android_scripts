@@ -87,7 +87,7 @@ if [ $repodefine == "pacman" ]; then
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "pac-4.4")
 	repo_name=$(echo "PAC-man")
-	repo_url=$(echo "http://github.com/PAC-man/android.git")
+	repo_url=$(echo "http://github.com/PAC-man/pacman.git")
 	manifest_name=$(echo "default.xml")
 fi
 
