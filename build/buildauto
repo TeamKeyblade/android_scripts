@@ -10,11 +10,6 @@ fi
 
 export AUTO=true
 
-
-if [ $(whoami) == "root" ]; then
-	umask 000
-fi
-
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 if ( find $LOCAL/config/otherrepoauto &> /dev/null ); then
