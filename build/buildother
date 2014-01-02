@@ -157,8 +157,8 @@ while [ $device == "list" ]; do
 	if [ $SCRIPT_REPO == "omni" ]; then
 		for vendorsetup in `ls $REPOS/omni-$REPO_PLATFORM/device/*/*/vendorsetup.sh 2> /dev/null`
 		do
-			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*custom_//' | \
-			sed 's/-userdebug//' | sed 's/.*full_//' | sed "/combo.*/d"
+			cat $vendorsetup | grep "add_lunch_combo" | sed 's/.*omni_//' | \
+			sed 's/-userdebug//' | sed 's/-eng//' | sed 's/.*full_//' | sed "/combo.*/d"
 		done
 	fi
 
@@ -291,7 +291,7 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 fi
 
 if [ $SCRIPT_REPO == "omni" ]; then
-	if ( ! sed -e 's/.*custom_//g' \
+	if ( ! sed -e 's/.*omni_//g' \
 	-e 's/-userdebug//' \
 	$REPOS/omni-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
