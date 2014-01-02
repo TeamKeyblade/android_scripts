@@ -81,6 +81,14 @@ fi
 
 export NETWORKSYNC=$( expr $CPU_POWER_TOTAL \* 2 )
 export LOCALSYNC=$( expr $NETWORKSYNC \* 4 )
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
+# If root, make files made read and write
+if [ $(whoami) == "root" ]; then
+	umask 000
+fi
+
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Start kitchen
