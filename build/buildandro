@@ -114,7 +114,7 @@ if [ $SCRIPT_REPO == "cm" ]; then
 	lunch cm_$SCRIPT_DEVICE-userdebug
 	mka bacon recoveryzip recoveryimage checkapi -j $CPU_POWER_TOTAL
 elif [ $SCRIPT_REPO == "omni" ]; then
-	lunch custom_$SCRIPT_DEVICE-userdebug
+	lunch omni_$SCRIPT_DEVICE-userdebug
 	mka bacon -j $CPU_POWER_TOTAL
 elif [ $SCRIPT_REPO == "pacman" ]; then
 	rm -f out/target/product/$SCRIPT_DEVICE/obj/KERNEL_OBJ/.version
