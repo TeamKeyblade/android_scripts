@@ -93,9 +93,9 @@ fi
 
 if [ $repodefine == "paranoid" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "jb43")
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "kitkat")
 	repo_name=$(echo "ParanoidAndroid")
-	repo_url=$(echo "http://github.com/ParanoidAndroid/manifest.git")
+	repo_url=$(echo "http://github.com/AOSPA/manifest.git")
 	manifest_name=$(echo "default.xml")
 fi
