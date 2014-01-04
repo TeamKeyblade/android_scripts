@@ -136,8 +136,6 @@ while true; do
 	if ( echo "${scriptfolder[$repocountdown]}" | grep -q "EOF" ); then
 		break
 	fi
-
-	export SCRIPT_REPO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	if ( ! find $LOCAL/config/otherrepoauto &> /dev/null ); then
 		export AUTO_BUILD=true
