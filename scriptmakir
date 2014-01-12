@@ -80,12 +80,12 @@ cat << EOF > $LOCAL/xml/cm11-local_manifest.xml
   <project name="CyanogenMod/android_device_samsung_toro" path="device/samsung/toro" remote="github" revision="cm-11.0" />
   <project name="CyanogenMod/android_device_samsung_toroplus" path="device/samsung/toroplus" remote="github" revision="cm-11.0" />
 
-  <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_acer" path="vendor/acer" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_akm" path="vendor/akm" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_amazon" path="vendor/amazon" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_audience" path="vendor/audience" revision="cm-11.0" />
-  <project name="TheMuppets/proprietary_vendor_bn" path="vendor/bn" revision="cm-10.2" />
+  <project name="TheMuppets/proprietary_vendor_bn" path="vendor/bn" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_broadcom" path="vendor/broadcom" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_elan" path="vendor/elan" revision="cm-11.0" />
   <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" revision="cm-10.2" />
