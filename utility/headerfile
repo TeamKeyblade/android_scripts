@@ -18,7 +18,7 @@ if ( uname -a | grep -q Darwin ); then
 	export POSIXLY_CORRECT=1
 	export LOCAL=$( echo "/Volumes/android/swordkitchen/.scripts" )
 else
-	export LOCAL=$( cd ../$(dirname $0) && pwd )
+	export LOCAL=$( cd $(dirname $0) && cd .. && pwd )
 fi
 
 if [ $LOCAL == $HOME/bin/kitchen ]; then
