@@ -16,3 +16,5 @@ the recommended file directory is as follows:
     # Everything below is made by the kitchen
     android/repos/[all the repositorys u sync]
     android/builds/[the roms that are made]
+
+freenode channel #Swordrune10Kitchen
