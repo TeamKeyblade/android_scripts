@@ -1,4 +1,18 @@
 #!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 if [ $AUTHOR == "xml" ]; then
 
 rm -rf $LOCAL/xml/* &> /dev/null
@@ -157,6 +171,20 @@ if [ $AUTHOR == "gitpuller" ]; then
 
 cat << EOF > $LOCAL/config/gitpuller
 #!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 if [ \$SCRIPT_REPO == "aokp" ]; then
 	# below is examples, git pull is recommended
 	# cd \$REPOS/cm-ics/where-in-the-repo-you-want-to-modify
@@ -222,6 +250,20 @@ if [ $AUTHOR == "romeditor" ]; then
 
 cat << EOF > $LOCAL/config/romeditor
 #!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 if [ \$SCRIPT_REPO == "cm" ]; then
 	cd \$REPOS/cm-\$REPO_PLATFORM/vendor/cm/config
 	sed -i 's/developerid=cyanogenmod/developerid=\$(shell whoami)/g' common.mk
@@ -245,6 +287,20 @@ if [ $AUTHOR == "redeemer" ]; then
 
 cat << EOF > $LOCAL/../redeemer
 #!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 echo "Redeemer is running!"
 echo ""
 echo "Removing Kitchen"
@@ -266,6 +322,20 @@ if [ $AUTHOR == "destroyer" ] || [ $AUTHOR == "destroyerofworlds" ]; then
 
 cat << START > $LOCAL/../$AUTHOR
 #!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 START
 
 if [ $AUTHOR == "destroyer" ]; then
