@@ -4,15 +4,18 @@ if ( uname -a | grep -q Darwin ); then
 	export POSIXLY_CORRECT=1
 	export LOCAL=$( echo "/Volumes/android/swordkitchen/.scripts" )
 else
-	export LOCAL=$( cd $(dirname $0) && pwd )
+	export LOCAL=$( cd ../$(dirname $0) && pwd )
 fi
 
 if [ $LOCAL == $HOME/bin/kitchen ]; then
-	export REPOS=$( echo "$LOCAL/../../Documents/android/repos" )
+        mkdir -p $LOCAL/../../Documents/android/repos
+        export REPOS=$( cd "$LOCAL/../../Documents/android/repos" && pwd )
 else
-	export REPOS=$( echo "$LOCAL/../../repos" )
+        mkdir -p $LOCAL/../../repos
+        export REPOS=$( cd "$LOCAL/../../repos" && pwd )
 fi
 
+mkdir -p $REPOS/../builds
 export BUILDS=$( cd "$REPOS/../builds" && pwd )
 
 if ( find $BUILDS/../publish &> /dev/null); then
@@ -31,6 +34,7 @@ if ( ! echo $PATH | grep -q $LOCAL ); then
 	export PATH="$LOCAL/config:$PATH"
 	export PATH="$LOCAL/repair:$PATH"
 	export PATH="$LOCAL/update:$PATH"
+	export PATH="$LOCAL/utility:$PATH"
 	export PATH="$LOCAL/build:$PATH"
 	export PATH="$LOCAL:$PATH"
 fi
@@ -42,9 +46,9 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Create necessary files/folders if not found
-if ( ! find $LOCAL/xml &> /dev/null ); then
-	mkdir -p $LOCAL/xml
+mkdir -p $LOCAL/xml
 
+if ( ! find $LOCAL/xml/*.xml &> /dev/null ); then
 	export AUTHOR="xml"
 	scriptmakir
 fi
