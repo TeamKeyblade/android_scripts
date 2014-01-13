@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ $AUTHOR == "xml" ]; then
 
-rm -rf $LOCAL/xml/*
+rm -rf $LOCAL/xml/* &> /dev/null
 
 cat << EOF > $LOCAL/xml/cm10.2-local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
