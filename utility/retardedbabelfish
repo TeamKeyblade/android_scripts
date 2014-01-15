@@ -200,6 +200,9 @@ elif ( echo $LANG | grep -q "de_" ); then
 	entertocontinue=$( echo "Drücken Sie die Eingabetaste, um fortzufahren: " )
 
 	clear
+	
+	echo "Wir haben festgestellt, dass das System auf Deutsch eingestellt ist"
+	echo "Ist das die von Ihnen gewünschte Einstellung für das Kitchen?"
 
 	read -p "ja/nein?" answer
 
