@@ -17,7 +17,7 @@
 
 # Common
 export KITCHENTITLE=$( echo "Swordrune10의 안드로이드 주방!" )
-export KITCHENUNDERLINE=$( echo "============================" )
+export KITCHENUNDERLINE=$( echo "==============================" )
 export NOTPROPERSELECTION=$( echo "당신은 올바른 선택을하지 않았다, 다시 시도하십시오!" )
 export ENTERTOCONTINUE=$( echo "계속하려면 Enter 키를 누르십시오: " )
 export ANSWERYES=$( echo "예" )
