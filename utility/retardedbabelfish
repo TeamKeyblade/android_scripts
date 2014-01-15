@@ -364,25 +364,25 @@ fi
 
 # English
 if ( cat $LOCAL/config/language | grep -q "en" ); then
-	mahimahi
+	. mahimahi
 # Spanish
 elif ( cat $LOCAL/config/language | grep -q "es" ); then
-	spanishmackerel
+	. spanishmackerel
 # French
 elif ( cat $LOCAL/config/language | grep -q "fr" ); then
-	europeanpilchard
+	. europeanpilchard
 # German
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
-	rabbitfish
+	. rabbitfish
 # Italian
 elif ( cat $LOCAL/config/language | grep -q "it" ); then
-	italianbleak
+	. italianbleak
 # Japanese
 elif ( cat $LOCAL/config/language | grep -q "ja" ); then
-	bluefintuna
+	. bluefintuna
 # Korean
 elif ( cat $LOCAL/config/language | grep -q "ko" ); then
-	koreanlamprey
+	. koreanlamprey
 else
 	clear
 

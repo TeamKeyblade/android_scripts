@@ -109,7 +109,7 @@ fi
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
 # Grab translation and if first time setup language
-retardedbabelfish
+. retardedbabelfish
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 

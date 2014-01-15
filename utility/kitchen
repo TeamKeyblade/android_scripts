@@ -24,7 +24,7 @@ menu () {
 clear
 
 echo $KITCHENTITLE
-echo "=============================="
+echo $KITCHENUNDERLINE
 echo $KITCHENMAINMENU
 echo $KITCHENMENU1
 echo $KITCHENMENU2
