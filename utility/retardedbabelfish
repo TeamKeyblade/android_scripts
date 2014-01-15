@@ -138,12 +138,12 @@ if ( echo $LANG | grep -q "en_" ); then
 # Spanish
 elif ( echo $LANG | grep -q "es_" ); then
 	langsaved=$( echo "Idioma guardado como español" )
-	notproperselection=$( echo "No hiciste una adecuada selección, vuelve a intentarlo!" )
+	notproperselection=$( echo "No hiciste una elección adecuada, vuelve a intentarlo!" )
 	entertocontinue=$( echo "Pulse Intro para continuar: " )
 
 	clear
 	echo "Hemos detectado que su sistema está configurado para español"
-	echo "¿Es así como quieres la cocina rom que sea?"
+	echo "¿Es así como quieres que sea la Cocina De Rom?"
 
 	echo ""
 	echo "## Esto fue traducido usando Google Translate ##"
@@ -158,7 +158,7 @@ elif ( echo $LANG | grep -q "es_" ); then
 		read -p "$entertocontinue" done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo ""
-		echo "¿En qué idioma desea utilizar en su lugar?"
+		echo "¿Qué idioma desea utilizar en su lugar?"
 		langselect
 	else
 		echo ""
