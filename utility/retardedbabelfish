@@ -13,7 +13,66 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+initlang () {
+
 langselect () {
+echo "  1. English"
+echo "  2. español"
+echo "  3. français"
+echo "  4. Deutsch"
+echo "  5. italiano"
+echo "  6. 日本の"
+echo "  7. 한국의"
+echo "  8. None of the above"
+read answer
+
+if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "8" ]; then
+	echo ""
+	echo "You did not make a proper selection, try again!"
+	read -p "Press Enter to continue: " done
+	langselect
+fi
+
+if [ $answer == "1" ]; then
+	echo "en" > $LOCAL/config/language
+fi
+
+if [ $answer == "2" ]; then
+	echo "es" > $LOCAL/config/language
+fi
+
+if [ $answer == "3" ]; then
+	echo "fr" > $LOCAL/config/language
+fi
+
+if [ $answer == "4" ]; then
+	echo "de" > $LOCAL/config/language
+fi
+
+if [ $answer == "5" ]; then
+	echo "it" > $LOCAL/config/language
+fi
+
+if [ $answer == "6" ]; then
+	echo "ja" > $LOCAL/config/language
+fi
+
+if [ $answer == "7" ]; then
+	echo "ko" > $LOCAL/config/language
+fi
+
+if [ $answer == "8" ]; then
+	clear
+
+	echo "The Language You Want Is Not Supported!"
+	echo "======================"
+	echo "Please notify me what language you are looking for at either xda or rootzwiki"
+	echo "if you prefer email you can reach me at mishana@swordrune10.net"
+	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
+	read -p "Press Enter to exit.." done
+	kill 0
+fi
+}
 
 ## Language Manipulator, this will not stay in script
 ## Uncomment to use
@@ -29,7 +88,8 @@ if ( echo $LANG | grep -q "en_" ); then
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "Language saved as English"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "What language do you want to use instead?"
+		langselect
 	else
 		echo ""
 	fi
@@ -48,7 +108,8 @@ elif ( echo $LANG | grep -q "es_" ); then
 	if [ "$answer" == "sí" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
 		echo "Idioma guardado como español"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "¿En qué idioma desea utilizar en su lugar?"
+		langselect
 	else
 		echo ""
 	fi
@@ -65,9 +126,10 @@ elif ( echo $LANG | grep -q "fr_" ); then
 	read -p "oui/non?" answer
 
 	if [ "$answer" == "oui" ] || [ "$answer" == "o" ]; then
-		echo ""
+		echo "Langue enregistré en tant que français"
 	elif [ "$answer" == "non" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "Quelle langue voulez-vous utiliser à la place?"
+		langselect
 	else
 		echo ""
 	fi
@@ -84,9 +146,10 @@ elif ( echo $LANG | grep -q "de_" ); then
 	read -p "ja/nein?" answer
 
 	if [ "$answer" == "ja" ] || [ "$answer" == "j" ]; then
-		echo ""
+		echo "Die Sprache als Deutsch gespeichert"
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "Welche Sprache sprechen Sie stattdessen verwenden?"
+		langselect
 	else
 		echo ""
 	fi
@@ -103,9 +166,10 @@ elif ( echo $LANG | grep -q "it_" ); then
 	read -p "sì/no?" answer
 
 	if [ "$answer" == "sì" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
-		echo ""
+		echo "Lingua salvato come italiano"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "Che lingua che si desidera utilizzare, invece?"
+		langselect
 	else
 		echo ""
 	fi
@@ -121,9 +185,10 @@ elif ( echo $LANG | grep -q "ja_" ); then
 	read -p "はい/いいえ？" answer
 
 	if [ "$answer" == "はい" ] || [ "$answer" == "h" ]; then
-		echo ""
+		echo "日本人として保存言語"
 	elif [ "$answer" == "いいえ" ] || [ "$answer" == "ī" ]; then
-		echo ""
+		echo "あなたが代わりに使用する言語たいですか？"
+		langselect
 	else
 		echo ""
 	fi
@@ -140,9 +205,10 @@ elif ( echo $LANG | grep -q "ko_" ); then
 	read -p "예/아니오?" answer
 
 	if [ "$answer" == "예" ] || [ "$answer" == "y" ]; then
-		echo ""
+		echo "한국어로 저장 언어"
 	elif [ "$answer" == "아니오" ] || [ "$answer" == "a" ]; then
-		echo ""
+		echo "대신 사용하는 언어는 무엇할까요?"
+		langselect
 	else
 		echo ""
 	fi
@@ -154,7 +220,8 @@ else
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "Language saved as English"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
-		echo ""
+		echo "What language do you want to use instead?"
+		langselect
 	else
 		echo ""
 	fi
@@ -163,5 +230,5 @@ fi
 }
 
 if ( ! find $LOCAL/config/language &> /dev/null ); then
-	langselect
+	initlang
 fi
