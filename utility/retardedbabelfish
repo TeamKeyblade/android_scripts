@@ -266,7 +266,7 @@ elif ( echo $LANG | grep -q "it_" ); then
 elif ( echo $LANG | grep -q "ja_" ); then
 	langsaved=$( echo "日本人として保存言語" )
 	notproperselection=$( echo "あなたが適切な選択をしなかった、もう一度試してみてください！" )
-	entertocontinue=$( echo "Enterキーを押して続行します。 " )
+	entertocontinue=$( echo "Enterキーを押して続行します： " )
 
 	clear
 	echo "私たちは、あなたのシステムが日本語に設定されていることを検出した"

@@ -14,3 +14,26 @@
 # limitations under the License.
 
 # Japanese
+
+# Common
+export KITCHENTITLE=$( echo "Swordrune10のアンドロイドキッチン！" )
+export KITCHENUNDERLINE=$( echo "==============================" )
+export NOTPROPERSELECTION=$( echo "あなたが適切な選択をしなかった、もう一度試してみてください！" )
+export ENTERTOCONTINUE=$( echo "Enterキーを押して続行します： " )
+export ANSWERYES=$( echo "はい" )
+export ANSWERY=$( echo "h" )
+export ANSWERNO=$( echo "いいえ" )
+export ANSWERN=$( echo "ī" )
+
+# Kitchen
+export KITCHENMAINMENU=$( echo "メインメニュー：" )
+export KITCHENMENU1=$( echo "  1. セットアップ/更新キッチン" )
+export KITCHENMENU2=$( echo "  2. を構成キッチン" )
+export KITCHENMENU3=$( echo "  3. ランキッチン" )
+export KITCHENMENU4=$( echo "  4. キッチンを修正しました" )
+export KITCHENMENU5=$( echo "  5. 自動的にキッチンを構築" )
+export KITCHENMENU6=$( echo "  6. 出口" )
+export KITCHENMENUWHICH=$( echo "あなたはどちらが必要ですか？" )
+export KITCHENTHANKS=$( echo "Swordrune10のキッチンをご利用いただきありがとうございます！さよなら.." )
+export KITCHENBORED=$( echo "あなたは退屈に見える..たくは映画を見る？" )
+export KITCHENTOUGH=$( echo "タフ！" )
