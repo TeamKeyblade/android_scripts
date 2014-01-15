@@ -35,8 +35,8 @@ read answer
 
 if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "8" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $notproperselection
+	read -p  $entertocontinue done
 	langselect
 fi
 
@@ -44,55 +44,55 @@ fi
 if [ $answer == "1" ]; then
 	echo "en" > $LOCAL/config/language
 	echo ""
-	echo "Language saved as English"
-	read -p "Press Enter to continue: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 # Spanish
 if [ $answer == "2" ]; then
 	echo "es" > $LOCAL/config/language
 	echo ""
-	echo "Idioma guardado como español"
-	read -p "Pulse Intro para continuar: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 # French
 if [ $answer == "3" ]; then
 	echo "fr" > $LOCAL/config/language
 	echo ""
-	echo "Langue enregistré en tant que français"
-	read -p "Appuyez sur Entrée pour continuer: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 # German
 if [ $answer == "4" ]; then
 	echo "de" > $LOCAL/config/language
 	echo ""
-	echo "Die Sprache als Deutsch gespeichert"
-	read -p "Drücken Sie die Eingabetaste, um fortzufahren: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
  # Italian
 if [ $answer == "5" ]; then
 	echo "it" > $LOCAL/config/language
 	echo ""
-	echo "Lingua salvato come italiano"
-	read -p "Premere Invio per continuare: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 # Japanese
 if [ $answer == "6" ]; then
 	echo "ja" > $LOCAL/config/language
 	echo ""
-	echo "日本人として保存言語"
-	read -p "Enterキーを押して続行します。 " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 # Korean
 if [ $answer == "7" ]; then
 	echo "ko" > $LOCAL/config/language
 	echo ""
-	echo "한국어로 저장 언어"
-	read -p "계속하려면 Enter 키를 누르십시오: " done
+	echo $langsaved
+	read -p "$entertocontinue" done
 fi
 
 if [ $answer == "8" ]; then
@@ -110,10 +110,14 @@ fi
 
 ## Language Manipulator, this will not stay in script
 ## Uncomment to use
-# export LANG="gb_"
+# export LANG="en_"
 
 # English
 if ( echo $LANG | grep -q "en_" ); then
+	langsaved=$( echo "Language saved as English" )
+	notproperselection=$( echo "You did not make a proper selection, try again!" )
+	entertocontinue=$( echo "Press Enter to continue: " )
+
 	clear
 	echo "We have detected that your system is set to English"
 	echo "Is this how you want the rom kitchen to be?"
@@ -123,20 +127,24 @@ if ( echo $LANG | grep -q "en_" ); then
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "en" > $LOCAL/config/language
 		echo ""
-		echo "Language saved as English"
-		read -p "Press Enter to continue: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "What language do you want to use instead?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # Spanish
 elif ( echo $LANG | grep -q "es_" ); then
+	langsaved=$( echo "Idioma guardado como español" )
+	notproperselection=$( echo "No hiciste una adecuada selección, vuelve a intentarlo!" )
+	entertocontinue=$( echo "Pulse Intro para continuar: " )
+
 	clear
 	echo "Hemos detectado que su sistema está configurado para español"
 	echo "¿Es así como quieres la cocina rom que sea?"
@@ -150,20 +158,24 @@ elif ( echo $LANG | grep -q "es_" ); then
 
 	if [ "$answer" == "sí" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
 		echo "es" > $LOCAL/config/language
-		echo "Idioma guardado como español"
-		read -p "Pulse Intro para continuar: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "¿En qué idioma desea utilizar en su lugar?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # French
 elif ( echo $LANG | grep -q "fr_" ); then
+	langsaved=$( echo "Langue enregistré en tant que français" )
+	notproperselection=$( echo "Vous n'avez pas fait une sélection, essayez de nouveau!" )
+	entertocontinue=$( echo "Appuyez sur Entrée pour continuer: " )
+
 	clear
 	echo "Nous avons détecté que votre système est configuré en français"
 	echo "Est-ce la façon dont vous voulez la cuisine rom soit?"
@@ -178,20 +190,24 @@ elif ( echo $LANG | grep -q "fr_" ); then
 	if [ "$answer" == "oui" ] || [ "$answer" == "o" ]; then
 		echo "fr" > $LOCAL/config/language
 		echo ""
-		echo "Langue enregistré en tant que français"
-		read -p "Appuyez sur Entrée pour continuer: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "non" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "Quelle langue voulez-vous utiliser à la place?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselectioin
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # German
 elif ( echo $LANG | grep -q "de_" ); then
+	langsaved=$( echo "Die Sprache als Deutsch gespeichert" )
+	notproperselection=$( echo "Sie haben eine richtige Auswahl treffen, versuchen Sie es erneut!" )
+	entertocontinue=$( echo "Drücken Sie die Eingabetaste, um fortzufahren: " )
+
 	clear
 	echo "Wir haben festgestellt, dass das System auf Deutsch eingestellt ist"
 	echo "Ist das, wie Sie wollen, dass die rom Küche zu sein?"
@@ -206,20 +222,24 @@ elif ( echo $LANG | grep -q "de_" ); then
 	if [ "$answer" == "ja" ] || [ "$answer" == "j" ]; then
 		echo "de" > $LOCAL/config/language
 		echo ""
-		echo "Die Sprache als Deutsch gespeichert"
-		read -p "Drücken Sie die Eingabetaste, um fortzufahren: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "Welche Sprache sprechen Sie stattdessen verwenden?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # Italian
 elif ( echo $LANG | grep -q "it_" ); then
+	langsaved=$( echo "Lingua salvato come italiano" )
+	notproperselection=$( echo "Non hai fatto una selezione corretta, provare di nuovo!" )
+	entertocontinue=$( echo "Premere Invio per continuare: " )
+
 	clear
 	echo "Abbiamo rilevato che il sistema è impostato su italiano"
 	echo "È questo come si desidera la cucina rom di essere?"
@@ -234,20 +254,24 @@ elif ( echo $LANG | grep -q "it_" ); then
 	if [ "$answer" == "sì" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
 		echo "it" > $LOCAL/config/language
 		echo ""
-		echo "Lingua salvato come italiano"
-		read -p "Premere Invio per continuare: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "Che lingua che si desidera utilizzare, invece?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # Japanese
 elif ( echo $LANG | grep -q "ja_" ); then
+	langsaved=$( echo "日本人として保存言語" )
+	notproperselection=$( echo "あなたが適切な選択をしなかった、もう一度試してみてください！" )
+	entertocontinue=$( echo "Enterキーを押して続行します。 " )
+
 	clear
 	echo "私たちは、あなたのシステムが日本語に設定されていることを検出した"
 	echo "これは、ROMのキッチンになりたい方法です？"
@@ -261,20 +285,24 @@ elif ( echo $LANG | grep -q "ja_" ); then
 	if [ "$answer" == "はい" ] || [ "$answer" == "h" ]; then
 		echo "ja" > $LOCAL/config/language
 		echo ""
-		echo "日本人として保存言語"
-		read -p "Enterキーを押して続行します。 " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "いいえ" ] || [ "$answer" == "ī" ]; then
 		echo ""
 		echo "あなたが代わりに使用する言語たいですか？"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 # Korean
 elif ( echo $LANG | grep -q "ko_" ); then
+	langsaved=$( echo "한국어로 저장 언어" )
+	notproperselection=$( echo "당신은 올바른 선택을하지 않았다, 다시 시도하십시오!" )
+	entertocontinue=$( echo "계속하려면 Enter 키를 누르십시오: " )
+
 	clear
 	echo "우리는 당신의 시스템이 한국어로 설정되어 있음을 감지 한"
 	echo "이것은 당신이 롬 부엌이 원하는 방법인가?"
@@ -289,19 +317,23 @@ elif ( echo $LANG | grep -q "ko_" ); then
 	if [ "$answer" == "예" ] || [ "$answer" == "y" ]; then
 		echo "ko" > $LOCAL/config/language
 		echo ""
-		echo "한국어로 저장 언어"
-		read -p "계속하려면 Enter 키를 누르십시오: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "아니오" ] || [ "$answer" == "a" ]; then
 		echo ""
 		echo "대신 사용하는 언어는 무엇할까요?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 else
+	langsaved=$( echo "Language saved as English" )
+	notproperselection=$( echo "You did not make a proper selection, try again!" )
+	entertocontinue=$( echo "Press Enter to continue: " )
+
 	clear
 	echo "We could not detect what language your system uses"
 	echo "Default setting is english, will this be ok?"
@@ -310,16 +342,16 @@ else
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "en" > $LOCAL/config/language
 		echo ""
-		echo "Language saved as English"
-		read -p "Press Enter to continue: " done
+		echo $langsaved
+		read -p "$entertocontinue" done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "What language do you want to use instead?"
 		langselect
 	else
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $notproperselection
+		read -p "$entertocontinue" done
 		initlang
 	fi
 fi
