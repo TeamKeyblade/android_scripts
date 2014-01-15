@@ -23,23 +23,23 @@ fi
 menu () {
 clear
 
-echo "Swordrune10's Android Kitchen!"
+echo $KITCHENTITLE
 echo "=============================="
-echo "Main Menu:"
-echo "  1. Setup/Update Kitchen"
-echo "  2. Configure Kitchen"
-echo "  3. Run Kitchen"
-echo "  4. Fix Kitchen"
-echo "  5. Auto Build Kitchen"
-echo "  6. Exit"
+echo $KITCHENMAINMENU
+echo $KITCHENMENU1
+echo $KITCHENMENU2
+echo $KITCHENMENU3
+echo $KITCHENMENU4
+echo $KITCHENMENU5
+echo $KITCHENMENU6
 echo ""
-echo "Which one would you like to do?"
+echo $KITCHENMENUWHICH
 read answer
 
 if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "10" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
@@ -65,23 +65,24 @@ fi
 
 if [ $answer == "6" ]; then
 	echo ""
-	echo "Thank you for using Swordrune10's Kitchen! Good bye.."
+	echo $KITCHENTHANKS
 	exit 0
 fi
 
 if [ $answer == "7" ] ||[ $answer == "8" ] || [ $answer == "9" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
+	menu
 fi
 
 if [ $answer == "10" ]; then
 	echo ""
-	echo "You seem bored.. wanna watch a movie?"
+	echo $KITCHENBORED
 	read nothing
-	if [ ! "$nothing" ] ||[ $nothing == "no" ] || [ $nothing == "n" ]; then
-		echo "tough!"
-		read -p "Press Enter to continue: " done
+	if [ ! "$nothing" ] ||[ $nothing == $ANSWERNO ] || [ $nothing == $ANSWERN ]; then
+		echo $KITCHENTOUGH
+		read -p "$ENTERTOCONTINUE" done
 	fi
 	telnet towel.blinkenlights.nl
 fi
