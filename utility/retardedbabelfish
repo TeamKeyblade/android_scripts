@@ -16,12 +16,19 @@
 initlang () {
 
 langselect () {
+# English
 echo "  1. English"
+# Spanish
 echo "  2. español"
+# French
 echo "  3. français"
+# German
 echo "  4. Deutsch"
+# Italian
 echo "  5. italiano"
+# Japanese
 echo "  6. 日本の"
+# Korean
 echo "  7. 한국의"
 echo "  8. None of the above"
 read answer
@@ -33,39 +40,66 @@ if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "8" ]
 	langselect
 fi
 
+# English
 if [ $answer == "1" ]; then
 	echo "en" > $LOCAL/config/language
+	echo ""
+	echo "Language saved as English"
+	read -p "Press Enter to continue: " done
 fi
 
+# Spanish
 if [ $answer == "2" ]; then
 	echo "es" > $LOCAL/config/language
+	echo ""
+	echo "Idioma guardado como español"
+	read -p "Pulse Intro para continuar: " done
 fi
 
+# French
 if [ $answer == "3" ]; then
 	echo "fr" > $LOCAL/config/language
+	echo ""
+	echo "Langue enregistré en tant que français"
+	read -p "Appuyez sur Entrée pour continuer: " done
 fi
 
+# German
 if [ $answer == "4" ]; then
 	echo "de" > $LOCAL/config/language
+	echo ""
+	echo "Die Sprache als Deutsch gespeichert"
+	read -p "Drücken Sie die Eingabetaste, um fortzufahren: " done
 fi
-
+ # Italian
 if [ $answer == "5" ]; then
 	echo "it" > $LOCAL/config/language
+	echo ""
+	echo "Lingua salvato come italiano"
+	read -p "Premere Invio per continuare: " done
 fi
 
+# Japanese
 if [ $answer == "6" ]; then
 	echo "ja" > $LOCAL/config/language
+	echo ""
+	echo "日本人として保存言語"
+	read -p "Enterキーを押して続行します。 " done
 fi
 
+# Korean
 if [ $answer == "7" ]; then
 	echo "ko" > $LOCAL/config/language
+	echo ""
+	echo "한국어로 저장 언어"
+	read -p "계속하려면 Enter 키를 누르십시오: " done
 fi
 
 if [ $answer == "8" ]; then
 	clear
 
 	echo "The Language You Want Is Not Supported!"
-	echo "======================"
+	echo "======================================="
 	echo "Please notify me what language you are looking for at either xda or rootzwiki"
 	echo "if you prefer email you can reach me at mishana@swordrune10.net"
 	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
@@ -76,7 +110,7 @@ fi
 
 ## Language Manipulator, this will not stay in script
 ## Uncomment to use
-# export LANG="en_"
+# export LANG="gb_"
 
 # English
 if ( echo $LANG | grep -q "en_" ); then
@@ -88,8 +122,11 @@ if ( echo $LANG | grep -q "en_" ); then
 
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "en" > $LOCAL/config/language
+		echo ""
 		echo "Language saved as English"
+		read -p "Press Enter to continue: " done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "What language do you want to use instead?"
 		langselect
 	else
@@ -114,7 +151,9 @@ elif ( echo $LANG | grep -q "es_" ); then
 	if [ "$answer" == "sí" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
 		echo "es" > $LOCAL/config/language
 		echo "Idioma guardado como español"
+		read -p "Pulse Intro para continuar: " done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "¿En qué idioma desea utilizar en su lugar?"
 		langselect
 	else
@@ -138,8 +177,11 @@ elif ( echo $LANG | grep -q "fr_" ); then
 
 	if [ "$answer" == "oui" ] || [ "$answer" == "o" ]; then
 		echo "fr" > $LOCAL/config/language
+		echo ""
 		echo "Langue enregistré en tant que français"
+		read -p "Appuyez sur Entrée pour continuer: " done
 	elif [ "$answer" == "non" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "Quelle langue voulez-vous utiliser à la place?"
 		langselect
 	else
@@ -163,8 +205,11 @@ elif ( echo $LANG | grep -q "de_" ); then
 
 	if [ "$answer" == "ja" ] || [ "$answer" == "j" ]; then
 		echo "de" > $LOCAL/config/language
+		echo ""
 		echo "Die Sprache als Deutsch gespeichert"
+		read -p "Drücken Sie die Eingabetaste, um fortzufahren: " done
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "Welche Sprache sprechen Sie stattdessen verwenden?"
 		langselect
 	else
@@ -188,8 +233,11 @@ elif ( echo $LANG | grep -q "it_" ); then
 
 	if [ "$answer" == "sì" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
 		echo "it" > $LOCAL/config/language
+		echo ""
 		echo "Lingua salvato come italiano"
+		read -p "Premere Invio per continuare: " done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "Che lingua che si desidera utilizzare, invece?"
 		langselect
 	else
@@ -212,8 +260,11 @@ elif ( echo $LANG | grep -q "ja_" ); then
 
 	if [ "$answer" == "はい" ] || [ "$answer" == "h" ]; then
 		echo "ja" > $LOCAL/config/language
+		echo ""
 		echo "日本人として保存言語"
+		read -p "Enterキーを押して続行します。 " done
 	elif [ "$answer" == "いいえ" ] || [ "$answer" == "ī" ]; then
+		echo ""
 		echo "あなたが代わりに使用する言語たいですか？"
 		langselect
 	else
@@ -237,8 +288,11 @@ elif ( echo $LANG | grep -q "ko_" ); then
 
 	if [ "$answer" == "예" ] || [ "$answer" == "y" ]; then
 		echo "ko" > $LOCAL/config/language
+		echo ""
 		echo "한국어로 저장 언어"
+		read -p "계속하려면 Enter 키를 누르십시오: " done
 	elif [ "$answer" == "아니오" ] || [ "$answer" == "a" ]; then
+		echo ""
 		echo "대신 사용하는 언어는 무엇할까요?"
 		langselect
 	else
@@ -255,8 +309,11 @@ else
 
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
 		echo "en" > $LOCAL/config/language
+		echo ""
 		echo "Language saved as English"
+		read -p "Press Enter to continue: " done
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
 		echo "What language do you want to use instead?"
 		langselect
 	else
