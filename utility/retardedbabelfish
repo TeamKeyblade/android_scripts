@@ -195,18 +195,11 @@ elif ( echo $LANG | grep -q "fr_" ); then
 	fi
 # German
 elif ( echo $LANG | grep -q "de_" ); then
-	langsaved=$( echo "Die Sprache als Deutsch gespeichert" )
-	notproperselection=$( echo "Sie haben eine richtige Auswahl treffen, versuchen Sie es erneut!" )
+	langsaved=$( echo "Die Sprache Deutsch wurde gespeichert" )
+	notproperselection=$( echo "Sie haben keine gültige Option gewählt, versuchen Sie es erneut!" )
 	entertocontinue=$( echo "Drücken Sie die Eingabetaste, um fortzufahren: " )
 
 	clear
-	echo "Wir haben festgestellt, dass das System auf Deutsch eingestellt ist"
-	echo "Ist das, wie Sie wollen, dass die rom Küche zu sein?"
-
-	echo ""
-	echo "## Dies wurde mit Hilfe von Google Translate übersetzt ##"
-	echo "## Bitte kontaktieren Sie mich, damit ich weiß, ob dies"
-	echo "eine gute Übersetzung ist oder nicht ##"
 
 	read -p "ja/nein?" answer
 
@@ -217,7 +210,7 @@ elif ( echo $LANG | grep -q "de_" ); then
 		read -p "$entertocontinue" done
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
 		echo ""
-		echo "Welche Sprache sprechen Sie stattdessen verwenden?"
+		echo "Welche Sprache möchten Sie stattdessen verwenden?"
 		langselect
 	else
 		echo ""
