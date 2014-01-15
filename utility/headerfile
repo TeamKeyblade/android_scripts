@@ -108,6 +108,13 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
+# if gate checking if language has been selected yet
+if ( ! find $LOCAL/config/language &> /dev/null ); then
+	retardedbabelfish
+fi
+
+# ::::::::::::::::::::::::::::::::::::::::::::::
+
 # Start kitchen
 if [ "$START" ]; then
 	export START=""

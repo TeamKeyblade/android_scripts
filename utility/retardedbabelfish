@@ -80,21 +80,27 @@ fi
 
 # English
 if ( echo $LANG | grep -q "en_" ); then
+	clear
 	echo "We have detected that your system is set to English"
 	echo "Is this how you want the rom kitchen to be?"
 
 	read -p "yes/no?" answer
 
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+		echo "en" > $LOCAL/config/language
 		echo "Language saved as English"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo "What language do you want to use instead?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # Spanish
 elif ( echo $LANG | grep -q "es_" ); then
+	clear
 	echo "Hemos detectado que su sistema está configurado para español"
 	echo "¿Es así como quieres la cocina rom que sea?"
 
@@ -106,15 +112,20 @@ elif ( echo $LANG | grep -q "es_" ); then
 	read -p "sí/no?" answer
 
 	if [ "$answer" == "sí" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
+		echo "es" > $LOCAL/config/language
 		echo "Idioma guardado como español"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo "¿En qué idioma desea utilizar en su lugar?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # French
 elif ( echo $LANG | grep -q "fr_" ); then
+	clear
 	echo "Nous avons détecté que votre système est configuré en français"
 	echo "Est-ce la façon dont vous voulez la cuisine rom soit?"
 
@@ -126,15 +137,20 @@ elif ( echo $LANG | grep -q "fr_" ); then
 	read -p "oui/non?" answer
 
 	if [ "$answer" == "oui" ] || [ "$answer" == "o" ]; then
+		echo "fr" > $LOCAL/config/language
 		echo "Langue enregistré en tant que français"
 	elif [ "$answer" == "non" ] || [ "$answer" == "n" ]; then
 		echo "Quelle langue voulez-vous utiliser à la place?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # German
 elif ( echo $LANG | grep -q "de_" ); then
+	clear
 	echo "Wir haben festgestellt, dass das System auf Deutsch eingestellt ist"
 	echo "Ist das, wie Sie wollen, dass die rom Küche zu sein?"
 
@@ -146,15 +162,20 @@ elif ( echo $LANG | grep -q "de_" ); then
 	read -p "ja/nein?" answer
 
 	if [ "$answer" == "ja" ] || [ "$answer" == "j" ]; then
+		echo "de" > $LOCAL/config/language
 		echo "Die Sprache als Deutsch gespeichert"
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
 		echo "Welche Sprache sprechen Sie stattdessen verwenden?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # Italian
 elif ( echo $LANG | grep -q "it_" ); then
+	clear
 	echo "Abbiamo rilevato che il sistema è impostato su italiano"
 	echo "È questo come si desidera la cucina rom di essere?"
 
@@ -166,15 +187,20 @@ elif ( echo $LANG | grep -q "it_" ); then
 	read -p "sì/no?" answer
 
 	if [ "$answer" == "sì" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
+		echo "it" > $LOCAL/config/language
 		echo "Lingua salvato come italiano"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo "Che lingua che si desidera utilizzare, invece?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # Japanese
 elif ( echo $LANG | grep -q "ja_" ); then
+	clear
 	echo "私たちは、あなたのシステムが日本語に設定されていることを検出した"
 	echo "これは、ROMのキッチンになりたい方法です？"
 
@@ -185,15 +211,20 @@ elif ( echo $LANG | grep -q "ja_" ); then
 	read -p "はい/いいえ？" answer
 
 	if [ "$answer" == "はい" ] || [ "$answer" == "h" ]; then
+		echo "ja" > $LOCAL/config/language
 		echo "日本人として保存言語"
 	elif [ "$answer" == "いいえ" ] || [ "$answer" == "ī" ]; then
 		echo "あなたが代わりに使用する言語たいですか？"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 # Korean
 elif ( echo $LANG | grep -q "ko_" ); then
+	clear
 	echo "우리는 당신의 시스템이 한국어로 설정되어 있음을 감지 한"
 	echo "이것은 당신이 롬 부엌이 원하는 방법인가?"
 
@@ -205,25 +236,34 @@ elif ( echo $LANG | grep -q "ko_" ); then
 	read -p "예/아니오?" answer
 
 	if [ "$answer" == "예" ] || [ "$answer" == "y" ]; then
+		echo "ko" > $LOCAL/config/language
 		echo "한국어로 저장 언어"
 	elif [ "$answer" == "아니오" ] || [ "$answer" == "a" ]; then
 		echo "대신 사용하는 언어는 무엇할까요?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 else
+	clear
 	echo "We could not detect what language your system uses"
 	echo "Default setting is english, will this be ok?"
 	read -p "yes/no?" answer
 
 	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+		echo "en" > $LOCAL/config/language
 		echo "Language saved as English"
 	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
 		echo "What language do you want to use instead?"
 		langselect
 	else
 		echo ""
+		echo "You did not make a proper selection, try again!"
+		read -p "Press Enter to continue: " done
+		initlang
 	fi
 fi
 
