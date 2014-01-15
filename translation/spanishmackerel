@@ -14,3 +14,26 @@
 # limitations under the License.
 
 # Spanish
+
+# Common
+export KITCHENTITLE=$( echo "De Swordrune10 Cocina Android!" )
+export KITCHENUNDERLINE=$( echo "==============================" )
+export NOTPROPERSELECTION=$( echo "No hiciste una adecuada selección, vuelve a intentarlo!" )
+export ENTERTOCONTINUE=$( echo "Pulse Intro para continuar: " )
+export ANSWERYES=$( echo "sí" )
+export ANSWERY=$( echo "s" )
+export ANSWERNO=$( echo "no" )
+export ANSWERN=$( echo "n" )
+
+# Kitchen
+export KITCHENMAINMENU=$( echo "Menú Principal:" )
+export KITCHENMENU1=$( echo "  1. Configuración/Actualización Cocina" )
+export KITCHENMENU2=$( echo "  2. Configurar Cocina" )
+export KITCHENMENU3=$( echo "  3. Cocina Ejecutar" )
+export KITCHENMENU4=$( echo "  4. Fijar Cocina" )
+export KITCHENMENU5=$( echo "  5. Cocina Generación Automática" )
+export KITCHENMENU6=$( echo "  6. Salida" )
+export KITCHENMENUWHICH=$( echo "¿Cuál te gusta hacer?" )
+export KITCHENTHANKS=$( echo "Gracias por utilizar la cocina del Swordrune10 usted! Adiós.." )
+export KITCHENBORED=$( echo "Pareces aburrido .. ¿Quieres ver una película?" )
+export KITCHENTOUGH=$( echo "difícil!" )
