@@ -13,50 +13,102 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-xinit() {
 clear
 
 export POSIXLY_CORRECT=1
 
 echo "You are running Mac OS X!"
-if ( ! find /Volumes/android/swordkitchen &> /dev/null )
-	if ( ! find ~/android.dmg &> /dev/null ); then
-		echo ""
-		echo "We can't find the android image to mount, this is needed to build on mac os x"
-		echo "If you already have one made please put it in its proper place with its proper title"
-		echo "It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg"
-		echo ""
-		echo "Would you like to make a new android.dmg?"
-		read diskimage
 
-		if [ ! "$diskimage" ]; then
+xinit() {
+if ( ! find ~/android.dmg &> /dev/null ); then
+	echo ""
+	echo "We can't find the android image to mount, this is needed to build on mac os x"
+	echo "If you already have one made please put it in its proper place with its proper title"
+	echo "It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg"
+	echo ""
+	echo "Would you like to make a new android.dmg?"
+	read diskimage
+
+	if [ ! "$diskimage" ]; then
+		echo ""
+		echo "You didn't type in anything.."
+		read -p "Press Enter to continue" done
+
+		xinit
+		exit 0
+	fi
+
+	if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+		echo ""
+		echo "Exiting for now.."
+		read -p "Press Enter to exit" done
+
+		exit 0
+	fi
+
+
+	echo ""
+	echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
+	echo "Type in number in gigabytes"
+	read gigs
+
+	hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
+
+	echo ""
+	echo "Mounting new android.dmg at /Volumes/android.."
+	hdiutil attach ~/android.dmg -mountpoint /Volumes/android
+
+	if ( ! find ~/bin/repo &> /dev/null ); then
+		echo ""
+		echo "Installing the repo command.."
+
+		if ( ! find ~/bin &> /dev/null ); then
+			mkdir ~/bin
+		fi
+
+		curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+		chmod a+x ~/bin/repo
+	fi
+
+	echo ""
+	echo "Moving into android.dmg.."
+	cd /Volumes/android
+	mkdir -p swordkitchen
+	cd swordkitchen
+
+	echo "Setting up kitchen.."
+	~/bin/repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
+	~/bin/repo sync -j4
+
+else
+	echo "Found your android.dmg, mounting.."
+	hdiutil attach ~/android.dmg -mountpoint /Volumes/android
+
+	if ( ! find /Volumes/android/swordkitchen &> /dev/null ); then
+		echo ""
+		echo "We can't find the rom kitchen in /Volumes/android"
+		echo ""
+		echo "Would you like to make install rom kitchen in /Volumes/android?"
+		read androidvolume
+
+		if [ ! "$androidvolume" ]; then
 			echo ""
 			echo "You didn't type in anything.."
-			read -p "Press Enter to continue" done
+			echo "Press Enter to continue"
+			read done
 
 			xinit
 			exit 0
 		fi
 
-		if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+		if [ $androidvolume == "no" ] || [ $androidvolume == "n" ]; then
 			echo ""
 			echo "Exiting for now.."
-			read -p "Press Enter to exit" done
+			echo "Press Enter to exit"
+			read done
 
 			exit 0
 		fi
-
-
-		echo ""
-		echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
-		echo "Type in number in gigabytes"
-		read gigs
-
-		hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
-
-		echo ""
-		echo "Mounting new android.dmg at /Volumes/android.."
-		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
 		if ( ! find ~/bin/repo &> /dev/null ); then
 			echo ""
@@ -79,63 +131,14 @@ if ( ! find /Volumes/android/swordkitchen &> /dev/null )
 		echo "Setting up kitchen.."
 		~/bin/repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
 		~/bin/repo sync -j4
-
 	else
-		echo "Found your android.dmg, mounting.."
-		hdiutil attach ~/android.dmg -mountpoint /Volumes/android
-
-		if ( ! find /Volumes/android/swordkitchen &> /dev/null ); then
-			echo ""
-			echo "We can't find the rom kitchen in /Volumes/android"
-			echo ""
-			echo "Would you like to make install rom kitchen in /Volumes/android?"
-			read androidvolume
-
-			if [ ! "$androidvolume" ]; then
-				echo ""
-				echo "You didn't type in anything.."
-				echo "Press Enter to continue"
-				read done
-
-				xinit
-				exit 0
-			fi
-
-			if [ $androidvolume == "no" ] || [ $androidvolume == "n" ]; then
-				echo ""
-				echo "Exiting for now.."
-				echo "Press Enter to exit"
-				read done
-
-				exit 0
-			fi
-
-			if ( ! find ~/bin/repo &> /dev/null ); then
-				echo ""
-				echo "Installing the repo command.."
-
-				if ( ! find ~/bin &> /dev/null ); then
-					mkdir ~/bin
-				fi
-
-				curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-				chmod a+x ~/bin/repo
-			fi
-
-			echo ""
-			echo "Moving into android.dmg.."
-			cd /Volumes/android
-			mkdir -p swordkitchen
-			cd swordkitchen
-
-			echo "Setting up kitchen.."
-			~/bin/repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
-			~/bin/repo sync -j4
-		else
-			cd /Volumes/android/swordkitchen
-		fi
+		cd /Volumes/android/swordkitchen
 	fi
+fi
+}
+
+if ( ! find /Volumes/android/swordkitchen &> /dev/null )
+	xinit
 else
 	cd /Volumes/android/swordkitchen
 fi
-}
