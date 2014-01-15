@@ -361,3 +361,36 @@ fi
 if ( ! find $LOCAL/config/language &> /dev/null ); then
 	initlang
 fi
+
+# English
+if ( cat $LOCAL/config/language | grep -q "en" ); then
+	idkyet
+# Spanish
+elif ( cat $LOCAL/config/language | grep -q "es" ); then
+	idkyet
+# French
+elif ( cat $LOCAL/config/language | grep -q "fr" ); then
+	idkyet
+# German
+elif ( cat $LOCAL/config/language | grep -q "de" ); then
+	idkyet
+# Italian
+elif ( cat $LOCAL/config/language | grep -q "it" ); then
+	idkyet
+# Japanese
+elif ( cat $LOCAL/config/language | grep -q "ja" ); then
+	idkyet
+# Korean
+elif ( cat $LOCAL/config/language | grep -q "ko" ); then
+	idkyet
+else
+	clear
+
+	echo "An Error Has Occurred!"
+	echo "======================"
+	echo "If you see this in error, please notify me at either xda or rootzwiki"
+	echo "if you prefer email you can reach me at mishana@swordrune10.net"
+	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
+	read -p "Press Enter to exit.." done
+	kill 0
+fi

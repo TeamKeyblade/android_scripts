@@ -108,10 +108,8 @@ fi
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
-# if gate checking if language has been selected yet
-if ( ! find $LOCAL/config/language &> /dev/null ); then
-	retardedbabelfish
-fi
+# Grab translation and if first time setup language
+retardedbabelfish
 
 # ::::::::::::::::::::::::::::::::::::::::::::::
 
