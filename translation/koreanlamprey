@@ -14,3 +14,26 @@
 # limitations under the License.
 
 # Korean
+
+# Common
+export KITCHENTITLE=$( echo "Swordrune10의 안드로이드 주방!" )
+export KITCHENUNDERLINE=$( echo "============================" )
+export NOTPROPERSELECTION=$( echo "당신은 올바른 선택을하지 않았다, 다시 시도하십시오!" )
+export ENTERTOCONTINUE=$( echo "계속하려면 Enter 키를 누르십시오: " )
+export ANSWERYES=$( echo "예" )
+export ANSWERY=$( echo "y" )
+export ANSWERNO=$( echo "아니오" )
+export ANSWERN=$( echo "a" )
+
+# Kitchen
+export KITCHENMAINMENU=$( echo "주 메뉴:" )
+export KITCHENMENU1=$( echo "  1. 설치/업데이트 주방" )
+export KITCHENMENU2=$( echo "  2. 구성 주방" )
+export KITCHENMENU3=$( echo "  3. 실행 주방" )
+export KITCHENMENU4=$( echo "  4. 주방 수정" )
+export KITCHENMENU5=$( echo "  5. 자동 주방 빌드" )
+export KITCHENMENU6=$( echo "  6. 출구" )
+export KITCHENMENUWHICH=$( echo "당신은 어느 쪽을하기를 원하십니까?" )
+export KITCHENTHANKS=$( echo "Swordrune10의 부엌을 사용하여 주셔서 감사합니다! 안녕.." )
+export KITCHENBORED=$( echo "당신은 지루해 보인다.. 싶어 영화를 보는?" )
+export KITCHENTOUGH=$( echo "힘든!" )
