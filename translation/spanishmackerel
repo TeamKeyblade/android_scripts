@@ -16,9 +16,9 @@
 # Spanish
 
 # Common
-export KITCHENTITLE=$( echo "De Swordrune10 Cocina Android!" )
+export KITCHENTITLE=$( echo " Cocina Android De Swordrune10!" )
 export KITCHENUNDERLINE=$( echo "==============================" )
-export NOTPROPERSELECTION=$( echo "No hiciste una adecuada selección, vuelve a intentarlo!" )
+export NOTPROPERSELECTION=$( echo "No hiciste la selección adecuada, vuelve a intentarlo!" )
 export ENTERTOCONTINUE=$( echo "Pulse Intro para continuar: " )
 export ANSWERYES=$( echo "sí" )
 export ANSWERY=$( echo "s" )
@@ -27,13 +27,13 @@ export ANSWERN=$( echo "n" )
 
 # Kitchen
 export KITCHENMAINMENU=$( echo "Menú Principal:" )
-export KITCHENMENU1=$( echo "  1. Configuración/Actualización Cocina" )
+export KITCHENMENU1=$( echo "  1. Configuración/Actualizar Cocina" )
 export KITCHENMENU2=$( echo "  2. Configurar Cocina" )
-export KITCHENMENU3=$( echo "  3. Cocina Ejecutar" )
-export KITCHENMENU4=$( echo "  4. Fijar Cocina" )
-export KITCHENMENU5=$( echo "  5. Cocina Generación Automática" )
-export KITCHENMENU6=$( echo "  6. Salida" )
-export KITCHENMENUWHICH=$( echo "¿Cuál te gusta hacer?" )
-export KITCHENTHANKS=$( echo "Gracias por utilizar la cocina del Swordrune10 usted! Adiós.." )
+export KITCHENMENU3=$( echo "  3. Ejecutar Cocina " )
+export KITCHENMENU4=$( echo "  4. Reparar Cocina" )
+export KITCHENMENU5=$( echo "  5. Generar la Cocina Automáticamente" )
+export KITCHENMENU6=$( echo "  6. Salir" )
+export KITCHENMENUWHICH=$( echo "¿Cuál quieres hacer?" )
+export KITCHENTHANKS=$( echo "Gracias por utilizar la cocina de Swordrune10! Adiós.." )
 export KITCHENBORED=$( echo "Pareces aburrido .. ¿Quieres ver una película?" )
-export KITCHENTOUGH=$( echo "difícil!" )
+export KITCHENTOUGH=$( echo "Complicado!" )
