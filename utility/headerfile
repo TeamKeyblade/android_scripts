@@ -44,12 +44,12 @@ if ( ! echo $PATH | grep -q "$HOME/bin:" ); then
 fi
 
 if ( ! echo $PATH | grep -q $LOCAL ); then
+	export PATH="$LOCAL/build:$PATH"
 	export PATH="$LOCAL/config:$PATH"
 	export PATH="$LOCAL/repair:$PATH"
+	export PATH="$LOCAL/translation:$PATH"
 	export PATH="$LOCAL/update:$PATH"
 	export PATH="$LOCAL/utility:$PATH"
-	export PATH="$LOCAL/build:$PATH"
-	export PATH="$LOCAL:$PATH"
 fi
 
 if ( find $BUILDS/../publish &> /dev/null) && ( ! echo $PATH | grep -q "$PUBLISH:" ); then
