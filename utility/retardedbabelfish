@@ -145,11 +145,6 @@ elif ( echo $LANG | grep -q "es_" ); then
 	echo "Hemos detectado que su sistema está configurado para español"
 	echo "¿Es así como quieres que sea la Cocina De Rom?"
 
-	echo ""
-	echo "## Esto fue traducido usando Google Translate ##"
-	echo "## Póngase en contacto conmigo para hacerme saber"
-	echo "si se trataba de una buena traducción o no ##"
-
 	read -p "sí/no?" answer
 
 	if [ "$answer" == "sí" ] || [ "$answer" == "si" ] || [ "$answer" == "s" ]; then
