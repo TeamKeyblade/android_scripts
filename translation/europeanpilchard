@@ -14,3 +14,26 @@
 # limitations under the License.
 
 # French
+
+# Common
+export KITCHENTITLE=$( echo "Cuisine Androïde de Swordrune10!" )
+export KITCHENUNDERLINE=$( echo "================================" )
+export NOTPROPERSELECTION=$( echo "Vous n'avez pas fait une sélection, essayez de nouveau!" )
+export ENTERTOCONTINUE=$( echo "Appuyez sur Entrée pour continuer: " )
+export ANSWERYES=$( echo "oui" )
+export ANSWERY=$( echo "y" )
+export ANSWERNO=$( echo "non" )
+export ANSWERN=$( echo "n" )
+
+# Kitchen
+export KITCHENMAINMENU=$( echo "Menu principal:" )
+export KITCHENMENU1=$( echo "  1. Configuration/mise à jour de cuisine" )
+export KITCHENMENU2=$( echo "  2. Configurer Cuisine" )
+export KITCHENMENU3=$( echo "  3. Exécuter Cuisine" )
+export KITCHENMENU4=$( echo "  4. Fixer Cuisine" )
+export KITCHENMENU5=$( echo "  5. Auto construction Cuisine" )
+export KITCHENMENU6=$( echo "  6. Quitter" )
+export KITCHENMENUWHICH=$( echo "Lequel voulez-vous faire?" )
+export KITCHENTHANKS=$( echo "Merci d'utiliser la cuisine de Swordrune10! Au revoir.." )
+export KITCHENBORED=$( echo "Vous semblez s'ennuyer.. veux regarder un film?" )
+export KITCHENTOUGH=$( echo "dur!" )
