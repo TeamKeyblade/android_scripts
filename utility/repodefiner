@@ -71,7 +71,7 @@ if [ $repodefine == "cm" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "11")
 	repo_branch=$(echo "cm-11.0")
-	repo_name=$(echo $REPOSCM11)
+	repo_name=$(echo $REPOSCM)
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	manifest_name=$(echo "default.xml")
 fi
