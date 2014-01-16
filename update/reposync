@@ -15,33 +15,33 @@
 
 if [ ! "$INIT" ]; then
 
-usage="$(basename "$0") [-d] [-h] [-p] [-u] repo -- program to initialize/update android repos
+usage="$(basename "$0") [-d] [-h] [-p] [-u] $REPOSYNCUSAGE
 
 where:
-	-d  delete the appropriate folder and then exit program
-	-h  show this help text
-	-p  purge folder, reinit, and then update
-	-u  update this particular repo
+	-d  $REPOSYNCFLAGD
+	-h  $REPOSYNCFLAGH
+	-p  $REPOSYNCFLAGP
+	-u  $REPOSYNCFLAGU
 
 	    Options list:
-	    kitchen = Update Kitchen
-	    aokp = Update Android Open Kang Project
-	    aosp43 = Update Android Open Source Project 4.3
-	    aosp = Update Android Open Source Project 4.4
-	    carbon = Update Carbon
-	    cm10 = Update Cyanogenmod 10.2
-	    cm10 = Update Cyanogenmod 11
-	    ev = Update Evervolv
-	    omni = Update omnirom
-	    pacman = Update PAC-man
-	    paranoid = Update ParanoidAndroid
-	    all = Update all available repos
-	    allthethings = Update all the repos
+	    kitchen = $REPOSYNCUPDATE1
+	    aokp = $REPOSYNCUPDATE2
+	    aosp43 = $REPOSYNCUPDATE3
+	    aosp = $REPOSYNCUPDATE4
+	    carbon = $REPOSYNCUPDATE5
+	    cm10 = $REPOSYNCUPDATE6
+	    cm11 = $REPOSYNCUPDATE7
+	    ev = $REPOSYNCUPDATE8
+	    omni = $REPOSYNCUPDATE9
+	    pacman = $REPOSYNCUPDATE10
+	    paranoid = $REPOSYNCUPDATE11
+	    all = $REPOSYNCUPDATE12
+	    allthethings = $REPOSYNCUPDATE13
 
-	    Example: reposync -u cm-10.2
+	    $REPOSYNCUSAGEEXAMP
 
-	    typing \"reposync -u list\" will give
-	    you the options list again"
+	    $REPOSYNCUSAGELIST1
+	    $REPOSYNCUSAGELIST2"
 
 	export AUTO=true
 
@@ -80,8 +80,8 @@ menu () {
 if [ ! "$AUTO" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
 	echo "What are we updating?"
 	echo "If repo isn't initialized, it will be on update"
 	echo "  1. Install the repo command"
@@ -105,27 +105,27 @@ if [ ! "$AUTO" ]; then
 
 	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
 
 if [ "$PLATFORM" ]; then
 	if [ $PLATFORM == "list" ]; then
-		echo "kitchen = Update Kitchen"
-		echo "aokp = Update Android Open Kang Project"
-		echo "aosp43 = Update Android Open Source Project 4.3"
-		echo "aosp = Update Android Open Source Project 4.4"
-		echo "carbon = Update Carbon"
-		echo "cm10 = Update Cyanogenmod 10.2"
-		echo "cm = Update Cyanogenmod 11"
-		echo "evervolv = Update Evervolv"
-		echo "omni = Update omnirom"
-		echo "pacman = Update PAC-man"
-		echo "paranoid = Update ParanoidAndroid"
-		echo "all = Update all available repos"
-		echo "allthethings = Update all the repos"
+		echo "kitchen = $REPOSYNCUPDATE1"
+		echo "aokp = $REPOSYNCUPDATE2"
+		echo "aosp43 = $REPOSYNCUPDATE3"
+		echo "aosp = $REPOSYNCUPDATE4"
+		echo "carbon = $REPOSYNCUPDATE5"
+		echo "cm10 =$REPOSYNCUPDATE6"
+		echo "cm = $REPOSYNCUPDATE7"
+		echo "evervolv = $REPOSYNCUPDATE8"
+		echo "omni = $REPOSYNCUPDATE9"
+		echo "pacman = $REPOSYNCUPDATE10"
+		echo "paranoid = $REPOSYNCUPDATE11"
+		echo "all = $REPOSYNCUPDATE12"
+		echo "allthethings = $REPOSYNCUPDATE13"
 		exit 0
 	fi
 
@@ -241,7 +241,7 @@ if [ "$done" ]; then
 	if [ ! "$AUTO" ]; then
 		echo ""
 		echo "Finished!"
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	else
 		exit 0
@@ -295,7 +295,7 @@ if [ $setupanswer == "1" ]; then
 
 		echo ""
 		echo "Finished!"
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 	fi
 fi
 
@@ -430,8 +430,8 @@ fi
 if [ $setupanswer == "16" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
 	echo "Are we adding or updating otherrepo?"
 	echo ""
 	echo "Which android repository are we building from today?"
@@ -484,14 +484,14 @@ if [ $setupanswer == "16" ]; then
 
 	if [ $otheranswer == "3" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
 
 if [ $setupanswer == "17" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 
