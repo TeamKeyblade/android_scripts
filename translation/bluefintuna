@@ -15,6 +15,8 @@
 
 # Japanese
 
+## THIS WHOLE FILE NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
+
 # Common
 export KITCHENTITLE=$( echo "Swordrune10のアンドロイドキッチン！" )
 export KITCHENUNDERLINE=$( echo "===================================" )
