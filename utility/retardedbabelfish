@@ -24,16 +24,18 @@ echo "  2. español"
 echo "  3. français"
 # German
 echo "  4. Deutsch"
+# Brazilian Portuguese
+echo "  5. Brazilian Portuguese"
 # Italian
-echo "  5. italiano"
+echo "  6. italiano"
 # Japanese
-echo "  6. 日本の"
+echo "  7. 日本の"
 # Korean
-echo "  7. 한국의"
-echo "  8. None of the above"
+echo "  8. 한국의"
+echo "  9. None of the above"
 read answer
 
-if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "8" ]; then
+if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "9" ]; then
 	echo ""
 	echo $notproperselection
 	read -p  $entertocontinue done
@@ -71,8 +73,17 @@ if [ $answer == "4" ]; then
 	echo $langsaved
 	read -p "$entertocontinue" done
 fi
- # Italian
+
+# Brazilian Portuguese
 if [ $answer == "5" ]; then
+	echo "ptbr" > $LOCAL/config/language
+	echo ""
+	echo $langsaved
+	read -p "$entertocontinue" done
+fi
+
+ # Italian
+if [ $answer == "6" ]; then
 	echo "it" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
@@ -80,7 +91,7 @@ if [ $answer == "5" ]; then
 fi
 
 # Japanese
-if [ $answer == "6" ]; then
+if [ $answer == "7" ]; then
 	echo "ja" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
@@ -88,14 +99,14 @@ if [ $answer == "6" ]; then
 fi
 
 # Korean
-if [ $answer == "7" ]; then
+if [ $answer == "8" ]; then
 	echo "ko" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
 	read -p "$entertocontinue" done
 fi
 
-if [ $answer == "8" ]; then
+if [ $answer == "9" ]; then
 	clear
 
 	echo "The Language You Want Is Not Supported!"
@@ -162,6 +173,7 @@ elif ( echo $LANG | grep -q "es_" ); then
 		initlang
 	fi
 # French
+## THIS NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
 elif ( echo $LANG | grep -q "fr_" ); then
 	langsaved=$( echo "Langue enregistré en tant que français" )
 	notproperselection=$( echo "Vous n'avez pas fait une sélection, essayez de nouveau!" )
@@ -170,11 +182,6 @@ elif ( echo $LANG | grep -q "fr_" ); then
 	clear
 	echo "Nous avons détecté que votre système est configuré en français"
 	echo "Est-ce la façon dont vous voulez la cuisine rom soit?"
-
-	echo ""
-	echo "## Cela a été traduit en utilisant Google Translate ##"
-	echo "## S'il vous plaît me contacter pour me faire savoir si"
-	echo "c'était une bonne traduction ou pas ##"
 
 	read -p "oui/non?" answer
 
@@ -220,7 +227,36 @@ elif ( echo $LANG | grep -q "de_" ); then
 		read -p "$entertocontinue" done
 		initlang
 	fi
+# Brazilian Portuguese
+## THIS NEEDS TO BE TRANSLATED, NO CURRENT TRANSLATION YET! ##
+elif ( echo $LANG | grep -q "pt_BR" ); then
+	langsaved=$( echo "Language saved as Brazilian Portuguese" )
+	notproperselection=$( echo "You did not make a proper selection, try again!" )
+	entertocontinue=$( echo "Press Enter to continue: " )
+
+	clear
+	echo "We have detected that your system is set to Brazilian Portuguese"
+	echo "Is this how you want the rom kitchen to be?"
+
+	read -p "yes/no?" answer
+
+	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+		echo "ptbr" > $LOCAL/config/language
+		echo ""
+		echo $langsaved
+		read -p "$entertocontinue" done
+	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
+		echo "What language do you want to use instead?"
+		langselect
+	else
+		echo ""
+		echo $notproperselection
+		read -p "$entertocontinue" done
+		initlang
+	fi
 # Italian
+## THIS NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
 elif ( echo $LANG | grep -q "it_" ); then
 	langsaved=$( echo "Lingua salvato come italiano" )
 	notproperselection=$( echo "Non hai fatto una selezione corretta, provare di nuovo!" )
@@ -229,11 +265,6 @@ elif ( echo $LANG | grep -q "it_" ); then
 	clear
 	echo "Abbiamo rilevato che il sistema è impostato su italiano"
 	echo "È questo come si desidera la cucina rom di essere?"
-
-	echo ""
-	echo "## Questo è stato tradotto con Google Translate ##"
-	echo "## Vi prego di contattarmi per farmi sapere se"
-	echo "questa è stata una buona traduzione o no ##"
 
 	read -p "sì/no?" answer
 
@@ -253,6 +284,7 @@ elif ( echo $LANG | grep -q "it_" ); then
 		initlang
 	fi
 # Japanese
+## THIS NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
 elif ( echo $LANG | grep -q "ja_" ); then
 	langsaved=$( echo "日本人として保存言語" )
 	notproperselection=$( echo "あなたが適切な選択をしなかった、もう一度試してみてください！" )
@@ -261,10 +293,6 @@ elif ( echo $LANG | grep -q "ja_" ); then
 	clear
 	echo "私たちは、あなたのシステムが日本語に設定されていることを検出した"
 	echo "これは、ROMのキッチンになりたい方法です？"
-
-	echo ""
-	echo "## これは、Googleが翻訳使用して翻訳されました ##"
-	echo "## これは良い翻訳したかどうか、私に知らせて、私に連絡してください ##"
 
 	read -p "はい/いいえ？" answer
 
@@ -284,6 +312,7 @@ elif ( echo $LANG | grep -q "ja_" ); then
 		initlang
 	fi
 # Korean
+## THIS NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
 elif ( echo $LANG | grep -q "ko_" ); then
 	langsaved=$( echo "한국어로 저장 언어" )
 	notproperselection=$( echo "당신은 올바른 선택을하지 않았다, 다시 시도하십시오!" )
@@ -360,6 +389,9 @@ elif ( cat $LOCAL/config/language | grep -q "fr" ); then
 # German
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
 	. rabbitfish
+# Brazilian Portuguese
+elif ( cat $LOCAL/config/language | grep -q "ptbr" ); then
+	. pirarucu
 # Italian
 elif ( cat $LOCAL/config/language | grep -q "it" ); then
 	. italianbleak
