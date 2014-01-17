@@ -15,17 +15,39 @@
 
 # German
 
-# Common
+## Common
 export KITCHENTITLE=$( echo "Swordrune10 Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "===========================" )
+## NEEDS TO BE TRANSLATED! ##
+export MENUGOBACK=$( echo "Go Back" )
+## NEEDS TO BE TRANSLATED! ##
 export NOTPROPERSELECTION=$( echo "Sie haben keine gültige Option gewählt, versuchen Sie es erneut!" )
 export ENTERTOCONTINUE=$( echo "Drücken Sie die Eingabetaste, um fortzufahren: " )
+## NEEDS TO BE TRANSLATED! ##
+export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
+export COMPLETEDMESSAGE=$( echo "Finished!" )
+## NEEDS TO BE TRANSLATED! ##
 export ANSWERYES=$( echo "ja" )
 export ANSWERY=$( echo "j" )
 export ANSWERNO=$( echo "nein" )
 export ANSWERN=$( echo "n" )
 
-# Kitchen
+## Repos
+## NEEDS TO BE TRANSLATED! ##
+export REPOSKITCHEN=$( echo "Kitchen app" )
+export REPOSAOKP=$( echo "Android Open Kang Project" )
+export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
+export REPOSAOSP=$( echo "Android Open Source Project 4.4" )
+export REPOSCARBON=$( echo "Carbon" )
+export REPOSCM10=$( echo "Cyanogenmod 10.2" )
+export REPOSCM=$( echo "Cyanogenmod 11" )
+export REPOSEV=$( echo "Evervolv" )
+export REPOSOMNI=$( echo "omnirom" )
+export REPOSPACMAN=$( echo "PAC-man" )
+export REPOSPARA=$( echo "ParanoidAndroid" )
+## NEEDS TO BE TRANSLATED! ##
+
+## Kitchen
 export KITCHENMAINMENU=$( echo "Hauptmenü:" )
 export KITCHENMENU1=$( echo "  1. Kitchen Einrichten / aktualisieren" )
 export KITCHENMENU2=$( echo "  2. Kitchen Konfigurieren" )
@@ -37,3 +59,71 @@ export KITCHENMENUWHICH=$( echo "Was möchten Sie tun?" )
 export KITCHENTHANKS=$( echo "Wir danken für die Nutzung des Swordrune10 Kitchen! Auf Wiedersehen.." )
 export KITCHENBORED=$( echo "Sie scheinen gelangweilt .. möchten Sie einen Film schauen?" )
 export KITCHENTOUGH=$( echo "super!" )
+
+## EVERYTHING BELOW THIS LINE NEEDS TO BE TRANSLATED! ##
+
+## Reposync
+# Usage and Flags
+export REPOSYNCUSAGE=$( echo "repo -- program to initialize/update android repos" )
+export REPOSYNCFLAGD=$( echo "delete the appropriate folder and then exit program" )
+export REPOSYNCFLAGH=$( echo "show this help text" )
+export REPOSYNCFLAGP=$( echo "purge folder, reinit, and then update" )
+export REPOSYNCFLAGU=$( echo "update this particular repo" )
+export REPOSYNCUPDATE1=$( echo "Update $REPOSKITCHEN" )
+export REPOSYNCUPDATE2=$( echo "Update $REPOSAOKP" )
+export REPOSYNCUPDATE3=$( echo "Update $REPOSAOSP43" )
+export REPOSYNCUPDATE4=$( echo "Update $REPOSAOSP" )
+export REPOSYNCUPDATE5=$( echo "Update $REPOSCARBON" )
+export REPOSYNCUPDATE6=$( echo "Update $REPOSCM10" )
+export REPOSYNCUPDATE7=$( echo "Update $REPOSCM" )
+export REPOSYNCUPDATE8=$( echo "Update $REPOSEV" )
+export REPOSYNCUPDATE9=$( echo "Update $REPOSOMNI" )
+export REPOSYNCUPDATE10=$( echo "Update $REPOSPACMAN" )
+export REPOSYNCUPDATE11=$( echo "Update $REPOSPARA" )
+export REPOSYNCUPDATE12=$( echo "Update all available repos" )
+export REPOSYNCUPDATE13=$( echo "Update all the repos" )
+export REPOSYNCUSAGEEXAMP=$( echo "Example: reposync -u cm-10.2" )
+export REPOSYNCUSAGELIST1=$( echo "typing \"reposync -u list\" will give" )
+export REPOSYNCUSAGELIST2=$( echo "you the options list again" )
+
+# Menu
+export REPOSYNCMENUWHAT=$( echo "What are we updating?" )
+export REPOSYNCMENUINIT=$( echo "If repo isn't initialized, it will be on update" )
+export REPOSYNCMENU1=$( echo "Install the repo command" )
+export REPOSYNCMENU2=$( echo "Setup the build enviroment" )
+export REPOSYNCMENU3=$( echo "Update the $REPOSKITCHEN repository" )
+export REPOSYNCMENU4=$( echo "Update the $REPOSAOKP repository" )
+export REPOSYNCMENU5=$( echo "Update the $REPOSAOSP43 repository" )
+export REPOSYNCMENU6=$( echo "Update the $REPOSAOSP repository" )
+export REPOSYNCMENU7=$( echo "Update the $REPOSCARBON repository" )
+export REPOSYNCMENU8=$( echo "Update the $REPOSCM10 repository" )
+export REPOSYNCMENU9=$( echo "Update the $REPOSCM repository" )
+export REPOSYNCMENU10=$( echo "Update the $REPOSEV repository" )
+export REPOSYNCMENU11=$( echo "Update the $REPOSOMNI repository" )
+export REPOSYNCMENU12=$( echo "Update the $REPOSPACMAN repository" )
+export REPOSYNCMENU13=$( echo "Update the $REPOSPARA repository" )
+export REPOSYNCMENU14=$( echo "Update all available repositories" )
+export REPOSYNCMENU15=$( echo "Update all the repos!" )
+export REPOSYNCMENU16=$( echo "Update/add otherrepo" )
+
+# Sync and Init
+export REPOSYNCNOTINITSKIP=$( echo "not initialized, skipping" )
+export REPOSYNCUPDATING=$( echo "Updating" )
+export REPOSYNCBLAHSMANIFEST=$( echo "'s manifest" )
+export REPOSYNCNOTINITYET=$( echo "not initialized, initializing now" )
+export REPOSYNCNOTINITWANTTO=$( echo "not initialized, do you want to initialize it?" )
+export REPOSYNCINIT=$( echo "initializing" )
+export REPOSYNCNOTINIT=$( echo "wasn't initialized" )
+export REPOSYNCREPO=$( echo "repository" )
+export REPOSYNCREPOALREADY=$( echo "repo command is already installed" )
+export REPOSYNCREPOINSTALL=$( echo "Installing the repo command" )
+export REPOSYNCCOMPLETE=$( echo "Update Complete!" )
+
+# Otherrepo Sync and Init
+export REPOSYNCADDOR=$( echo "Are we adding or updating otherrepo?" )
+export REPOSYNCOTHERMENU1=$( echo "Add to custom repo folder" )
+export REPOSYNCOTHERMENU2=$( echo "Update all the custom repos" )
+export REPOSYNCOTHERREPONAME=$( echo "What is the repo's name?" )
+export REPOSYNCOTHERREPOSHORTNAME=$( echo "What is a short name for this repo? Example: Android Open Source Project = aosp" )
+export REPOSYNCOTHERREPOURL=$( echo "What is the url to the repo's manifest?" )
+export REPOSYNCOTHERREPOBRANCH=$( echo "What is the branch the repo's manifest you want to use?" )
