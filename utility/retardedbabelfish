@@ -373,6 +373,10 @@ fi
 
 }
 
+if [ ! "$INIT" ]; then
+	export LOCAL=$( cd $(dirname $0) && cd .. && pwd )
+fi
+
 if ( ! find $LOCAL/config/language &> /dev/null ); then
 	initlang
 fi
