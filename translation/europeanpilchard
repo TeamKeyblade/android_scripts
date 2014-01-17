@@ -20,23 +20,18 @@
 ## Common
 export KITCHENTITLE=$( echo "Cuisine Androïde de Swordrune10!" )
 export KITCHENUNDERLINE=$( echo "================================" )
-## NEEDS TO BE TRANSLATED! ##
-export MENUGOBACK=$( echo "Go Back" )
-## NEEDS TO BE TRANSLATED! ##
+export MENUGOBACK=$( echo "Retour" )
 export NOTPROPERSELECTION=$( echo "Vous n'avez pas fait une sélection, essayez de nouveau!" )
 export ENTERTOCONTINUE=$( echo "Appuyez sur Entrée pour continuer: " )
-## NEEDS TO BE TRANSLATED! ##
-export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
-export COMPLETEDMESSAGE=$( echo "Finished!" )
-## NEEDS TO BE TRANSLATED! ##
+export MAINMENURETURN=$( echo "Revenir au menu principal, appuyez sur Entrée pour continuer: " )
+export COMPLETEDMESSAGE=$( echo "Fini!" )
 export ANSWERYES=$( echo "oui" )
 export ANSWERY=$( echo "y" )
 export ANSWERNO=$( echo "non" )
 export ANSWERN=$( echo "n" )
 
 ## Repos
-## NEEDS TO BE TRANSLATED! ##
-export REPOSKITCHEN=$( echo "Kitchen app" )
+export REPOSKITCHEN=$( echo "L'application de la cuisine" )
 export REPOSAOKP=$( echo "Android Open Kang Project" )
 export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
 export REPOSAOSP=$( echo "Android Open Source Project 4.4" )
@@ -47,7 +42,6 @@ export REPOSEV=$( echo "Evervolv" )
 export REPOSOMNI=$( echo "omnirom" )
 export REPOSPACMAN=$( echo "PAC-man" )
 export REPOSPARA=$( echo "ParanoidAndroid" )
-## NEEDS TO BE TRANSLATED! ##
 
 ## Kitchen
 export KITCHENMAINMENU=$( echo "Menu principal:" )
@@ -61,8 +55,6 @@ export KITCHENMENUWHICH=$( echo "Lequel voulez-vous faire?" )
 export KITCHENTHANKS=$( echo "Merci d'utiliser la cuisine de Swordrune10! Au revoir.." )
 export KITCHENBORED=$( echo "Vous semblez s'ennuyer.. veux regarder un film?" )
 export KITCHENTOUGH=$( echo "dur!" )
-
-## EVERYTHING BELOW THIS LINE NEEDS TO BE TRANSLATED! ##
 
 ## Reposync
 # Usage and Flags
