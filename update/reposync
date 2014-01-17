@@ -15,33 +15,36 @@
 
 if [ ! "$INIT" ]; then
 
-usage="$(basename "$0") [-d] [-h] [-p] [-u] repo -- program to initialize/update android repos
+cd $(dirname $0)
+. ../utility/retardedbabelfish
+
+usage="$(basename "$0") [-d] [-h] [-p] [-u] $REPOSYNCUSAGE
 
 where:
-	-d  delete the appropriate folder and then exit program
-	-h  show this help text
-	-p  purge folder, reinit, and then update
-	-u  update this particular repo
+	-d  $REPOSYNCFLAGD
+	-h  $REPOSYNCFLAGH
+	-p  $REPOSYNCFLAGP
+	-u  $REPOSYNCFLAGU
 
 	    Options list:
-	    kitchen = Update Kitchen
-	    aokp = Update Android Open Kang Project
-	    aosp43 = Update Android Open Source Project 4.3
-	    aosp = Update Android Open Source Project 4.4
-	    carbon = Update Carbon
-	    cm10 = Update Cyanogenmod 10.2
-	    cm10 = Update Cyanogenmod 11
-	    ev = Update Evervolv
-	    omni = Update omnirom
-	    pacman = Update PAC-man
-	    paranoid = Update ParanoidAndroid
-	    all = Update all available repos
-	    allthethings = Update all the repos
+	    kitchen = $REPOSYNCUPDATE1
+	    aokp = $REPOSYNCUPDATE2
+	    aosp43 = $REPOSYNCUPDATE3
+	    aosp = $REPOSYNCUPDATE4
+	    carbon = $REPOSYNCUPDATE5
+	    cm10 = $REPOSYNCUPDATE6
+	    cm11 = $REPOSYNCUPDATE7
+	    ev = $REPOSYNCUPDATE8
+	    omni = $REPOSYNCUPDATE9
+	    pacman = $REPOSYNCUPDATE10
+	    paranoid = $REPOSYNCUPDATE11
+	    all = $REPOSYNCUPDATE12
+	    allthethings = $REPOSYNCUPDATE13
 
-	    Example: reposync -u cm-10.2
+	    $REPOSYNCUSAGEEXAMP
 
-	    typing \"reposync -u list\" will give
-	    you the options list again"
+	    $REPOSYNCUSAGELIST1
+	    $REPOSYNCUSAGELIST2"
 
 	export AUTO=true
 
@@ -80,52 +83,52 @@ menu () {
 if [ ! "$AUTO" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "What are we updating?"
-	echo "If repo isn't initialized, it will be on update"
-	echo "  1. Install the repo command"
-	echo "  2. Setup the build enviroment"
-	echo "  3. Update the Kitchen app repository"
-	echo "  4. Update the Android Open Kang Project repository"
-	echo "  5. Update the Android Open Source Project 4.3 repository"
-	echo "  6. Update the Android Open Source Project 4.4 repository"
-	echo "  7. Update the Carbon repository"
-	echo "  8. Update the Cyanogenmod 10.2 repository"
-	echo "  9. Update the Cyanogenmod 11 repository"
-	echo "  10. Update the Evervolv repository"
-	echo "  11. Update the omnirom repository"
-	echo "  12. Update the PAC-man repository"
-	echo "  13. Update the ParanoidAndroid repository"
-	echo "  14. Update all available repositories"
-	echo "  15. Update all the repos!"
-	echo "  16. Update/add otherrepo"
-	echo "  17. Go Back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $REPOSYNCMENUWHAT
+	echo $REPOSYNCMENUINIT
+	echo "  1. $REPOSYNCMENU1"
+	echo "  2. $REPOSYNCMENU2"
+	echo "  3. $REPOSYNCMENU3"
+	echo "  4. $REPOSYNCMENU4"
+	echo "  5. $REPOSYNCMENU5"
+	echo "  6. $REPOSYNCMENU6"
+	echo "  7. $REPOSYNCMENU7"
+	echo "  8. $REPOSYNCMENU8"
+	echo "  9. $REPOSYNCMENU9"
+	echo "  10. $REPOSYNCMENU10"
+	echo "  11. $REPOSYNCMENU11"
+	echo "  12. $REPOSYNCMENU12"
+	echo "  13. $REPOSYNCMENU13"
+	echo "  14. $REPOSYNCMENU14"
+	echo "  15. $REPOSYNCMENU15"
+	echo "  16. $REPOSYNCMENU16"
+	echo "  17. $MENUGOBACK"
 	read setupanswer
 
 	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
 
 if [ "$PLATFORM" ]; then
 	if [ $PLATFORM == "list" ]; then
-		echo "kitchen = Update Kitchen"
-		echo "aokp = Update Android Open Kang Project"
-		echo "aosp43 = Update Android Open Source Project 4.3"
-		echo "aosp = Update Android Open Source Project 4.4"
-		echo "carbon = Update Carbon"
-		echo "cm10 = Update Cyanogenmod 10.2"
-		echo "cm = Update Cyanogenmod 11"
-		echo "evervolv = Update Evervolv"
-		echo "omni = Update omnirom"
-		echo "pacman = Update PAC-man"
-		echo "paranoid = Update ParanoidAndroid"
-		echo "all = Update all available repos"
-		echo "allthethings = Update all the repos"
+		echo "kitchen = $REPOSYNCUPDATE1"
+		echo "aokp = $REPOSYNCUPDATE2"
+		echo "aosp43 = $REPOSYNCUPDATE3"
+		echo "aosp = $REPOSYNCUPDATE4"
+		echo "carbon = $REPOSYNCUPDATE5"
+		echo "cm10 =$REPOSYNCUPDATE6"
+		echo "cm = $REPOSYNCUPDATE7"
+		echo "evervolv = $REPOSYNCUPDATE8"
+		echo "omni = $REPOSYNCUPDATE9"
+		echo "pacman = $REPOSYNCUPDATE10"
+		echo "paranoid = $REPOSYNCUPDATE11"
+		echo "all = $REPOSYNCUPDATE12"
+		echo "allthethings = $REPOSYNCUPDATE13"
 		exit 0
 	fi
 
@@ -203,29 +206,29 @@ initmanifest=""
 echo ""
 
 if [ $setupanswer == "14" ] && ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-	echo "$repo_name not initialized, skipping"
+	echo "$repo_name $REPOSYNCNOTINITSKIP"
 elif ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
-	echo "Updating $repo_name's manifest"
+	echo "$REPOSYNCUPDATING $repo_name$REPOSYNCBLAHSMANIFEST"
 	initmanifest=true
 elif ( ! find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 	if [ ! "$AUTO" ]; then
 		if [ $setupanswer == "15" ]; then
-			echo "$repo_name not initialized, initializing now"
+			echo "$repo_name $REPOSYNCNOTINITYET"
 			initmanifest=true
 		else
-			echo "$repo_name not initialized, do you want to initialize it?"
+			echo "$repo_name $REPOSYNCNOTINITWANTTO"
 			read init
 
 			if [ "$init" == "yes" ] || [ "$init" == "y" ]; then
-				echo "initializing $repo_name"
+				echo "$REPOSYNCINIT $repo_name"
 				initmanifest=true
 			else
-				echo "$repo_name wasn't initialized"
+				echo "$repo_name $REPOSYNCNOTINIT"
 			fi
 		fi
 	else
 		if [ ! "$DELETEFOLDER" ]; then
-			echo "$repo_name not initialized, initializing now"
+			echo "$repo_name $REPOSYNCNOTINITYET"
 		fi
 
 		initmanifest=true
@@ -236,12 +239,12 @@ fi
 
 if [ "$done" ]; then
 	echo ""
-	echo "$repo_name Update Complete!"
+	echo "$repo_name $REPOSYNCCOMPLETE"
 
 	if [ ! "$AUTO" ]; then
 		echo ""
-		echo "Finished!"
-		read -p "Press Enter to continue: " done
+		echo $COMPLETEDMESSAGE
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	else
 		exit 0
@@ -267,7 +270,7 @@ if ( find $REPO_FOLDER/.repo -maxdepth 1 &> /dev/null); then
 
 	preupdate
 	echo ""
-	echo "Updating $repo_name repository"
+	echo "$REPOSYNCUPDATING $repo_name $REPOSYNCREPO"
 	repo sync -n -j $NETWORKSYNC
 	repo sync -l -j $LOCALSYNC
 
@@ -280,11 +283,11 @@ fi
 if [ $setupanswer == "1" ]; then
 	if ( type -a repo &> /dev/null ); then
 		echo ""
-		echo "repo is already installed"
-		read -p "Press Enter to continue: " done
+		echo $REPOSYNCREPOALREADY
+		read -p "$ENTERTOCONTINUE" done
 	else
 		echo ""
-		echo "Installing the repo command"
+		echo "$REPOSYNCREPOINSTALL"
 
 		if ( ! find ~/bin &> /dev/null ); then
 			mkdir ~/bin
@@ -294,8 +297,8 @@ if [ $setupanswer == "1" ]; then
 		chmod a+x ~/bin/repo
 
 		echo ""
-		echo "Finished!"
-		read -p "Press Enter to continue: " done
+		echo $COMPLETEDMESSAGE
+		read -p "$ENTERTOCONTINUE" done
 	fi
 fi
 
@@ -430,34 +433,32 @@ fi
 if [ $setupanswer == "16" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Are we adding or updating otherrepo?"
-	echo ""
-	echo "Which android repository are we building from today?"
-	echo "  1. Add to custom repo folder"
-	echo "  2. Update all the custom repos"
-	echo "  3. Go Back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $REPOSYNCADDOR
+	echo "  1. $REPOSYNCOTHERMENU1"
+	echo "  2. $REPOSYNCOTHERMENU2"
+	echo "  3. $MENUGOBACK"
 	read otheranswer
 
 	if [ ! "$otheranswer" ] || ( echo $otheranswer | grep -q [A-Za-z] ) || [ $otheranswer -gt "3" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
 	if [ $otheranswer == "1" ]; then
-		echo "What is the repo's name?"
+		echo $REPOSYNCOTHERREPONAME
 		read manifestname
 
-		echo "What is a short name for this repo? Example: Android Open Source Project = aosp"
+		echo $REPOSYNCOTHERREPOSHORTNAME
 		read manifestshortname
 
-		echo "What is the url to the repo's manifest?"
+		echo $REPOSYNCOTHERREPOURL
 		read manifesturl
 
-		echo "What is the branch the repo's manifest you want to use?"
+		echo $REPOSYNCOTHERREPOBRANCH
 		read manifestbranch
 
 		export SCRIPT_REPO=$(echo $manifestshortname)
@@ -484,14 +485,14 @@ if [ $setupanswer == "16" ]; then
 
 	if [ $otheranswer == "3" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
 
 if [ $setupanswer == "17" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 

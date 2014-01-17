@@ -15,17 +15,35 @@
 
 # French
 
-# Common
+## THIS WHOLE FILE NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
+
+## Common
 export KITCHENTITLE=$( echo "Cuisine Androïde de Swordrune10!" )
 export KITCHENUNDERLINE=$( echo "================================" )
+export MENUGOBACK=$( echo "Retour" )
 export NOTPROPERSELECTION=$( echo "Vous n'avez pas fait une sélection, essayez de nouveau!" )
 export ENTERTOCONTINUE=$( echo "Appuyez sur Entrée pour continuer: " )
+export MAINMENURETURN=$( echo "Revenir au menu principal, appuyez sur Entrée pour continuer: " )
+export COMPLETEDMESSAGE=$( echo "Fini!" )
 export ANSWERYES=$( echo "oui" )
 export ANSWERY=$( echo "y" )
 export ANSWERNO=$( echo "non" )
 export ANSWERN=$( echo "n" )
 
-# Kitchen
+## Repos
+export REPOSKITCHEN=$( echo "L'application de la cuisine" )
+export REPOSAOKP=$( echo "Android Open Kang Project" )
+export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
+export REPOSAOSP=$( echo "Android Open Source Project 4.4" )
+export REPOSCARBON=$( echo "Carbon" )
+export REPOSCM10=$( echo "Cyanogenmod 10.2" )
+export REPOSCM=$( echo "Cyanogenmod 11" )
+export REPOSEV=$( echo "Evervolv" )
+export REPOSOMNI=$( echo "omnirom" )
+export REPOSPACMAN=$( echo "PAC-man" )
+export REPOSPARA=$( echo "ParanoidAndroid" )
+
+## Kitchen
 export KITCHENMAINMENU=$( echo "Menu principal:" )
 export KITCHENMENU1=$( echo "  1. Configuration/mise à jour de cuisine" )
 export KITCHENMENU2=$( echo "  2. Configurer Cuisine" )
@@ -37,3 +55,69 @@ export KITCHENMENUWHICH=$( echo "Lequel voulez-vous faire?" )
 export KITCHENTHANKS=$( echo "Merci d'utiliser la cuisine de Swordrune10! Au revoir.." )
 export KITCHENBORED=$( echo "Vous semblez s'ennuyer.. veux regarder un film?" )
 export KITCHENTOUGH=$( echo "dur!" )
+
+## Reposync
+# Usage and Flags
+export REPOSYNCUSAGE=$( echo "repo -- programme pour initialiser / mise à jour android repos" )
+export REPOSYNCFLAGD=$( echo "supprimer le dossier approprié, puis programme de sortie" )
+export REPOSYNCFLAGH=$( echo "montrer ce texte d'aide" )
+export REPOSYNCFLAGP=$( echo "dossier de purge, reinit, et ensuite mettre à jour" )
+export REPOSYNCFLAGU=$( echo "mettre à jour cette repo particulier" )
+export REPOSYNCUPDATE1=$( echo "Mettre à jour $REPOSKITCHEN" )
+export REPOSYNCUPDATE2=$( echo "Mettre à jour $REPOSAOKP" )
+export REPOSYNCUPDATE3=$( echo "Mettre à jour $REPOSAOSP43" )
+export REPOSYNCUPDATE4=$( echo "Mettre à jour $REPOSAOSP" )
+export REPOSYNCUPDATE5=$( echo "Mettre à jour $REPOSCARBON" )
+export REPOSYNCUPDATE6=$( echo "Mettre à jour $REPOSCM10" )
+export REPOSYNCUPDATE7=$( echo "Mettre à jour $REPOSCM" )
+export REPOSYNCUPDATE8=$( echo "Mettre à jour $REPOSEV" )
+export REPOSYNCUPDATE9=$( echo "Mettre à jour $REPOSOMNI" )
+export REPOSYNCUPDATE10=$( echo "Mettre à jour $REPOSPACMAN" )
+export REPOSYNCUPDATE11=$( echo "Mettre à jour $REPOSPARA" )
+export REPOSYNCUPDATE12=$( echo "Mettre à jour toutes les pensions disponibles" )
+export REPOSYNCUPDATE13=$( echo "Mettre à jour toutes les pensions" )
+export REPOSYNCUSAGEEXAMP=$( echo "Exemple: reposync -u cm-10.2" )
+export REPOSYNCUSAGELIST1=$( echo "dactylographie \"reposync -u list\" donnera" )
+export REPOSYNCUSAGELIST2=$( echo "vous la liste des options à nouveau" )
+
+# Menu
+export REPOSYNCMENUWHAT=$( echo "Que faisons-nous à jour?" )
+export REPOSYNCMENUINIT=$( echo "Si repo n'est pas initialisé, il sera sur la mise à jour" )
+export REPOSYNCMENU1=$( echo "Installez la commande de mise en pension" )
+export REPOSYNCMENU2=$( echo "Configuration de l'environnement de compilation" )
+export REPOSYNCMENU3=$( echo "Mettre à jour le $REPOSKITCHEN dépôt" )
+export REPOSYNCMENU4=$( echo "Mettre à jour le $REPOSAOKP dépôt" )
+export REPOSYNCMENU5=$( echo "Mettre à jour le $REPOSAOSP43 dépôt" )
+export REPOSYNCMENU6=$( echo "Mettre à jour le $REPOSAOSP dépôt" )
+export REPOSYNCMENU7=$( echo "Mettre à jour le $REPOSCARBON dépôt" )
+export REPOSYNCMENU8=$( echo "Mettre à jour le $REPOSCM10 dépôt" )
+export REPOSYNCMENU9=$( echo "Mettre à jour le $REPOSCM dépôt" )
+export REPOSYNCMENU10=$( echo "Mettre à jour le $REPOSEV dépôt" )
+export REPOSYNCMENU11=$( echo "Mettre à jour le $REPOSOMNI dépôt" )
+export REPOSYNCMENU12=$( echo "Mettre à jour le $REPOSPACMAN dépôt" )
+export REPOSYNCMENU13=$( echo "Mettre à jour le $REPOSPARA dépôt" )
+export REPOSYNCMENU14=$( echo "Mettre à jour tous les référentiels disponibles" )
+export REPOSYNCMENU15=$( echo "Mettre à jour toutes les pensions!" )
+export REPOSYNCMENU16=$( echo "Mise à jour/ajouter otherrepo" )
+
+# Sync and Init
+export REPOSYNCNOTINITSKIP=$( echo "pas initialisé, sauter" )
+export REPOSYNCUPDATING=$( echo "réactualisation" )
+export REPOSYNCBLAHSMANIFEST=$( echo "'s manifeste" )
+export REPOSYNCNOTINITYET=$( echo "pas initialisé, l'initialisation maintenant" )
+export REPOSYNCNOTINITWANTTO=$( echo "pas initialisé, voulez-vous l'initialiser?" )
+export REPOSYNCINIT=$( echo "initialiser" )
+export REPOSYNCNOTINIT=$( echo "n'a pas été initialisé" )
+export REPOSYNCREPO=$( echo "dépôt" )
+export REPOSYNCREPOALREADY=$( echo "commande de pension est déjà installé" )
+export REPOSYNCREPOINSTALL=$( echo "Installation de la commande de mise en pension" )
+export REPOSYNCCOMPLETE=$( echo "Mettre à jour complète!" )
+
+# Otherrepo Sync and Init
+export REPOSYNCADDOR=$( echo "Sommes-nous d'ajouter ou de mettre à jour otherrepo?" )
+export REPOSYNCOTHERMENU1=$( echo "Ajouter au dossier de pension sur mesure" )
+export REPOSYNCOTHERMENU2=$( echo "Mettre à jour toutes les pensions personnalisés" )
+export REPOSYNCOTHERREPONAME=$( echo "Quel est le nom de la pension?" )
+export REPOSYNCOTHERREPOSHORTNAME=$( echo "Qu'est-ce qu'un nom court pour cette pension? Exemple: Android Open Source Project = aosp" )
+export REPOSYNCOTHERREPOURL=$( echo "Quel est le URL pour le manifeste de la pension?" )
+export REPOSYNCOTHERREPOBRANCH=$( echo "Quelle est la branche de la manifeste de la pension que vous souhaitez utiliser?" )

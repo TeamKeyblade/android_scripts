@@ -17,7 +17,7 @@ if [ $repodefine == "kitchen" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
 	export REPO_PLATFORM=$(echo "master")
 	repo_branch=$(echo "master")
-	repo_name=$(echo "Kitchen app")
+	repo_name=$(echo $REPOSKITCHEN)
 	repo_url=$(echo "http://github.com/TeamKeyblade/kitchen_manifest.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -26,7 +26,7 @@ if [ $repodefine == "aokp" ]; then
 	export SCRIPT_REPO=$(echo "aokp")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "kitkat")
-	repo_name=$(echo "Android Open Kang Project")
+	repo_name=$(echo $REPOSAOKP)
 	repo_url=$(echo "http://github.com/AOKP/platform_manifest.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -35,7 +35,7 @@ if [ $repodefine == "aosp43" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "jb")
 	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo "Android Open Source Project 4.3")
+	repo_name=$(echo $REPOSAOSP43)
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	manifest_name=$(echo "default.xml")
 fi
@@ -44,7 +44,7 @@ if [ $repodefine == "aosp" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "android-4.4.2_r1")
-	repo_name=$(echo "Android Open Source Project 4.4")
+	repo_name=$(echo $REPOSAOSP)
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	manifest_name=$(echo "default.xml")
 fi
@@ -53,7 +53,7 @@ if [ $repodefine == "carbon" ]; then
 	export SCRIPT_REPO=$(echo "carbon")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "kk")
-	repo_name=$(echo "Carbon")
+	repo_name=$(echo $REPOSCARBON)
 	repo_url=$(echo "http://github.com/CarbonDev/android.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -62,7 +62,7 @@ if [ $repodefine == "cm10" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "10.2")
 	repo_branch=$(echo "stable/cm-10.2")
-	repo_name=$(echo "Cyanogenmod 10.2")
+	repo_name=$(echo $REPOSCM10)
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	manifest_name=$(echo "cm-10.2.0.xml")
 fi
@@ -71,7 +71,7 @@ if [ $repodefine == "cm" ]; then
 	export SCRIPT_REPO=$(echo "cm")
 	export REPO_PLATFORM=$(echo "11")
 	repo_branch=$(echo "cm-11.0")
-	repo_name=$(echo "Cyanogenmod 11")
+	repo_name=$(echo $REPOSCM)
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -80,7 +80,7 @@ if [ $repodefine == "evervolv" ]; then
 	export SCRIPT_REPO=$(echo "evervolv")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "kitkat")
-	repo_name=$(echo "Evervolv")
+	repo_name=$(echo $REPOSEV)
 	repo_url=$(echo "http://github.com/Evervolv/android.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -89,7 +89,7 @@ if [ $repodefine == "omni" ]; then
 	export SCRIPT_REPO=$(echo "omni")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "android-4.4")
-	repo_name=$(echo "omnirom")
+	repo_name=$(echo $REPOSOMNI)
 	repo_url=$(echo "http://github.com/omnirom/android.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -98,7 +98,7 @@ if [ $repodefine == "pacman" ]; then
 	export SCRIPT_REPO=$(echo "pacman")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "pac-4.4")
-	repo_name=$(echo "PAC-man")
+	repo_name=$(echo $REPOSPACMAN)
 	repo_url=$(echo "http://github.com/PAC-man/pacman.git")
 	manifest_name=$(echo "default.xml")
 fi
@@ -107,7 +107,7 @@ if [ $repodefine == "paranoid" ]; then
 	export SCRIPT_REPO=$(echo "paranoid")
 	export REPO_PLATFORM=$(echo "kitkat")
 	repo_branch=$(echo "kitkat")
-	repo_name=$(echo "ParanoidAndroid")
+	repo_name=$(echo "$REPOSPARA")
 	repo_url=$(echo "http://github.com/AOSPA/manifest.git")
 	manifest_name=$(echo "default.xml")
 fi
