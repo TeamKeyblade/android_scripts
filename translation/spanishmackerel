@@ -109,7 +109,7 @@ export REPOSYNCMENU16=$( echo "Actualizar/Añadir otros Repositorios" )
 # Sync and Init
 export REPOSYNCNOTINITSKIP=$( echo "no inicializado, saltando" )
 export REPOSYNCUPDATING=$( echo "Actualizando" )
-export REPOSYNCBLAHSMANIFEST=$( echo "'s manifest" )
+export REPOSYNCBLAHSMANIFEST=$( echo "Manifiesto de" )
 export REPOSYNCNOTINITYET=$( echo "no inicializando, inicializando ahora" )
 export REPOSYNCNOTINITWANTTO=$( echo "no inicializado, ¿desea inicializarlo?" )
 export REPOSYNCINIT=$( echo "inicializando" )
