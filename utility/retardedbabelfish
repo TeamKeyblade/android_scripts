@@ -383,28 +383,28 @@ fi
 
 # English
 if ( cat $LOCAL/config/language | grep -q "en" ); then
-	. mahimahi
+	. $LOCAL/translation/mahimahi
 # Spanish
 elif ( cat $LOCAL/config/language | grep -q "es" ); then
-	. spanishmackerel
+	. $LOCAL/translation/spanishmackerel
 # French
 elif ( cat $LOCAL/config/language | grep -q "fr" ); then
-	. europeanpilchard
+	. $LOCAL/translation/europeanpilchard
 # German
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
-	. rabbitfish
+	. $LOCAL/translation/rabbitfish
 # Brazilian Portuguese
 elif ( cat $LOCAL/config/language | grep -q "ptbr" ); then
-	. pirarucu
+	. $LOCAL/translation/pirarucu
 # Italian
 elif ( cat $LOCAL/config/language | grep -q "it" ); then
-	. italianbleak
+	. $LOCAL/translation/italianbleak
 # Japanese
 elif ( cat $LOCAL/config/language | grep -q "ja" ); then
-	. bluefintuna
+	. $LOCAL/translation/bluefintuna
 # Korean
 elif ( cat $LOCAL/config/language | grep -q "ko" ); then
-	. koreanlamprey
+	. $LOCAL/translation/koreanlamprey
 else
 	clear
 
