@@ -16,7 +16,7 @@
 if [ ! "$INIT" ]; then
 
 cd $(dirname $0)
-../utility/retardedbabelfish
+. ../utility/retardedbabelfish
 
 usage="$(basename "$0") [-d] [-h] [-p] [-u] $REPOSYNCUSAGE
 
