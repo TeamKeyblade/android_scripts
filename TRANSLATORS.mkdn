@@ -1,8 +1,9 @@
 Translators:
 ------------
-* __French:__ 
-* __German:__ Zanooda
-* __Italian:__ 
-* __Japanese:__
-* __Korean:__ 
-* __Spanish:__ japoina92
+* __Brazilian Portuguese (pirarucu):__ Doublepranks
+* __French (europeanpilchard):__ 
+* __German (rabbitfish):__ Zanooda
+* __Italian (italianbleak):__ 
+* __Japanese (bluefintuna):__
+* __Korean (koreanlamprey):__ 
+* __Spanish (spanishmackerel):__ japoina92
