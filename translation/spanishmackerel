@@ -64,7 +64,7 @@ export KITCHENTOUGH=$( echo "Complicado!" )
 
 ## Reposync
 # Usage and Flags
-export REPOSYNCUSAGE=$( echo "repo -- program to initialize/update android repos" )
+export REPOSYNCUSAGE=$( echo "repo -- programa para inicializar/actualizar repositorio Android" )
 export REPOSYNCFLAGD=$( echo "eliminar la carpeta apropiada y salir del programa" )
 export REPOSYNCFLAGH=$( echo "mostrar texto de ayuda" )
 export REPOSYNCFLAGP=$( echo "purgar carpeta, reiniciar y entonces actualizar" )
