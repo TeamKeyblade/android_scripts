@@ -228,24 +228,24 @@ elif ( echo $LANG | grep -q "de_" ); then
 		initlang
 	fi
 # Brazilian Portuguese
-## THIS NEEDS TO BE TRANSLATED, NO CURRENT TRANSLATION YET! ##
+## V 1.0 Translated by : Doublepranks ##
 elif ( echo $LANG | grep -q "pt_BR" ); then
-	langsaved=$( echo "Language saved as Brazilian Portuguese" )
-	notproperselection=$( echo "You did not make a proper selection, try again!" )
-	entertocontinue=$( echo "Press Enter to continue: " )
+	langsaved=$( echo "Idioma selecionado PT-BR" )
+	notproperselection=$( echo "Comando invalido, tente novamente!" )
+	entertocontinue=$( echo "Pressione enter para continuar: " )
 
 	clear
-	echo "We have detected that your system is set to Brazilian Portuguese"
-	echo "Is this how you want the rom kitchen to be?"
+	echo "Idioma padrao detectado PT-BR"
+	echo "Usar idioma padrao do sistema?"
 
-	read -p "yes/no?" answer
+	read -p "sim/nao?" answer
 
-	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+	if [ "$answer" == "sim" ] || [ "$answer" == "s" ]; then
 		echo "ptbr" > $LOCAL/config/language
 		echo ""
 		echo $langsaved
 		read -p "$entertocontinue" done
-	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+	elif [ "$answer" == "nao" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "What language do you want to use instead?"
 		langselect
