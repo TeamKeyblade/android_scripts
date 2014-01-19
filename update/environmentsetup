@@ -192,7 +192,7 @@ if ( uname -a | grep -q Linux ); then
 
 		echo ""
 		echo "Finished!"
-		export envir=true
+		envir=true
 		read -p "Press Enter to continue: " done
 	fi
 
@@ -319,7 +319,7 @@ PATH="\$PATH:$jdk:$jre"" /etc/profile
 
 		echo ""
 		echo "Finished!"
-		export envir=true
+		envir=true
 		read -p "Press Enter to continue: " done
 	fi
 fi
@@ -351,7 +351,7 @@ if ( uname -a | grep -q Darwin ); then
 
 	echo ""
 	echo "Finished!"
-	export envir=true
+	envir=true
 	read -p "Press Enter to continue: " done
 fi
 
@@ -373,5 +373,4 @@ if [ ! "$envir" ]; then
 	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
 	echo ""
 	read -p "Press Enter to continue: " done
-	exit 0
 fi
