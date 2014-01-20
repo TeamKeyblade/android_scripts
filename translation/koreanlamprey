@@ -15,27 +15,41 @@
 
 # Korean
 
-## THIS WHOLE FILE NEEDS TO BE RETRANSLATED, USED GOOGLE TRANSLATE! ##
+## THIS WHOLE FILE NEEDS TO BE TRANSLATED! ##
 
 ## Common
-export KITCHENTITLE=$( echo "Swordrune10의 안드로이드 주방!" )
+export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "==============================" )
-## NEEDS TO BE TRANSLATED! ##
 export MENUGOBACK=$( echo "Go Back" )
-## NEEDS TO BE TRANSLATED! ##
-export NOTPROPERSELECTION=$( echo "당신은 올바른 선택을하지 않았다, 다시 시도하십시오!" )
-export ENTERTOCONTINUE=$( echo "계속하려면 Enter 키를 누르십시오: " )
-## NEEDS TO BE TRANSLATED! ##
+export NOTPROPERSELECTION=$( echo "You did not make a proper selection, try again!" )
+export ENTERTOCONTINUE=$( echo "Press Enter to continue: " )
 export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
+export ABORTMESSAGE=$( echo "Aborting.." )
 export COMPLETEDMESSAGE=$( echo "Finished!" )
-## NEEDS TO BE TRANSLATED! ##
-export ANSWERYES=$( echo "예" )
+export QUESTIONYESNO=$( echo "yes/no? " )
+export ANSWERYES=$( echo "yes" )
 export ANSWERY=$( echo "y" )
-export ANSWERNO=$( echo "아니오" )
-export ANSWERN=$( echo "a" )
+export ANSWERNO=$( echo "no" )
+export ANSWERN=$( echo "n" )
+
+## Errors
+export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
+If you prefer email you can reach me at mishana@swordrune10.net
+If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
+export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
+=====================
+Build enviroment installation only supports 64-bit Operating Systems" )
+export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
+===============================
+Supported Operating Systems (only 64-bit):
+Ubuntu 10.04 - 13.10 (Full Support)
+Debian (General Support)
+Linux Mint (General Support)
+Arch Linux (General Support)
+Fedora (General Support)
+Mac OS X (Semi-General Support)" )
 
 ## Repos
-## NEEDS TO BE TRANSLATED! ##
 export REPOSKITCHEN=$( echo "Kitchen app" )
 export REPOSAOKP=$( echo "Android Open Kang Project" )
 export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
@@ -47,22 +61,19 @@ export REPOSEV=$( echo "Evervolv" )
 export REPOSOMNI=$( echo "omnirom" )
 export REPOSPACMAN=$( echo "PAC-man" )
 export REPOSPARA=$( echo "ParanoidAndroid" )
-## NEEDS TO BE TRANSLATED! ##
 
 ## Kitchen
-export KITCHENMAINMENU=$( echo "주 메뉴:" )
-export KITCHENMENU1=$( echo "  1. 설치/업데이트 주방" )
-export KITCHENMENU2=$( echo "  2. 구성 주방" )
-export KITCHENMENU3=$( echo "  3. 실행 주방" )
-export KITCHENMENU4=$( echo "  4. 주방 수정" )
-export KITCHENMENU5=$( echo "  5. 자동 주방 빌드" )
-export KITCHENMENU6=$( echo "  6. 출구" )
-export KITCHENMENUWHICH=$( echo "당신은 어느 쪽을하기를 원하십니까?" )
-export KITCHENTHANKS=$( echo "Swordrune10의 부엌을 사용하여 주셔서 감사합니다! 안녕.." )
-export KITCHENBORED=$( echo "당신은 지루해 보인다.. 싶어 영화를 보는?" )
-export KITCHENTOUGH=$( echo "힘든!" )
-
-## EVERYTHING BELOW THIS LINE NEEDS TO BE TRANSLATED! ##
+export KITCHENMAINMENU=$( echo "Main Menu:" )
+export KITCHENMENU1=$( echo "  1. Setup/Update Kitchen" )
+export KITCHENMENU2=$( echo "  2. Configure Kitchen" )
+export KITCHENMENU3=$( echo "  3. Run Kitchen" )
+export KITCHENMENU4=$( echo "  4. Fix Kitchen" )
+export KITCHENMENU5=$( echo "  5. Auto Build Kitchen" )
+export KITCHENMENU6=$( echo "  6. Exit" )
+export KITCHENMENUWHICH=$( echo "Which one would you like to do?" )
+export KITCHENTHANKS=$( echo "Thank you for using Swordrune10's Kitchen! Good bye.." )
+export KITCHENBORED=$( echo "You seem bored.. wanna watch a movie?" )
+export KITCHENTOUGH=$( echo "tough!" )
 
 ## Reposync
 # Usage and Flags
@@ -92,7 +103,7 @@ export REPOSYNCUSAGELIST2=$( echo "you the options list again" )
 export REPOSYNCMENUWHAT=$( echo "What are we updating?" )
 export REPOSYNCMENUINIT=$( echo "If repo isn't initialized, it will be on update" )
 export REPOSYNCMENU1=$( echo "Install the repo command" )
-export REPOSYNCMENU2=$( echo "Setup the build enviroment" )
+export REPOSYNCMENU2=$( echo "Setup the build environment" )
 export REPOSYNCMENU3=$( echo "Update the $REPOSKITCHEN repository" )
 export REPOSYNCMENU4=$( echo "Update the $REPOSAOKP repository" )
 export REPOSYNCMENU5=$( echo "Update the $REPOSAOSP43 repository" )
@@ -129,3 +140,35 @@ export REPOSYNCOTHERREPONAME=$( echo "What is the repo's name?" )
 export REPOSYNCOTHERREPOSHORTNAME=$( echo "What is a short name for this repo? Example: Android Open Source Project = aosp" )
 export REPOSYNCOTHERREPOURL=$( echo "What is the url to the repo's manifest?" )
 export REPOSYNCOTHERREPOBRANCH=$( echo "What is the branch the repo's manifest you want to use?" )
+
+## Environmentsetup
+export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
+export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
+export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
+export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+
+# Platform
+export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
+export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+
+# Java
+export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
+export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
+export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
+export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download page" )
+export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
+
+## Preupdate
+export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
+export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
+export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
+export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
+export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
