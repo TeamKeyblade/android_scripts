@@ -80,7 +80,6 @@ export KITCHENMENU3=$( echo "  3. Run Kitchen" )
 export KITCHENMENU4=$( echo "  4. Fix Kitchen" )
 export KITCHENMENU5=$( echo "  5. Auto Build Kitchen" )
 export KITCHENMENU6=$( echo "  6. Exit" )
-
 export KITCHENTHANKS=$( echo "Thank you for using Swordrune10's Kitchen! Good bye.." )
 export KITCHENBORED=$( echo "You seem bored.. wanna watch a movie?" )
 export KITCHENTOUGH=$( echo "tough!" )
