@@ -22,6 +22,7 @@ export MENUGOBACK=$( echo "Go Back" )
 export NOTPROPERSELECTION=$( echo "You did not make a proper selection, try again!" )
 export ENTERTOCONTINUE=$( echo "Press Enter to continue: " )
 export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
+export ENTERTOEXIT=$( echo "Press Enter to exit: " )
 export ABORTMESSAGE=$( echo "Aborting.." )
 export COMPLETEDMESSAGE=$( echo "Finished!" )
 export QUESTIONYESNO=$( echo "yes/no? " )
@@ -31,6 +32,8 @@ export ANSWERNO=$( echo "no" )
 export ANSWERN=$( echo "n" )
 
 ## Errors
+export ERRORHEADER=$( echo "An Error Has Occurred!
+======================" )
 export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
 If you prefer email you can reach me at mishana@swordrune10.net
 If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
