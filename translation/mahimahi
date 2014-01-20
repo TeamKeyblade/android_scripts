@@ -60,6 +60,14 @@ export REPOSOMNI=$( echo "omnirom" )
 export REPOSPACMAN=$( echo "PAC-man" )
 export REPOSPARA=$( echo "ParanoidAndroid" )
 
+## Scriptmakir
+export SCRIPTMAKIRREDEEMER=$( echo "Redeemer is running!" )
+export SCRIPTMAKIRRMKITCHEN=$( echo "Removing Kitchen" )
+export SCRIPTMAKIRSETUPKITCHEN=$( echo "Settng Up Kitchen" )
+export SCRIPTMAKIRDESTROYER=$( echo "Destroyer is running!" )
+export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destroyer of Worlds is running!" )
+export SCRIPTMAKIRRMREPO=$( echo "Removing Repository folder" )
+
 ## Kitchen
 export KITCHENMAINMENU=$( echo "Main Menu:" )
 export KITCHENMENU1=$( echo "  1. Setup/Update Kitchen" )
