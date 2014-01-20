@@ -33,8 +33,7 @@ echo $KITCHENMENU4
 echo $KITCHENMENU5
 echo $KITCHENMENU6
 echo ""
-echo $KITCHENMENUWHICH
-read answer
+read -P "$KITCHENMENUWHICH" answer
 
 if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "10" ]; then
 	echo ""
