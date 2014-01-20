@@ -301,17 +301,20 @@ cat << EOF > $LOCAL/../redeemer
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-echo "Redeemer is running!"
+echo $SCRIPTMAKIRREDEEMER
 echo ""
-echo "Removing Kitchen"
+echo $SCRIPTMAKIRRMKITCHEN
 echo ""
 rm -rf .repo
 rm -rf .scripts
 rm -f swordkitchen.sh
-echo "Settng Up Kitchen"
+echo $SCRIPTMAKIRSETUPKITCHEN
 echo ""
 repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
 repo sync
+echo $COMPLETEDMESSAGE
+read -p "$ENTERTOCONTINUE" done
+rm -f $LOCAL/../redeemer
 EOF
 
 chmod a+x $LOCAL/../redeemer
@@ -340,17 +343,17 @@ START
 
 if [ $AUTHOR == "destroyer" ]; then
 cat << TITLE >> $LOCAL/../$AUTHOR
-echo "Destroyer is running!"
+echo $SCRIPTMAKIRDESTROYER
 TITLE
 elif [ $AUTHOR == "destroyerofworlds" ]; then
 cat << TITLE >> $LOCAL/../$AUTHOR
-echo "Destroyer of Worlds is running!"
+echo $SCRIPTMAKIRDESTROYEROFWORLDS
 TITLE
 fi
 
 cat << BODY >> $LOCAL/../$AUTHOR
 echo ""
-echo "Removing Kitchen"
+echo $SCRIPTMAKIRRMKITCHEN
 echo ""
 rm -rf .repo
 rm -rf \$LOCAL
@@ -359,15 +362,15 @@ BODY
 
 if [ $AUTHOR == "destroyerofworlds" ]; then
 cat << DESTROYREPOS >> $LOCAL/../$AUTHOR
-echo "Removing Repository folder"
+echo $SCRIPTMAKIRRMREPO
 echo ""
 rm -rf \$REPOS
 DESTROYREPOS
 fi
 
 cat << EOF >> $LOCAL/../$AUTHOR
-echo "Finished! Press Enter to exit"
-read done
+echo $COMPLETEDMESSAGE
+read -p "$ENTERTOCONTINUE" done
 rm -f $LOCAL/../$AUTHOR
 EOF
 
