@@ -23,44 +23,41 @@ fi
 menu () {
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Kitchen Config Menu"
-echo "  1. Edit Gitpuller"
-echo "  2. Edit Romeditor"
-echo "  3. Create/Edit other repo list"
-echo "  4. Go Back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $REPOSYNCMENUTITLE
+echo "  1. $REPOSYNCMENU1"
+echo "  2. $REPOSYNCMENU2"
+echo "  3. $REPOSYNCMENU3"
+echo "  4. $MENUGOBACK"
 echo ""
-read -p "Which one would you like to do?: " configs
+read -p "$KITCHENMENUWHICH" configs
 
 if [ ! "$configs" ] || ( echo $configs | grep -q [A-Za-z] ) || [ $configs -gt "4" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
 if [ $configs == "1" ]; then
-	cd $LOCAL/config
-	nano gitpuller
+	nano $LOCAL/config/gitpuller
 fi
 
 if [ $configs == "2" ]; then
-	cd $LOCAL/config
-	nano romeditor
+	nano $LOCAL/config/romeditor
 fi
 
 if [ $configs == "3" ]; then
-	cd $LOCAL/config
-	read -p "editing custom repos file location.." done
-	nano otherrepo
-	read -p "editing custom repos name" done
-	nano otherreponame
+	read -p "$REPOSYNCOTHERREPO" done
+	nano $LOCAL/config/otherrepo
+	read -p "$REPOSYNCOTHERREPONAME" done
+	nano $LOCAL/config/otherreponame
 fi
 
 if [ $configs == "4" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 
