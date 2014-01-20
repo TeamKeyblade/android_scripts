@@ -24,11 +24,34 @@ export MENUGOBACK=$( echo "Voltar" )
 export NOTPROPERSELECTION=$( echo "Comando invalido, tente novamente!" )
 export ENTERTOCONTINUE=$( echo "Pressione enter para continuar: " )
 export MAINMENURETURN=$( echo "Retornando ao menu principal, pressione enter para continuar: " )
+## NEEDS TRANSLATION! 
+export ABORTMESSAGE=$( echo "Aborting.." )
+## NEEDS TRANSLATION!
 export COMPLETEDMESSAGE=$( echo "Concluido!" )
+export QUESTIONYESNO=$( echo "sim/nao? " )
 export ANSWERYES=$( echo "Sim" )
 export ANSWERY=$( echo "s" )
 export ANSWERNO=$( echo "Nao" )
 export ANSWERN=$( echo "n" )
+
+## Errors
+## NEEDS TRANSLATION!
+export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
+If you prefer email you can reach me at mishana@swordrune10.net
+If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
+export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
+=====================
+Build enviroment installation only supports 64-bit Operating Systems" )
+export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
+===============================
+Supported Operating Systems (only 64-bit):
+Ubuntu 10.04 - 13.10 (Full Support)
+Debian (General Support)
+Linux Mint (General Support)
+Arch Linux (General Support)
+Fedora (General Support)
+Mac OS X (Semi-General Support)" )
+## NEEDS TRANSLATION!
 
 ## Repos
 export REPOSKITCHEN=$( echo "Kitchen app" )
@@ -121,3 +144,37 @@ export REPOSYNCOTHERREPONAME=$( echo "Qual o nome do repositorio?" )
 export REPOSYNCOTHERREPOSHORTNAME=$( echo "Adicione um codenome ao repositorio? Exemplo: Android Open Source Project = aosp" )
 export REPOSYNCOTHERREPOURL=$( echo "URL do arquivo manifest?" )
 export REPOSYNCOTHERREPOBRANCH=$( echo "A qual branch o repositorio deve ser atrelado?" )
+
+## EVERYTHING BELOW NEEDS TRANSLATION!
+
+## Environmentsetup
+export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
+export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
+export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
+export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+
+# Platform
+export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
+export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+
+# Java
+export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
+export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
+export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
+export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download page" )
+export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
+
+## Preupdate
+export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
+export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
+export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
+export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
+export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
