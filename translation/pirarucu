@@ -20,6 +20,9 @@
 ## Common
 export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "==============================" )
+## NEEDS TRANSLATION! 
+export KITCHENMENUWHICH=$( echo "Which one would you like to do?: " )
+## NEEDS TRANSLATION! 
 export MENUGOBACK=$( echo "Voltar" )
 export NOTPROPERSELECTION=$( echo "Comando invalido, tente novamente!" )
 export ENTERTOCONTINUE=$( echo "Pressione enter para continuar: " )
@@ -84,7 +87,6 @@ export KITCHENMENU3=$( echo "  3. Iniciar Kitchen" )
 export KITCHENMENU4=$( echo "  4. Reparar Kitchen" )
 export KITCHENMENU5=$( echo "  5. Auto criar Kitchen" )
 export KITCHENMENU6=$( echo "  6. Sair" )
-export KITCHENMENUWHICH=$( echo "Selecione uma opção para continuar" )
 export KITCHENTHANKS=$( echo "Volte sempre ;-)" )
 export KITCHENBORED=$( echo "Voce parece intediado.. quer assistir um filme?" )
 export KITCHENTOUGH=$( echo "ops! Tarde demais..." )
@@ -188,3 +190,11 @@ export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
 export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
 export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
 export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
+
+## Configkitchen
+export REPOSYNCMENUTITLE=$( echo "Kitchen Config Menu" )
+export REPOSYNCMENU1=$( echo "Edit Gitpuller" )
+export REPOSYNCMENU2=$( echo "Edit Romeditor" )
+export REPOSYNCMENU3=$( echo "Create/Edit other repo list" )
+export REPOSYNCOTHERREPO=$( echo "editing custom repos file location" )
+export REPOSYNCOTHERREPONAME=$( echo "editing custom repos name" )
