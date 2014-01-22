@@ -100,7 +100,7 @@ fi
 
 if [ $version == "11" ]; then
 	echo ""
-	read -p "$MAINMENURETURN" done
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi
 

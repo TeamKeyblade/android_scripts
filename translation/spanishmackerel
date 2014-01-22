@@ -205,6 +205,14 @@ export PREUPDATEOMNI=$( echo "Actualizando $REPOSOMNI's local_manifests Carpeta"
 
 ## EVERYTHING BELOW NEEDS TRANSLATION!
 
+## Configkitchen
+export CONFIGKITCHENMENUTITLE=$( echo "Kitchen Config Menu" )
+export CONFIGKITCHENMENU1=$( echo "Edit Gitpuller" )
+export CONFIGKITCHENMENU2=$( echo "Edit Romeditor" )
+export CONFIGKITCHENMENU3=$( echo "Create/Edit other repo list" )
+export CONFIGKITCHENOTHERREPO=$( echo "editing custom repos file location" )
+export CONFIGKITCHENOTHERREPONAME=$( echo "editing custom repos name" )
+
 ## Build Common
 export BUILDMENUTITLE=$( echo "Today's Lunch Menu:" )
 export BUILDREPOMENU1=$( echo "$REPOSAOKP repository" )

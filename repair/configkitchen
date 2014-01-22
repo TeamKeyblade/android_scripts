@@ -25,10 +25,10 @@ clear
 
 echo $KITCHENTITLE
 echo $KITCHENUNDERLINE
-echo $REPOSYNCMENUTITLE
-echo "  1. $REPOSYNCMENU1"
-echo "  2. $REPOSYNCMENU2"
-echo "  3. $REPOSYNCMENU3"
+echo $CONFIGKITCHENMENUTITLE
+echo "  1. $CONFIGKITCHENMENU1"
+echo "  2. $CONFIGKITCHENMENU2"
+echo "  3. $CONFIGKITCHENMENU3"
 echo "  4. $MENUGOBACK"
 echo ""
 read -p "$KITCHENMENUWHICH" configs
@@ -49,9 +49,9 @@ if [ $configs == "2" ]; then
 fi
 
 if [ $configs == "3" ]; then
-	read -p "$REPOSYNCOTHERREPO" done
+	read -p "$CONFIGKITCHENOTHERREPO" done
 	nano $LOCAL/config/otherrepo
-	read -p "$REPOSYNCOTHERREPONAME" done
+	read -p "$CONFIGKITCHENOTHERREPONAME" done
 	nano $LOCAL/config/otherreponame
 fi
 

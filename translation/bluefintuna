@@ -204,6 +204,14 @@ export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
 export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
 export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
 
+## Configkitchen
+export CONFIGKITCHENMENUTITLE=$( echo "Kitchen Config Menu" )
+export CONFIGKITCHENMENU1=$( echo "Edit Gitpuller" )
+export CONFIGKITCHENMENU2=$( echo "Edit Romeditor" )
+export CONFIGKITCHENMENU3=$( echo "Create/Edit other repo list" )
+export CONFIGKITCHENOTHERREPO=$( echo "editing custom repos file location" )
+export CONFIGKITCHENOTHERREPONAME=$( echo "editing custom repos name" )
+
 ## Build Common
 export BUILDMENUTITLE=$( echo "Today's Lunch Menu:" )
 export BUILDREPOMENU1=$( echo "$REPOSAOKP repository" )
