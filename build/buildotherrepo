@@ -24,7 +24,7 @@ menu () {
 clear
 
 if [ ! $( cat $LOCAL/config/otherrepo ) ] || [ ! $( cat $LOCAL/config/otherreponame ) ]; then
-	echo "other repo file is empty, please add to file then try again!"
+	echo $BUILDOTHERREPOEMPTY
 	exit 0
 fi
 
@@ -40,11 +40,11 @@ while true; do
 	fi
 done
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Build with other repository is selected to be built!"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDOTHERREPOBEBUILT
 echo ""
-echo "Which custom android repository are we building from today?"
+echo $BUILDDEVICEWHICHREPO
 while true; do
 	let countdown=$countdown+1
 
@@ -55,7 +55,7 @@ while true; do
 	echo "  "$countdown". "${filelurkername[$countdown]}
 
 done
-echo "  $count. Go Back"
+echo "  $count. $MENUGOBACK"
 
 sed -i "/EOF/d" $LOCAL/config/otherreponame
 
@@ -63,47 +63,47 @@ read version
 
 if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt $count ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
 if [ $version == $count ]; then
 	echo ""
-	read -p "Returning to Build Menu, Press Enter to continue: " done
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi
 
 otherrepofolder=$(echo "$REPOS/otherrepo/"${filelurker[$version]}"")
 
-if ( ! find $otherrepofolder/.repo &> /dev/null ); then
+if ( ! find $otherrepofolder/.repo -maxdepth 1 &> /dev/null ); then
 	echo ""
-	echo "The selected android repository is not setup!"
-	read -p "Press Enter to continue: " done
+	echo $BUILDREPONOTSETUP
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Please type in which device you would like to build"
-echo "Type in list to see all supported devices"
-echo "Type in exit to go back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDOTHERTYPEDEVICE
+echo $BUILDOTHERTYPELIST
+echo $BUILDOTHERTYPEEXIT
 read device
 
 if [ ! "$device" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	buildotherrepo
 	exit 0
 fi
 
 while [ $device == "list" ]; do
 
-	echo "Device List"
-	echo "==========="
+	echo $BUILDOTHERBUILDTITLE
+	echo $BUILDOTHERBUILDUNDERLINE
 
 	for vendorsetup in `ls $otherrepofolder/vendor/*/vendorsetup.sh \
 	$otherrepofolder/vendor/*/*/vendorsetup.sh $otherrepofolder/device/*/*/vendorsetup.sh 2> /dev/null`
@@ -114,24 +114,16 @@ while [ $device == "list" ]; do
 
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Please type in which device you would like to build"
-	echo "Type in list to see all supported devices"
-	echo "Type in exit to go to back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $BUILDOTHERTYPEDEVICE
+	echo $BUILDOTHERTYPELIST
+	echo $BUILDOTHERTYPEEXIT
 	read device
 done
 
-if [ ! "$device" ]; then
-	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
-	buildotherrepo
-	exit 0
-fi
-
 if [ $device == "exit" ]; then
-	read -p "Press Enter to continue: " done
+	read -p "$BUILDMENURETURN" done
 	buildotherrepo
 	exit 0
 fi
@@ -140,8 +132,8 @@ if ( ! cat $otherrepofolder/vendor/*/vendorsetup.sh | grep -q $device ) && \
 ( ! cat $otherrepofolder/vendor/*/*/vendorsetup.sh | grep -q $device ) && \
 ( ! cat $otherrepofolder/device/*/$device/vendorsetup.sh | grep -q $device ); then
 	echo ""
-	echo "This device is not compatible with this repository, try again!"
-	read -p "Returning to Build Menu, Press Enter to continue: " done
+	echo $BUILDDEVICENOTCOMPATIBLE
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi	
 
@@ -152,7 +144,6 @@ export REPO_PLATFORM=$( echo "${filelurker[$version]}" | sed 's/.*-//' )
 export SCRIPT_DEVICE=$(echo $device)
 buildandro
 
-echo "Finished!"
 menu
 }
 menu
