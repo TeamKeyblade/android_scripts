@@ -23,28 +23,28 @@ fi
 menu () {
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Build other device is selected to be built!"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDOTHERBEBUILT
 echo ""
-echo "Which android repository are we building from today?"
-echo "  1. Android Open Kang Project repository"
-echo "  2. Android Open Source Project repository 4.3"
-echo "  3. Android Open Source Project repository 4.4"
-echo "  4. Carbon repository"
-echo "  5. Cyanogenmod 10.2 repository"
-echo "  6. Cyanogenmod 11 repository"
-echo "  7. Evervolv repository"
-echo "  8. omnirom repository"
-echo "  9. PAC-man repository"
-echo "  10. ParanoidAndroid repository"
-echo "  11. Go Back"
-read version
+echo $BUILDDEVICEWHICHREPO
+echo "  1. $BUILDREPOMENU1"
+echo "  2. $BUILDREPOMENU2"
+echo "  3. $BUILDREPOMENU3"
+echo "  4. $BUILDREPOMENU4"
+echo "  5. $BUILDREPOMENU5"
+echo "  6. $BUILDREPOMENU6"
+echo "  7. $BUILDREPOMENU7"
+echo "  8. $BUILDREPOMENU8"
+echo "  9. $BUILDREPOMENU9"
+echo "  10. $BUILDREPOMENU10"
+echo "  11. $MENUGOBACK"
+read -p "$KITCHENMENUWHICH" version
 
 if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "11" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
@@ -100,38 +100,38 @@ fi
 
 if [ $version == "11" ]; then
 	echo ""
-	read -p "Returning to Build Menu, Press Enter to continue: " done
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi
 
 if ( ! find $REPOS/$SCRIPT_REPO-$REPO_PLATFORM -maxdepth 1 &> /dev/null ); then
 	echo ""
-	echo "The selected android repository is not setup!"
-	read -p "Press Enter to continue: " done
+	echo $BUILDREPONOTSETUP
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Please type in which device you would like to build"
-echo "Type in list to see all supported devices"
-echo "Type in exit to go back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDOTHERTYPEDEVICE
+echo $BUILDOTHERTYPELIST
+echo $BUILDOTHERTYPEEXIT
 read device
 
 if [ ! "$device" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
 while [ $device == "list" ]; do
 	clear
 
-	echo "Device List"
-	echo "==========="
+	echo $BUILDOTHERBUILDTITLE
+	echo $BUILDOTHERBUILDUNDERLINE
 
 	if [ $SCRIPT_REPO == "aokp" ]; then
 		cat $REPOS/aokp-$REPO_PLATFORM/vendor/aokp/vendorsetup.sh | grep "add_lunch_combo" | \
@@ -186,16 +186,16 @@ while [ $device == "list" ]; do
 
 	echo ""
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Please type in which device you would like to build"
-	echo "Type in list to see all supported devices"
-	echo "Type in exit to go to back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $BUILDOTHERTYPEDEVICE
+	echo $BUILDOTHERTYPELIST
+	echo $BUILDOTHERTYPEEXIT
 	read device
 done
 
 if [ $device == "exit" ]; then
-	read -p "Press Enter to continue: " done
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi
 
@@ -204,17 +204,17 @@ if [ $SCRIPT_REPO == "aokp" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/aokp-$REPO_PLATFORM/vendor/aokp/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi
@@ -225,17 +225,17 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/aosp-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi	
@@ -246,17 +246,17 @@ if [ $SCRIPT_REPO == "carbon" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/carbon-$REPO_PLATFORM/vendor/carbon/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi	
@@ -265,17 +265,17 @@ fi
 if [ $SCRIPT_REPO == "cm" ]; then
 	if ( ! cat $LOCAL/config/cm-master-list | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi
@@ -286,17 +286,17 @@ if [ $SCRIPT_REPO == "evervolv" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/evervolv-$REPO_PLATFORM/vendor/ev/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi
@@ -307,17 +307,17 @@ if [ $SCRIPT_REPO == "omni" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/omni-$REPO_PLATFORM/device/*/$device/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi	
@@ -328,17 +328,17 @@ if [ $SCRIPT_REPO == "pacman" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/pacman-$REPO_PLATFORM/vendor/pac/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi
@@ -349,17 +349,17 @@ if [ $SCRIPT_REPO == "paranoid" ]; then
 	-e 's/-userdebug//' \
 	$REPOS/paranoid-$REPO_PLATFORM/vendor/pa/vendorsetup.sh | grep -q $device ); then
 		echo ""
-		echo "This device is not compatible with this repository, build anyways?"
+		echo $BUILDOTHERNOTCOMPATIBLE
 		read answer
 
 		if [ $answer == "yes" ] || [ $answer == "y" ]; then
-			echo "Continuing the build"
+			echo $BUILDOTHERCONTINUE
 		elif [ $answer == "no" ] || [ $answer == "n" ]; then
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		else
-			echo "Not a vaild answer, not going to build"
-			read -p "Returning to Build Menu, Press Enter to continue: " done
+			echo $BUILDOTHERNOTVALID
+			read -p "$BUILDMENURETURN" done
 			exit 0
 		fi
 	fi
