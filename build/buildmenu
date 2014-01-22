@@ -35,7 +35,7 @@ echo "  6. $BUILDMENU6"
 echo "  7. $BUILDMENU7"
 echo "  8. $BUILDMENU8"
 echo "  9. $BUILDMENU9"
-echo "  10. $$BUILDMENU10"
+echo "  10. $BUILDMENU10"
 echo "  11. $MENUGOBACK"
 echo ""
 read -p "$KITCHENMENUWHICH" buildanswer
