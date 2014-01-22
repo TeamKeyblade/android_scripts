@@ -23,28 +23,27 @@ fi
 menu () {
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Today's Menu:"
-echo "  1. Build Nexus 4"
-echo "  2. Build Nexus 5"
-echo "  3. Build Nexus 7"
-echo "  4. Build Nexus 10"
-echo "  5. Build Galaxy Nexus"
-echo "  6. Build Nexus S"
-echo "  7. Build Xoom Tablet"
-echo "  8. Build all above!"
-echo "  9. Build other device"
-echo "  10. Build with other repository"
-echo "  11. Go Back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDMENUTITLE
+echo "  1. $BUILDMENU1"
+echo "  2. $BUILDMENU2"
+echo "  3. $BUILDMENU3"
+echo "  4. $BUILDMENU4"
+echo "  5. $BUILDMENU5"
+echo "  6. $BUILDMENU6"
+echo "  7. $BUILDMENU7"
+echo "  8. $BUILDMENU8"
+echo "  9. $BUILDMENU9"
+echo "  10. $$BUILDMENU10"
+echo "  11. $MENUGOBACK"
 echo ""
-echo "Which one would you like to do?"
-read buildanswer
+read -p "$KITCHENMENUWHICH" buildanswer
 
 if [ ! "$buildanswer" ] || ( echo $buildanswer | grep -q [A-Za-z] ) || [ $buildanswer -gt "11" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
@@ -98,7 +97,7 @@ fi
 
 if [ $buildanswer == "11" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 
