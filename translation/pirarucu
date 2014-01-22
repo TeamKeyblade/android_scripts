@@ -272,3 +272,18 @@ export BUILDDEVICEALLNEXUS72013=$( echo "Build $ALLNEXUS72013" )
 export BUILDDEVICENEXUS10=$( echo "Build $NEXUS10" )
 export BUILDDEVICEWIFIXOOM=$( echo "Build $WIFIXOOM" )
 export BUILDDEVICEVZWXOOM=$( echo "Build $VZWXOOM" )
+
+## Buildother
+export BUILDOTHERBEBUILT=$( echo "Build other device is selected to be built!" )
+export BUILDOTHERTYPEDEVICE=$( echo "Please type in which device you would like to build" )
+export BUILDOTHERTYPELIST=$( echo "Type in list to see all supported devices" )
+export BUILDOTHERTYPEEXIT=$( echo "Type in exit to go back" )
+export BUILDOTHERBUILDTITLE=$( echo "Device List" )
+export BUILDOTHERBUILDUNDERLINE=$( echo "===========" )
+export BUILDOTHERNOTCOMPATIBLE=$( echo "This device is not compatible with this repository, build anyways?" )
+export BUILDOTHERCONTINUE=$( echo "Continuing the build" )
+export BUILDOTHERNOTVALID=$( echo "Not a vaild answer, not going to build" )
+
+## Buildotherrepo
+export BUILDOTHERREPOEMPTY=$( echo "other repo file is empty, please add to file then try again!" )
+export BUILDOTHERREPOBEBUILT=$( echo "Build with other repository is selected to be built!" )
