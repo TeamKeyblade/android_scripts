@@ -33,25 +33,25 @@ export ANSWERN=$( echo "n" )
 
 ## Errors
 ## NEEDS TRANSLATION!
-export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
-If you prefer email you can reach me at mishana@swordrune10.net
-If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
-export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
+export ERRORCONTACTINFO=$( echo "Si usted ve este error, por favor notificar ya sea xda o RootzWiki
+Si prefiere por Email puedes encontrarme en: mishana@swordrune10.net
+Si también está inclinado, tengo un canal freenode #Swordrune10Kitchen" )
+export ENVIRONMENTSETUP32BIT=$( echo "32-bit no soportado!
 =====================
-Build enviroment installation only supports 64-bit Operating Systems" )
-export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
+El Entorno de compilacion solo soporta Sistemas Operativos de 64-bit " )
+export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Sistema Operativo NO soportado!
 ===============================
-Supported Operating Systems (only 64-bit):
-Ubuntu 10.04 - 13.10 (Full Support)
-Debian (General Support)
-Linux Mint (General Support)
-Arch Linux (General Support)
-Fedora (General Support)
-Mac OS X (Semi-General Support)" )
+Sistemas Operativos Soportados (SOLO 64-bit):
+Ubuntu 10.04 - 13.10 (Soporte Completo)
+Debian (Soporte General)
+Linux Mint (Soporte General)
+Arch Linux (Soporte General)
+Fedora (Soporte General)
+Mac OS X (Soporte Semi-General)" )
 ## NEEDS TRANSLATION!
 
 ## Repos
-export REPOSKITCHEN=$( echo "Kitchen app" )
+export REPOSKITCHEN=$( echo "Aplicacion De Cocina" )
 export REPOSAOKP=$( echo "Android Open Kang Project" )
 export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
 export REPOSAOSP=$( echo "Android Open Source Project 4.4" )
@@ -65,12 +65,12 @@ export REPOSPARA=$( echo "ParanoidAndroid" )
 
 ## Scriptmakir
 ## NEEDS TRANSLATION!
-export SCRIPTMAKIRREDEEMER=$( echo "Redeemer is running!" )
-export SCRIPTMAKIRRMKITCHEN=$( echo "Removing Kitchen" )
-export SCRIPTMAKIRSETUPKITCHEN=$( echo "Settng Up Kitchen" )
-export SCRIPTMAKIRDESTROYER=$( echo "Destroyer is running!" )
-export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destroyer of Worlds is running!" )
-export SCRIPTMAKIRRMREPO=$( echo "Removing Repository folder" )
+export SCRIPTMAKIRREDEEMER=$( echo "Redeemer se está ejecutando!" )
+export SCRIPTMAKIRRMKITCHEN=$( echo "Eliminación de Cocina" )
+export SCRIPTMAKIRSETUPKITCHEN=$( echo "Configurando Cocina" )
+export SCRIPTMAKIRDESTROYER=$( echo "Destructor se esta Ejecutando!" )
+export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destructor del Mundo esta Ejecutando!" )
+export SCRIPTMAKIRRMREPO=$( echo "Eliminando Carpeta de Repositorio" )
 ## NEEDS TRANSLATION!
 
 ## Kitchen
@@ -155,33 +155,33 @@ export REPOSYNCOTHERREPOBRANCH=$( echo "¿Cuál es la rama del manifiesto que de
 ## EVERYTHING BELOW NEEDS TRANSLATION!
 
 ## Environmentsetup
-export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
-export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
-export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
-export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
-export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+export ENVIRONMENTSETUPINIT=$( echo "Inicializando el entorno de Compilacion" )
+export ENVIRONMENTSETUPOS=$( echo "Verificando que Sistema Operativo estas Usando" )
+export ENVIRONMENTSETUPINSTALL=$( echo "Instalando los paquetes necesarios,por favor introduzca su Contraseña" )
+export ENVIRONMENTSETUPDXCODE=$( echo "Esta Xcode Instalado? Recomendamos la version 3.1.4 O mas nueva" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Esta MacPorts Instalado?" )
 
 # Platform
-export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
-export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
-export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
-export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
-export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
-export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
-export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
-export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
-export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+export ENVIRONMENTSETUPFEDORA=$( echo "Estas Usando Fedora o RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "Estas Usando Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "Estas Usando Ubuntu, Cualquier 10.04, 10.10, or 11.04!" )
+export ENVIRONMENTSETUPUO=$( echo "Estas Usando Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "Estas Usando Ubuntu 12.04 or 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "Estas Usando Ubuntu 13.04 or 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "Estas Usando Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "Estas Usando Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "Estas Usando Mac OS X!" )
 
 # Java
 export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
-export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
-export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
-export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download page" )
-export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
+export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Obteniando la pagina de descarga de Java SE " )
+export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Obteniendo página de descarga versión actual" )
+export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Obteniendo página de descarga versión anterior" )
+export ENVIRONMENTSETUPWEBUPD8=$( echo "Instalar java tomará un tiempo, para hacer esto legalmente la aplicación de Cocina utilizará instalador java de WebUpd8" )
 
 ## Preupdate
-export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
-export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
-export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
-export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
-export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
+export PREUPDATEAOSP43=$( echo "Actualizando $REPOSAOSP43's local_manifests Carpeta" )
+export PREUPDATEAOSP=$( echo "Actualizando $REPOSAOSP's local_manifests Carpeta" )
+export PREUPDATECM10=$( echo "Actualizando $REPOSCM10's local_manifests Carpeta" )
+export PREUPDATECM=$( echo "Actualizando $REPOSCM's local_manifests Carpeta" )
+export PREUPDATEOMNI=$( echo "Actualizando $REPOSOMNI's local_manifests Carpeta" )
