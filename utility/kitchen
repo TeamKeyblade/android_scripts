@@ -26,15 +26,14 @@ clear
 echo $KITCHENTITLE
 echo $KITCHENUNDERLINE
 echo $KITCHENMAINMENU
-echo $KITCHENMENU1
-echo $KITCHENMENU2
-echo $KITCHENMENU3
-echo $KITCHENMENU4
-echo $KITCHENMENU5
-echo $KITCHENMENU6
+echo "  1. "$KITCHENMENU1
+echo "  2. "$KITCHENMENU2
+echo "  3. "$KITCHENMENU3
+echo "  4. "$KITCHENMENU4
+echo "  5. "$KITCHENMENU5
+echo "  6. "$KITCHENMENU6
 echo ""
-echo $KITCHENMENUWHICH
-read answer
+read -P "$KITCHENMENUWHICH" answer
 
 if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "10" ]; then
 	echo ""

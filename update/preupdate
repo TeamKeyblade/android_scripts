@@ -25,7 +25,7 @@ fi
 
 if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "jb" ]; then
 	echo ""
-	echo "Updating Android Open Source Project's local_manifests folder"
+	echo $PREUPDATEAOSP43
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/aosp-jb-local_manifest.xml $localmanifests/proprietary.xml
@@ -33,7 +33,7 @@ fi
 
 if [ $SCRIPT_REPO == "aosp" ] && [ $REPO_PLATFORM == "kitkat" ]; then
 	echo ""
-	echo "Updating Android Open Source Project's local_manifests folder"
+	echo $PREUPDATEAOSP
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/aosp-kitkat-local_manifest.xml $localmanifests/proprietary.xml
@@ -46,7 +46,7 @@ fi
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
 	rm -rf vendor/cm
 	echo ""
-	echo "Updating Cyanogenmod 10.2's local_manifests folder"
+	echo $PREUPDATECM10
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $localmanifests/proprietary.xml
@@ -55,7 +55,7 @@ fi
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
 	rm -rf vendor/cm
 	echo ""
-	echo "Updating Cyanogenmod 11's local_manifests folder"
+	echo $PREUPDATECM
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/cm11-local_manifest.xml $localmanifests/proprietary.xml
@@ -72,10 +72,10 @@ fi
 if [ $SCRIPT_REPO == "omni" ]; then
 	rm -rf vendor/custom
 	echo ""
-	echo "Updating omnirom's local_manifests folder"
+	echo $PREUPDATEOMNI
 	export AUTHOR="xml"
 	scriptmakir
-	cp -f $LOCAL/xml/aosp-kitkat-local_manifest.xml $localmanifests/proprietary.xml
+	cp -f $LOCAL/xml/cm11-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "pacman" ]; then

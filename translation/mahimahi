@@ -18,15 +18,38 @@
 ## Common
 export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "==============================" )
+export KITCHENMENUWHICH=$( echo "Which one would you like to do?: " )
 export MENUGOBACK=$( echo "Go Back" )
 export NOTPROPERSELECTION=$( echo "You did not make a proper selection, try again!" )
 export ENTERTOCONTINUE=$( echo "Press Enter to continue: " )
 export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
+export ENTERTOEXIT=$( echo "Press Enter to exit: " )
+export ABORTMESSAGE=$( echo "Aborting.." )
 export COMPLETEDMESSAGE=$( echo "Finished!" )
+export QUESTIONYESNO=$( echo "yes/no? " )
 export ANSWERYES=$( echo "yes" )
 export ANSWERY=$( echo "y" )
 export ANSWERNO=$( echo "no" )
 export ANSWERN=$( echo "n" )
+
+## Errors
+export ERRORHEADER=$( echo "An Error Has Occurred!
+======================" )
+export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
+If you prefer email you can reach me at mishana@swordrune10.net
+If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
+export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
+=====================
+Build enviroment installation only supports 64-bit Operating Systems" )
+export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
+===============================
+Supported Operating Systems (only 64-bit):
+Ubuntu 10.04 - 13.10 (Full Support)
+Debian (General Support)
+Linux Mint (General Support)
+Arch Linux (General Support)
+Fedora (General Support)
+Mac OS X (Semi-General Support)" )
 
 ## Repos
 export REPOSKITCHEN=$( echo "Kitchen app" )
@@ -41,15 +64,22 @@ export REPOSOMNI=$( echo "omnirom" )
 export REPOSPACMAN=$( echo "PAC-man" )
 export REPOSPARA=$( echo "ParanoidAndroid" )
 
+## Scriptmakir
+export SCRIPTMAKIRREDEEMER=$( echo "Redeemer is running!" )
+export SCRIPTMAKIRRMKITCHEN=$( echo "Removing Kitchen" )
+export SCRIPTMAKIRSETUPKITCHEN=$( echo "Settng Up Kitchen" )
+export SCRIPTMAKIRDESTROYER=$( echo "Destroyer is running!" )
+export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destroyer of Worlds is running!" )
+export SCRIPTMAKIRRMREPO=$( echo "Removing Repository folder" )
+
 ## Kitchen
 export KITCHENMAINMENU=$( echo "Main Menu:" )
-export KITCHENMENU1=$( echo "  1. Setup/Update Kitchen" )
-export KITCHENMENU2=$( echo "  2. Configure Kitchen" )
-export KITCHENMENU3=$( echo "  3. Run Kitchen" )
-export KITCHENMENU4=$( echo "  4. Fix Kitchen" )
-export KITCHENMENU5=$( echo "  5. Auto Build Kitchen" )
-export KITCHENMENU6=$( echo "  6. Exit" )
-export KITCHENMENUWHICH=$( echo "Which one would you like to do?" )
+export KITCHENMENU1=$( echo "Setup/Update Kitchen" )
+export KITCHENMENU2=$( echo "Configure Kitchen" )
+export KITCHENMENU3=$( echo "Run Kitchen" )
+export KITCHENMENU4=$( echo "Fix Kitchen" )
+export KITCHENMENU5=$( echo "Auto Build Kitchen" )
+export KITCHENMENU6=$( echo "Exit" )
 export KITCHENTHANKS=$( echo "Thank you for using Swordrune10's Kitchen! Good bye.." )
 export KITCHENBORED=$( echo "You seem bored.. wanna watch a movie?" )
 export KITCHENTOUGH=$( echo "tough!" )
@@ -119,3 +149,56 @@ export REPOSYNCOTHERREPONAME=$( echo "What is the repo's name?" )
 export REPOSYNCOTHERREPOSHORTNAME=$( echo "What is a short name for this repo? Example: Android Open Source Project = aosp" )
 export REPOSYNCOTHERREPOURL=$( echo "What is the url to the repo's manifest?" )
 export REPOSYNCOTHERREPOBRANCH=$( echo "What is the branch the repo's manifest you want to use?" )
+
+## Environmentsetup
+export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
+export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
+export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
+export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+
+# Platform
+export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
+export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+
+# Java
+export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
+export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
+export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
+export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download page" )
+export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
+
+## Preupdate
+export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
+export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
+export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
+export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
+export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
+
+## Configkitchen
+export REPOSYNCMENUTITLE=$( echo "Kitchen Config Menu" )
+export REPOSYNCMENU1=$( echo "Edit Gitpuller" )
+export REPOSYNCMENU2=$( echo "Edit Romeditor" )
+export REPOSYNCMENU3=$( echo "Create/Edit other repo list" )
+export REPOSYNCOTHERREPO=$( echo "editing custom repos file location" )
+export REPOSYNCOTHERREPONAME=$( echo "editing custom repos name" )
+
+## Buildmenu
+export BUILDMENUTITLE=$( echo "Today's Lunch Menu:" )
+export BUILDMENU1=$( echo "Build Nexus 4" )
+export BUILDMENU2=$( echo "Build Nexus 5" )
+export BUILDMENU3=$( echo "Build Nexus 7" )
+export BUILDMENU4=$( echo "Build Nexus 10" )
+export BUILDMENU5=$( echo "Build Galaxy Nexus" )
+export BUILDMENU6=$( echo "Build Nexus S" )
+export BUILDMENU7=$( echo "Build Xoom Tablet" )
+export BUILDMENU8=$( echo "Build all above!" )
+export BUILDMENU9=$( echo "Build other device" )
+export BUILDMENU10=$( echo "Build with other repository" )

@@ -20,36 +20,32 @@ if [ ! "$INIT" ]; then
 	exit 0
 fi
 
-echo "Initilizing the build enviroment.."
+echo $ENVIRONMENTSETUPINIT
 echo ""
-echo "Checking what Operating System you are running..."
+echo $ENVIRONMENTSETUPOS
 
 if ( ! uname -a | grep -q x86_64 ); then
 	clear
 
-	echo "32-bit not supported!"
-	echo "====================="
-	echo "Build enviroment installation only supports 64-bit Operating Systems"
+	echo $ENVIRONMENTSETUP32BIT
 	echo ""
-	echo "If you see this in error, please notify me at either xda or rootzwiki"
-	echo "if you prefer email you can reach me at mishana@swordrune10.net"
-	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
-	read -p "Press Enter to continue: " done
+	echo $ERRORCONTACTINFO
+	read -p "$ENTERTOCONTINUE" done
 	exit 0
 fi
 
 if ( uname -a | grep -q Linux ); then
 	# Fedora
 	if ( find /etc/fedora-release &> /dev/null ) || ( find /etc/redhat-release &> /dev/null ); then
-		echo "You are running Fedora or RedHat!"
-		echo "Installing packages needed, please enter your password"
+		echo $ENVIRONMENTSETUPFEDORA
+		echo $ENVIRONMENTSETUPINSTALL
 		sudo yum install gcc gcc-c++ gperf flex bison glibc-devel.{x86_64,i686} \
 		zlib-devel.{x86_64,i686} ncurses-devel.i686 libsx-devel readline-devel.i386 \
 		glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 libX11-devel.i686 \
 		libXrender.i686 libXrandr.i686
 
-		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
-		read -p "Press Enter to continue: " done
+		echo $ENVIRONMENTSETUPFLEXION
+		read -p "$ENTERTOCONTINUE" done
 
 		# fedora java installation
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
@@ -65,7 +61,7 @@ if ( uname -a | grep -q Linux ); then
 		JAVA_UPD=`echo ${DEB_VERSION} | cut -d'.' -f2 | cut -d'-' -f1`
 
 		# Try and dynamic find the JDK downloads
-		echo " [x] Getting Java SE download page"
+		echo $ENVIRONMENTSETUPFLEXION1
 		wget "http://www.oracle.com/technetwork/java/javase/downloads/index.html" -O /tmp/oab-index.html
 
 		# See if the Java version is on the download frontpage, otherwise look for it in
@@ -73,10 +69,10 @@ if ( uname -a | grep -q Linux ); then
 		DOWNLOAD_INDEX=`grep -P -o "/technetwork/java/javase/downloads/jdk-${JAVA_VER}u${JAVA_UPD}-downloads-\d+\.html" /tmp/oab-index.html | uniq`
 
 		if [ -n "${DOWNLOAD_INDEX}" ]; then
-			echo " [x] Getting current release download page "
+			echo $ENVIRONMENTSETUPFLEXION2
 			wget http://www.oracle.com/${DOWNLOAD_INDEX} -O /tmp/oab-download.html
 		else
-			echo " [x] Getting previous releases download page "
+			echo $ENVIRONMENTSETUPFLEXION3
 			wget http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html -O /tmp/oab-download.html
 		fi
 
@@ -99,17 +95,17 @@ if ( uname -a | grep -q Linux ); then
 		rm -f $LOCAL/../changelog.tmp
 
 		echo ""
-		echo "Finished!"
+		echo $COMPLETEDMESSAGE
 		envir=true
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 	fi
 
 	# Debian-based
 	if ( find /etc/debian_version &> /dev/null ) || ( find /etc/lsb-release &> /dev/null ); then
 		# Debian
 		if ( lsb_release -i | grep -q Debian ); then
-			echo "You are running Debian!"
-			echo "Installing packages needed, please enter your password"
+			echo $ENVIRONMENTSETUPDEBIAN
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
 			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
@@ -120,9 +116,9 @@ if ( uname -a | grep -q Linux ); then
 		fi
 
 		# Ubuntu 10.04, 10.10, and 11.04
-		if ( lsb_release -c | grep -q natty ) || ( lsb_release -c | grep -q lucid ) || ( lsb_release -c | grep -q maverick ); then
-			echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!"
-			echo "Installing packages needed, please enter your password"
+		if ( lsb_release -c | grep -q lucid ) || ( lsb_release -c | grep -q maverick ) || ( lsb_release -c | grep -q natty ); then
+			echo $ENVIRONMENTSETUPULMN
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
 			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
@@ -134,8 +130,8 @@ if ( uname -a | grep -q Linux ); then
 
 		# Ubuntu 11.10
 		if ( lsb_release -c | grep -q oneiric ); then
-			echo "You are running Ubuntu 11.10!"
-			echo "Installing packages needed, please enter your password"
+			echo $ENVIRONMENTSETUPUO
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
 			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
@@ -145,10 +141,10 @@ if ( uname -a | grep -q Linux ); then
 			sudo ln -s /usr/lib/i386-linux-gnu/libX11.so.6 /usr/lib/i386-linux-gnu/libX11.so
 		fi
 
-		# Ubuntu 12.04
-		if ( lsb_release -c | grep -q precise ); then
-			echo "You are running Ubuntu 12.04!"
-			echo "Installing packages needed, please enter your password"
+		# Ubuntu 12.04 and 12.10
+		if ( lsb_release -c | grep -q precise ) || ( lsb_release -c | grep -q quantal ); then
+			echo $ENVIRONMENTSETUPUPQ
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
 			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
@@ -158,36 +154,10 @@ if ( uname -a | grep -q Linux ); then
 			sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 		fi
 
-		# Ubuntu 12.10
-		if ( lsb_release -c | grep -q quantal ); then
-			echo "You are running Ubuntu 12.10!"
-			echo "Installing packages needed, please enter your password"
-			sudo apt-get install git-core gnupg flex bison gperf build-essential \
-			zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
-			g++-multilib mingw32 tofrodos python-markdown \
-			libxml2-utils xsltproc zlib1g-dev:i386 \
-			gcc-4.4 gcc-4.5 g++-4.4-multilib g++-4.5-multilib # threw these in to make sure it builds ;)
-			sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
-		fi
-
-		# Ubuntu 13.04
-		if ( lsb_release -c | grep -q raring ); then
-			echo "You are running Ubuntu 13.04!"
-			echo "Installing packages needed, please enter your password"
-			sudo apt-get install git-core gnupg flex bison gperf build-essential \
-			zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
-			g++-multilib mingw32 tofrodos python-markdown \
-			libxml2-utils xsltproc zlib1g-dev:i386 \
-			gcc-4.4 g++-4.4-multilib gcc-4.6 g++-4.6-multilib schedtool # threw these in to make sure it builds ;)
-			sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
-		fi
-
-		# Ubuntu 13.10
-		if ( lsb_release -c | grep -q saucy ); then
-			echo "You are running Ubuntu 13.10!"
-			echo "Installing packages needed, please enter your password"
+		# Ubuntu 13.04 and 13.10
+		if ( lsb_release -c | grep -q raring ) || ( lsb_release -c | grep -q saucy ); then
+			echo $ENVIRONMENTSETUPURS
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
 			libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev:i386 \
@@ -199,8 +169,8 @@ if ( uname -a | grep -q Linux ); then
 
 		# Linux Mint
 		if ( lsb_release -i | grep -q Mint ); then
-			echo "You are running Linux Mint!"
-			echo "Installing packages needed, please enter your password"
+			echo $ENVIRONMENTSETUPMINT
+			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
 			zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
 			x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
@@ -210,23 +180,23 @@ if ( uname -a | grep -q Linux ); then
 
 
 		# Debian based java installation
-		echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer"
+		echo $ENVIRONMENTSETUPWEBUPD8
 		echo ""
 		sudo add-apt-repository ppa:webupd8team/java
 		sudo apt-get update
 		sudo apt-get install oracle-java6-installer
 
 		echo ""
-		echo "Finished!"
-		export envir=true
-		read -p "Press Enter to continue: " done
+		echo $COMPLETEDMESSAGE
+		envir=true
+		read -p "$ENTERTOCONTINUE" done
 	fi
 
 
 
 	if ( find /etc/arch-release &> /dev/null ); then
-		echo "You are running Arch Linux!"
-		echo "Installing packages needed, please enter your password"
+		echo $ENVIRONMENTSETUPARCH
+		echo $ENVIRONMENTSETUPINSTALL
 		sudo pacman -Sy abs base-devel
 		sudo pacman -S openjdk6 perl git gnupg flex bison gperf zip unzip sdl wxgtk \
 		squashfs-tools ncurses libpng zlib libusb libusb-compat readline
@@ -281,9 +251,8 @@ if ( uname -a | grep -q Linux ); then
 
 		rm -rf $LOCAL/../archbuilds
 
-		echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script"
-		echo "Press Enter to continue"
-		read -p "Press Enter to continue: " done
+		echo $ENVIRONMENTSETUPFLEXION
+		read -p "$ENTERTOCONTINUE" done
 		# Exerpts from the much smarter (as u can see from the code) flexion.org oab-java script
 		# slightly edited to remove unneeded code
 
@@ -297,7 +266,7 @@ if ( uname -a | grep -q Linux ); then
 		JAVA_UPD=`echo ${DEB_VERSION} | cut -d'.' -f2 | cut -d'-' -f1`
 
 		# Try and dynamic find the JDK downloads
-		echo " [x] Getting Java SE download page"
+		echo $ENVIRONMENTSETUPFLEXION1
 		wget "http://www.oracle.com/technetwork/java/javase/downloads/index.html" -O /tmp/oab-index.html
 
 		# See if the Java version is on the download frontpage, otherwise look for it in
@@ -305,10 +274,10 @@ if ( uname -a | grep -q Linux ); then
 		DOWNLOAD_INDEX=`grep -P -o "/technetwork/java/javase/downloads/jdk-${JAVA_VER}u${JAVA_UPD}-downloads-\d+\.html" /tmp/oab-index.html | uniq`
 
 		if [ -n "${DOWNLOAD_INDEX}" ]; then
-			echo " [x] Getting current release download page "
+			echo $ENVIRONMENTSETUPFLEXION2
 			wget http://www.oracle.com/${DOWNLOAD_INDEX} -O /tmp/oab-download.html
 		else
-			echo " [x] Getting previous releases download page "
+			echo $ENVIRONMENTSETUPFLEXION3
 			wget http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html -O /tmp/oab-download.html
 		fi
 
@@ -344,22 +313,23 @@ if ( uname -a | grep -q Linux ); then
 PATH="\$PATH:$jdk:$jre"" /etc/profile
 
 		echo ""
-		echo "Finished!"
-		export envir=true
-		read -p "Press Enter to continue: " done
+		echo $COMPLETEDMESSAGE
+		envir=true
+		read -p "$ENTERTOCONTINUE" done
 	fi
 fi
 
 if ( uname -a | grep -q Darwin ); then
 	clear
 
-	echo "Is Xcode installed? We recommend version 3.1.4 or newer"
-	read -p "yes/no? " xcode
+	echo $ENVIRONMENTSETUPDARWIN
+	echo $ENVIRONMENTSETUPDXCODE
+	read -p "$QUESTIONYESNO" xcode
 
-	echo "Is MacPorts installed?"
-	read -p "yes/no? " macports
+	echo $ENVIRONMENTSETUPDMACPORTS
+	read -p "$QUESTIONYESNO" macports
 
-	if [ "$xcode" == "y" ] || [ "$xcode" == "yes" ] && [ "$macports" == "y" ] || [ "$macports" == "yes" ]; then
+	if [ "$xcode" == $ANSWERY ] || [ "$xcode" == $ANSWERYES ] && [ "$macports" == $ANSWERY ] || [ "$macports" == $ANSWERYES ]; then
 		if ( ! cat ~/.bash_profile | grep -q "export PATH=/opt/local/bin:\$PATH" ); then
 			echo "export PATH=/opt/local/bin:\$PATH" >> ~/.bash_profile
 		fi
@@ -370,36 +340,22 @@ if ( uname -a | grep -q Darwin ); then
 			echo "ulimit -S -n 1024" >> ~/.bash_profile
 		fi
 	else
-		echo "Aborting.."
-		read -p "Press Enter to continue: " done
+		echo $ABORTMESSAGE
+		read -p "$ENTERTOCONTINUE" done
 		exit 0
 	fi
 
 	echo ""
-	echo "Finished!"
-	export envir=true
-	read -p "Press Enter to continue: " done
+	echo $COMPLETEDMESSAGE
+	envir=true
+	read -p "$ENTERTOCONTINUE" done
 fi
 
-if [ "$envir" ]; then
-	exit 0
-else
+if [ ! "$envir" ]; then
 	clear
 
-	echo "Operating System not supported!"
-	echo "==============================="
-	echo "Supported Operating Systems (only 64-bit):"
-	echo "Ubuntu 10.04 - 13.10 (Full Support)"
-	echo "Debian (General Support)"
-	echo "Linux Mint (General Support)"
-	echo "Arch Linux (General Support)"
-	echo "Fedora (General Support)"
-	echo "Mac OS X (Semi-General Support)"
+	echo $ENVIRONMENTSETUPNOTSUPPORTED
 	echo ""
-	echo "If you see this in error, please notify me at either xda or rootzwiki"
-	echo "if you prefer email you can reach me at mishana@swordrune10.net"
-	echo "if your also inclined, i have a freenode channel #Swordrune10Kitchen"
-	echo ""
-	read -p "Press Enter to continue: " done
-	exit 0
+	echo $ERRORCONTACTINFO
+	read -p "$ENTERTOCONTINUE" done
 fi

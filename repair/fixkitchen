@@ -460,11 +460,6 @@ if [ $cleananswer == "5" ]; then
 		echo "Switching to Redeemer script.."
 		echo ""
 		./redeemer
-		rm -rf $LOCAL/../redeemer
-
-		echo ""
-		echo "Finished!"
-		read -p "Press Enter to continue: " done
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		echo ""
 		echo "Are you sure you want to remove the Kitchen app?"
