@@ -22,9 +22,7 @@ export MENUGOBACK=$( echo "Volver Atras" )
 export NOTPROPERSELECTION=$( echo "No hiciste la selección adecuada, vuelve a intentarlo!" )
 export ENTERTOCONTINUE=$( echo "Pulse Intro para continuar: " )
 export MAINMENURETURN=$( echo "Volviendo al Menú Principal, Presiona Intro para Continuar: " )
-## NEEDS TRANSLATION! 
 export ABORTMESSAGE=$( echo "Aborting.." )
-## NEEDS TRANSLATION!
 export COMPLETEDMESSAGE=$( echo "Finalizado!" )
 export ANSWERYES=$( echo "sí" )
 export ANSWERY=$( echo "s" )
@@ -32,7 +30,6 @@ export ANSWERNO=$( echo "no" )
 export ANSWERN=$( echo "n" )
 
 ## Errors
-## NEEDS TRANSLATION!
 export ERRORCONTACTINFO=$( echo "Si usted ve este error, por favor notificar ya sea xda o RootzWiki
 Si prefiere por Email puedes encontrarme en: mishana@swordrune10.net
 Si también está inclinado, tengo un canal freenode #Swordrune10Kitchen" )
@@ -48,7 +45,6 @@ Linux Mint (Soporte General)
 Arch Linux (Soporte General)
 Fedora (Soporte General)
 Mac OS X (Soporte Semi-General)" )
-## NEEDS TRANSLATION!
 
 ## Repos
 export REPOSKITCHEN=$( echo "Aplicacion De Cocina" )
@@ -63,15 +59,38 @@ export REPOSOMNI=$( echo "omnirom" )
 export REPOSPACMAN=$( echo "PAC-man" )
 export REPOSPARA=$( echo "ParanoidAndroid" )
 
-## Scriptmakir
+## Devices
 ## NEEDS TRANSLATION!
+export NEXUS4=$( echo "GSM Nexus 4" )
+export NEXUS5=$( echo "LTE Nexus 5" )
+export GSMGNEXUS=$( echo "GSM Galaxy Nexus" )
+export SPRGNEXUS=$( echo "Sprint Galaxy Nexus" )
+export VZWGNEXUS=$( echo "Verizon Galaxy Nexus" )
+export ALLGNEXUS=$( echo "All Galaxy Nexi" )
+export GSMNEXUSS=$( echo "GSM Nexus S" )
+export SPRNEXUSS=$( echo "Sprint Nexus S 4G" )
+export ALLNEXUSS=$( echo "All Nexus S'" )
+export WIFINEXUS72012=$( echo "Wifi Nexus 7 (2012) Tablet" )
+export GSMNEXUS72012=$( echo "GSM Nexus 7 (2012) Tablet" )
+export ALLNEXUS72012=$( echo "All Nexus 7 (2012) Tablets" )
+export WIFINEXUS72013=$( echo "Wifi Nexus 7 (2013) Tablet" )
+export LTENEXUS72013=$( echo "LTE Nexus 7 (2013) Tablet" )
+export ALLNEXUS72013=$( echo "All Nexus 7 (2013) Tablets" )
+export ALLNEXUS7=$( echo "All Nexus 7 Tablets" )
+export NEXUS10=$( echo "Wifi Nexus 10" )
+export WIFIXOOM=$( echo "Wifi Xoom Tablet" )
+export VZWXOOM=$( echo "Verizon Xoom Tablet" )
+export ALLXOOM=$( echo "All Xoom Tablets" )
+export ALLNEXUS=$( echo "All Nexus Devices" )
+## NEEDS TRANSLATION!
+
+## Scriptmakir
 export SCRIPTMAKIRREDEEMER=$( echo "Redeemer se está ejecutando!" )
 export SCRIPTMAKIRRMKITCHEN=$( echo "Eliminación de Cocina" )
 export SCRIPTMAKIRSETUPKITCHEN=$( echo "Configurando Cocina" )
 export SCRIPTMAKIRDESTROYER=$( echo "Destructor se esta Ejecutando!" )
 export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destructor del Mundo esta Ejecutando!" )
 export SCRIPTMAKIRRMREPO=$( echo "Eliminando Carpeta de Repositorio" )
-## NEEDS TRANSLATION!
 
 ## Kitchen
 export KITCHENMAINMENU=$( echo "Menú Principal:" )
@@ -152,8 +171,6 @@ export REPOSYNCOTHERREPOSHORTNAME=$( echo "Cual es la abreviatura de este Reposi
 export REPOSYNCOTHERREPOURL=$( echo "Cual es la url hasta el manifiesto del repositorio?" )
 export REPOSYNCOTHERREPOBRANCH=$( echo "¿Cuál es la rama del manifiesto que desea utilizar?" )
 
-## EVERYTHING BELOW NEEDS TRANSLATION!
-
 ## Environmentsetup
 export ENVIRONMENTSETUPINIT=$( echo "Inicializando el entorno de Compilacion" )
 export ENVIRONMENTSETUPOS=$( echo "Verificando que Sistema Operativo estas Usando" )
@@ -185,3 +202,54 @@ export PREUPDATEAOSP=$( echo "Actualizando $REPOSAOSP's local_manifests Carpeta"
 export PREUPDATECM10=$( echo "Actualizando $REPOSCM10's local_manifests Carpeta" )
 export PREUPDATECM=$( echo "Actualizando $REPOSCM's local_manifests Carpeta" )
 export PREUPDATEOMNI=$( echo "Actualizando $REPOSOMNI's local_manifests Carpeta" )
+
+## EVERYTHING BELOW NEEDS TRANSLATION!
+
+## Build Common
+export BUILDMENUTITLE=$( echo "Today's Lunch Menu:" )
+export BUILDREPOMENU1=$( echo "$REPOSAOKP repository" )
+export BUILDREPOMENU2=$( echo "$REPOSAOSP43 repository" )
+export BUILDREPOMENU3=$( echo "$REPOSAOSP repository" )
+export BUILDREPOMENU4=$( echo "$REPOSCARBON repository" )
+export BUILDREPOMENU5=$( echo "$REPOSCM10 repository" )
+export BUILDREPOMENU6=$( echo "$REPOSCM repository" )
+export BUILDREPOMENU7=$( echo "$REPOSEV repository" )
+export BUILDREPOMENU8=$( echo "$REPOSOMNI repository" )
+export BUILDREPOMENU9=$( echo "$REPOSPACMAN repository" )
+export BUILDREPOMENU10=$( echo "$REPOSPARA repository" )
+export BUILDALLABOVE=$( echo "Build all above!" )
+export BUILDREPONOTSETUP=$( echo "The selected android repository is not setup!" )
+export BUILDDEVICENOTCOMPATIBLE=$( echo "This device is not compatible with this repository, try again!" )
+export BUILDMENURETURN=$( echo "Returning to Build Menu, Press Enter to continue: " )
+
+## Buildmenu
+export BUILDMENU1=$( echo "Build Nexus 4" )
+export BUILDMENU2=$( echo "Build Nexus 5" )
+export BUILDMENU3=$( echo "Build Nexus 7" )
+export BUILDMENU4=$( echo "Build Nexus 10" )
+export BUILDMENU5=$( echo "Build Galaxy Nexus" )
+export BUILDMENU6=$( echo "Build Nexus S" )
+export BUILDMENU7=$( echo "Build Xoom Tablet" )
+export BUILDMENU8=$( echo "Build all above!" )
+export BUILDMENU9=$( echo "Build other device" )
+export BUILDMENU10=$( echo "Build with other repository" )
+
+## Builddevice
+export BUILDDEVICEBEBUILT=$( echo "is selected to be built!" )
+export BUILDDEVICEWHICHREPO=$( echo "Which android repository are we building from today?" )
+export BUILDDEVICENEXUS4=$( echo "Build $NEXUS4" )
+export BUILDDEVICENEXUS5=$( echo "Build $NEXUS5" )
+export BUILDDEVICEGSMGNEXUS=$( echo "Build $GSMGNEXUS" )
+export BUILDDEVICESPRGNEXUS=$( echo "Build $SPRGNEXUS" )
+export BUILDDEVICEVZWGNEXUS=$( echo "Build $VZWGNEXUS" )
+export BUILDDEVICEGSMNEXUSS=$( echo "Build $GSMNEXUSS" )
+export BUILDDEVICESPRNEXUSS=$( echo "Build $SPRNEXUSS" )
+export BUILDDEVICEWIFINEXUS72012=$( echo "Build $WIFINEXUS72012" )
+export BUILDDEVICEGSMNEXUS72012=$( echo "Build $GSMNEXUS72012" )
+export BUILDDEVICEALLNEXUS72012=$( echo "Build $ALLNEXUS72012" )
+export BUILDDEVICEWIFINEXUS72013=$( echo "Build $WIFINEXUS72013" )
+export BUILDDEVICELTENEXUS72013=$( echo "Build $LTENEXUS72013" )
+export BUILDDEVICEALLNEXUS72013=$( echo "Build $ALLNEXUS72013" )
+export BUILDDEVICENEXUS10=$( echo "Build $NEXUS10" )
+export BUILDDEVICEWIFIXOOM=$( echo "Build $WIFIXOOM" )
+export BUILDDEVICEVZWXOOM=$( echo "Build $VZWXOOM" )
