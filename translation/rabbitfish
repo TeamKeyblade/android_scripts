@@ -352,3 +352,11 @@ export BUILDAUTOMENUHOURS2=$( echo "The number being inputted is in hours" )
 export BUILDAUTOMENUTYPEPASSY=$( echo "Please type in your user's password, so the build server can sleep" )
 export BUILDAUTOMENUSLEEPON=$( echo "Auto Builder's sleep function is now on!" )
 export BUILDAUTOMENUSLEEPOFF=$( echo "Auto Builder's sleep function is now off!" )
+
+## Buildauto
+export BUILDAUTOPLEASE=( echo "Please use the Auto Builder config menu" )
+export BUILDAUTOBOTH=( echo "Both Auto Builder's repository and device is not set!" )
+export BUILDAUTOREPO=( echo "Auto Builder's repository is not set!" )
+export BUILDAUTODEVICE=( echo "Auto Builder's device is not set!" )
+export BUILDAUTOWAIT=( echo "Waiting for ten minutes! this is not a countdown.." )
+export BUILDAUTOSLEEP=( echo "Sleep..." )
