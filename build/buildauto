@@ -41,19 +41,19 @@ fi
 # Check to see if auto builder can run
 if ( ! find $LOCAL/config/$autorepo &> /dev/null ) \
 && ( ! find $LOCAL/config/$autodevice &> /dev/null ); then
-	echo "Both Auto Builder's repository and device is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
+	echo $BUILDAUTOBOTH
+	echo $BUILDAUTOPLEASE
+	read -p "$ENTERTOCONTINUE" done
 	exit 0
 elif ( ! find $LOCAL/config/$autorepo &> /dev/null ); then
-	echo "Auto Builder's repository is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
+	echo $BUILDAUTOREPO
+	echo $BUILDAUTOPLEASE
+	read -p "$ENTERTOCONTINUE" done
 	exit 0
 elif ( ! find $LOCAL/config/$autodevice &> /dev/null ); then
-	echo "Auto Builder's device is not set!"
-	echo "Please use the Auto Builder config menu"
-	read -p "Press Enter to continue: " done
+	echo $BUILDAUTODEVICE
+	echo $BUILDAUTOPLEASE
+	read -p "$ENTERTOCONTINUE" done
 	exit 0
 fi
 
@@ -194,9 +194,9 @@ done
 # Put computer to sleep ( if setup to do so )
 if ( find $LOCAL/config/sleepybuildserver &> /dev/null ); then
 	echo "" 2>&1 | $toggleout
-	echo "Waiting for ten minutes! this is not a countdown.." 2>&1 | $toggleout
+	echo $BUILDAUTOWAIT 2>&1 | $toggleout
 	sleep 10m
-	echo "Sleep..." 2>&1 | $toggleout
+	echo $BUILDAUTOSLEEP 2>&1 | $toggleout
 
 	sleeptime=$( cat $LOCAL/config/sleepybuildserver | sed -n 1p )
 	passy=$( cat $LOCAL/config/sleepybuildserver | sed -n 2p )
