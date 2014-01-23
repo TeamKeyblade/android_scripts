@@ -23,23 +23,23 @@ fi
 menu(){
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Auto Builder Menu"
-echo "  1. Run Auto Builder"
-echo "  2. Add to auto build list"
-echo "  3. Clear auto build list"
-echo "  4. Toggle Auto Builder's output"
-echo "  5. Toggle Auto Builder's build other repo"
-echo "  6. Toggle Auto Builder's sleep function"
-echo "  7. Go Back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $BUILDAUTOMENUTITLE
+echo "  1. $BUILDAUTOMENU1"
+echo "  2. $BUILDAUTOMENU2"
+echo "  3. $BUILDAUTOMENU3"
+echo "  4. $BUILDAUTOMENU4"
+echo "  5. $BUILDAUTOMENU5"
+echo "  6. $BUILDAUTOMENU6"
+echo "  7. $MENUGOBACK"
 echo ""
-read -p "Which one would you like to do?: " buildautoconfig
+read -p "$KITCHENMENUWHICH" buildautoconfig
 
 if [ ! "$buildautoconfig" ] || ( echo $buildautoconfig | grep -q [A-Za-z] ) || [ $buildautoconfig -gt "7" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
@@ -51,27 +51,28 @@ if [ $buildautoconfig == "2" ]; then
 	addautorepo () {
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Which android repository are we setting for auto build?"
-	echo "  1. Android Open Kang Project repository"
-	echo "  2. Android Open Source Project 4.3 repository"
-	echo "  3. Android Open Source Project 4.4 repository"
-	echo "  4. Carbon repository"
-	echo "  5. Cyanogenmod 10.2 repository"
-	echo "  6. Cyanogenmod 11 repository"
-	echo "  7. Evervolv repository"
-	echo "  8. omnirom repository"
-	echo "  9. PAC-man repository"
-	echo "  10. ParanoidAndroid repository"
-	echo "  11. Finished with adding repos, move on to adding devices"
-	echo "  12. Go Back"
-	read version
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $BUILDAUTOMENUSETAUTO
+	echo "  1. $BUILDREPOMENU1"
+	echo "  2. $BUILDREPOMENU2"
+	echo "  3. $BUILDREPOMENU3"
+	echo "  4. $BUILDREPOMENU4"
+	echo "  5. $BUILDREPOMENU5"
+	echo "  6. $BUILDREPOMENU6"
+	echo "  7. $BUILDREPOMENU7"
+	echo "  8. $BUILDREPOMENU8"
+	echo "  9. $BUILDREPOMENU9"
+	echo "  10. $BUILDREPOMENU10"
+	echo "  11. $BUILDAUTOMENUMOVEON"
+	echo "  12. $MENUGOBACK"
+	echo ""
+	read -p "$KITCHENMENUWHICH" version
 
 	if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "12" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		addautorepo
 	fi
 
@@ -131,7 +132,7 @@ if [ $buildautoconfig == "2" ]; then
 
 	if [ $version == "12" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -147,8 +148,8 @@ if [ $buildautoconfig == "2" ]; then
 		echo $repodefine >> $LOCAL/config/scriptautosync
 	fi
 
-	echo "Added $repo_name repository to auto build files"
-	read -p "Press Enter to continue: " done
+	echo "$BUILDAUTOMENUADD1 $repo_name $BUILDAUTOMENUADD2"
+	read -p "$ENTERTOCONTINUE" done
 	
 	addautorepo
 	}
@@ -156,22 +157,22 @@ if [ $buildautoconfig == "2" ]; then
 	addautodevice(){
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Please type in Which android device are we setting for auto build"
-	echo "Type in list to see all supported devices"
-	echo "Type in exit to go back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $BUILDAUTOMENUTYPEDEVICE
+	echo $BUILDOTHERTYPELIST
+	echo $BUILDOTHERTYPEEXIT
 	read auto_device
 
 	if [ ! "$auto_device" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		addautodevice
 	fi
 
 	if [ $auto_device == "exit" ]; then
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -181,8 +182,8 @@ if [ $buildautoconfig == "2" ]; then
 		echo $auto_device >> $LOCAL/config/scriptdevice
 	fi
 
-	echo "Added $auto_device to auto build files"
-	read -p "Press Enter to continue: " done
+	echo "$BUILDAUTOMENUADD1 $auto_device $BUILDAUTOMENUADD2"
+	read -p "$ENTERTOCONTINUE" done
 
 	addautodevice
 	}
@@ -192,19 +193,19 @@ fi
 
 if [ $buildautoconfig == "3" ]; then
 	echo ""
-	echo "Are you sure you want to clear auto build files?"
+	echo $BUILDAUTOMENUWANTTOCLEAR
 	read clearanswer
 
-	if [ "$clearanswer" == "yes" ] || [ "$clearanswer" == "y" ]; then
+	if [ "$clearanswer" == $ANSWERYES ] || [ "$clearanswer" == $ANSWERY ]; then
 		rm -rf $LOCAL/config/scriptfolder
 		rm -rf $LOCAL/config/scriptautosync
 		rm -rf $LOCAL/config/scriptdevice
-		echo "Auto build files cleared"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUCLEARED
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	else
-		echo "Auto build files left untouched"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUNOTCLEARED
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
@@ -213,28 +214,28 @@ if [ $buildautoconfig == "4" ]; then
 	if ( ! find $LOCAL/config/toggleoutfile &> /dev/null ); then
 		cd $LOCAL/config
 		touch toggleoutfile
-		echo "this will output buildauto into swordkitchen script folder"
-		echo "unless you want it to be somewhere else?"
-		read -p "Type yes to output somewhere else:" answer
+		echo $BUILDAUTOMENUOUTPUT
+		echo $BUILDAUTOMENUSOMEWHERE
+		read -p "$BUILDAUTOMENUTYPEOUTPUT" answer
 
-		if [ "$answer" == "y" ] || [ "$answer" == "yes" ]; then
-			echo "Please type the absolute path of where u want the buildoutput.txt to be"
+		if [ "$answer" == $ANSWERYES ] || [ "$answer" == $ANSWERY ]; then
+			echo $BUILDAUTOMENUTYPEABSOLUTE
 			read outfilelocation
 
 			echo $outfilelocation > outfile
-			echo "Output will be sent to $outfilelocation"
-			read -p "Press Enter to continue: " done
+			echo "$BUILDAUTOMENUOUTPUTSENT $outfilelocation"
+			read -p "$ENTERTOCONTINUE" done
 			menu
 		else
-			echo "Output will be sent to $( cd $LOCAL/.. && pwd )"
-			read -p "Press Enter to continue: " done
+			echo "$BUILDAUTOMENUOUTPUTSENT $( cd $LOCAL/.. && pwd )"
+			read -p "$ENTERTOCONTINUE" done
 			menu
 		fi
 	else
 		rm -rf $LOCAL/config/toggleoutfile
 		rm -rf $LOCAL/config/outfile
-		echo "Output file cleared, buildauto will now not output to a text file"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUOUTPUTCLEAR
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 fi
@@ -244,25 +245,25 @@ if [ $buildautoconfig == "5" ]; then
 		cd $LOCAL/config
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		echo "# Add below this line the repo folder you want to auto build, otherrepo are in the otherrepo folder, list each repo per line" > otherrepoauto
+		echo "# $BUILDAUTOMENUADDBELOWREPO" > otherrepoauto
 
 		nano otherrepoauto
 		sed -i "/# /d" otherrepoauto
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		echo "# Add below this line the device codename you want to auto build, list each device per line" > otherdeviceauto
+		echo "# $BUILDAUTOMENUADDBELOWDEVICE" > otherdeviceauto
 		
 		nano otherdeviceauto
 		sed -i "/# /d" otherdeviceauto
 
-		echo "Auto Builder's build other repo is now on!"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUOTHERREPOON
+		read -p "$ENTERTOCONTINUE" done
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	else
 		rm -f $LOCAL/config/otherrepoauto
 		rm -f $LOCAL/config/otherdeviceauto
-		echo "Auto Builder's build other repo is now off!"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUOTHERREPOOFF
+		read -p "$ENTERTOCONTINUE" done
 	fi
 fi
 
@@ -272,27 +273,27 @@ if [ $buildautoconfig == "6" ]; then
 
 		sleepymenu(){
 
-		echo "Swordrune10's Android Kitchen!"
-		echo "=============================="
-		echo "Do you want the computer to sleep for a"
-		echo "certain amount of hours or wake up at a certain time?"
-		echo "  1. Wake up at a certain time"
-		echo "  2. Certain amount of hours"
-		echo "  3. Go Back"
+		echo $KITCHENTITLE
+		echo $KITCHENUNDERLINE
+		echo $BUILDAUTOMENUCOMPSLEEPTIME1
+		echo $BUILDAUTOMENUCOMPSLEEPTIME2
+		echo "  1. $BUILDAUTOMENUSLEEPMENU1"
+		echo "  2. $BUILDAUTOMENUSLEEPMENU2"
+		echo "  3. $MENUGOBACK"
 		echo ""
-		read -p "Which one would you like to do?: " kindoftime
+		read -p "$KITCHENMENUWHICH" kindoftime
 
 		if [ ! "$kindoftime" ] || ( echo $kindoftime | grep -q [A-Za-z] ) || [ $kindoftime -gt "3" ]; then
 			echo ""
-			echo "You did not make a proper selection, try again!"
-			read -p "Press Enter to continue: " done
+			echo $NOTPROPERSELECTION
+			read -p "$ENTERTOCONTINUE" done
 			sleepymenu
 		fi
 
 		if [ $kindoftime == "1" ]; then
 			timekind=$(echo "specifictime")
-			echo "What time do you want the build server to wake up at the next day?"
-			echo "24 hours configuration, Example: for 2pm put 14:00, for 7am put 07:00"
+			echo $BUILDAUTOMENUSPECIFIC1
+			echo $BUILDAUTOMENUSPECIFIC2
 			read sleeptime
 
 			echo $sleeptime > sleepybuildserver
@@ -300,8 +301,8 @@ if [ $buildautoconfig == "6" ]; then
 
 		if [ $kindoftime == "2" ]; then
 			timekind=$(echo "hoursfromnow")
-			echo "How long would you like for the build server to sleep after building?"
-			echo "The number being inputted is in hours"
+			echo $BUILDAUTOMENUHOURS1
+			echo $BUILDAUTOMENUHOURS2
 			read sleeptime
 
 			echo $sleeptime > sleepybuildserver
@@ -309,11 +310,11 @@ if [ $buildautoconfig == "6" ]; then
 
 		if [ $kindoftime == "3" ]; then
 			echo ""
-			read -p "Press Enter to continue: " done
+			read -p "$ENTERTOCONTINUE" done
 			menu
 		fi
 
-		echo "Please type in your user's password, so the build server can sleep"
+		echo $BUILDAUTOMENUTYPEPASSY
 		while true; do
 			read -p "$star" -r -s -n 1 letter
 			star="*"
@@ -329,22 +330,22 @@ if [ $buildautoconfig == "6" ]; then
 		echo $passy >> sleepybuildserver
 		echo $timekind >> sleepybuildserver
 
-		echo "Auto Builder's sleep function is now on!"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUSLEEPON
+		read -p "$ENTERTOCONTINUE" done
 		
 		}
 		sleepymenu
 	else
 		rm -f $LOCAL/config/sleepybuildserver
-		echo "Auto Builder's sleep function is now off!"
-		read -p "Press Enter to continue: " done
+		echo $BUILDAUTOMENUSLEEPOFF
+		read -p "$ENTERTOCONTINUE" done
 	fi
 
 fi
 
 if [ $buildautoconfig == "7" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 menu
