@@ -44,17 +44,17 @@ if [ ! $SLOPPYSECONDS ]; then
 	if [ $AUTO ]; then
 		make clean
 	else
-		echo "clean out folder?"
-		read -p "yes/no? " purgeout
+		echo $BUILDANDROCLEAN
+		read -p "$QUESTIONYESNO" purgeout
 
 		if [ "$purgeout" == "" ]; then
 			echo ""
-			echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.."
+			echo $BUILDANDROCLEANENTER
 
 			make clean
 		fi
 
-		if [ $purgeout == "yes" ] || [ $purgeout == "y" ]; then
+		if [ $purgeout == $ANSWERYES ] || [ $purgeout == $ANSWERY ]; then
 			make clean
 		fi
 	fi
@@ -63,19 +63,19 @@ fi
 #setup ccache
 if [ $AUTO ]; then
 	if ( ! find ~/.ccache &> /dev/null); then
-		echo "Continuing without ccache use; if you want to use ccache, please set it up"
+		echo $BUILDANDROCCACHECONTINUEWITHOUT
 	else
-		echo "Found ccache folder, will use for build"
+		echo $BUILDANDROCCACHEFOUND
 	fi
 else
 	if ( ! find ~/.ccache &> /dev/null); then
-		echo "The kitchen did not detect the ccache folder, did you want to make one now?"
-		echo "If ccache is located at another location type in other"
+		echo $BUILDANDROCCACHEDIDNOTDETECT
+		echo $BUILDANDROCCACHEOTHER
 		read ccacheuse
 
-		if [ $ccacheuse == "yes" ] || [ $ccacheuse == "y" ]; then
-			echo "How big do you want the maximum size of ccache? suggested size is 50 - 100 gigabytes"
-			echo "Keep in mind the amount typed is in gigabytes"
+		if [ $ccacheuse == $ANSWERYES ] || [ $ccacheuse == $ANSWERY ]; then
+			echo $BUILDANDROCCACHEHOWBIG
+			echo $BUILDANDROCCACHEAMOUNTTYPED
 			read ccachesize
 
 			if ( uname -a | grep -q Darwin ); then
@@ -84,7 +84,7 @@ else
 				elif ( find prebuilt/darwin-x86/ccache/ccache &> /dev/null); then
 					prebuilt/darwin-x86/ccache/ccache -M "$ccachesize"G
 				else
-					echo "Repository does not support ccache, continuing without it"
+					echo $BUILDANDROCCACHEREPONOTSUPPORTED
 					noccache=true
 				fi
 			else
@@ -93,26 +93,26 @@ else
 				elif ( find prebuilt/linux-x86/ccache/ccache &> /dev/null); then
 					prebuilt/linux-x86/ccache/ccache -M "$ccachesize"G
 				else
-					echo "Repository does not support ccache, continuing without it"
+					echo $BUILDANDROCCACHEREPONOTSUPPORTED
 					noccache=true
 				fi
 			fi
 		elif [ $ccacheuse == "other" ]; then
-			echo "Where is the exact location of ccache? Example of where default location is is ~/.ccache"
+			echo $BUILDANDROCCACHEEXACTLOCATION
 			read ccachelocation
 
 			if ( ! find $ccachelocation &> /dev/null); then
-				echo "Location specified was not found, continuing without it"
+				echo $BUILDANDROCCACHENOTFOUND
 				noccache=true
 			else
 				export CCACHE_DIR=$( echo "$ccachelocation" )
 			fi
 		else
-			echo "Continuing without ccache use"
+			echo $BUILDANDROCCACHECONTINUEWITHOUT
 			noccache=true
 		fi
 	else
-		echo "Found ccache folder, will use for build"
+		echo $BUILDANDROCCACHEFOUND
 	fi
 fi
 
@@ -156,8 +156,8 @@ else
 	fi
 
 	if [ ! "$lunch_device" ]; then
-			echo "Repository not supported!"
-			read -p "Press Enter to continue: " done
+			echo $BUILDANDROREPONOTSUPPORTED
+			read -p "$ENTERTOCONTINUE" done
 			exit 0
 	fi
 
@@ -174,30 +174,30 @@ else
 fi
 
 if [ ! "$zip" ]; then
-	echo "Build messed up! Returning to build menu"
-	read -p "Press Enter to continue: " done
+	echo $BUILDANDROBUILDMESSEDUP
+	read -p "$BUILDMENURETURN" done
 	exit 0
 fi
 
 if [ $SCRIPT_REPO == "aosp" ]; then
 
-	echo "Making temporary folder for post-building $zip fixes"
+	echo "$BUILDANDROMAKETEMP1 $zip $BUILDANDROMAKETEMP2"
 	mkdir -p $BUILDS/temp/zipout
 	cp $zip $BUILDS/temp
 	cd $BUILDS/temp/zipout
 
-	echo "Unzipping $zip"
+	echo "$BUILDANDROUNZIP $zip"
 	unzip ../$zip > /dev/null
 
-	echo "Removing uneeded recovery folder and file_contexts from $zip"
+	echo "$BUILDANDRORMSTUFF $zip"
 	rm -r recovery
 	rm file_contexts
 
 	if [ $SCRIPT_REPO == "aosp" ]; then
 		cd system
-		echo "Adding rom manager items to $zip's build.prop"
+		echo "$BUILDANDROADDROM1 $zip$BUILDANDROADDROM2"
 		echo "ro.rommanager.developerid=$(whoami)" >> build.prop
-		echo "ro.modversion=$newzip >> build.prop"
+		echo "ro.modversion=$newzip" >> build.prop
 
 		cd ..
 	fi
@@ -207,17 +207,17 @@ if [ $SCRIPT_REPO == "aosp" ]; then
 	cd $BUILDS/temp/zipout
 	
 
-	echo "Zipping $zip back up"
+	echo "$BUILDANDROZIP $zip"
 	zip -r unsignedcrap.zip . > /dev/null
 
-	echo "Signing $zip with test keys"
+	echo "$BUILDANDROSIGN1 $zip $BUILDANDROSIGN2"
 	java -Xmx2048m -jar $repofolder/out/host/linux-x86/framework/signapk.jar -w $repofolder/build/target/product/security/testkey.x509.pem $repofolder/build/target/product/security/testkey.pk8 unsignedcrap.zip $zip
 fi
 
 if ( find $buildfolder/*$SCRIPT_DEVICE.zip &> /dev/null); then
 	mkdir -p $buildfolder/old
 
-	echo "Moving older build to $buildfolder/old"
+	echo "$BUILDANDROMOVEOLD1 $buildfolder$BUILDANDROMOVEOLD2"
 
 	mv $buildfolder/*$SCRIPT_DEVICE.zip $buildfolder/old
 	mv $buildfolder/*$SCRIPT_DEVICE.zip.md5sum $buildfolder/old
@@ -225,12 +225,12 @@ fi
 
 mkdir -p $buildfolder
 
-echo "Copying to $buildfolder"
+echo "$BUILDANDROCOPY $buildfolder"
 echo "$zip -> $newzip"
 cat $zip > $buildfolder/$newzip
 
 if [ $SCRIPT_REPO == "aosp" ]; then
-	echo "Cleaning up temporary folder"
+	echo "$BUILDANDROCLEANUP"
 	cd $BUILDS
 	rm -r temp
 fi
@@ -239,8 +239,8 @@ cd $buildfolder
 md5sum $newzip
 md5sum $newzip > $newzip.md5sum
 
-echo "Finished!"
+echo $COMPLETEDMESSAGE
 
 if [ ! $AUTO ]; then
-	read -p "Press Enter to continue: " done
+	read -p "$BUILDMENURETURN" done
 fi
