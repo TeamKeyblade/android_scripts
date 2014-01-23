@@ -26,12 +26,12 @@ clear
 echo $KITCHENTITLE
 echo $KITCHENUNDERLINE
 echo $KITCHENMAINMENU
-echo "  1. "$KITCHENMENU1
-echo "  2. "$KITCHENMENU2
-echo "  3. "$KITCHENMENU3
-echo "  4. "$KITCHENMENU4
-echo "  5. "$KITCHENMENU5
-echo "  6. "$KITCHENMENU6
+echo "  1. $KITCHENMENU1"
+echo "  2. $KITCHENMENU2"
+echo "  3. $KITCHENMENU3"
+echo "  4. $KITCHENMENU4"
+echo "  5. $KITCHENMENU5"
+echo "  6. $KITCHENMENU6"
 echo ""
 read -p "$KITCHENMENUWHICH" answer
 
