@@ -29,6 +29,26 @@ export ANSWERY=$( echo "s" )
 export ANSWERNO=$( echo "no" )
 export ANSWERN=$( echo "n" )
 
+## Macosxinit
+## NEEDS TRANSLATION!
+export MACOSXINITRUN=$( echo "You are running Mac OS X!" )
+export MACOSXINITCANTFINDDMG=$( echo "We can't find the android image to mount, this is needed to build on mac os x
+If you already have one made please put it in its proper place with its proper title
+It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg
+
+Would you like to make a new android.dmg?" )
+export MACOSXINITHOWBIG=$( echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space
+Type in number in gigabytes" )
+export MACOSXINITMOUNTNEW=$( echo "Mounting new android.dmg at /Volumes/android.." )
+export MACOSXINITMOVEINTO=$( echo "Moving into android.dmg.." )
+export MACOSXINITSETUP=$( echo "Setting up kitchen.." )
+export MACOSXINITSETUP=$( echo "Setting up kitchen.." )
+export MACOSXINITFOUNDDMG=$( echo "Found your android.dmg, mounting.." )
+export MACOSXINITCANTFINDKITCHEN=$( echo "We can't find the rom kitchen in /Volumes/android
+
+Would you like to make install rom kitchen in /Volumes/android?" )
+## NEEDS TRANSLATION!
+
 ## Errors
 ## NEEDS TRANSLATION!
 export ERRORHEADER=$( echo "An Error Has Occurred!
