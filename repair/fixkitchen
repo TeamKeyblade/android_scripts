@@ -557,7 +557,7 @@ if [ $cleananswer == "8" ]; then
 	echo $TROLLFACEUNDERLINE
 	echo $FIXKITCHENIBET
 	echo ""
-	echo $$ABORTMESSAGE
+	echo $ABORTMESSAGE
 	read -p "$ENTERTOCONTINUE" done
 fi
 
