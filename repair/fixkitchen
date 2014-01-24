@@ -23,28 +23,27 @@ fi
 menu () {
 clear
 
-echo "Swordrune10's Android Kitchen!"
-echo "=============================="
-echo "Something is not working right? What should we do?"
-echo "Purge = remove files, download from origin"
-echo "Delete = delete it!"
-echo "  1. Add a repo to a certain local_manifests folder"
-echo "  2. Purge a certain local_manifests folder"
-echo "  3. Purge or Delete a certain repository"
-echo "  4. Purge or Delete all the repositories"
-echo "  5. Purge or Delete the Kitchen app"
-echo "  6. Delete the Kitchen app, and its dependencies"
-echo "  7. Delete entire computer"
-echo "  8. Delete the internet"
-echo "  9. Go Back"
+echo $KITCHENTITLE
+echo $KITCHENUNDERLINE
+echo $FIXKITCHENSOMETHINGNOT
+echo $FIXKITCHENPURGE
+echo $FIXKITCHENDELETE
+echo "  1. $FIXKITCHENMENU1"
+echo "  2. $FIXKITCHENMENU2"
+echo "  3. $FIXKITCHENMENU3"
+echo "  4. $FIXKITCHENMENU4"
+echo "  5. $FIXKITCHENMENU5"
+echo "  6. $FIXKITCHENMENU6"
+echo "  7. $FIXKITCHENMENU7"
+echo "  8. $FIXKITCHENMENU8"
+echo "  9. $MENUGOBACK"
 echo ""
-echo "Which one would you like to do?"
-read cleananswer
+read -p "$KITCHENMENUWHICH" cleananswer
 
 if [ ! "$cleananswer" ] || ( echo $cleananswer | grep -q [A-Za-z] ) || [ $cleananswer -gt "9" ]; then
 	echo ""
-	echo "You did not make a proper selection, try again!"
-	read -p "Press Enter to continue: " done
+	echo $NOTPROPERSELECTION
+	read -p "$ENTERTOCONTINUE" done
 	menu
 fi
 
@@ -65,7 +64,7 @@ revision=\"PROJECT BRANCH\" />" > $LOCAL/../temp/addrepo
 nano $LOCAL/../temp/addrepo
 
 echo ""
-echo "Adding repo to otherdevices.xml for $repo_name.."
+echo "$FIXKITCHENADD $repo_name.."
 cd $local_manifests
 
 if ( ! find $local_manifests/otherdevices.xml -maxdepth 1 &> /dev/null ); then
@@ -83,32 +82,33 @@ purgelocalmanifest() {
 export REPO_FOLDER=$( echo "$REPOS/$script_repo-$repo_platform" )
 rm -rf $REPO_FOLDER/.repo/local_manifests
 preupdate
-echo "Purged $repo_name local_manifests folder"
+echo "$repo_name $FIXKITCHENPURGE"
 }
 
 if [ $cleananswer == "1" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Which repo would you like to add to?"
-	echo "  1. Android Open Kang Project repository"
-	echo "  2. Android Open Source Project repository 4.3"
-	echo "  3. Android Open Source Project repository 4.4"
-	echo "  4. Carbon repository"
-	echo "  5. Cyanogenmod 10.2 repository"
-	echo "  6. Cyanogenmod 11 repository"
-	echo "  7. Evervolv repository"
-	echo "  8. omnirom repository"
-	echo "  9. PAC-man repository"
-	echo "  10. ParanoidAndroid repository"
-	echo "  11. Go Back"
-	read addrepo
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENWHICHADD
+	echo "  1. $BUILDREPOMENU1"
+	echo "  2. $BUILDREPOMENU2"
+	echo "  3. $BUILDREPOMENU3"
+	echo "  4. $BUILDREPOMENU4"
+	echo "  5. $BUILDREPOMENU5"
+	echo "  6. $BUILDREPOMENU6"
+	echo "  7. $BUILDREPOMENU7"
+	echo "  8. $BUILDREPOMENU8"
+	echo "  9. $BUILDREPOMENU9"
+	echo "  10. $BUILDREPOMENU10"
+	echo "  11. $MENUGOBACK"
+	echo ""
+	read -p "$KITCHENMENUWHICH" addrepo
 
 	if [ ! "$addrepo" ] || ( echo $addrepo | grep -q [A-Za-z] ) || [ $addrepo -gt "11" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -174,38 +174,39 @@ if [ $cleananswer == "1" ]; then
 
 	if [ $addrepo == "11" ]; then
 		echo ""
-		read -p "Going back, Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
 	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	echo $COMPLETEDMESSAGE
+	read -p "$ENTERTOCONTINUE" done
 fi
 
 if [ $cleananswer == "2" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Which repo would you like to purge its local_manifests folder?"
-	echo "  1. Android Open Kang Project repository"
-	echo "  2. Android Open Source Project repository 4.3"
-	echo "  3. Android Open Source Project repository 4.4"
-	echo "  4. Carbon repository"
-	echo "  5. Cyanogenmod 10.2 repository"
-	echo "  6. Cyanogenmod 11 repository"
-	echo "  7. Evervolv repository"
-	echo "  8. omnirom repository"
-	echo "  9. PAC-man repository"
-	echo "  10. ParanoidAndroid repository"
-	echo "  11. Go Back"
-	read cleanse
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENWHICHPURGE
+	echo "  1. $BUILDREPOMENU1"
+	echo "  2. $BUILDREPOMENU2"
+	echo "  3. $BUILDREPOMENU3"
+	echo "  4. $BUILDREPOMENU4"
+	echo "  5. $BUILDREPOMENU5"
+	echo "  6. $BUILDREPOMENU6"
+	echo "  7. $BUILDREPOMENU7"
+	echo "  8. $BUILDREPOMENU8"
+	echo "  9. $BUILDREPOMENU9"
+	echo "  10. $BUILDREPOMENU10"
+	echo "  11. $MENUGOBACK"
+	echo ""
+	read -p "$KITCHENMENUWHICH" cleanse
 
 	if [ ! "$cleanse" ] || ( echo $cleanse | grep -q [A-Za-z] ) || [ $cleanse -gt "11" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -271,56 +272,55 @@ if [ $cleananswer == "2" ]; then
 
 	if [ $cleanse == "11" ]; then
 		echo ""
-		read -p "Going back, Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
 	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	echo $COMPLETEDMESSAGE
+	read -p "$ENTERTOCONTINUE" done
 fi
 
 if [ $cleananswer == "3" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Which repo would you like to purge or delete?"
-	echo "  1. Android Open Kang Project repository"
-	echo "  2. Android Open Source Project repository 4.3"
-	echo "  3. Android Open Source Project repository 4.4"
-	echo "  4. Carbon repository"
-	echo "  5. Cyanogenmod 10.2 repository"
-	echo "  6. Cyanogenmod 11 repository"
-	echo "  7. Evervolv repository"
-	echo "  8. omnirom repository"
-	echo "  9. PAC-man repository"
-	echo "  10. ParanoidAndroid repository"
-	echo "  11. Go Back"
-	read modify
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENWHICHREPO
+	echo "  1. $BUILDREPOMENU1"
+	echo "  2. $BUILDREPOMENU2"
+	echo "  3. $BUILDREPOMENU3"
+	echo "  4. $BUILDREPOMENU4"
+	echo "  5. $BUILDREPOMENU5"
+	echo "  6. $BUILDREPOMENU6"
+	echo "  7. $BUILDREPOMENU7"
+	echo "  8. $BUILDREPOMENU8"
+	echo "  9. $BUILDREPOMENU9"
+	echo "  10. $BUILDREPOMENU10"
+	echo "  11. $MENUGOBACK"
+	echo ""
+	read -p "$KITCHENMENUWHICH" modify
 
 	if [ ! "$modify" ] || ( echo $modify | grep -q [A-Za-z] ) || [ $modify -gt "11" ]; then
 		echo ""
-		echo "You did not make a proper selection, try again!"
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
 	echo ""
-	echo "Purge or Delete?"
-	echo "Purge = remove files, download from origin"
-	echo "Delete = delete it!"
-	echo "type exit to go to back"
+	echo $FIXKITCHENPURGEDELETE
+	echo $FIXKITCHENPURGEDELETEEXIT
 	read remover
 
 	if [ ! "$remover" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	elif [ $remover == "exit" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -377,7 +377,7 @@ if [ $cleananswer == "3" ]; then
 
 	if [ $modify == "11" ]; then
 		echo ""
-		read -p "Going back, Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -390,33 +390,29 @@ if [ $cleananswer == "3" ]; then
 	fi
 
 	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	echo $COMPLETEDMESSAGE
+	read -p "$ENTERTOCONTINUE" done
 fi
 
 if [ $cleananswer == "4" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Purge or Delete all of the repositories?"
-	echo "Purge = remove files, download from origin"
-	echo "Delete = delete it!"
-	echo "type exit to go to back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENPURGEDELETEREPO
+	echo $FIXKITCHENPURGEDELETEEXIT
 	read remover
 
 	if [ ! "$remover" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	elif [ $remover == "exit" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
-	fi
-
-	if [ $remover == "Purge" ] || [ $remover == "purge" ]; then
+	elif [ $remover == "Purge" ] || [ $remover == "purge" ]; then
 		export INIT=""
 		reposync -p allthethings
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
@@ -424,29 +420,27 @@ if [ $cleananswer == "4" ]; then
 	fi
 
 	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
+	echo $COMPLETEDMESSAGE
+	read -p "$ENTERTOCONTINUE" done
 fi
 
 if [ $cleananswer == "5" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Purge or Delete the Kitchen app?"
-	echo "Purge = remove files, download from origin"
-	echo "Delete = delete it!"
-	echo "type exit to go back"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENPURGEDELETEKITCHEN
+	echo $FIXKITCHENPURGEDELETEEXIT
 	read remover
 
 	if [ ! "$remover" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	elif [ $remover == "exit" ]; then
 		echo ""
-		read -p "Press Enter to continue: " done
+		read -p "$ENTERTOCONTINUE" done
 		menu
 	fi
 
@@ -457,38 +451,36 @@ if [ $cleananswer == "5" ]; then
 		scriptmakir
 
 		echo ""
-		echo "Switching to Redeemer script.."
+		echo $FIXKITCHENREDEEMER
 		echo ""
 		./redeemer
 	elif [ $remover == "Delete" ] || [ $remover == "delete" ]; then
 		echo ""
-		echo "Are you sure you want to remove the Kitchen app?"
-		echo "You must type in \"yes\" to continue"
+		echo $FIXKITCHENDELETEKITCHEN
+		echo $FIXKITCHENTYPEYES
 		echo ""
-		echo "Type in anything else to abort operation"
-		read -p "yes/no? " destroyer
+		echo $FIXKITCHENTYPEABORT
+		read -p "$QUESTIONYESNO" destroyer
 
 		if [ ! "$destroyer" ]; then
 			echo ""
-			echo "You didn't type in anything.."
-			read -p "Press Enter to continue: " done
+			echo $NOTPROPERSELECTION
+			read -p "$ENTERTOCONTINUE" done
 			menu
-		elif [ ! $destroyer == "yes" ]; then
-			echo ""
-			echo "Aborting.."
-			read -p "Press Enter to continue: " done
-		fi
-
-		if [ $destroyer == "yes" ]; then
+		elif [ $destroyer == $ANSWERYES ]; then
 			export AUTHOR="destroyer"
 			scriptmakir
 
 			echo ""
-			echo "Thank you for using Swordrune10's Kitchen!"
-			echo "Switching to Destroyer script.."
+			echo $FIXKITCHENDESTROYERSWITCH
+			echo $KITCHENTHANKS
 			echo ""
 			./destroyer
-			exit 0
+			kill 0
+		else
+			echo ""
+			echo $ABORTMESSAGE
+			read -p "$ENTERTOCONTINUE" done
 		fi
 	fi
 fi
@@ -496,86 +488,82 @@ fi
 if [ $cleananswer == "6" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Are you sure you want to remove the Kitchen app and its dependencies?"
-	echo "Please note: the builds directory will not be deleted"
-	echo "You must type in \"yes\" to continue"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENDELETEKITCHENALL
+	echo $FIXKITCHENNOTDELETEBUILDS
+	echo $FIXKITCHENTYPEYES
 	echo ""
-	echo "Type in anything else to abort operation"
-	read -p "yes/no? " destroyerofworlds
+	echo $FIXKITCHENTYPEABORT
+	read -p "$QUESTIONYESNO" destroyerofworlds
 
 	if [ ! "$destroyerofworlds" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
-	elif [ ! $destroyerofworlds == "yes" ]; then
-		echo ""
-		echo "Aborting.."
-		read -p "Press Enter to continue: " done
-	fi
-
-	if [ $destroyerofworlds == "yes" ]; then
+	elif [ $destroyerofworlds == $ANSWERYES ]; then
 		export AUTHOR="destroyerofworlds"
 		scriptmakir
 
 		echo ""
-		echo "Thank you for using Swordrune10's Kitchen!"
-		echo "Switching to Destroyer of Worlds script.."
+		echo $FIXKITCHENDESTROYEROFWORLDSSWITCH
+		echo $KITCHENTHANKS
 		echo ""
 		cd $LOCAL/..
 		./destroyerofworlds
-		exit 0
+		kill 0
+	else
+		echo ""
+		echo $ABORTMESSAGE
+		read -p "$ENTERTOCONTINUE" done
 	fi
 fi
 
 if [ $cleananswer == "7" ]; then
 	clear
 
-	echo "Swordrune10's Android Kitchen!"
-	echo "=============================="
-	echo "Are you sure..? this will delete everything on your computer, including mounted external drives and flash drives!!"
-	echo "You must type in \"yes, please delete everything off of my computer\" to continue"
+	echo $KITCHENTITLE
+	echo $KITCHENUNDERLINE
+	echo $FIXKITCHENDELETECOMPUTER
+	echo $FIXKITCHENMUSTTYPEEXACTLY
 	echo ""
-	echo "Type in anything else to bail out"
+	echo $FIXKITCHENTYPEABORT
 	read suicidenote
 
 	if [ ! "$suicidenote" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue: " done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 		menu
-	fi
-
-	if [ ! $suicidenote == "yes, please delete everything off of my computer" ]; then
+	elif [ $suicidenote == $SUICIDENOTE]; then
 		echo ""
-		echo "Please dont try that again..."
-	elif [ $suicidenote == "yes, please delete everything off of my computer" ]; then
-		echo ""
-		echo "Please type in your password to destroy everything"
+		echo $FIXKITCHENTYPEPASSY
 		sudo rm -rf /
+		echo ""
+		echo $COMPLETEDMESSAGE
+		read -p "$ENTERTOEXIT" done
+	else
+		echo ""
+		echo $ABORTMESSAGE
+		read -p "$ENTERTOCONTINUE" done
 	fi
-
-	echo ""
-	echo "Finished!"
-	read -p "Press Enter to continue: " done
 fi
 
 if [ $cleananswer == "8" ]; then
 	clear
 
-	echo "Trollface's Android Kitchen!"
-	echo "=============================="
-	echo "Oh man, I bet you wish it was that easy!"
+	echo $TROLLFACETITLE
+	echo $TROLLFACEUNDERLINE
+	echo $FIXKITCHENIBET
 	echo ""
-	echo "Aborting.."
-	read -p "Press Enter to continue: " done
+	echo $$ABORTMESSAGE
+	read -p "$ENTERTOCONTINUE" done
 fi
 
 if [ $cleananswer == "9" ]; then
 	echo ""
-	read -p "Returning to Main Menu, Press Enter to continue: " done
+	read -p "$MAINMENURETURN" done
 	exit 0
 fi
 
