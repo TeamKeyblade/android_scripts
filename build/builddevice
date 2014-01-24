@@ -39,6 +39,7 @@ echo "  8. $BUILDREPOMENU8"
 echo "  9. $BUILDREPOMENU9"
 echo "  10. $BUILDREPOMENU10"
 echo "  11. $MENUGOBACK"
+echo ""
 read -p "$KITCHENMENUWHICH" version
 
 if [ ! "$version" ] || ( echo $version | grep -q [A-Za-z] ) || [ $version -gt "11" ]; then

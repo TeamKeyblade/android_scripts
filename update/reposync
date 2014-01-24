@@ -104,7 +104,8 @@ if [ ! "$AUTO" ]; then
 	echo "  15. $REPOSYNCMENU15"
 	echo "  16. $REPOSYNCMENU16"
 	echo "  17. $MENUGOBACK"
-	read setupanswer
+	echo ""
+	read -p "$KITCHENMENUWHICH" setupanswer
 
 	if [ ! "$setupanswer" ] || ( echo $setupanswer | grep -q [A-Za-z] ) || [ $setupanswer -gt "17" ]; then
 		echo ""
