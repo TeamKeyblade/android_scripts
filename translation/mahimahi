@@ -35,9 +35,20 @@ export ANSWERN=$( echo "n" )
 ## Errors
 export ERRORHEADER=$( echo "An Error Has Occurred!
 ======================" )
+export ERRORSIDEEFFECTS=$( echo "Side effects may include failure to build properly and lack of support
+for build environment setup" )
 export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
 If you prefer email you can reach me at mishana@swordrune10.net
 If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
+export BOUNCERPOWERPC=$( echo "PowerPC processor detected!
+===========================
+Running powerpc isn't necessarily prohibited, but it is not suggested" )
+export BOUNCER32BIT=$( echo "32-bit processor detected!
+==========================
+Running 32-bit isn't necessarily prohibited, but it is not suggested" )
+export BOUNCERKITCHENHOME=$( echo "Kitchen not set in correct place!
+=================================
+Kitchen will not work correctly if placed in home folder, please move" )
 export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
 =====================
 Build enviroment installation only supports 64-bit Operating Systems" )
