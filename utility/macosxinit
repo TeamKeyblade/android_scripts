@@ -17,50 +17,43 @@ clear
 
 export POSIXLY_CORRECT=1
 
-echo "You are running Mac OS X!"
+echo $MACOSXINITRUN
 
 xinit() {
 if ( ! find ~/android.dmg &> /dev/null ); then
 	echo ""
-	echo "We can't find the android image to mount, this is needed to build on mac os x"
-	echo "If you already have one made please put it in its proper place with its proper title"
-	echo "It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg"
-	echo ""
-	echo "Would you like to make a new android.dmg?"
-	read diskimage
+	echo $MACOSXINITCANTFINDDMG
+	read -p "$QUESTIONYESNO" diskimage
 
 	if [ ! "$diskimage" ]; then
 		echo ""
-		echo "You didn't type in anything.."
-		read -p "Press Enter to continue" done
+		echo $NOTPROPERSELECTION
+		read -p "$ENTERTOCONTINUE" done
 
 		xinit
 		exit 0
-	fi
-
-	if [ $diskimage == "no" ] || [ $diskimage == "n" ]; then
+	elif [ $diskimage == $ANSWERNO ] || [ $diskimage == $ANSWERN ]; then
 		echo ""
-		echo "Exiting for now.."
-		read -p "Press Enter to exit" done
+		echo $ABORTMESSAGE
+		read -p "$ENTERTOEXIT" done
 
-		exit 0
+		kill 0
 	fi
 
 
 	echo ""
-	echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space"
-	echo "Type in number in gigabytes"
+	echo $MACOSXINITHOWBIG
 	read gigs
 
 	hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size "$gigs"g ~/android.dmg
 
 	echo ""
-	echo "Mounting new android.dmg at /Volumes/android.."
+	echo $MACOSXINITMOUNTNEW
 	hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
 	if ( ! find ~/bin/repo &> /dev/null ); then
 		echo ""
-		echo "Installing the repo command.."
+		echo $REPOSYNCREPOINSTALL
 
 		if ( ! find ~/bin &> /dev/null ); then
 			mkdir ~/bin
@@ -71,30 +64,28 @@ if ( ! find ~/android.dmg &> /dev/null ); then
 	fi
 
 	echo ""
-	echo "Moving into android.dmg.."
+	echo $MACOSXINITMOVEINTO
 	cd /Volumes/android
 	mkdir -p swordkitchen
 	cd swordkitchen
 
-	echo "Setting up kitchen.."
+	echo $MACOSXINITSETUP
 	~/bin/repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
 	~/bin/repo sync -j4
 
 else
-	echo "Found your android.dmg, mounting.."
+	echo $MACOSXINITFOUNDDMG
 	hdiutil attach ~/android.dmg -mountpoint /Volumes/android
 
 	if ( ! find /Volumes/android/swordkitchen &> /dev/null ); then
 		echo ""
-		echo "We can't find the rom kitchen in /Volumes/android"
-		echo ""
-		echo "Would you like to make install rom kitchen in /Volumes/android?"
+		echo $MACOSXINITCANTFINDKITCHEN
 		read androidvolume
 
 		if [ ! "$androidvolume" ]; then
 			echo ""
-			echo "You didn't type in anything.."
-			echo "Press Enter to continue"
+			echo $NOTPROPERSELECTION
+			read -p "$ENTERTOCONTINUE" done
 			read done
 
 			xinit
@@ -103,16 +94,15 @@ else
 
 		if [ $androidvolume == "no" ] || [ $androidvolume == "n" ]; then
 			echo ""
-			echo "Exiting for now.."
-			echo "Press Enter to exit"
-			read done
+			echo $ABORTMESSAGE
+			read -p "$ENTERTOEXIT" done
 
-			exit 0
+			kill 0
 		fi
 
 		if ( ! find ~/bin/repo &> /dev/null ); then
 			echo ""
-			echo "Installing the repo command.."
+			echo $REPOSYNCREPOINSTALL
 
 			if ( ! find ~/bin &> /dev/null ); then
 				mkdir ~/bin
@@ -123,12 +113,12 @@ else
 		fi
 
 		echo ""
-		echo "Moving into android.dmg.."
+		echo $MACOSXINITMOVEINTO
 		cd /Volumes/android
 		mkdir -p swordkitchen
 		cd swordkitchen
 
-		echo "Setting up kitchen.."
+		echo $MACOSXINITSETUP
 		~/bin/repo init -u http://github.com/TeamKeyblade/kitchen_manifest.git -b master
 		~/bin/repo sync -j4
 	else
