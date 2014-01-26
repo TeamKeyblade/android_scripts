@@ -162,24 +162,24 @@ elif ( echo $LANG | grep -q "es_" ); then
 #	fi
 # Russian
 #elif ( echo $LANG | grep -q "ru_" ); then
-#	langsaved=$( echo "Language saved as Russian" )
-#	notproperselection=$( echo "You did not make a proper selection, try again!" )
-#	entertocontinue=$( echo "Press Enter to continue: " )
+#	langsaved=$( echo "Установлен русский язык" )
+#	notproperselection=$( echo "Вы не сделали выбор, попытайтесь ещё!" )
+#	entertocontinue=$( echo "Нажмите ввод для продолжения: " )
 
 #	clear
-#	echo "We have detected that your system is set to English"
-#	echo "Is this how you want the rom kitchen to be?"
+#	echo "Мы обнаружили, что Ваша система установлена на русский язык"
+#	echo "Хотите, чтобы rom kitchen работала с этим языком?"
 
-#	read -p "yes/no?" answer
+#	read -p "да/нет?" answer
 
-#	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+#	if [ "$answer" == "да" ] || [ "$answer" == "д" ]; then
 #		echo "ru" > $LOCAL/config/language
 #		echo ""
 #		echo $langsaved
 #		read -p "$entertocontinue" done
-#	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+#	elif [ "$answer" == "нет" ] || [ "$answer" == "н" ]; then
 #		echo ""
-#		echo "What language do you want to use instead?"
+#		echo "Какой язык Вы хотите использовать вместо этого?"
 #		langselect
 #	else
 #		echo ""
