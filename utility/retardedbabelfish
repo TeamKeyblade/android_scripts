@@ -160,6 +160,33 @@ elif ( echo $LANG | grep -q "es_" ); then
 #		read -p "$entertocontinue" done
 #		initlang
 #	fi
+# Russian
+#elif ( echo $LANG | grep -q "ru_" ); then
+#	langsaved=$( echo "Language saved as Russian" )
+#	notproperselection=$( echo "You did not make a proper selection, try again!" )
+#	entertocontinue=$( echo "Press Enter to continue: " )
+
+#	clear
+#	echo "We have detected that your system is set to English"
+#	echo "Is this how you want the rom kitchen to be?"
+
+#	read -p "yes/no?" answer
+
+#	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+#		echo "ru" > $LOCAL/config/language
+#		echo ""
+#		echo $langsaved
+#		read -p "$entertocontinue" done
+#	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+#		echo ""
+#		echo "What language do you want to use instead?"
+#		langselect
+#	else
+#		echo ""
+#		echo $notproperselection
+#		read -p "$entertocontinue" done
+#		initlang
+#	fi
 # German
 elif ( echo $LANG | grep -q "de_" ); then
 	langsaved=$( echo "Die Sprache Deutsch wurde gespeichert" )
@@ -352,6 +379,10 @@ elif ( cat $LOCAL/config/language | grep -q "es" ); then
 ## NOT ACTIVE
 elif ( cat $LOCAL/config/language | grep -q "fr" ); then
 	. $LOCAL/translation/europeanpilchard
+# Russian
+## NOT ACTIVE
+elif ( cat $LOCAL/config/language | grep -q "ru" ); then
+	. $LOCAL/translation/whitefish
 # German
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
 	. $LOCAL/translation/rabbitfish
