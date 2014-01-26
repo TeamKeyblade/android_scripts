@@ -20,11 +20,13 @@ langselect () {
 echo "  1. English"
 # Spanish
 echo "  2. español"
+# Russian
+echo "  3. Русский"
 # German
-echo "  3. Deutsch"
+echo "  4. Deutsch"
 # Brazilian Portuguese
-echo "  4. Brazilian Portuguese"
-echo "  5. None of the above"
+echo "  5. Brazilian Portuguese"
+echo "  6. None of the above"
 read answer
 
 if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "5" ]; then
@@ -50,8 +52,16 @@ if [ $answer == "2" ]; then
 	read -p "$entertocontinue" done
 fi
 
-# German
+# Russian
 if [ $answer == "3" ]; then
+	echo "ru" > $LOCAL/config/language
+	echo ""
+	echo $langsaved
+	read -p "$entertocontinue" done
+fi
+
+# German
+if [ $answer == "4" ]; then
 	echo "de" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
@@ -59,14 +69,14 @@ if [ $answer == "3" ]; then
 fi
 
 # Brazilian Portuguese
-if [ $answer == "4" ]; then
+if [ $answer == "5" ]; then
 	echo "ptbr" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
 	read -p "$entertocontinue" done
 fi
 
-if [ $answer == "5" ]; then
+if [ $answer == "6" ]; then
 	clear
 
 	echo "The Language You Want Is Not Supported!"
@@ -161,32 +171,32 @@ elif ( echo $LANG | grep -q "es_" ); then
 #		initlang
 #	fi
 # Russian
-#elif ( echo $LANG | grep -q "ru_" ); then
-#	langsaved=$( echo "Установлен русский язык" )
-#	notproperselection=$( echo "Вы не сделали выбор, попытайтесь ещё!" )
-#	entertocontinue=$( echo "Нажмите ввод для продолжения: " )
+elif ( echo $LANG | grep -q "ru_" ); then
+	langsaved=$( echo "Установлен русский язык" )
+	notproperselection=$( echo "Вы не сделали выбор, попытайтесь ещё!" )
+	entertocontinue=$( echo "Нажмите ввод для продолжения: " )
 
-#	clear
-#	echo "Мы обнаружили, что Ваша система установлена на русский язык"
-#	echo "Хотите, чтобы rom kitchen работала с этим языком?"
+	clear
+	echo "Мы обнаружили, что Ваша система установлена на русский язык"
+	echo "Хотите, чтобы rom kitchen работала с этим языком?"
 
-#	read -p "да/нет?" answer
+	read -p "да/нет?" answer
 
-#	if [ "$answer" == "да" ] || [ "$answer" == "д" ]; then
-#		echo "ru" > $LOCAL/config/language
-#		echo ""
-#		echo $langsaved
-#		read -p "$entertocontinue" done
-#	elif [ "$answer" == "нет" ] || [ "$answer" == "н" ]; then
-#		echo ""
-#		echo "Какой язык Вы хотите использовать вместо этого?"
-#		langselect
-#	else
-#		echo ""
-#		echo $notproperselection
-#		read -p "$entertocontinue" done
-#		initlang
-#	fi
+	if [ "$answer" == "да" ] || [ "$answer" == "д" ]; then
+		echo "ru" > $LOCAL/config/language
+		echo ""
+		echo $langsaved
+		read -p "$entertocontinue" done
+	elif [ "$answer" == "нет" ] || [ "$answer" == "н" ]; then
+		echo ""
+		echo "Какой язык Вы хотите использовать вместо этого?"
+		langselect
+	else
+		echo ""
+		echo $notproperselection
+		read -p "$entertocontinue" done
+		initlang
+	fi
 # German
 elif ( echo $LANG | grep -q "de_" ); then
 	langsaved=$( echo "Die Sprache Deutsch wurde gespeichert" )
@@ -380,7 +390,6 @@ elif ( cat $LOCAL/config/language | grep -q "es" ); then
 elif ( cat $LOCAL/config/language | grep -q "fr" ); then
 	. $LOCAL/translation/europeanpilchard
 # Russian
-## NOT ACTIVE
 elif ( cat $LOCAL/config/language | grep -q "ru" ); then
 	. $LOCAL/translation/whitefish
 # German

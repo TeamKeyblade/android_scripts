@@ -5,5 +5,6 @@ Translators:
 * __German (rabbitfish):__ Zanooda
 * __Italian (italianbleak):__ 
 * __Japanese (bluefintuna):__
-* __Korean (koreanlamprey):__ 
+* __Korean (koreanlamprey):__
+* __Russian (whitefish):__ gaich
 * __Spanish (spanishmackerel):__ japoina92
