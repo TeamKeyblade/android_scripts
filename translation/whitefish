@@ -1,0 +1,422 @@
+#!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Russian
+
+## THIS WHOLE FILE NEEDS TO BE TRANSLATED! ##
+
+## Common
+export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
+export KITCHENUNDERLINE=$( echo "==============================" )
+export KITCHENMENUWHICH=$( echo "Which one would you like to do?: " )
+export MENUGOBACK=$( echo "Go Back" )
+export NOTPROPERSELECTION=$( echo "You did not make a proper selection, try again!" )
+export ENTERTOCONTINUE=$( echo "Press Enter to continue: " )
+export MAINMENURETURN=$( echo "Returning to Main Menu, Press Enter to continue: " )
+export ENTERTOEXIT=$( echo "Press Enter to exit: " )
+export ABORTMESSAGE=$( echo "Aborting.." )
+export COMPLETEDMESSAGE=$( echo "Finished!" )
+export QUESTIONYESNO=$( echo "yes/no? " )
+export ANSWERYES=$( echo "yes" )
+export ANSWERY=$( echo "y" )
+export ANSWERNO=$( echo "no" )
+export ANSWERN=$( echo "n" )
+
+## Macosxinit
+export MACOSXINITRUN=$( echo "You are running Mac OS X!" )
+export MACOSXINITCANTFINDDMG=$( echo "We can't find the android image to mount, this is needed to build on mac os x
+If you already have one made please put it in its proper place with its proper title
+It's proper place and title is in your home folder named android.dmg, example is ~/android.dmg
+
+Would you like to make a new android.dmg?" )
+export MACOSXINITHOWBIG=$( echo "How big would you like android.dmg? Keep in mind it will increase its size if u need more space
+Type in number in gigabytes" )
+export MACOSXINITMOUNTNEW=$( echo "Mounting new android.dmg at /Volumes/android.." )
+export MACOSXINITMOVEINTO=$( echo "Moving into android.dmg.." )
+export MACOSXINITSETUP=$( echo "Setting up kitchen.." )
+export MACOSXINITSETUP=$( echo "Setting up kitchen.." )
+export MACOSXINITFOUNDDMG=$( echo "Found your android.dmg, mounting.." )
+export MACOSXINITCANTFINDKITCHEN=$( echo "We can't find the rom kitchen in /Volumes/android
+
+Would you like to make install rom kitchen in /Volumes/android?" )
+
+## Errors
+export ERRORHEADER=$( echo "An Error Has Occurred!
+======================" )
+export ERRORSIDEEFFECTS=$( echo "Side effects may include failure to build properly and lack of support
+for build environment setup" )
+export ERRORCONTACTINFO=$( echo "If you see this in error, please notify me at either xda or rootzwiki
+If you prefer email you can reach me at mishana@swordrune10.net
+If your also inclined, i have a freenode channel #Swordrune10Kitchen" )
+export BOUNCERPOWERPC=$( echo "PowerPC processor detected!
+===========================
+Running powerpc isn't necessarily prohibited, but it is not suggested" )
+export BOUNCER32BIT=$( echo "32-bit processor detected!
+==========================
+Running 32-bit isn't necessarily prohibited, but it is not suggested" )
+export BOUNCERKITCHENHOME=$( echo "Kitchen not set in correct place!
+=================================
+Kitchen will not work correctly if placed in home folder, please move" )
+export ENVIRONMENTSETUP32BIT=$( echo "32-bit not supported!
+=====================
+Build enviroment installation only supports 64-bit Operating Systems" )
+export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
+===============================
+Supported Operating Systems (only 64-bit):
+Ubuntu 10.04 - 13.10 (Full Support)
+Debian (General Support)
+Linux Mint (General Support)
+Arch Linux (General Support)
+Fedora (General Support)
+Mac OS X (Semi-General Support)" )
+
+## Repos
+export REPOSKITCHEN=$( echo "Kitchen app" )
+export REPOSAOKP=$( echo "Android Open Kang Project" )
+export REPOSAOSP43=$( echo "Android Open Source Project 4.3" )
+export REPOSAOSP=$( echo "Android Open Source Project 4.4" )
+export REPOSCARBON=$( echo "Carbon" )
+export REPOSCM10=$( echo "Cyanogenmod 10.2" )
+export REPOSCM=$( echo "Cyanogenmod 11" )
+export REPOSEV=$( echo "Evervolv" )
+export REPOSOMNI=$( echo "omnirom" )
+export REPOSPACMAN=$( echo "PAC-man" )
+export REPOSPARA=$( echo "ParanoidAndroid" )
+
+## Devices
+export NEXUS4=$( echo "GSM Nexus 4" )
+export NEXUS5=$( echo "LTE Nexus 5" )
+export GSMGNEXUS=$( echo "GSM Galaxy Nexus" )
+export SPRGNEXUS=$( echo "Sprint Galaxy Nexus" )
+export VZWGNEXUS=$( echo "Verizon Galaxy Nexus" )
+export ALLGNEXUS=$( echo "All Galaxy Nexi" )
+export GSMNEXUSS=$( echo "GSM Nexus S" )
+export SPRNEXUSS=$( echo "Sprint Nexus S 4G" )
+export ALLNEXUSS=$( echo "All Nexus S'" )
+export WIFINEXUS72012=$( echo "Wifi Nexus 7 (2012) Tablet" )
+export GSMNEXUS72012=$( echo "GSM Nexus 7 (2012) Tablet" )
+export ALLNEXUS72012=$( echo "All Nexus 7 (2012) Tablets" )
+export WIFINEXUS72013=$( echo "Wifi Nexus 7 (2013) Tablet" )
+export LTENEXUS72013=$( echo "LTE Nexus 7 (2013) Tablet" )
+export ALLNEXUS72013=$( echo "All Nexus 7 (2013) Tablets" )
+export ALLNEXUS7=$( echo "All Nexus 7 Tablets" )
+export NEXUS10=$( echo "Wifi Nexus 10" )
+export WIFIXOOM=$( echo "Wifi Xoom Tablet" )
+export VZWXOOM=$( echo "Verizon Xoom Tablet" )
+export ALLXOOM=$( echo "All Xoom Tablets" )
+export ALLNEXUS=$( echo "All Nexus Devices" )
+
+## Scriptmakir
+export SCRIPTMAKIRREDEEMER=$( echo "Redeemer is running!" )
+export SCRIPTMAKIRRMKITCHEN=$( echo "Removing Kitchen" )
+export SCRIPTMAKIRSETUPKITCHEN=$( echo "Settng Up Kitchen" )
+export SCRIPTMAKIRDESTROYER=$( echo "Destroyer is running!" )
+export SCRIPTMAKIRDESTROYEROFWORLDS=$( echo "Destroyer of Worlds is running!" )
+export SCRIPTMAKIRRMREPO=$( echo "Removing Repository folder" )
+
+## Kitchen
+export KITCHENMAINMENU=$( echo "Main Menu:" )
+export KITCHENMENU1=$( echo "Setup/Update Kitchen" )
+export KITCHENMENU2=$( echo "Configure Kitchen" )
+export KITCHENMENU3=$( echo "Run Kitchen" )
+export KITCHENMENU4=$( echo "Fix Kitchen" )
+export KITCHENMENU5=$( echo "Auto Build Kitchen" )
+export KITCHENMENU6=$( echo "Exit" )
+export KITCHENTHANKS=$( echo "Thank you for using Swordrune10's Kitchen! Good bye.." )
+export KITCHENBORED=$( echo "You seem bored.. wanna watch a movie?" )
+export KITCHENTOUGH=$( echo "tough!" )
+
+## Reposync
+# Usage and Flags
+export REPOSYNCUSAGE=$( echo "repo -- program to initialize/update android repos" )
+export REPOSYNCFLAGD=$( echo "delete the appropriate folder and then exit program" )
+export REPOSYNCFLAGH=$( echo "show this help text" )
+export REPOSYNCFLAGP=$( echo "purge folder, reinit, and then update" )
+export REPOSYNCFLAGU=$( echo "update this particular repo" )
+export REPOSYNCUPDATE1=$( echo "Update $REPOSKITCHEN" )
+export REPOSYNCUPDATE2=$( echo "Update $REPOSAOKP" )
+export REPOSYNCUPDATE3=$( echo "Update $REPOSAOSP43" )
+export REPOSYNCUPDATE4=$( echo "Update $REPOSAOSP" )
+export REPOSYNCUPDATE5=$( echo "Update $REPOSCARBON" )
+export REPOSYNCUPDATE6=$( echo "Update $REPOSCM10" )
+export REPOSYNCUPDATE7=$( echo "Update $REPOSCM" )
+export REPOSYNCUPDATE8=$( echo "Update $REPOSEV" )
+export REPOSYNCUPDATE9=$( echo "Update $REPOSOMNI" )
+export REPOSYNCUPDATE10=$( echo "Update $REPOSPACMAN" )
+export REPOSYNCUPDATE11=$( echo "Update $REPOSPARA" )
+export REPOSYNCUPDATE12=$( echo "Update all available repos" )
+export REPOSYNCUPDATE13=$( echo "Update all the repos" )
+export REPOSYNCUSAGEEXAMP=$( echo "Example: reposync -u cm-10.2" )
+export REPOSYNCUSAGELIST1=$( echo "typing \"reposync -u list\" will give" )
+export REPOSYNCUSAGELIST2=$( echo "you the options list again" )
+
+# Menu
+export REPOSYNCMENUWHAT=$( echo "What are we updating?" )
+export REPOSYNCMENUINIT=$( echo "If repo isn't initialized, it will be on update" )
+export REPOSYNCMENU1=$( echo "Install the repo command" )
+export REPOSYNCMENU2=$( echo "Setup the build environment" )
+export REPOSYNCMENU3=$( echo "Update the $REPOSKITCHEN repository" )
+export REPOSYNCMENU4=$( echo "Update the $REPOSAOKP repository" )
+export REPOSYNCMENU5=$( echo "Update the $REPOSAOSP43 repository" )
+export REPOSYNCMENU6=$( echo "Update the $REPOSAOSP repository" )
+export REPOSYNCMENU7=$( echo "Update the $REPOSCARBON repository" )
+export REPOSYNCMENU8=$( echo "Update the $REPOSCM10 repository" )
+export REPOSYNCMENU9=$( echo "Update the $REPOSCM repository" )
+export REPOSYNCMENU10=$( echo "Update the $REPOSEV repository" )
+export REPOSYNCMENU11=$( echo "Update the $REPOSOMNI repository" )
+export REPOSYNCMENU12=$( echo "Update the $REPOSPACMAN repository" )
+export REPOSYNCMENU13=$( echo "Update the $REPOSPARA repository" )
+export REPOSYNCMENU14=$( echo "Update all available repositories" )
+export REPOSYNCMENU15=$( echo "Update all the repos!" )
+export REPOSYNCMENU16=$( echo "Update/add otherrepo" )
+
+# Sync and Init
+export REPOSYNCNOTINITSKIP=$( echo "not initialized, skipping" )
+export REPOSYNCUPDATING=$( echo "Updating" )
+export REPOSYNCBLAHSMANIFEST=$( echo "'s manifest" )
+export REPOSYNCNOTINITYET=$( echo "not initialized, initializing now" )
+export REPOSYNCNOTINITWANTTO=$( echo "not initialized, do you want to initialize it?" )
+export REPOSYNCINIT=$( echo "initializing" )
+export REPOSYNCNOTINIT=$( echo "wasn't initialized" )
+export REPOSYNCREPO=$( echo "repository" )
+export REPOSYNCREPOALREADY=$( echo "repo command is already installed" )
+export REPOSYNCREPOINSTALL=$( echo "Installing the repo command" )
+export REPOSYNCCOMPLETE=$( echo "Update Complete!" )
+
+# Otherrepo Sync and Init
+export REPOSYNCADDOR=$( echo "Are we adding or updating otherrepo?" )
+export REPOSYNCOTHERMENU1=$( echo "Add to custom repo folder" )
+export REPOSYNCOTHERMENU2=$( echo "Update all the custom repos" )
+export REPOSYNCOTHERREPONAME=$( echo "What is the repo's name?" )
+export REPOSYNCOTHERREPOSHORTNAME=$( echo "What is a short name for this repo? Example: Android Open Source Project = aosp" )
+export REPOSYNCOTHERREPOURL=$( echo "What is the url to the repo's manifest?" )
+export REPOSYNCOTHERREPOBRANCH=$( echo "What is the branch the repo's manifest you want to use?" )
+
+## Environmentsetup
+export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
+export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
+export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
+export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+
+# Platform
+export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
+export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+
+# Java
+export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
+export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
+export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
+export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download page" )
+export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
+
+## Preupdate
+export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
+export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
+export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
+export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
+export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
+
+## Configkitchen
+export CONFIGKITCHENMENUTITLE=$( echo "Kitchen Config Menu" )
+export CONFIGKITCHENMENU1=$( echo "Edit Gitpuller" )
+export CONFIGKITCHENMENU2=$( echo "Edit Romeditor" )
+export CONFIGKITCHENMENU3=$( echo "Create/Edit other repo list" )
+export CONFIGKITCHENOTHERREPO=$( echo "editing custom repos file location" )
+export CONFIGKITCHENOTHERREPONAME=$( echo "editing custom repos name" )
+
+## Fixkitchen
+export FIXKITCHENSOMETHINGNOT=$( echo "Something is not working right? What should we do?" )
+export FIXKITCHENPURGE=$( echo "Purge = remove files, download from origin" )
+export FIXKITCHENDELETE=$( echo "Delete = delete it!" )
+export FIXKITCHENMENU1=$( echo "Add a repo to a certain local_manifests folder" )
+export FIXKITCHENMENU2=$( echo "Purge a certain local_manifests folder" )
+export FIXKITCHENMENU3=$( echo "Purge or Delete a certain repository" )
+export FIXKITCHENMENU4=$( echo "Purge or Delete all the repositories" )
+export FIXKITCHENMENU5=$( echo "Purge or Delete the Kitchen app" )
+export FIXKITCHENMENU6=$( echo "Delete the Kitchen app, and its dependencies" )
+export FIXKITCHENMENU7=$( echo "Delete the contents of your computer" )
+export FIXKITCHENMENU8=$( echo "Delete the entire internet" )
+export FIXKITCHENADD=$( echo "Adding repo to otherdevices.xml for" )
+export FIXKITCHENPURGE=$( echo "local_manifests folder was purged" )
+export FIXKITCHENWHICHADD=$( echo "Which repo would you like to add to?" )
+export FIXKITCHENWHICHPURGE=$( echo "Which repo would you like to purge its local_manifests folder?" )
+export FIXKITCHENWHICHREPO=$( echo "Which repo would you like to purge or delete?" )
+export FIXKITCHENPURGEDELETE=$( echo "Purge or Delete?" )
+export FIXKITCHENPURGEDELETEEXIT=$( echo "Purge = remove files, download from origin
+Delete = delete it!
+type exit to go to back" )
+export FIXKITCHENPURGEDELETEREPO=$( echo "Purge or Delete all of the repositories?" )
+export FIXKITCHENPURGEDELETEKITCHEN=$( echo "Purge or Delete the Kitchen app?" )
+export FIXKITCHENREDEEMER=$( echo "Switching to Redeemer script.." )
+export FIXKITCHENDELETEKITCHEN=$( echo "Are you sure you want to remove the Kitchen app?" )
+export FIXKITCHENTYPEYES=$( echo "You must type in \"yes\" to continue" )
+export FIXKITCHENTYPEABORT=$( echo "Type in anything else to abort operation" )
+export FIXKITCHENDESTROYERSWITCH=$( echo "Switching to Destroyer script" )
+export FIXKITCHENDELETEKITCHENALL=$( echo "Are you sure you want to remove the Kitchen app and its dependencies?" )
+export FIXKITCHENNOTDELETEBUILDS=$( echo "Please note: the builds directory will not be deleted" )
+export FIXKITCHENDESTROYEROFWORLDSSWITCH=$( echo "Switching to Destroyer of Worlds script" )
+export FIXKITCHENDELETECOMPUTER=$( echo "Are you sure..? this will delete everything on your computer, including mounted external drives and flash drives!!" )
+export SUICIDENOTE=$( echo "yes, please delete everything off of my computer" )
+export FIXKITCHENMUSTTYPEEXACTLY=$( echo "You must type in exactly \"$SUICIDENOTE\" to continue" )
+export FIXKITCHENTYPEPASSY=$( echo "Please type in your password to destroy everything" )
+export TROLLFACETITLE=$( echo "Trollface's Android Kitchen!" )
+export TROLLFACEUNDERLINE=$( echo "============================" )
+export FIXKITCHENIBET=$( echo "Oh man, I bet you wish it was that easy!" )
+
+## Build Common
+export BUILDMENUTITLE=$( echo "Today's Lunch Menu:" )
+export BUILDREPOMENU1=$( echo "$REPOSAOKP repository" )
+export BUILDREPOMENU2=$( echo "$REPOSAOSP43 repository" )
+export BUILDREPOMENU3=$( echo "$REPOSAOSP repository" )
+export BUILDREPOMENU4=$( echo "$REPOSCARBON repository" )
+export BUILDREPOMENU5=$( echo "$REPOSCM10 repository" )
+export BUILDREPOMENU6=$( echo "$REPOSCM repository" )
+export BUILDREPOMENU7=$( echo "$REPOSEV repository" )
+export BUILDREPOMENU8=$( echo "$REPOSOMNI repository" )
+export BUILDREPOMENU9=$( echo "$REPOSPACMAN repository" )
+export BUILDREPOMENU10=$( echo "$REPOSPARA repository" )
+export BUILDALLABOVE=$( echo "Build all above!" )
+export BUILDREPONOTSETUP=$( echo "The selected android repository is not setup!" )
+export BUILDDEVICENOTCOMPATIBLE=$( echo "This device is not compatible with this repository, try again!" )
+export BUILDMENURETURN=$( echo "Returning to Build Menu, Press Enter to continue: " )
+
+## Buildmenu
+export BUILDMENU1=$( echo "Build Nexus 4" )
+export BUILDMENU2=$( echo "Build Nexus 5" )
+export BUILDMENU3=$( echo "Build Nexus 7" )
+export BUILDMENU4=$( echo "Build Nexus 10" )
+export BUILDMENU5=$( echo "Build Galaxy Nexus" )
+export BUILDMENU6=$( echo "Build Nexus S" )
+export BUILDMENU7=$( echo "Build Xoom Tablet" )
+export BUILDMENU8=$( echo "Build all above!" )
+export BUILDMENU9=$( echo "Build other device" )
+export BUILDMENU10=$( echo "Build with other repository" )
+
+## Builddevice
+export BUILDDEVICEBEBUILT=$( echo "is selected to be built!" )
+export BUILDDEVICEWHICHREPO=$( echo "Which android repository are we building from today?" )
+export BUILDDEVICENEXUS4=$( echo "Build $NEXUS4" )
+export BUILDDEVICENEXUS5=$( echo "Build $NEXUS5" )
+export BUILDDEVICEGSMGNEXUS=$( echo "Build $GSMGNEXUS" )
+export BUILDDEVICESPRGNEXUS=$( echo "Build $SPRGNEXUS" )
+export BUILDDEVICEVZWGNEXUS=$( echo "Build $VZWGNEXUS" )
+export BUILDDEVICEGSMNEXUSS=$( echo "Build $GSMNEXUSS" )
+export BUILDDEVICESPRNEXUSS=$( echo "Build $SPRNEXUSS" )
+export BUILDDEVICEWIFINEXUS72012=$( echo "Build $WIFINEXUS72012" )
+export BUILDDEVICEGSMNEXUS72012=$( echo "Build $GSMNEXUS72012" )
+export BUILDDEVICEALLNEXUS72012=$( echo "Build $ALLNEXUS72012" )
+export BUILDDEVICEWIFINEXUS72013=$( echo "Build $WIFINEXUS72013" )
+export BUILDDEVICELTENEXUS72013=$( echo "Build $LTENEXUS72013" )
+export BUILDDEVICEALLNEXUS72013=$( echo "Build $ALLNEXUS72013" )
+export BUILDDEVICENEXUS10=$( echo "Build $NEXUS10" )
+export BUILDDEVICEWIFIXOOM=$( echo "Build $WIFIXOOM" )
+export BUILDDEVICEVZWXOOM=$( echo "Build $VZWXOOM" )
+
+## Buildother
+export BUILDOTHERBEBUILT=$( echo "Build other device is selected to be built!" )
+export BUILDOTHERTYPEDEVICE=$( echo "Please type in which device you would like to build" )
+export BUILDOTHERTYPELIST=$( echo "Type in list to see all supported devices" )
+export BUILDOTHERTYPEEXIT=$( echo "Type in exit to go back" )
+export BUILDOTHERBUILDTITLE=$( echo "Device List" )
+export BUILDOTHERBUILDUNDERLINE=$( echo "===========" )
+export BUILDOTHERNOTCOMPATIBLE=$( echo "This device is not compatible with this repository, build anyways?" )
+export BUILDOTHERCONTINUE=$( echo "Continuing the build" )
+export BUILDOTHERNOTVALID=$( echo "Not a vaild answer, not going to build" )
+
+## Buildotherrepo
+export BUILDOTHERREPOEMPTY=$( echo "other repo file is empty, please add to file then try again!" )
+export BUILDOTHERREPOBEBUILT=$( echo "Build with other repository is selected to be built!" )
+
+## Buildandro
+export BUILDANDROCLEAN=$( echo "Clean out folder?" )
+export BUILDANDROCLEANENTER=$( echo "Did you just hit enter without a care? for that im just gonna clean the folder anyways.." )
+export BUILDANDROCCACHECONTINUEWITHOUT=$( echo "Continuing without ccache use; if you want to use ccache, please set it up" )
+export BUILDANDROCCACHEFOUND=$( echo "Found ccache folder, will use for build" )
+export BUILDANDROCCACHEDIDNOTDETECT=$( echo "The kitchen did not detect the ccache folder, did you want to make one now?" )
+export BUILDANDROCCACHEOTHER=$( echo "If ccache is located at another location type in other" )
+export BUILDANDROCCACHEHOWBIG=$( echo "How big do you want the maximum size of ccache? suggested size is 50 - 100 gigabytes" )
+export BUILDANDROCCACHEAMOUNTTYPED=$( echo "Keep in mind the amount typed is in gigabytes" )
+export BUILDANDROCCACHEREPONOTSUPPORTED=$( echo "Repository does not support ccache, continuing without it" )
+export BUILDANDROCCACHEEXACTLOCATION=$( echo "Where is the exact location of ccache? Example of where default location is is ~/.ccache" )
+export BUILDANDROCCACHENOTFOUND=$( echo "Location specified was not found, continuing without it" )
+export BUILDANDROREPONOTSUPPORTED=$( echo "Repository not supported!" )
+export BUILDANDROBUILDMESSEDUP=$( echo "Build messed up!" )
+export BUILDANDROMAKETEMP1=$( echo "Making temporary folder for post-building" )
+export BUILDANDROMAKETEMP2=$( echo "fixes" )
+export BUILDANDROUNZIP=$( echo "Unzipping" )
+export BUILDANDRORMSTUFF=$( echo "Removing uneeded recovery folder and file_contexts from" )
+export BUILDANDROADDROM1=$( echo "Adding rom manager items to" )
+export BUILDANDROADDROM2=$( echo "'s build.prop" )
+export BUILDANDROZIP=$( echo "Zipping" )
+export BUILDANDROSIGN1=$( echo "Signing" )
+export BUILDANDROSIGN2=$( echo "with test keys" )
+export BUILDANDROMOVEOLD1=$( echo "Moving older build to" )
+export BUILDANDROMOVEOLD2=$( echo "/old" )
+export BUILDANDROCOPY=$( echo "Copying to" )
+export BUILDANDROCLEANUP=$( echo "Cleaning up temporary folder" )
+
+## Buildautomenu
+export BUILDAUTOMENUTITLE=$( echo "Auto Builder Menu" )
+export BUILDAUTOMENU1=$( echo "Run Auto Builder" )
+export BUILDAUTOMENU2=$( echo "Add to auto build list" )
+export BUILDAUTOMENU3=$( echo "Clear auto build list" )
+export BUILDAUTOMENU4=$( echo "Toggle Auto Builder's output" )
+export BUILDAUTOMENU5=$( echo "Toggle Auto Builder's build other repo" )
+export BUILDAUTOMENU6=$( echo "Toggle Auto Builder's sleep function" )
+export BUILDAUTOMENUSETAUTO=$( echo "Which android repository are we setting for auto build?" )
+export BUILDAUTOMENUMOVEON=$( echo "Finished with adding repos, move on to adding devices" )
+export BUILDAUTOMENUADD1=$( echo "Added" )
+export BUILDAUTOMENUADD2=$( echo "to auto build files" )
+export BUILDAUTOMENUTYPEDEVICE=$( echo "Please type in Which android device are we setting for auto build" )
+export BUILDAUTOMENUWANTTOCLEAR=$( echo "Are you sure you want to clear auto build files?" )
+export BUILDAUTOMENUCLEARED=$( echo "Auto build files cleared" )
+export BUILDAUTOMENUNOTCLEARED=$( echo "Auto build files left untouched" )
+export BUILDAUTOMENUOUTPUT=$( echo "This will output buildauto into swordkitchen script folder" )
+export BUILDAUTOMENUSOMEWHERE=$( echo "Unless you want it to be somewhere else?" )
+export BUILDAUTOMENUTYPEOUTPUT=$( echo "Type yes to output somewhere else:" )
+export BUILDAUTOMENUTYPEABSOLUTE=$( echo "Please type the absolute path of where u want the buildoutput.txt to be" )
+export BUILDAUTOMENUOUTPUTSENT=$( echo "Output will be sent to" )
+export BUILDAUTOMENUOUTPUTCLEAR=$( echo "Output file cleared, buildauto will now output regularly" )
+export BUILDAUTOMENUADDBELOWREPO=$( echo "Add below this line the repo folder you want to auto build, otherrepo are in the otherrepo folder, list each repo per line" )
+export BUILDAUTOMENUADDBELOWDEVICE=$( echo "Add below this line the device codename you want to auto build, list each device per line" )
+export BUILDAUTOMENUOTHERREPOON=$( echo "Auto Builder's build other repo is now on!" )
+export BUILDAUTOMENUOTHERREPOOFF=$( echo "Auto Builder's build other repo is now off!" )
+export BUILDAUTOMENUCOMPSLEEPTIME1=$( echo "Do you want the computer to sleep for a" )
+export BUILDAUTOMENUCOMPSLEEPTIME2=$( echo "certain amount of hours or wake up at a certain time?" )
+export BUILDAUTOMENUSLEEPMENU1=$( echo "Wake up at a certain time" )
+export BUILDAUTOMENUSLEEPMENU2=$( echo "Certain amount of hours" )
+export BUILDAUTOMENUSPECIFIC1=$( echo "What time do you want the build server to wake up at the next day?" )
+export BUILDAUTOMENUSPECIFIC2=$( echo "24 hours configuration, Example: for 2pm put 14:00, for 7am put 07:00" )
+export BUILDAUTOMENUHOURS1=$( echo "How long would you like for the build server to sleep after building?" )
+export BUILDAUTOMENUHOURS2=$( echo "The number being inputted is in hours" )
+export BUILDAUTOMENUTYPEPASSY=$( echo "Please type in your user's password, so the build server can sleep" )
+export BUILDAUTOMENUSLEEPON=$( echo "Auto Builder's sleep function is now on!" )
+export BUILDAUTOMENUSLEEPOFF=$( echo "Auto Builder's sleep function is now off!" )
+
+## Buildauto
+export BUILDAUTOPLEASE=( echo "Please use the Auto Builder config menu" )
+export BUILDAUTOBOTH=( echo "Both Auto Builder's repository and device is not set!" )
+export BUILDAUTOREPO=( echo "Auto Builder's repository is not set!" )
+export BUILDAUTODEVICE=( echo "Auto Builder's device is not set!" )
+export BUILDAUTOWAIT=( echo "Waiting for ten minutes! this is not a countdown.." )
+export BUILDAUTOSLEEP=( echo "Sleep..." )
