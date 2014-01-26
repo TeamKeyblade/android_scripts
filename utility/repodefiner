@@ -15,8 +15,8 @@
 
 if [ $repodefine == "kitchen" ]; then
 	export SCRIPT_REPO=$(echo "kitchen")
-	export REPO_PLATFORM=$(echo "master")
-	repo_branch=$(echo "master")
+	export REPO_PLATFORM=$(echo "stable")
+	repo_branch=$(echo "stable")
 	repo_name=$(echo $REPOSKITCHEN)
 	repo_url=$(echo "http://github.com/TeamKeyblade/kitchen_manifest.git")
 	manifest_name=$(echo "default.xml")
