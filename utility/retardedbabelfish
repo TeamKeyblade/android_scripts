@@ -24,12 +24,15 @@ echo "  2. español"
 echo "  3. Русский"
 # German
 echo "  4. Deutsch"
+# Dutch
+# NEEDS TRANSLATION
+echo "  5. Dutch"
 # Brazilian Portuguese
-echo "  5. Brazilian Portuguese"
-echo "  6. None of the above"
+echo "  6. Brazilian Portuguese"
+echo "  7. None of the above"
 read answer
 
-if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "5" ]; then
+if [ ! "$answer" ] || ( echo $answer | grep -q [A-Za-z] ) || [ $answer -gt "7" ]; then
 	echo ""
 	echo $notproperselection
 	read -p  $entertocontinue done
@@ -68,15 +71,23 @@ if [ $answer == "4" ]; then
 	read -p "$entertocontinue" done
 fi
 
-# Brazilian Portuguese
+# Dutch
 if [ $answer == "5" ]; then
+	echo "nl" > $LOCAL/config/language
+	echo ""
+	echo $langsaved
+	read -p "$entertocontinue" done
+fi
+
+# Brazilian Portuguese
+if [ $answer == "6" ]; then
 	echo "ptbr" > $LOCAL/config/language
 	echo ""
 	echo $langsaved
 	read -p "$entertocontinue" done
 fi
 
-if [ $answer == "6" ]; then
+if [ $answer == "7" ]; then
 	clear
 
 	echo "The Language You Want Is Not Supported!"
@@ -217,6 +228,34 @@ elif ( echo $LANG | grep -q "de_" ); then
 	elif [ "$answer" == "nein" ] || [ "$answer" == "n" ]; then
 		echo ""
 		echo "Welche Sprache möchten Sie stattdessen verwenden?"
+		langselect
+	else
+		echo ""
+		echo $notproperselection
+		read -p "$entertocontinue" done
+		initlang
+	fi
+# Dutch
+# NEEDS TRANSLATION
+elif ( echo $LANG | grep -q "nl_" ); then
+	langsaved=$( echo "Language saved as Dutch" )
+	notproperselection=$( echo "You did not make a proper selection, try again!" )
+	entertocontinue=$( echo "Press Enter to continue: " )
+
+	clear
+	echo "We have detected that your system is set to Dutch"
+	echo "Is this how you want the rom kitchen to be?"
+
+	read -p "yes/no?" answer
+
+	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+		echo "nl" > $LOCAL/config/language
+		echo ""
+		echo $langsaved
+		read -p "$entertocontinue" done
+	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+		echo ""
+		echo "What language do you want to use instead?"
 		langselect
 	else
 		echo ""
@@ -395,6 +434,10 @@ elif ( cat $LOCAL/config/language | grep -q "ru" ); then
 # German
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
 	. $LOCAL/translation/rabbitfish
+# Dutch
+## NOT ACTIVE
+elif ( cat $LOCAL/config/language | grep -q "nl" ); then
+	. $LOCAL/translation/chubmackerel
 # Brazilian Portuguese
 elif ( cat $LOCAL/config/language | grep -q "ptbr" ); then
 	. $LOCAL/translation/pirarucu
