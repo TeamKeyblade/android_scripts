@@ -15,8 +15,6 @@
 
 # Dutch
 
-## THIS WHOLE FILE NEEDS TO BE TRANSLATED! ##
-
 ## Common
 export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "==============================" )
