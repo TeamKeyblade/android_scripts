@@ -16,7 +16,7 @@
 # German
 
 ## Common
- export KITCHENTITLE=$( echo "Swordrune10 Android Kitchen!" )
+export KITCHENTITLE=$( echo "Swordrune10 Android Kitchen!" )
 export KITCHENUNDERLINE=$( echo "===========================" )
 export MENUGOBACK=$( echo "Zurück" )
 export NOTPROPERSELECTION=$( echo "Es wurde keine gültige Auswahl getroffen, bitte erneut versuchen!" )
