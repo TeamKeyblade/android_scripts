@@ -15,7 +15,7 @@
 
 # Brazilian Portuguese
 
-## V1.0 Translated by: Doublepranks ##
+## V1.5 Translated by: Doublepranks ##
 
 ## Common
 export KITCHENTITLE=$( echo "Swordrune10's Android Kitchen!" )
@@ -218,24 +218,24 @@ export REPOSYNCOTHERREPOBRANCH=$( echo "A qual branch o repositorio deve ser atr
 ## EVERYTHING BELOW NEEDS TRANSLATION!
 
 ## Environmentsetup
-export ENVIRONMENTSETUPINIT=$( echo "Initilizing the build environment" )
-export ENVIRONMENTSETUPOS=$( echo "Checking what Operating System you are running.." )
-export ENVIRONMENTSETUPINSTALL=$( echo "Installing packages needed, please enter your password" )
-export ENVIRONMENTSETUPDXCODE=$( echo "Is Xcode installed? We recommend version 3.1.4 or newer" )
-export ENVIRONMENTSETUPDMACPORTS=$( echo "Is MacPorts installed?" )
+export ENVIRONMENTSETUPINIT=$( echo "Iniciando embiente de compilacao" )
+export ENVIRONMENTSETUPOS=$( echo "Verificando sistema operacional.." )
+export ENVIRONMENTSETUPINSTALL=$( echo "Instalando pacotes, por favor insira sua senha root." )
+export ENVIRONMENTSETUPDXCODE=$( echo "Ja tem o xcode? versao 3.1.4 ou posterior" )
+export ENVIRONMENTSETUPDMACPORTS=$( echo "Ja tem o MacPorts?" )
 
 # Platform
-export ENVIRONMENTSETUPFEDORA=$( echo "You are running Fedora or RedHat!" )
-export ENVIRONMENTSETUPDEBIAN=$( echo "You are running Debian!" )
-export ENVIRONMENTSETUPULMN=$( echo "You are running Ubuntu, either 10.04, 10.10, or 11.04!" )
-export ENVIRONMENTSETUPUO=$( echo "You are running Ubuntu 11.10!" )
-export ENVIRONMENTSETUPUPQ=$( echo "You are running Ubuntu 12.04 or 12.10!" )
-export ENVIRONMENTSETUPURS=$( echo "You are running Ubuntu 13.04 or 13.10!" )
-export ENVIRONMENTSETUPMINT=$( echo "You are running Linux Mint!" )
-export ENVIRONMENTSETUPARCH=$( echo "You are running Arch Linux!" )
-export ENVIRONMENTSETUPDARWIN=$( echo "You are running Mac OS X!" )
+export ENVIRONMENTSETUPFEDORA=$( echo "sistema operacional detectado, Fedora / RedHat!" )
+export ENVIRONMENTSETUPDEBIAN=$( echo "sistema operacional detectado, Debian!" )
+export ENVIRONMENTSETUPULMN=$( echo "sistema operacional detectado, Ubuntu!" )
+export ENVIRONMENTSETUPUO=$( echo "sistema operacional detectado, Ubuntu 11.10!" )
+export ENVIRONMENTSETUPUPQ=$( echo "sistema operacional detectado, 12.04 / 12.10!" )
+export ENVIRONMENTSETUPURS=$( echo "sistema operacional detectado, Ubuntu 13.04 / 13.10!" )
+export ENVIRONMENTSETUPMINT=$( echo "sistema operacional detectado, Linux Mint!" )
+export ENVIRONMENTSETUPARCH=$( echo "sistema operacional detectado, Arch Linux!" )
+export ENVIRONMENTSETUPDARWIN=$( echo "sistema operacional detectado, Mac OS X!" )
 
-# Java
+# Java # I recommend leaving this section as it is.
 export ENVIRONMENTSETUPFLEXION=$( echo "Installing java will take a while, to do this legally the Kitchen app will use exerpts from flexion.org oab-java script" )
 export ENVIRONMENTSETUPFLEXION1=$( echo " [x] Getting Java SE download page" )
 export ENVIRONMENTSETUPFLEXION2=$( echo " [x] Getting current release download page" )
@@ -243,41 +243,44 @@ export ENVIRONMENTSETUPFLEXION3=$( echo " [x] Getting previous releases download
 export ENVIRONMENTSETUPWEBUPD8=$( echo "Installing java will take a while, to do this legally the Kitchen app will use webupd8's java installer" )
 
 ## Preupdate
-export PREUPDATEAOSP43=$( echo "Updating $REPOSAOSP43's local_manifests folder" )
-export PREUPDATEAOSP=$( echo "Updating $REPOSAOSP's local_manifests folder" )
-export PREUPDATECM10=$( echo "Updating $REPOSCM10's local_manifests folder" )
-export PREUPDATECM=$( echo "Updating $REPOSCM's local_manifests folder" )
-export PREUPDATEOMNI=$( echo "Updating $REPOSOMNI's local_manifests folder" )
+export PREUPDATEAOSP43=$( echo "Atualizando $REPOSAOSP43's local_manifests folder" )
+export PREUPDATEAOSP=$( echo "Atualizando $REPOSAOSP's local_manifests folder" )
+export PREUPDATECM10=$( echo "Atualizando $REPOSCM10's local_manifests folder" )
+export PREUPDATECM=$( echo "Atualizando $REPOSCM's local_manifests folder" )
+export PREUPDATEOMNI=$( echo "Atualizando $REPOSOMNI's local_manifests folder" )
 
 ## Configkitchen
 export CONFIGKITCHENMENUTITLE=$( echo "Kitchen Config Menu" )
-export CONFIGKITCHENMENU1=$( echo "Edit Gitpuller" )
-export CONFIGKITCHENMENU2=$( echo "Edit Romeditor" )
-export CONFIGKITCHENMENU3=$( echo "Create/Edit other repo list" )
-export CONFIGKITCHENOTHERREPO=$( echo "editing custom repos file location" )
-export CONFIGKITCHENOTHERREPONAME=$( echo "editing custom repos name" )
+export CONFIGKITCHENMENU1=$( echo "Editar Gitpuller" )
+export CONFIGKITCHENMENU2=$( echo "Editar Romeditor" )
+export CONFIGKITCHENMENU3=$( echo "Criar/Editar outro repo list" )
+export CONFIGKITCHENOTHERREPO=$( echo "Editando outro repos, arquivo ou local " )
+export CONFIGKITCHENOTHERREPONAME=$( echo "Editando outro repos " )
 
 ## Fixkitchen
-export FIXKITCHENSOMETHINGNOT=$( echo "Something is not working right? What should we do?" )
-export FIXKITCHENPURGE=$( echo "Purge = remove files, download from origin" )
-export FIXKITCHENDELETE=$( echo "Delete = delete it!" )
-export FIXKITCHENMENU1=$( echo "Add a repo to a certain local_manifests folder" )
-export FIXKITCHENMENU2=$( echo "Purge a certain local_manifests folder" )
-export FIXKITCHENMENU3=$( echo "Purge or Delete a certain repository" )
-export FIXKITCHENMENU4=$( echo "Purge or Delete all the repositories" )
-export FIXKITCHENMENU5=$( echo "Purge or Delete the Kitchen app" )
-export FIXKITCHENMENU6=$( echo "Delete the Kitchen app, and its dependencies" )
-export FIXKITCHENMENU7=$( echo "Delete the contents of your computer" )
-export FIXKITCHENMENU8=$( echo "Delete the entire internet" )
-export FIXKITCHENADD=$( echo "Adding repo to otherdevices.xml for" )
-export FIXKITCHENPURGE=$( echo "local_manifests folder was purged" )
-export FIXKITCHENWHICHADD=$( echo "Which repo would you like to add to?" )
-export FIXKITCHENWHICHPURGE=$( echo "Which repo would you like to purge its local_manifests folder?" )
-export FIXKITCHENWHICHREPO=$( echo "Which repo would you like to purge or delete?" )
-export FIXKITCHENPURGEDELETE=$( echo "Purge or Delete?" )
-export FIXKITCHENPURGEDELETEEXIT=$( echo "Purge = remove files, download from origin
-Delete = delete it!
-type exit to go to back" )
+export FIXKITCHENSOMETHINGNOT=$( echo "Algo deu errado! E agora?" )
+export FIXKITCHENPURGE=$( echo "Purge = remover arquivos, baixar de origin" )
+export FIXKITCHENDELETE=$( echo "Delete = deletar?!" )
+export FIXKITCHENMENU1=$( echo "Addicionar arquivo repo a uma pasta local_manifests" )
+export FIXKITCHENMENU2=$( echo "Purge uma pasta local_manifests" )
+export FIXKITCHENMENU3=$( echo "Purge ou deletar um repositorio" )
+export FIXKITCHENMENU4=$( echo "Purge ou deletar todos os repositorios" )
+export FIXKITCHENMENU5=$( echo "Purge or Delete the Kitchen app(Cuidado)" )
+export FIXKITCHENMENU6=$( echo "Delete the Kitchen app, and its dependencies(Cuidado)" )
+export FIXKITCHENMENU7=$( echo "Delete the contents of your computer(Cuidado)" )
+export FIXKITCHENMENU8=$( echo "Delete the entire internet(:o N faz isso n vei '-')" )
+export FIXKITCHENADD=$( echo "Adicionando repo otherdevices.xml " )
+export FIXKITCHENPURGE=$( echo "local_manifests  purged" )
+export FIXKITCHENWHICHADD=$( echo "Para qual repositorio adicionar?" )
+export FIXKITCHENWHICHPURGE=$( echo "Para qual repo adicionar esta pasta local_manifests ?" )
+export FIXKITCHENWHICHREPO=$( echo "Qual repositorio gostaria de Purge/Delete?" )
+export FIXKITCHENPURGEDELETE=$( echo "Purge ou Delete?" )
+export FIXKITCHENPURGEDELETEEXIT=$( echo "Purge = remover arquivos, baixar de origin
+Delete = deletar?!
+Digite exit para sair" )
+
+############ Coffee break ;)
+
 export FIXKITCHENPURGEDELETEREPO=$( echo "Purge or Delete all of the repositories?" )
 export FIXKITCHENPURGEDELETEKITCHEN=$( echo "Purge or Delete the Kitchen app?" )
 export FIXKITCHENREDEEMER=$( echo "Switching to Redeemer script.." )
