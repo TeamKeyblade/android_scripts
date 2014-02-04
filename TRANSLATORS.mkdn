@@ -2,7 +2,7 @@ Translators:
 ------------
 * __Brazilian Portuguese (pirarucu):__ Doublepranks
 * __French (europeanpilchard):__ 
-* __German (rabbitfish):__ Zanooda
+* __German (rabbitfish):__ Martinusbe, Zanooda
 * __Italian (italianbleak):__ 
 * __Japanese (bluefintuna):__
 * __Korean (koreanlamprey):__
