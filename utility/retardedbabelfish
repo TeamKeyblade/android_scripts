@@ -26,7 +26,7 @@ echo "  3. Русский"
 echo "  4. Deutsch"
 # Dutch
 # NEEDS TRANSLATION
-echo "  5. Dutch"
+echo "  5. Nederlands"
 # Brazilian Portuguese
 echo "  6. Brazilian Portuguese"
 echo "  7. None of the above"
@@ -238,24 +238,24 @@ elif ( echo $LANG | grep -q "de_" ); then
 # Dutch
 # NEEDS TRANSLATION
 elif ( echo $LANG | grep -q "nl_" ); then
-	langsaved=$( echo "Language saved as Dutch" )
-	notproperselection=$( echo "You did not make a proper selection, try again!" )
+	langsaved=$( echo "Taal bewaard als Nederlands" )
+	notproperselection=$( echo "Je maakte geen geldige selectie, probeer opnieuw!" )
 	entertocontinue=$( echo "Press Enter to continue: " )
 
 	clear
-	echo "We have detected that your system is set to Dutch"
-	echo "Is this how you want the rom kitchen to be?"
+	echo "We hebben gedetecteerd dat je systeem in het Nederlands is"
+	echo "Is dit de taal die je wil gebruiken in de rom keuken?"
 
-	read -p "yes/no?" answer
+	read -p "ja/nee?" answer
 
-	if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+	if [ "$answer" == "ja" ] || [ "$answer" == "j" ]; then
 		echo "nl" > $LOCAL/config/language
 		echo ""
 		echo $langsaved
 		read -p "$entertocontinue" done
-	elif [ "$answer" == "no" ] || [ "$answer" == "n" ]; then
+	elif [ "$answer" == "nee" ] || [ "$answer" == "n" ]; then
 		echo ""
-		echo "What language do you want to use instead?"
+		echo "Welke taal wil je in de plaats gebruiken?"
 		langselect
 	else
 		echo ""
