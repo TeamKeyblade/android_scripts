@@ -25,7 +25,6 @@ echo "  3. Русский"
 # German
 echo "  4. Deutsch"
 # Dutch
-# NEEDS TRANSLATION
 echo "  5. Nederlands"
 # Brazilian Portuguese
 echo "  6. Brazilian Portuguese"
@@ -236,7 +235,6 @@ elif ( echo $LANG | grep -q "de_" ); then
 		initlang
 	fi
 # Dutch
-# NEEDS TRANSLATION
 elif ( echo $LANG | grep -q "nl_" ); then
 	langsaved=$( echo "Taal bewaard als Nederlands" )
 	notproperselection=$( echo "Je maakte geen geldige selectie, probeer opnieuw!" )
@@ -435,7 +433,6 @@ elif ( cat $LOCAL/config/language | grep -q "ru" ); then
 elif ( cat $LOCAL/config/language | grep -q "de" ); then
 	. $LOCAL/translation/rabbitfish
 # Dutch
-## NOT ACTIVE
 elif ( cat $LOCAL/config/language | grep -q "nl" ); then
 	. $LOCAL/translation/chubmackerel
 # Brazilian Portuguese
