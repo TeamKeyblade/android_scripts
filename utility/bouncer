@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+. ./retardedbabelfish
+
 if ( ! uname -a | grep -q x86_64 ); then
 	if ( uname -a | grep -q powerpc ); then
 		clear
