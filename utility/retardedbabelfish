@@ -413,6 +413,7 @@ if [ ! "$INIT" ]; then
 fi
 
 if ( ! find $LOCAL/config/language &> /dev/null ); then
+	touch $LOCAL/config/language
 	initlang
 fi
 
