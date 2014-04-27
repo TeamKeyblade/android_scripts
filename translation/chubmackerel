@@ -71,7 +71,7 @@ Bouw omgeving installatie ondersteund enkel 64-bit systemen" )
 export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Besturingssysteem niet ondersteund!
 ===============================
 Ondersteunde besturingssystemen(enkel 64-bit):
-Ubuntu 10.04 - 13.10 (Volledige ondersteuning)
+Ubuntu 10.04 - 14.04 (Volledige ondersteuning)
 Debian (Algemene ondersteuning)
 Linux Mint (Algemene ondersteuning)
 Arch Linux (Algemene ondersteuning)
