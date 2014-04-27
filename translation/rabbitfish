@@ -67,7 +67,7 @@ Umgebungsinstallation unterstützt ausschliesslich 64-bit-Systeme" )
 export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Betriebssystem nicht unterstützt!
 ===============================
 Unterstützte Betriebssysteme (nur 64-bit):
-Ubuntu 10.04 - 13.10 (Voll unterstützt)
+Ubuntu 10.04 - 14.04 (Voll unterstützt)
 Debian (Grundunterstützung)
 Linux Mint (Grundunterstützung)
 Arch Linux (Grundunterstützung)

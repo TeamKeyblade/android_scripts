@@ -76,7 +76,7 @@ El Entorno de compilacion solo soporta Sistemas Operativos de 64-bit " )
 export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Sistema Operativo NO soportado!
 ===============================
 Sistemas Operativos Soportados (SOLO 64-bit):
-Ubuntu 10.04 - 13.10 (Soporte Completo)
+Ubuntu 10.04 - 14.04 (Soporte Completo)
 Debian (Soporte General)
 Linux Mint (Soporte General)
 Arch Linux (Soporte General)

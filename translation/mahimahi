@@ -73,7 +73,7 @@ Build enviroment installation only supports 64-bit Operating Systems" )
 export ENVIRONMENTSETUPNOTSUPPORTED=$( echo "Operating System not supported!
 ===============================
 Supported Operating Systems (only 64-bit):
-Ubuntu 10.04 - 13.10 (Full Support)
+Ubuntu 10.04 - 14.04 (Full Support)
 Debian (General Support)
 Linux Mint (General Support)
 Arch Linux (General Support)
