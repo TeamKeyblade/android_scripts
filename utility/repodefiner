@@ -43,7 +43,7 @@ fi
 if [ $repodefine == "aosp" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
 	export REPO_PLATFORM=$(echo "kitkat")
-	repo_branch=$(echo "android-4.4.3_r1")
+	repo_branch=$(echo "android-4.4.4_r1")
 	repo_name=$(echo $REPOSAOSP)
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	manifest_name=$(echo "default.xml")
