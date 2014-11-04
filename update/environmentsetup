@@ -154,8 +154,8 @@ if ( uname -a | grep -q Linux ); then
 			sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 		fi
 
-		# Ubuntu 13.04, 13.10, and 14.04
-		if ( lsb_release -c | grep -q raring ) || ( lsb_release -c | grep -q saucy ) || ( lsb_release -c | grep -q trusty ); then
+		# Ubuntu 13.04, 13.10, 14.04, and 14.10
+		if ( lsb_release -c | grep -q raring ) || ( lsb_release -c | grep -q saucy ) || ( lsb_release -c | grep -q trusty ) || ( lsb_release -c | grep -q utopic ); then
 			echo $ENVIRONMENTSETUPURST
 			echo $ENVIRONMENTSETUPINSTALL
 			sudo apt-get install git-core gnupg flex bison gperf build-essential \
