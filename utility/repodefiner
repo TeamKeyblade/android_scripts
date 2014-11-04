@@ -31,19 +31,19 @@ if [ $repodefine == "aokp" ]; then
 	manifest_name=$(echo "default.xml")
 fi
 
-if [ $repodefine == "aosp43" ]; then
+if [ $repodefine == "aosp44" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "jb")
-	repo_branch=$(echo "android-4.3.1_r1")
-	repo_name=$(echo $REPOSAOSP43)
+	export REPO_PLATFORM=$(echo "kitkat")
+	repo_branch=$(echo "android-4.4.4_r1")
+	repo_name=$(echo $REPOSAOSP)
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	manifest_name=$(echo "default.xml")
 fi
 
 if [ $repodefine == "aosp" ]; then
 	export SCRIPT_REPO=$(echo "aosp")
-	export REPO_PLATFORM=$(echo "kitkat")
-	repo_branch=$(echo "android-4.4.4_r1")
+	export REPO_PLATFORM=$(echo "lollipop")
+	repo_branch=$(echo "android-5.0_r1")
 	repo_name=$(echo $REPOSAOSP)
 	repo_url=$(echo "https://android.googlesource.com/platform/manifest")
 	manifest_name=$(echo "default.xml")
