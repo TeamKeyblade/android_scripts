@@ -122,7 +122,7 @@ if [ "$PLATFORM" ]; then
 		echo "aosp43 = $REPOSYNCUPDATE3"
 		echo "aosp = $REPOSYNCUPDATE4"
 		echo "carbon = $REPOSYNCUPDATE5"
-		echo "cm10 =$REPOSYNCUPDATE6"
+		echo "cm11 =$REPOSYNCUPDATE6"
 		echo "cm = $REPOSYNCUPDATE7"
 		echo "evervolv = $REPOSYNCUPDATE8"
 		echo "omni = $REPOSYNCUPDATE9"
@@ -153,7 +153,7 @@ if [ "$PLATFORM" ]; then
 		setupanswer="7"
 	fi
 
-	if [ $PLATFORM == "cm10" ]; then
+	if [ $PLATFORM == "cm11" ]; then
 		setupanswer="8"
 	fi
 
@@ -343,7 +343,7 @@ if [ $setupanswer == "7" ]; then
 fi
 
 if [ $setupanswer == "8" ]; then
-	repodefine=$(echo "cm10")
+	repodefine=$(echo "cm11")
 	. repodefiner
 	done=true
 	setupcheck
@@ -405,7 +405,7 @@ if [ $setupanswer == "14" ] || [ $setupanswer == "15" ]; then
 	. repodefiner
 	setupcheck
 
-	repodefine=$(echo "cm10")
+	repodefine=$(echo "cm11")
 	. repodefiner
 	setupcheck
 
