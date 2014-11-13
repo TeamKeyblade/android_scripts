@@ -70,7 +70,7 @@ if [ $version == "4" ]; then
 fi
 
 if [ $version == "5" ]; then
-	repodefine=$(echo "cm10")
+	repodefine=$(echo "cm11")
 	. repodefiner
 fi
 

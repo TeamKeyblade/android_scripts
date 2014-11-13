@@ -43,15 +43,6 @@ if [ $SCRIPT_REPO == "cna" ]; then
 	rm -rf vendor/cna
 fi
 
-if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "10.2" ]; then
-	rm -rf vendor/cm
-	echo ""
-	echo $PREUPDATECM10
-	export AUTHOR="xml"
-	scriptmakir
-	cp -f $LOCAL/xml/cm10.2-local_manifest.xml $localmanifests/proprietary.xml
-fi
-
 if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
 	rm -rf vendor/cm
 	echo ""
@@ -59,6 +50,15 @@ if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "11" ]; then
 	export AUTHOR="xml"
 	scriptmakir
 	cp -f $LOCAL/xml/cm11-local_manifest.xml $localmanifests/proprietary.xml
+fi
+
+if [ $SCRIPT_REPO == "cm" ] && [ $REPO_PLATFORM == "12" ]; then
+	rm -rf vendor/cm
+	echo ""
+	echo $PREUPDATECM
+	export AUTHOR="xml"
+	scriptmakir
+	cp -f $LOCAL/xml/cm12-local_manifest.xml $localmanifests/proprietary.xml
 fi
 
 if [ $SCRIPT_REPO == "carbon" ]; then
