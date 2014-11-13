@@ -58,19 +58,19 @@ if [ $repodefine == "carbon" ]; then
 	manifest_name=$(echo "default.xml")
 fi
 
-if [ $repodefine == "cm10" ]; then
+if [ $repodefine == "cm11" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "10.2")
-	repo_branch=$(echo "stable/cm-10.2")
-	repo_name=$(echo $REPOSCM10)
+	export REPO_PLATFORM=$(echo "11")
+	repo_branch=$(echo "cm-11.0")
+	repo_name=$(echo $REPOSCM)
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
-	manifest_name=$(echo "cm-10.2.0.xml")
+	manifest_name=$(echo "default.xml")
 fi
 
 if [ $repodefine == "cm" ]; then
 	export SCRIPT_REPO=$(echo "cm")
-	export REPO_PLATFORM=$(echo "11")
-	repo_branch=$(echo "cm-11.0")
+	export REPO_PLATFORM=$(echo "12")
+	repo_branch=$(echo "cm-12.0")
 	repo_name=$(echo $REPOSCM)
 	repo_url=$(echo "http://github.com/CyanogenMod/android.git")
 	manifest_name=$(echo "default.xml")
